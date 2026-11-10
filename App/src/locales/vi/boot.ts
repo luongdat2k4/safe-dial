@@ -1,0 +1,62 @@
+export const boot = {
+  language: {
+    title: 'Chọn ngôn ngữ',
+    subtitle: 'Bạn có thể thay đổi lại trong Cài đặt bất cứ lúc nào.',
+    vi: 'Tiếng Việt',
+    viNative: 'Việt Nam',
+    en: 'English',
+    enNative: 'Tiếng Anh',
+    enSoon: 'Bản dịch tiếng Anh sắp có',
+    confirm: 'Xác nhận',
+    saved: 'Đã lưu ngôn ngữ',
+  },
+  onboarding: {
+    pages: [
+      {
+        title: 'Nhận diện số lạ',
+        text: 'Biết ngay ai đang gọi, kể cả khi số chưa có trong danh bạ. Tên và nhóm rủi ro hiện ngay lúc đổ chuông.',
+      },
+      {
+        title: 'Cảnh báo lừa đảo theo thời gian thực',
+        text: 'Safe Dial cảnh báo khi số gọi bị cộng đồng báo cáo lừa đảo, giả danh ngân hàng hay cơ quan nhà nước.',
+      },
+      {
+        title: 'Chặn spam và thống kê liên lạc',
+        text: 'Chặn số quốc tế, số ẩn, số rác theo quy tắc của bạn, và xem ai liên lạc với bạn nhiều nhất.',
+      },
+    ],
+    dots: 'Trang {n} trên {total}',
+    start: 'Bắt đầu',
+  },
+  permissions: {
+    title: 'Cấp quyền cho Safe Dial',
+    subtitle: 'Mỗi quyền chỉ dùng cho một mục đích rõ ràng. Bạn có thể đổi lại sau.',
+    allowAll: 'Cho phép tất cả',
+    later: 'Để sau',
+    laterWarn: 'Bảo vệ sẽ bị hạn chế cho đến khi bạn cấp đủ quyền',
+    needBasic: 'Cần bật Cuộc gọi và Danh bạ để tiếp tục',
+    sectionPermissions: 'Quyền truy cập',
+    sectionRoles: 'Vai trò trên điện thoại',
+    privacyTitle: 'Quyền riêng tư của bạn',
+    privacyText: 'Dữ liệu danh bạ chỉ dùng để nhận diện, không bán và không chia sẻ cho bên thứ ba.',
+    items: {
+      calls: { title: 'Cuộc gọi và nhật ký cuộc gọi', why: 'Để xem lịch sử, nhận biết cuộc gọi đến và chặn số.' },
+      contacts: { title: 'Danh bạ', why: 'Để hiện tên người quen và không chặn nhầm họ.' },
+      overlay: { title: 'Hiển thị trên ứng dụng khác', why: 'Để hiện cửa sổ thông tin người gọi khi có cuộc gọi.' },
+      notifications: { title: 'Thông báo', why: 'Để báo cuộc gọi nhỡ và cuộc gọi vừa bị chặn.' },
+    },
+    roles: {
+      dialer: { title: 'Ứng dụng gọi điện mặc định', why: 'Cho phép Safe Dial xử lý cuộc gọi đến và đi.' },
+      screening: { title: 'Ứng dụng nhận diện và lọc cuộc gọi', why: 'Cho phép kiểm tra và chặn cuộc gọi trước khi đổ chuông.' },
+      set: 'Đã đặt',
+      notSet: 'Chưa đặt',
+      sheetTitleDialer: 'Đặt Safe Dial làm ứng dụng gọi điện mặc định?',
+      sheetTitleScreening: 'Đặt Safe Dial làm ứng dụng nhận diện và lọc cuộc gọi?',
+      sheetText: 'Màn hình này mô phỏng hộp thoại chọn vai trò của hệ thống.',
+      setDefault: 'Đặt làm mặc định',
+      cancel: 'Không phải bây giờ',
+      done: 'Đã đặt Safe Dial làm mặc định (mô phỏng)',
+    },
+    granted: 'Đã cho phép',
+  },
+} as const

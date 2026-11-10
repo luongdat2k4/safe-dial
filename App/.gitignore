@@ -1,0 +1,107 @@
+# ───────── Node / Vite ─────────
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.cache/
+.parcel-cache/
+.turbo/
+*.local
+*.tsbuildinfo
+coverage/
+.nyc_output/
+.eslintcache
+.stylelintcache
+.npm/
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ───────── Biến môi trường / bí mật ─────────
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+secrets/
+
+# ───────── Capacitor: Android ─────────
+android/.gradle/
+android/.idea/
+android/build/
+android/app/build/
+android/app/release/
+android/app/debug/
+android/captures/
+android/local.properties
+android/*.iml
+android/.cxx/
+android/app/.cxx/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/src/main/res/xml/config.xml
+android/capacitor-cordova-android-plugins/
+# Khoá ký ứng dụng — tuyệt đối không commit
+*.keystore
+*.jks
+keystore.properties
+google-services.json
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# ───────── Capacitor: iOS (phòng khi thêm sau này) ─────────
+ios/App/Pods/
+ios/App/App/public/
+ios/App/App/capacitor.config.json
+ios/App/App/config.xml
+ios/App/build/
+ios/DerivedData/
+ios/.build/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.mobileprovision
+*.p8
+
+# ───────── IDE / Editor ─────────
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+
+# ───────── Hệ điều hành ─────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ───────── Công cụ AI cục bộ ─────────
+.claude/
+
+# ───────── Tạm ─────────
+*.tmp
+*.temp
+.tmp/
+tmp/

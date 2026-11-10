@@ -1,0 +1,172 @@
+export const block = {
+  tabs: { blocked: 'Đã chặn', list: 'Danh sách đen', settings: 'Cài đặt' },
+
+  blocked: {
+    weekSummary: 'cuộc gọi bị chặn trong 7 ngày qua',
+    topReason: 'Chủ yếu: {reason} ({n})',
+    emptyTitle: 'Chưa chặn cuộc gọi nào',
+    emptyDesc: 'Khi một cuộc gọi bị chặn hoặc tắt chuông, nó sẽ hiện ở đây kèm lý do.',
+  },
+
+  rules: {
+    add: 'Thêm quy tắc',
+    test: 'Kiểm tra một số',
+    header: 'Quy tắc đang áp dụng ({n})',
+    emptyTitle: 'Danh sách đen trống',
+    emptyDesc: 'Thêm số hoặc quy tắc để chặn những cuộc gọi không mong muốn.',
+    deleteTitle: 'Xoá quy tắc này?',
+    deleteMsg: 'Cuộc gọi khớp "{name}" sẽ không còn bị chặn bởi quy tắc này.',
+    deleted: 'Đã xoá quy tắc',
+    deleteAria: 'Xoá quy tắc {name}',
+  },
+
+  quick: {
+    header: 'Chặn nhanh từ cuộc gọi gần đây',
+    none: 'Không có số lạ nào cần chặn trong các cuộc gọi gần đây.',
+    done: 'Đã chặn {number}',
+  },
+
+  settings: {
+    header: 'Tự động chặn',
+    blockTopSpammers: {
+      title: 'Chặn số spam, lừa đảo',
+      desc: 'Chặn số bị cộng đồng báo cáo nhiều.',
+    },
+    blockPrivate: {
+      title: 'Chặn số ẩn danh',
+      desc: 'Chặn cuộc gọi giấu số người gọi.',
+    },
+    blockInternational: {
+      title: 'Chặn cuộc gọi quốc tế',
+      desc: 'Chỉ cho phép cuộc gọi trong nước. Số trong danh bạ vẫn gọi được.',
+    },
+    blockNonContacts: {
+      title: 'Chặn số không có trong danh bạ',
+      desc: 'Chỉ nhận cuộc gọi từ người trong danh bạ.',
+      warn: 'Có thể chặn nhầm người quen chưa lưu số, shipper, ngân hàng hoặc bác sĩ. Hãy cân nhắc dùng chế độ tắt chuông.',
+    },
+    notifyOnBlock: {
+      title: 'Thông báo khi chặn',
+      desc: 'Hiện thông báo mỗi khi một cuộc gọi bị chặn.',
+    },
+    methodHeader: 'Cách xử lý',
+    method: {
+      hangup: {
+        title: 'Tự động cúp máy',
+        desc: 'Người gọi nghe tín hiệu bận / bị từ chối. Điện thoại của bạn không đổ chuông.',
+      },
+      silent: {
+        title: 'Tắt chuông, cuộc gọi vẫn hiện',
+        desc: 'Điện thoại im lặng nhưng cuộc gọi vẫn nằm trong lịch sử, người gọi vẫn nghe đổ chuông.',
+      },
+    },
+    countryHeader: 'Chặn theo quốc gia',
+    country: {
+      title: 'Chặn theo quốc gia',
+      desc: 'Đã chặn {n} mã quốc gia',
+    },
+    countryAdded: 'Đã chặn đầu số của {name}',
+    note: 'Số trong danh bạ không bị chặn bởi quy tắc đầu số, đuôi số, mã quốc gia hoặc cuộc gọi quốc tế. Chỉ danh sách số cụ thể mới chặn được cả số trong danh bạ. Mã nước của bạn: {dial}.',
+  },
+
+  country: {
+    search: 'Tìm quốc gia hoặc mã vùng',
+    blocked: 'Đã chặn',
+    none: 'Không tìm thấy quốc gia phù hợp.',
+  },
+
+  form: {
+    title: 'Thêm quy tắc chặn',
+    kindHeader: 'Chọn loại quy tắc',
+    help: {
+      number: 'Chặn đúng một số điện thoại, kể cả khi số đó có trong danh bạ.',
+      startsWith: 'Chặn mọi số bắt đầu bằng dãy bạn nhập.',
+      contains: 'Chặn mọi số có chứa dãy số này ở bất kỳ vị trí nào.',
+      endsWith: 'Chặn mọi số kết thúc bằng dãy bạn nhập.',
+      country: 'Chặn mọi cuộc gọi đến từ một quốc gia theo mã quay số.',
+    },
+    example: {
+      number: 'Ví dụ: 0901 234 567 chỉ chặn đúng số này.',
+      startsWith: 'Ví dụ: Bắt đầu bằng 0899 → chặn mọi số có đầu 0899.',
+      contains: 'Ví dụ: Chứa 8888 → chặn 0912 8888 11 và 0988 888 812.',
+      endsWith: 'Ví dụ: Kết thúc bằng 0000 → chặn mọi số có đuôi 0000.',
+      country: 'Ví dụ: chọn Nigeria (+234) → chặn mọi số +234…',
+    },
+    placeholder: {
+      number: '0901 234 567',
+      startsWith: '0899',
+      contains: '8888',
+      endsWith: '0000',
+    },
+    valueLabel: 'Giá trị',
+    labelLabel: 'Ghi chú (không bắt buộc)',
+    labelPlaceholder: 'Ví dụ: Đầu số vay tiền',
+    picked: 'Đã chọn: {name}',
+    errEmpty: 'Hãy nhập giá trị cho quy tắc.',
+    errNumber: 'Số điện thoại chưa hợp lệ (cần 8-15 chữ số).',
+    errShort: 'Nhập ít nhất 3 chữ số để tránh chặn nhầm quá nhiều số.',
+    errCountry: 'Hãy chọn một quốc gia.',
+    duplicate: 'Quy tắc này đã có trong danh sách đen.',
+    previewTitle: 'Quy tắc này khớp {n} cuộc gọi trong lịch sử',
+    previewMore: 'và {n} số khác',
+    previewNone: 'Chưa có cuộc gọi nào trong lịch sử khớp quy tắc này.',
+    previewNote: 'Số trong danh bạ không bị tính vì quy tắc mẫu luôn bỏ qua người quen.',
+    save: 'Lưu quy tắc',
+    saved: 'Đã thêm quy tắc chặn',
+  },
+
+  test: {
+    title: 'Kiểm tra một số',
+    intro: 'Nhập một số để xem bộ máy chặn xử lý thế nào, từng bước một. Không có cuộc gọi thật nào được thực hiện.',
+    numberLabel: 'Số điện thoại',
+    placeholder: '0901 234 567 hoặc +84…',
+    private: 'Số ẩn',
+    privateDesc: 'Giả lập người gọi giấu số',
+    run: 'Kiểm tra',
+    invalid: 'Hãy nhập số điện thoại hợp lệ hoặc bật "Số ẩn".',
+    quick: 'Điền nhanh',
+    inContacts: 'Có trong danh bạ',
+    notContact: 'Không có trong danh bạ',
+    reports: '{n} báo cáo',
+    traceHeader: 'Các bước kiểm tra',
+  },
+
+  trace: {
+    steps: {
+      private: 'Số ẩn danh',
+      international: 'Cuộc gọi quốc tế',
+      nonContact: 'Số không có trong danh bạ',
+      list: 'Danh sách số bị chặn',
+      rule: 'Quy tắc đầu số / đuôi số / quốc gia',
+      spammer: 'Cộng đồng báo cáo spam',
+    },
+    state: {
+      off: 'Đang tắt',
+      pass: 'Không khớp',
+      match: 'KHỚP',
+      stopped: 'Không chạy',
+    },
+    offHint: 'Bỏ qua vì công tắc này đang tắt.',
+    detail: {
+      privateYes: 'Người gọi giấu số.',
+      privateNo: 'Số hiển thị bình thường.',
+      intlNo: 'Số trong nước ({dial}).',
+      intlContact: 'Số quốc tế nhưng có trong danh bạ nên được miễn.',
+      intlYes: 'Số quốc tế, không có trong danh bạ.',
+      contactYes: 'Số có trong danh bạ.',
+      contactNo: 'Số không có trong danh bạ.',
+      listYes: 'Có trong danh sách chặn: {name}.',
+      listNo: 'Không có trong {n} số bị chặn cụ thể.',
+      ruleContact: 'Số trong danh bạ được miễn khỏi quy tắc mẫu.',
+      ruleYes: 'Khớp quy tắc "{kind}" {value}.',
+      ruleNo: 'Không khớp quy tắc nào trong {n} quy tắc mẫu.',
+      spamYes: 'Số bị cộng đồng báo cáo ({n} lượt).',
+      spamNo: 'Không có báo cáo spam cho số này.',
+    },
+    verdict: 'Kết luận',
+    action: { allow: 'Cho qua', block: 'Chặn', silence: 'Tắt chuông' },
+    reasonLine: 'Lý do: {reason}',
+    allowLine: 'Không có bước nào chặn số này, cuộc gọi sẽ đổ chuông bình thường.',
+    silenceNote: 'Điện thoại im lặng, cuộc gọi vẫn hiện trong lịch sử.',
+  },
+} as const

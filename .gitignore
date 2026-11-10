@@ -39,3 +39,7 @@ local.properties
 
 # Claude Code local settings
 .claude/settings.local.json
+
+app-clone/
+data-scraping/
+.claude/
