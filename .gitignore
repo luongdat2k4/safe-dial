@@ -1,0 +1,41 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+build/
+dist/
+out/
+.gradle/
+*.apk
+*.aab
+
+# Logs
+*.log
+logs/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+local.properties
+
+# Local databases / data
+*.db
+*.sqlite
+
+# Claude Code local settings
+.claude/settings.local.json
