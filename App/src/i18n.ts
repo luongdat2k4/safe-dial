@@ -18,8 +18,8 @@ export const LOCALES = [
   { code: 'id', native: 'Bahasa Indonesia' },
   { code: 'hi', native: 'हिन्दी' },
   { code: 'bn', native: 'বাংলা' },
-  { code: 'ur', native: 'اردو', rtl: true },
-  { code: 'ar', native: 'العربية', rtl: true },
+  { code: 'ur', native: 'اردو' },
+  { code: 'ar', native: 'العربية' },
   { code: 'ru', native: 'Русский' },
   { code: 'tr', native: 'Türkçe' },
   { code: 'fr', native: 'Français' },
@@ -71,5 +71,7 @@ export async function setLocale(code: Locale): Promise<void> {
   i18n.global.locale.value = code
   const el = document.documentElement
   el.lang = code
-  el.dir = LOCALES.find((l) => l.code === code && 'rtl' in l) ? 'rtl' : 'ltr'
+  // Bố cục giữ trái → phải cho mọi ngôn ngữ (giao diện chưa thiết kế cho RTL); chữ Ả Rập/Urdu
+  // vẫn hiển thị đúng chiều nhờ thuật toán bidi của trình duyệt.
+  el.dir = 'ltr'
 }
