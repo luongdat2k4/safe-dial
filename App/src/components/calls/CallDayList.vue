@@ -28,8 +28,8 @@ const groups = computed(() => {
 </script>
 
 <template>
-  <div>
-    <section v-for="g in groups" :key="g.label">
+  <div class="call-groups">
+    <section v-for="g in groups" :key="g.label" class="call-group">
       <SectionHeader :title="g.label" />
       <CallRow
         v-for="e in g.items"

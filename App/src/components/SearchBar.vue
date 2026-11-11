@@ -10,7 +10,7 @@ defineEmits<{ submit: [] }>()
 </script>
 
 <template>
-  <label class="flex h-11 items-center gap-2 rounded-full border border-line bg-surface px-4 shadow-card">
+  <label class="search-field flex h-14 items-center gap-3 rounded-full border px-5">
     <AppIcon name="search" :size="18" class="text-muted" />
     <input
       v-model="model"

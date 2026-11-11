@@ -40,7 +40,7 @@ function confirm() {
         <span class="grid size-14 place-items-center rounded-2xl bg-primary-soft text-primary-dark">
           <AppIcon name="languages" :size="28" />
         </span>
-        <h1 class="mt-4 text-2xl font-bold">{{ t('boot.language.title') }}</h1>
+        <h1 class="mt-5 text-[30px] font-semibold tracking-tight">{{ t('boot.language.title') }}</h1>
         <p class="mt-1 text-[15px] text-muted">{{ t('boot.language.subtitle') }}</p>
       </div>
       <div v-else class="px-1 pt-4 pb-3 text-sm text-muted">{{ t('boot.language.subtitle') }}</div>
@@ -53,7 +53,7 @@ function confirm() {
           role="radio"
           :aria-checked="selected === o.code"
           class="tap flex min-h-16 items-center gap-3 rounded-card border-2 bg-surface px-4 py-3 text-left shadow-card"
-          :class="selected === o.code ? 'border-primary bg-primary-soft' : 'border-transparent'"
+          :class="selected === o.code ? 'border-primary/40 bg-primary-soft' : 'border-white'"
           @click="selected = o.code"
         >
           <span class="text-3xl leading-none" aria-hidden="true">{{ o.flag }}</span>

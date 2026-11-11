@@ -65,7 +65,7 @@ const h2 = 'mb-3 text-[15px] font-bold'
 </script>
 
 <template>
-  <div class="min-h-full bg-canvas pb-6">
+  <div class="min-h-full bg-canvas pb-28">
     <div class="sticky top-0 z-10 bg-canvas"><SegmentedTabs v-model="period" :items="tabs" /></div>
 
     <EmptyState v-if="!sum.count" icon="chart-no-axes-combined" :title="t('stats.empty.title')" :description="t('stats.empty.desc')" />

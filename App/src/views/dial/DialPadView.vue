@@ -106,7 +106,7 @@ const call = () => startCall(e164.value)
       <div class="flex h-16 items-center justify-center gap-1 px-4">
         <p
           class="min-w-0 flex-1 truncate text-center font-semibold tracking-wide"
-          :class="[display.length > 14 ? 'text-2xl' : 'text-[34px]', display ? 'text-ink' : 'text-muted/70']"
+          :class="[!display ? 'text-xl' : display.length > 14 ? 'text-2xl' : 'text-[34px]', display ? 'text-ink' : 'text-muted/60']"
           aria-live="polite"
         >
           {{ display || t('dial.placeholder') }}
@@ -149,7 +149,7 @@ const call = () => startCall(e164.value)
         </button>
         <button
           type="button"
-          class="tap mx-auto grid size-[68px] place-items-center rounded-full bg-primary text-white shadow-sheet disabled:opacity-40"
+          class="tap mx-auto grid size-[68px] place-items-center rounded-full accent-gradient disabled:opacity-40"
           :disabled="!raw"
           :aria-label="t('dial.call')"
           @click="call"

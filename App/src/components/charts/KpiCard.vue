@@ -14,7 +14,7 @@ const tones = {
 </script>
 
 <template>
-  <div class="rounded-card bg-surface p-3.5 shadow-card">
+  <div class="kpi-card rounded-card p-4 shadow-card">
     <span class="grid size-9 place-items-center rounded-xl" :class="tones[tone]"><AppIcon :name="icon" :size="18" /></span>
     <p class="mt-2 text-2xl leading-none font-bold">{{ value }}</p>
     <p class="mt-1 text-[13px] text-muted">{{ label }}</p>

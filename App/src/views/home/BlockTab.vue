@@ -22,7 +22,7 @@ const items = computed(() => [
 </script>
 
 <template>
-  <div class="min-h-full bg-canvas">
+  <div class="min-h-full bg-canvas pb-28">
     <div class="sticky top-0 z-10 bg-canvas"><SegmentedTabs v-model="tab" :items="items" /></div>
     <BlockedList v-if="tab === 'blocked'" />
     <RuleList v-else-if="tab === 'list'" />

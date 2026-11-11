@@ -60,7 +60,7 @@ const displayName = computed(() => contact.value?.name ?? info.value?.name)
 
 const actions = computed(() => {
   const list: Array<{ key: string; icon: string; label: string; tone: string; disabled?: boolean; fill?: boolean; run: () => void }> = [
-    { key: 'call', icon: 'phone', label: t('number.actions.call'), tone: 'bg-primary text-white', disabled: hidden.value, run: () => startCall(e164.value) },
+    { key: 'call', icon: 'phone', label: t('number.actions.call'), tone: 'accent-gradient', disabled: hidden.value, run: () => startCall(e164.value) },
     { key: 'msg', icon: 'message-square', label: t('number.actions.message'), tone: 'bg-[#e7f0fd] text-outgoing', disabled: hidden.value, run: () => messageMock(e164.value, displayName.value) },
   ]
   if (contact.value) {
@@ -120,7 +120,7 @@ async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
 
     <main class="min-h-0 flex-1 space-y-4 overflow-y-auto pb-10">
       <!-- Đầu trang -->
-      <section class="flex flex-col items-center px-6 pt-6 text-center">
+      <section class="number-hero flex flex-col items-center text-center">
         <Avatar :name="displayName" :risk="risk" :size="88" :is-private="hidden" />
         <h2 class="mt-3 max-w-full truncate text-2xl font-bold" :class="risk === 'scam' ? 'text-scam' : ''">{{ title }}</h2>
         <p v-if="displayName && !hidden" class="text-sm text-muted">{{ pretty(e164) }}</p>

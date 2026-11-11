@@ -19,20 +19,20 @@ const tones = {
   brand: 'bg-primary-soft text-primary-dark',
   danger: 'bg-scam-soft text-scam',
   warn: 'bg-spam-soft text-spam',
-  blue: 'bg-[#e7f0fd] text-outgoing',
-  violet: 'bg-[#efe8fd] text-blocked',
+  blue: 'bg-primary-soft text-outgoing',
+  violet: 'bg-primary-soft text-blocked',
   gray: 'bg-unknown-soft text-unknown',
 }
 </script>
 
 <template>
   <div
-    class="flex min-h-14 items-center gap-3 px-4 py-2.5"
+    class="flex min-h-14 items-center gap-3 px-4 py-4"
     :class="clickable || chevron ? 'tap cursor-pointer active:bg-canvas' : ''"
     :role="clickable || chevron ? 'button' : undefined"
   >
     <slot name="leading">
-      <span v-if="icon" class="grid size-10 shrink-0 place-items-center rounded-xl" :class="tones[iconTone]">
+      <span v-if="icon" class="grid size-10 shrink-0 place-items-center rounded-full" :class="tones[iconTone]">
         <AppIcon :name="icon" :size="20" />
       </span>
     </slot>

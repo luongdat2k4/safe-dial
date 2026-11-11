@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AppBar from '@/components/AppBar.vue'
+import BrandOrb from '@/components/BrandOrb.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import ListRow from '@/components/ListRow.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
@@ -64,6 +65,11 @@ async function share() {
   <div class="flex flex-col bg-canvas">
     <AppBar :title="t('settings.title')" back />
     <div class="min-h-0 flex-1 overflow-y-auto pb-8">
+      <section class="soft-panel mx-4 mt-1 flex items-center gap-4 rounded-card p-5">
+        <BrandOrb compact />
+        <div class="min-w-0 flex-1"><h2 class="text-lg font-semibold tracking-tight">Safe Dial</h2><p class="mt-1 text-xs leading-relaxed text-muted">{{ t('common.tagline') }}</p></div>
+        <AppIcon name="sparkles" :size="20" class="shrink-0 text-primary/60" />
+      </section>
       <SectionHeader :title="t('settings.groups.general')" />
       <div class="mx-4 divide-y divide-line overflow-hidden rounded-card bg-surface shadow-card">
         <ListRow :title="t('settings.rows.notifications')" icon="bell" chevron @click="router.push('/settings/notifications')" />

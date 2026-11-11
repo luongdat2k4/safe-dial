@@ -13,8 +13,8 @@ withDefaults(
 )
 
 const variants = {
-  primary: 'bg-primary text-white shadow-card',
-  secondary: 'bg-primary-soft text-primary-dark',
+  primary: 'accent-gradient border border-white/40',
+  secondary: 'border border-primary/5 bg-primary-soft text-primary-dark',
   danger: 'bg-scam text-white shadow-card',
   ghost: 'bg-transparent text-ink border border-line',
   dark: 'bg-ink text-white',

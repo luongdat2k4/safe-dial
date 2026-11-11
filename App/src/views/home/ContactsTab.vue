@@ -68,7 +68,7 @@ const call = (c: Contact) => startCall(c.numbers[0] ?? '')
 
     <template v-if="tab === 'all'">
       <div class="px-4 pb-2"><SearchBar v-model="query" :placeholder="t('home.contacts.search')" /></div>
-      <div v-if="sections.length" class="bg-surface">
+      <div v-if="sections.length" class="contact-list bg-surface">
         <section v-for="s in sections" :key="s.letter">
           <SectionHeader :title="s.letter" />
           <ContactItem

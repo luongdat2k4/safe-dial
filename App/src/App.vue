@@ -50,7 +50,7 @@ onBeforeUnmount(() => handle?.remove())
 <template>
   <!-- Khung điện thoại: trên desktop giới hạn 480px, trên máy thật chiếm toàn màn hình. -->
   <div class="flex h-full justify-center">
-    <div class="relative flex h-full w-full max-w-[480px] flex-col overflow-hidden bg-canvas shadow-2xl">
+    <div class="app-shell relative flex h-full w-full max-w-[480px] flex-col overflow-hidden">
       <!-- Phải nằm TRƯỚC RouterView và các host dùng Teleport để target đã tồn tại khi chúng mount. -->
       <div id="overlay-root" class="pointer-events-none absolute inset-0 z-30 [&>*]:pointer-events-auto" />
       <RouterView v-slot="{ Component, route: r }">

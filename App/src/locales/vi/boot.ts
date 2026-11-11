@@ -11,6 +11,12 @@ export const boot = {
     saved: 'Đã lưu ngôn ngữ',
   },
   onboarding: {
+    art: {
+      identify: 'Nhận diện số lạ',
+      protect: 'An tâm kết nối',
+      calls: 'Biết ai đang gọi',
+      insights: 'Thống kê liên lạc',
+    },
     pages: [
       {
         title: 'Nhận diện số lạ',

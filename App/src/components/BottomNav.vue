@@ -15,20 +15,14 @@ const ITEMS = [
 </script>
 
 <template>
-  <nav class="pb-safe shrink-0 border-t border-line bg-surface" aria-label="Điều hướng chính">
-    <ul class="flex">
-      <li v-for="it in ITEMS" :key="it.to" class="flex-1">
-        <button
-          type="button"
-          class="tap flex w-full flex-col items-center gap-0.5 pt-2 pb-1.5"
-          :class="route.path === it.to ? 'text-primary-dark' : 'text-muted'"
-          :aria-current="route.path === it.to ? 'page' : undefined"
-          @click="router.replace(it.to)"
-        >
-          <span class="grid h-7 w-14 place-items-center rounded-full transition-colors" :class="route.path === it.to ? 'bg-primary-soft' : ''">
-            <AppIcon :name="it.icon" :size="22" />
-          </span>
-          <span class="text-[11px] font-semibold">{{ t(it.label) }}</span>
+  <nav class="bottom-navigation pb-safe absolute right-3 bottom-3 left-3 z-20" aria-label="Điều hướng chính">
+    <ul class="nav-surface flex items-center rounded-[28px] px-2 py-2">
+      <li v-for="it in ITEMS" :key="it.to" class="min-w-0 flex-1">
+        <button type="button" class="tap flex min-h-14 w-full flex-col items-center justify-center gap-1 rounded-2xl px-1 text-muted"
+          :class="{ 'nav-active': route.path === it.to }"
+          :aria-current="route.path === it.to ? 'page' : undefined" @click="router.replace(it.to)">
+          <span class="nav-icon"><AppIcon :name="it.icon" :size="20" /></span>
+          <span class="max-w-full truncate text-[11px] font-medium">{{ t(it.label) }}</span>
         </button>
       </li>
     </ul>

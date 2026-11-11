@@ -11,7 +11,7 @@ const model = defineModel<boolean>({ default: false })
     :aria-label="label"
     :disabled="disabled"
     class="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors disabled:opacity-40"
-    :class="model ? 'bg-primary' : 'bg-[#c5d3cb]'"
+    :class="model ? 'accent-gradient' : 'bg-[#e5e0ee]'"
     @click.stop="model = !model"
   >
     <span

@@ -7,8 +7,8 @@ defineEmits<{ showBlocked: [] }>()
 </script>
 
 <template>
-  <section class="mx-4 mt-1 mb-2 flex items-center gap-3 rounded-2xl border border-line bg-surface p-3 shadow-card">
-    <span class="grid size-11 shrink-0 place-items-center rounded-xl" :class="suspicious ? 'bg-spam-soft text-spam' : 'bg-primary-soft text-primary-dark'">
+  <section class="soft-panel mx-5 mt-3 mb-1 flex items-center gap-3 rounded-[24px] p-4">
+    <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-white text-primary">
       <AppIcon :name="suspicious ? 'shield-alert' : 'shield-check'" :size="24" />
     </span>
     <div class="min-w-0 flex-1">
@@ -20,7 +20,7 @@ defineEmits<{ showBlocked: [] }>()
     </div>
     <button
       type="button"
-      class="tap flex shrink-0 flex-col items-center rounded-xl bg-[#efe8fd] px-3 py-1.5 text-blocked"
+      class="tap flex shrink-0 flex-col items-center rounded-2xl bg-white/80 px-3 py-1.5 text-blocked"
       :aria-label="t('home.calls.summary.viewBlocked')"
       @click="$emit('showBlocked')"
     >

@@ -7,7 +7,7 @@ defineProps<{ icon: string; label: string }>()
 <template>
   <button
     type="button"
-    class="tap absolute right-4 bottom-4 z-10 grid size-14 place-items-center rounded-full bg-primary text-white shadow-sheet"
+    class="tap absolute right-4 bottom-4 z-10 grid size-14 place-items-center rounded-full accent-gradient border border-white/60"
     :aria-label="label"
   >
     <AppIcon :name="icon" :size="26" />

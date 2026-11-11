@@ -1,70 +1,35 @@
 <script setup lang="ts">
+import BrandOrb from '@/components/BrandOrb.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import { t } from '@/composables/useT'
-
-/** Hình minh hoạ onboarding dựng từ icon lucide và các khối CSS (không dùng ảnh). */
 defineProps<{ kind: 0 | 1 | 2 }>()
 </script>
 
 <template>
-  <div class="relative mx-auto grid size-64 place-items-center" aria-hidden="true">
-    <div class="absolute inset-0 rounded-full bg-primary-soft" />
-    <div class="absolute inset-8 rounded-full bg-white/70" />
-
-    <!-- 1: nhận diện số lạ -->
-    <template v-if="kind === 0">
-      <div class="relative w-40 rounded-3xl bg-surface p-4 shadow-sheet">
-        <div class="mx-auto grid size-16 place-items-center rounded-full bg-unknown-soft text-unknown">
-          <AppIcon name="user-round-search" :size="34" />
-        </div>
-        <div class="mx-auto mt-3 h-2.5 w-24 rounded-full bg-line" />
-        <div class="mx-auto mt-2 h-2 w-16 rounded-full bg-line" />
-        <div class="mt-3 flex justify-center">
-          <span class="rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary-dark">{{ t('common.risk.unknown') }}</span>
-        </div>
-      </div>
-      <span class="absolute top-6 right-6 grid size-11 place-items-center rounded-full bg-primary text-white shadow-card">
-        <AppIcon name="phone-incoming" :size="22" />
-      </span>
-    </template>
-
-    <!-- 2: cảnh báo lừa đảo -->
-    <template v-else-if="kind === 1">
-      <div class="relative w-44 overflow-hidden rounded-3xl bg-surface shadow-sheet">
-        <div class="flex items-center gap-2 bg-scam px-3 py-2.5 text-white">
-          <AppIcon name="triangle-alert" :size="20" class="warn-blink" />
-          <span class="text-sm font-bold">{{ t('common.risk.scam') }}</span>
-        </div>
-        <div class="p-3">
-          <div class="h-2.5 w-28 rounded-full bg-line" />
-          <div class="mt-2 h-2 w-20 rounded-full bg-line" />
-          <div class="mt-3 inline-flex items-center gap-1 rounded-full bg-scam-soft px-2.5 py-1 text-xs font-semibold text-scam">
-            <AppIcon name="shield-alert" :size="14" /> {{ t('common.risk.scam') }}
-          </div>
-        </div>
-      </div>
-      <span class="ring-pulse absolute bottom-8 left-6 grid size-11 place-items-center rounded-full bg-primary text-white shadow-card">
-        <AppIcon name="radio" :size="22" />
-      </span>
-    </template>
-
-    <!-- 3: chặn + thống kê -->
-    <template v-else>
-      <div class="relative flex w-44 flex-col gap-3 rounded-3xl bg-surface p-4 shadow-sheet">
-        <div class="flex items-center gap-2">
-          <span class="grid size-9 place-items-center rounded-xl bg-[#efe8fd] text-blocked"><AppIcon name="ban" :size="20" /></span>
-          <div class="h-2.5 flex-1 rounded-full bg-line" />
-        </div>
-        <div class="flex h-16 items-end gap-2">
-          <div class="h-6 flex-1 rounded-t-md bg-primary/40" />
-          <div class="h-12 flex-1 rounded-t-md bg-primary" />
-          <div class="h-9 flex-1 rounded-t-md bg-primary/60" />
-          <div class="h-14 flex-1 rounded-t-md bg-primary-dark" />
-        </div>
-      </div>
-      <span class="absolute top-7 left-6 grid size-11 place-items-center rounded-full bg-spam text-white shadow-card">
-        <AppIcon name="phone-off" :size="22" />
-      </span>
-    </template>
+  <div class="onboarding-art" aria-hidden="true">
+    <div class="art-halo" />
+    <div class="art-ribbon ribbon-one" />
+    <div class="art-ribbon ribbon-two" />
+    <BrandOrb :icon="kind === 0 ? 'phone' : kind === 1 ? 'shield-check' : 'shield-ban'" />
+    <span class="art-chip chip-one"><span class="chip-icon"><AppIcon :name="kind === 0 ? 'user-round-search' : 'shield-check'" :size="21" /></span>{{ t(kind === 0 ? 'boot.onboarding.art.identify' : 'boot.onboarding.art.protect') }}</span>
+    <span class="art-chip chip-two"><span class="chip-icon"><AppIcon :name="kind === 2 ? 'chart-no-axes-combined' : 'phone-incoming'" :size="21" /></span>{{ t(kind === 2 ? 'boot.onboarding.art.insights' : 'boot.onboarding.art.calls') }}</span>
+    <span class="art-sparkle sparkle-one"><AppIcon name="sparkles" :size="24" /></span>
+    <span class="art-sparkle sparkle-two"><AppIcon name="sparkle" :size="15" /></span>
   </div>
 </template>
+
+<style scoped>
+.onboarding-art { position: relative; width: 100%; max-width: 330px; height: 290px; display: grid; place-items: center; flex-shrink: 0; }
+.art-halo { position: absolute; inset: 5%; border-radius: 50%; background: radial-gradient(circle, #eddaff90, #f9effb20 70%); filter: blur(16px); }
+.art-ribbon { position: absolute; width: 96%; height: 50%; border-radius: 50%; border: 16px solid #e7d6ff70; box-shadow: inset 2px 3px 5px #ffffffd9, 0 4px 12px #ac78e212; }
+.ribbon-one { transform: rotate(-38deg); border-bottom-color: #cae8ff88; border-left-color: #ecc8ff99; }
+.ribbon-two { transform: rotate(42deg); width: 100%; height: 44%; border-color: #f7d4ef80; border-right-color: #d5d4ff80; }
+.art-chip { position: absolute; display: flex; align-items: center; gap: 9px; padding: 12px 15px 12px 10px; max-width: 175px; border: 1px solid white; border-radius: 24px; background: #ffffffed; box-shadow: 0 8px 24px #714d9a0c; font-size: 12px; line-height: 1.4; font-weight: 600; }
+.chip-one { top: 25px; left: -4px; }
+.chip-two { bottom: 18px; right: -4px; }
+.chip-icon { display: grid; place-items: center; width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; background: #f2eaff; color: #8650dd; }
+.art-sparkle { position: absolute; color: #ad6be9; }
+.sparkle-one { top: 20px; right: 28px; }
+.sparkle-two { bottom: 32px; left: 30px; }
+@media (max-height: 740px) { .onboarding-art { height: 230px; transform: scale(.87); } }
+</style>

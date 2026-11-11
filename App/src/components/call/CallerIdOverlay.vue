@@ -44,10 +44,10 @@ const head = computed(
 const bgFull = computed(
   () =>
     ({
-      safe: 'from-[#0b6e4f] to-[#06382a]',
-      unknown: 'from-[#475569] to-[#1e293b]',
-      spam: 'from-[#b45f06] to-[#4a2702]',
-      scam: 'from-[#b42318] to-[#4c0f0a]',
+      safe: 'from-[#f4edff] to-[#fffaff]',
+      unknown: 'from-[#f2effa] to-[#fffaff]',
+      spam: 'from-[#fff4e9] to-[#fffaff]',
+      scam: 'from-[#ffe9f1] to-[#fffaff]',
     })[risk.value],
 )
 
@@ -62,7 +62,7 @@ const warnText = computed(() =>
 
 <template>
   <!-- Toàn màn hình -->
-  <div v-if="size === 'full'" class="pt-safe pb-safe absolute inset-0 flex flex-col bg-gradient-to-b text-white" :class="bgFull">
+  <div v-if="size === 'full'" class="pt-safe pb-safe absolute inset-0 flex flex-col bg-gradient-to-b text-ink" :class="bgFull">
     <div class="flex items-center justify-center gap-2 pt-6 text-sm font-semibold opacity-90">
       <AppIcon :name="head.icon" :size="18" :class="head.pulse ? 'warn-blink' : ''" />{{ t(`common.risk.${risk}`) }} · {{ t('call.overlay.incoming') }}
     </div>
@@ -73,13 +73,13 @@ const warnText = computed(() =>
       <p class="mt-1 text-sm opacity-75">{{ place }}</p>
       <div class="mt-3"><RiskBadge :risk="risk" :category="info.profile?.category" size="md" /></div>
       <p v-if="reports" class="mt-2 text-sm opacity-85">{{ t('call.overlay.reports', { n: reports.toLocaleString('vi-VN') }) }}</p>
-      <div v-if="showWarning" class="mt-5 flex max-w-xs items-start gap-2 rounded-2xl bg-black/30 px-4 py-3 text-left text-sm leading-snug" role="alert">
+      <div v-if="showWarning" class="mt-5 flex max-w-xs items-start gap-2 rounded-2xl bg-white/90 text-scam px-4 py-3 text-left text-sm leading-snug" role="alert">
         <AppIcon name="triangle-alert" :size="18" class="warn-blink mt-0.5 shrink-0" />{{ warnText }}
       </div>
     </div>
     <div class="mx-6 mb-4 flex justify-around">
       <button v-for="q in ['message', 'remind', 'block'] as const" :key="q" type="button" class="tap flex w-20 flex-col items-center gap-1.5 text-xs" @click="q === 'message' ? emit('message') : q === 'remind' ? emit('remind') : emit('block')">
-        <span class="grid size-12 place-items-center rounded-full bg-white/15">
+        <span class="grid size-12 place-items-center rounded-full bg-white shadow-card">
           <AppIcon :name="q === 'message' ? 'message-square-text' : q === 'remind' ? 'alarm-clock' : 'ban'" :size="22" />
         </span>
         {{ t(`call.overlay.quick.${q}`) }}
@@ -87,11 +87,11 @@ const warnText = computed(() =>
     </div>
     <div class="mb-8 flex items-center justify-around px-10">
       <button type="button" class="tap flex flex-col items-center gap-2 text-sm" @click="emit('reject')">
-        <span class="grid size-[72px] place-items-center rounded-full bg-scam shadow-sheet"><AppIcon name="phone-off" :size="32" /></span>
+        <span class="grid size-[72px] place-items-center rounded-full hangup-button"><AppIcon name="phone-off" :size="32" /></span>
         {{ t('call.overlay.reject') }}
       </button>
       <button type="button" class="tap flex flex-col items-center gap-2 text-sm" @click="emit('answer')">
-        <span class="ring-pulse grid size-[72px] place-items-center rounded-full bg-primary shadow-sheet"><AppIcon name="phone" :size="32" /></span>
+        <span class="ring-pulse grid size-[72px] place-items-center rounded-full accent-gradient"><AppIcon name="phone" :size="32" /></span>
         {{ t('call.overlay.answer') }}
       </button>
     </div>

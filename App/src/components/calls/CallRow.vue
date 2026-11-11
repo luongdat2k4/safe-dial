@@ -10,7 +10,7 @@ defineEmits<{ open: []; call: []; longpress: []; more: [] }>()
 </script>
 
 <template>
-  <div class="flex items-center border-b border-line/60 bg-surface">
+  <div class="call-row flex items-center border-b">
     <CallLogItem
       class="min-w-0 flex-1"
       :entry="entry"

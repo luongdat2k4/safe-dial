@@ -45,7 +45,7 @@ function click(key: string) {
       :key="key.k"
       type="button"
       class="tap mx-auto flex size-[68px] flex-col items-center justify-center rounded-full"
-      :class="dark ? 'bg-white/12 text-white' : 'bg-surface text-ink shadow-card'"
+      :class="dark ? 'bg-white/12 text-white' : 'border border-line bg-white text-ink shadow-card'"
       :aria-label="`Phím ${key.k}`"
       @pointerdown="down(key.k)"
       @pointerup="cancel"

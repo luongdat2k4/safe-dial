@@ -31,7 +31,7 @@ const toneClass = {
 </script>
 
 <template>
-  <header class="pt-safe shrink-0" :class="toneClass[tone]">
+  <header class="app-bar pt-safe shrink-0" :class="toneClass[tone]">
     <div class="flex h-14 items-center gap-1 px-2">
       <button v-if="back" class="tap grid size-10 place-items-center rounded-full" aria-label="Quay lại" @click="goBack">
         <AppIcon name="arrow-left" :size="22" />

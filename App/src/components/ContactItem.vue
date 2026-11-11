@@ -21,7 +21,7 @@ const settings = useSettingsStore()
       v-if="showFavorite"
       type="button"
       class="tap grid size-9 place-items-center rounded-full"
-      :class="contact.favorite ? 'text-favorite' : 'text-line'"
+      :class="contact.favorite ? 'text-favorite' : 'text-muted/50'"
       aria-label="Yêu thích"
       @click.stop="$emit('favorite')"
     >

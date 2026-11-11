@@ -8,7 +8,7 @@ const props = withDefaults(
   { size: 44 },
 )
 
-const PALETTE = ['#0e9f6e', '#2f80ed', '#7c3aed', '#db2777', '#ea580c', '#0891b2', '#4f46e5', '#65a30d']
+const PALETTE = ['#eee5ff', '#e9e7ff', '#f6e6f5', '#e5ecff', '#eee8fb', '#e6f4ef', '#faebf2', '#f5ecdf']
 
 const initial = computed(() => {
   const n = (props.name ?? '').trim()
@@ -31,7 +31,7 @@ const fg = computed(() => {
   if (props.risk === 'scam') return 'var(--color-scam)'
   if (props.risk === 'spam') return 'var(--color-spam)'
   if (!props.name) return 'var(--color-unknown)'
-  return '#fff'
+  return '#7953ad'
 })
 
 const icon = computed(() => {
@@ -44,7 +44,7 @@ const icon = computed(() => {
 
 <template>
   <div
-    class="grid shrink-0 place-items-center rounded-full font-semibold select-none"
+    class="contact-avatar grid shrink-0 place-items-center rounded-full font-semibold select-none"
     :style="{ width: `${size}px`, height: `${size}px`, background: bg, color: fg, fontSize: `${size * 0.4}px` }"
   >
     <template v-if="initial && risk !== 'scam' && risk !== 'spam'">{{ initial }}</template>
