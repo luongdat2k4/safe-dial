@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppIcon from '@/components/AppIcon.vue'
+import { formatLongDay, formatTime } from '@/utils/format'
 
 /** Màn hình chính giả lập làm nền cho popup caller-ID (chỉ để minh hoạ). */
 const apps = [
@@ -13,8 +14,8 @@ const dock = ['phone', 'message-square', 'globe', 'camera']
 <template>
   <div class="absolute inset-0 flex flex-col bg-gradient-to-b from-[#bbb1eb] via-[#a78bd6] to-[#64539b] text-white" aria-hidden="true">
     <div class="pt-safe px-8 pt-16 text-center">
-      <p class="text-6xl font-light tracking-tight">09:41</p>
-      <p class="mt-1 text-sm opacity-75">Thứ Ba, 10 tháng 11</p>
+      <p class="text-6xl font-light tracking-tight">{{ formatTime(new Date().toISOString()) }}</p>
+      <p class="mt-1 text-sm opacity-75">{{ formatLongDay() }}</p>
     </div>
     <div class="mt-10 grid grid-cols-4 gap-y-5 px-6">
       <div v-for="a in apps" :key="a[0]" class="flex flex-col items-center gap-1">
