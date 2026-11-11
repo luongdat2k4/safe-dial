@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Dev: allow HTTP to any host/IP/port so only server.url in
+         capacitor.config.ts needs to change. Set to "false" for release. -->
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
