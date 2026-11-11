@@ -4,7 +4,7 @@ import { useBlockStore } from '@/stores/block'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
-import type { NumberFreq } from '@/utils/stats'
+import type { RankedNumber } from '@/utils/stats'
 import { formatNumber } from '@/utils/numbers'
 import { numberPath } from '@/utils/routes'
 import { formatDate } from '@/utils/format'
@@ -12,16 +12,15 @@ import Avatar from '@/components/Avatar.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import BaseButton from '@/components/BaseButton.vue'
 
-defineProps<{ items: NumberFreq[] }>()
+defineProps<{ items: RankedNumber[] }>()
 const router = useRouter()
 const block = useBlockStore()
 const settings = useSettingsStore()
 const ui = useUiStore()
 
-function quickBlock(number: string) {
-  const r = block.addRule('number', number)
-  if (r) ui.showToast(t('stats.strangers.blocked'), 'success')
-  else ui.showToast(t('block.form.duplicate'), 'warning')
+async function quickBlock(number: string) {
+  if (await block.blockNumber(number)) ui.showToast(t('stats.strangers.blocked'), 'success')
+  else ui.showToast(t('number.block.failed'), 'warning')
 }
 </script>
 
@@ -39,7 +38,7 @@ function quickBlock(number: string) {
         </div>
       </button>
       <span v-if="!it.number" class="text-xs text-muted">{{ t('stats.strangers.hidden') }}</span>
-      <span v-else-if="block.isBlockedNumber(it.number)" class="rounded-full bg-scam-soft px-2.5 py-1 text-xs font-semibold text-scam">{{ t('stats.strangers.alreadyBlocked') }}</span>
+      <span v-else-if="block.isBlocked(it.number)" class="rounded-full bg-scam-soft px-2.5 py-1 text-xs font-semibold text-scam">{{ t('stats.strangers.alreadyBlocked') }}</span>
       <BaseButton v-else size="sm" variant="danger" @click="quickBlock(it.number)">{{ t('common.actions.block') }}</BaseButton>
     </li>
   </ul>

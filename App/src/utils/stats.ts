@@ -1,47 +1,52 @@
-/** Hàm thuần tính thống kê trên nhật ký cuộc gọi (không phụ thuộc UI / store). */
-import type { CallLogEntry, CallType, RiskLevel } from '@/types'
+/**
+ * Hàm thuần tính thống kê trên các dòng `call_stats_daily` (schema mục 2.2, 6).
+ * Không đọc nhật ký cuộc gọi, nên thống kê vẫn đúng khi Android đã xoá nhật ký cũ.
+ */
+import type { RiskLevel } from '@/types'
+import type { StatsRow } from '@/services/native/definitions'
 
 export type Period = '7d' | '30d' | 'all'
 
 const DAY = 86_400_000
 
-export function startOfDay(d: Date): number {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime()
+/** Ngày bắt đầu của khoảng (số ngày từ 1970-01-01). */
+export function fromDayOf(period: Period, today: number): number {
+  if (period === 'all') return 0
+  return today - (period === '7d' ? 6 : 29)
 }
 
-/** Lọc theo khoảng thời gian tính ngược từ `now`. */
-export function filterPeriod(entries: CallLogEntry[], period: Period, now = new Date()): CallLogEntry[] {
-  if (period === 'all') return entries
-  const days = period === '7d' ? 7 : 30
-  const from = now.getTime() - days * DAY
-  return entries.filter((e) => new Date(e.startedAt).getTime() >= from)
-}
-
-/** Số có trong danh bạ (hoặc đã có tên xác minh)? */
-export function isKnown(e: CallLogEntry): boolean {
-  return !!e.contactId || !!e.name
-}
+/** Tổng cuộc gọi đến trong một dòng. */
+export const inTotal = (r: StatsRow) => r.incoming + r.missed + r.rejected + r.blocked
+const callsOf = (r: StatsRow) => inTotal(r) + r.outgoing
 
 export interface Totals {
   count: number
   talkSec: number
+  /** Cuộc gọi đến đã nghe. */
   incoming: number
   outgoing: number
+  /** Nhỡ + từ chối. */
   missed: number
   blocked: number
-  /** Cuộc gọi không phải gọi đi, từ số spam / lừa đảo. */
+  /** Cuộc gọi đến từ số spam / lừa đảo (rủi ro lúc gọi). */
   suspicious: number
+  warned: number
   avgSec: number
 }
 
-export function totals(entries: CallLogEntry[]): Totals {
-  const t: Totals = { count: entries.length, talkSec: 0, incoming: 0, outgoing: 0, missed: 0, blocked: 0, suspicious: 0, avgSec: 0 }
+export function totals(rows: StatsRow[]): Totals {
+  const t: Totals = { count: 0, talkSec: 0, incoming: 0, outgoing: 0, missed: 0, blocked: 0, suspicious: 0, warned: 0, avgSec: 0 }
   let talked = 0
-  for (const e of entries) {
-    t[e.type] += 1
-    t.talkSec += e.durationSec
-    if (e.durationSec > 0) talked += 1
-    if (e.type !== 'outgoing' && (e.risk === 'spam' || e.risk === 'scam')) t.suspicious += 1
+  for (const r of rows) {
+    t.count += callsOf(r)
+    t.talkSec += r.talkInSec + r.talkOutSec
+    t.incoming += r.incoming
+    t.outgoing += r.outgoing
+    t.missed += r.missed + r.rejected
+    t.blocked += r.blocked
+    t.suspicious += r.riskSpam + r.riskScam
+    t.warned += r.warned
+    talked += r.incoming + r.answeredOut
   }
   t.avgSec = talked ? Math.round(t.talkSec / talked) : 0
   return t
@@ -49,143 +54,144 @@ export function totals(entries: CallLogEntry[]): Totals {
 
 export interface NumberFreq {
   number: string
-  name?: string
   count: number
   totalSec: number
   incoming: number
   outgoing: number
   missed: number
   blocked: number
-  lastAt: string
-  firstAt: string
-  isContact: boolean
-  risk: RiskLevel
-  reportCount: number
-  category?: CallLogEntry['category']
+  firstDay: number
+  lastDay: number
 }
 
 /** Xếp hạng theo số lần liên lạc (giảm dần, hoà thì theo thời lượng). */
-export function frequencyRanking(entries: CallLogEntry[]): NumberFreq[] {
+export function frequencyRanking(rows: StatsRow[]): NumberFreq[] {
   const map = new Map<string, NumberFreq>()
-  for (const e of entries) {
-    let f = map.get(e.number)
+  for (const r of rows) {
+    let f = map.get(r.number)
     if (!f) {
-      f = {
-        number: e.number,
-        name: e.name,
-        count: 0,
-        totalSec: 0,
-        incoming: 0,
-        outgoing: 0,
-        missed: 0,
-        blocked: 0,
-        lastAt: e.startedAt,
-        firstAt: e.startedAt,
-        isContact: isKnown(e),
-        risk: e.risk,
-        reportCount: e.reportCount,
-        category: e.category,
-      }
-      map.set(e.number, f)
+      f = { number: r.number, count: 0, totalSec: 0, incoming: 0, outgoing: 0, missed: 0, blocked: 0, firstDay: r.day, lastDay: r.day }
+      map.set(r.number, f)
     }
-    f.count += 1
-    f.totalSec += e.durationSec
-    f[e.type] += 1
-    if (e.startedAt > f.lastAt) {
-      f.lastAt = e.startedAt
-      f.risk = e.risk
-      f.reportCount = e.reportCount
-      f.category = e.category
-    }
-    if (e.startedAt < f.firstAt) f.firstAt = e.startedAt
-    if (e.name) f.name = e.name
-    if (isKnown(e)) f.isContact = true
+    f.count += callsOf(r)
+    f.totalSec += r.talkInSec + r.talkOutSec
+    f.incoming += r.incoming
+    f.outgoing += r.outgoing
+    f.missed += r.missed + r.rejected
+    f.blocked += r.blocked
+    f.firstDay = Math.min(f.firstDay, r.day)
+    f.lastDay = Math.max(f.lastDay, r.day)
   }
   return [...map.values()].sort((a, b) => b.count - a.count || b.totalSec - a.totalSec)
 }
 
+/** Ngày (số ngày từ 1970) → ISO lúc 12:00 trưa giờ máy, để định dạng ngày. */
+export function dayToIso(day: number): string {
+  const utc = new Date(day * DAY)
+  return new Date(utc.getUTCFullYear(), utc.getUTCMonth(), utc.getUTCDate(), 12).toISOString()
+}
+
 export interface DayBucket {
-  /** yyyy-m-d theo giờ địa phương */
-  key: string
-  /** Thứ viết tắt (<= 7 ngày) hoặc ngày/tháng */
   label: string
   count: number
 }
 
 const WEEKDAY_SHORT = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
 
-function dayKey(d: Date): string {
-  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
-}
-
 /** Số cuộc gọi mỗi ngày trong `days` ngày gần nhất (cũ → mới). */
-export function callsPerDay(entries: CallLogEntry[], days: number, now = new Date()): DayBucket[] {
-  const buckets: DayBucket[] = []
-  for (let i = days - 1; i >= 0; i--) {
-    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i)
-    buckets.push({
-      key: dayKey(day),
-      label: days <= 7 ? (WEEKDAY_SHORT[day.getDay()] ?? '') : `${day.getDate()}/${day.getMonth() + 1}`,
-      count: 0,
-    })
-  }
-  const idx = new Map(buckets.map((b, i) => [b.key, i]))
-  for (const e of entries) {
-    const i = idx.get(dayKey(new Date(e.startedAt)))
-    if (i !== undefined) buckets[i]!.count += 1
-  }
-  return buckets
-}
-
-export const WEEKDAY_LABELS = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN']
-
-/** Số cuộc gọi theo thứ trong tuần, chỉ số 0 = Thứ 2 … 6 = Chủ nhật. */
-export function weekdayHistogram(entries: CallLogEntry[]): number[] {
-  const h = [0, 0, 0, 0, 0, 0, 0]
-  for (const e of entries) {
-    const wd = (new Date(e.startedAt).getDay() + 6) % 7
-    h[wd]! += 1
-  }
-  return h
-}
-
-export interface WeekBucket {
-  label: string
-  byType: Record<CallType, number>
-  total: number
-}
-
-/** `weeks` tuần gần nhất (cũ → mới); tuần cuối kết thúc tại `now`. */
-export function weeklyCounts(entries: CallLogEntry[], weeks: number, now = new Date()): WeekBucket[] {
-  const out: WeekBucket[] = Array.from({ length: weeks }, (_, i) => ({
-    label: i === weeks - 1 ? 'Nay' : `-${weeks - 1 - i}t`,
-    byType: { incoming: 0, outgoing: 0, missed: 0, blocked: 0 },
-    total: 0,
-  }))
-  for (const e of entries) {
-    const age = Math.floor((now.getTime() - new Date(e.startedAt).getTime()) / (7 * DAY))
-    const i = weeks - 1 - age
-    if (age < 0 || i < 0) continue
-    out[i]!.byType[e.type] += 1
-    out[i]!.total += 1
+export function callsPerDay(rows: StatsRow[], days: number, today: number): DayBucket[] {
+  const counts = new Map<number, number>()
+  for (const r of rows) counts.set(r.day, (counts.get(r.day) ?? 0) + callsOf(r))
+  const out: DayBucket[] = []
+  for (let d = today - days + 1; d <= today; d++) {
+    const utc = new Date(d * DAY)
+    const label = days <= 7 ? (WEEKDAY_SHORT[utc.getUTCDay()] ?? '') : `${utc.getUTCDate()}/${utc.getUTCMonth() + 1}`
+    out.push({ label, count: counts.get(d) ?? 0 })
   }
   return out
 }
 
-/** Phân bổ mức rủi ro của các cuộc gọi đến (không tính cuộc gọi đi). */
-export function riskBreakdown(entries: CallLogEntry[]): Record<RiskLevel, number> {
+export const WEEKDAY_LABELS = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN']
+
+/** Số cuộc gọi theo thứ trong tuần, chỉ số 0 = Thứ 2 … 6 = Chủ nhật (1970-01-01 là Thứ 5). */
+export function weekdayHistogram(rows: StatsRow[]): number[] {
+  const h = [0, 0, 0, 0, 0, 0, 0]
+  for (const r of rows) h[(((r.day + 3) % 7) + 7) % 7]! += callsOf(r)
+  return h
+}
+
+export interface WeekBucket {
+  incoming: number
+  outgoing: number
+  total: number
+}
+
+/** `weeks` tuần gần nhất (cũ → mới); tuần cuối kết thúc hôm nay. */
+export function weeklyCounts(rows: StatsRow[], weeks: number, today: number): WeekBucket[] {
+  const out: WeekBucket[] = Array.from({ length: weeks }, () => ({ incoming: 0, outgoing: 0, total: 0 }))
+  for (const r of rows) {
+    const age = Math.floor((today - r.day) / 7)
+    const i = weeks - 1 - age
+    if (age < 0 || i < 0) continue
+    out[i]!.incoming += inTotal(r)
+    out[i]!.outgoing += r.outgoing
+    out[i]!.total += callsOf(r)
+  }
+  return out
+}
+
+/** Phân bổ rủi ro (tại lúc gọi) của các cuộc gọi đến. */
+export function riskBreakdown(rows: StatsRow[]): Record<RiskLevel, number> {
   const r: Record<RiskLevel, number> = { safe: 0, unknown: 0, spam: 0, scam: 0 }
-  for (const e of entries) if (e.type !== 'outgoing') r[e.risk] += 1
+  for (const x of rows) {
+    r.unknown += x.riskUnknown
+    r.spam += x.riskSpam
+    r.scam += x.riskScam
+    r.safe += Math.max(0, inTotal(x) - x.riskUnknown - x.riskSpam - x.riskScam)
+  }
   return r
 }
 
 /** Tổng thời lượng theo hướng gọi. */
-export function durationByDirection(entries: CallLogEntry[]): { total: number; incoming: number; outgoing: number } {
+export function durationByDirection(rows: StatsRow[]): { total: number; incoming: number; outgoing: number } {
   let incoming = 0
   let outgoing = 0
-  for (const e of entries) {
-    if (e.type === 'incoming') incoming += e.durationSec
-    else if (e.type === 'outgoing') outgoing += e.durationSec
+  for (const r of rows) {
+    incoming += r.talkInSec
+    outgoing += r.talkOutSec
   }
   return { total: incoming + outgoing, incoming, outgoing }
+}
+
+/** Cuộc gọi đi: được nghe máy / không nghe. */
+export function outgoingAnswered(rows: StatsRow[]): { answered: number; not: number } {
+  let answered = 0
+  let total = 0
+  for (const r of rows) {
+    answered += r.answeredOut
+    total += r.outgoing
+  }
+  return { answered, not: total - answered }
+}
+
+/** Cuộc gọi đến: tổng / đã nghe / nhỡ (+từ chối) / bị chặn. */
+export function incomingBreakdown(rows: StatsRow[]): { total: number; answered: number; missed: number; blocked: number } {
+  const o = { total: 0, answered: 0, missed: 0, blocked: 0 }
+  for (const r of rows) {
+    o.total += inTotal(r)
+    o.answered += r.incoming
+    o.missed += r.missed + r.rejected
+    o.blocked += r.blocked
+  }
+  return o
+}
+
+/** Một dòng xếp hạng đã gắn tên / rủi ro hiện tại (để hiển thị). */
+export interface RankedNumber extends NumberFreq {
+  name?: string
+  isContact: boolean
+  risk: RiskLevel
+  category?: import('@/types').SpamCategory
+  /** ISO của ngày gọi gần nhất. */
+  lastAt: string
 }

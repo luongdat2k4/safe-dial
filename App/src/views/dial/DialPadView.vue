@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { CallerInfo, Contact } from '@/types'
 import { t } from '@/composables/useT'
 import { useDialFlow } from '@/composables/useDialFlow'
@@ -30,7 +30,14 @@ const info = ref<CallerInfo | null>(null)
 const loading = ref(false)
 const home = () => settings.state.homeCountryDial
 
-onMounted(() => contacts.load())
+const route = useRoute()
+onMounted(() => {
+  contacts.load()
+  block.load()
+  // Mở từ ACTION_DIAL (tel:…) của app khác.
+  const n = route.query.number
+  if (typeof n === 'string' && n) raw.value = n.replace(/[^+\d*#]/g, '')
+})
 
 const digitCount = computed(() => raw.value.replace(/\D/g, '').length)
 const e164 = computed(() => toE164(raw.value, home()))
@@ -89,10 +96,10 @@ function delClick() {
 function pick(c: Contact) {
   raw.value = nationalForm(c.numbers[0] ?? '', home())
 }
-function unblock() {
-  const rule = block.isBlockedNumber(e164.value)
-  if (!rule) return
-  block.removeRule(rule.id)
+async function unblock() {
+  if (!e164.value) return
+  await block.unblockNumber(e164.value)
+  if (info.value) info.value = { ...info.value, blocked: false }
   ui.showToast(t('dial.recognition.unblockToast', { number: formatNumber(e164.value, home()) }), 'success')
 }
 const call = () => startCall(e164.value)

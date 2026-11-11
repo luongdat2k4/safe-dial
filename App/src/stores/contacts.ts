@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Contact } from '@/types'
-import { dialer } from '@/services'
+import { SafeDial } from '@/services'
 
 export const useContactsStore = defineStore('contacts', () => {
   const items = ref<Contact[]>([])
@@ -14,9 +14,17 @@ export const useContactsStore = defineStore('contacts', () => {
     return m
   })
 
+  /** Danh bạ đọc từ Android (ContactsContract); bản web dùng dữ liệu mẫu. */
   async function load(force = false) {
     if (loaded.value && !force) return
-    items.value = await dialer.getContacts()
+    const { contacts } = await SafeDial.getContacts()
+    items.value = contacts.map((c) => ({
+      id: c.id,
+      name: c.name,
+      numbers: c.numbers.map((n) => n.e164),
+      favorite: c.starred,
+      photoUri: c.photoUri,
+    }))
     loaded.value = true
   }
 
@@ -35,10 +43,11 @@ export const useContactsStore = defineStore('contacts', () => {
     )
   }
 
+  /** Yêu thích = Contacts.STARRED của Android. */
   async function toggleFavorite(id: string) {
     const c = items.value.find((x) => x.id === id)
     if (!c) return
-    await dialer.setFavorite(id, !c.favorite)
+    await SafeDial.setStarred({ contactId: Number(id) || (id as unknown as number), starred: !c.favorite })
     c.favorite = !c.favorite
   }
 

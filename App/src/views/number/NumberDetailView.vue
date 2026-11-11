@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { CallerInfo } from '@/types'
+import { SafeDial, type CallNote } from '@/services'
 import { t } from '@/composables/useT'
 import { useDialFlow, useNumberActions } from '@/composables/useDialFlow'
 import { useBlockStore } from '@/stores/block'
@@ -10,6 +11,7 @@ import { useContactsStore } from '@/stores/contacts'
 import { useLookupStore } from '@/stores/lookup'
 import { useUiStore } from '@/stores/ui'
 import { numberPath, parseNumberParam } from '@/utils/routes'
+import { formatDate, formatTime } from '@/utils/format'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import Avatar from '@/components/Avatar.vue'
@@ -36,6 +38,7 @@ const { toggleBlock, copyNumber, messageMock, saveMock, pretty } = useNumberActi
 const e164 = computed(() => parseNumberParam(route.params.number))
 const hidden = computed(() => !e164.value)
 const info = ref<CallerInfo | null>(null)
+const notes = ref<CallNote[]>([])
 const menuOpen = ref(false)
 const reportOpen = ref(false)
 const suggestOpen = ref(false)
@@ -43,18 +46,22 @@ const suggestOpen = ref(false)
 async function refresh() {
   const target = e164.value
   info.value = null
-  await Promise.all([calls.load(), contacts.load()])
-  const r = await lookup.identify(target)
-  if (target === e164.value) info.value = r
+  await Promise.all([calls.load(), contacts.load(), block.load()])
+  const [r, n] = await Promise.all([lookup.identify(target), target ? SafeDial.listNotes({ number: target }) : Promise.resolve({ notes: [] })])
+  if (target !== e164.value) return
+  info.value = r
+  notes.value = n.notes
 }
 watch(e164, refresh, { immediate: true })
 
-const profile = computed(() => info.value?.profile)
+const mark = computed(() => info.value?.mark)
 const contact = computed(() => contacts.findByNumber(e164.value))
 const risk = computed(() => info.value?.risk ?? 'unknown')
 const dangerous = computed(() => risk.value === 'scam' || risk.value === 'spam')
 const history = computed(() => calls.forNumber(e164.value))
-const blockRule = computed(() => (e164.value ? block.isBlockedNumber(e164.value) : undefined))
+/** Dấu hiệu của lần gọi gần nhất có call_meta. */
+const lastReasons = computed(() => history.value.find((e) => e.reasons)?.reasons)
+const isBlocked = computed(() => !!e164.value && block.isBlocked(e164.value))
 const title = computed(() => contact.value?.name ?? info.value?.name ?? (hidden.value ? t('number.hidden') : pretty(e164.value)))
 const displayName = computed(() => contact.value?.name ?? info.value?.name)
 
@@ -77,24 +84,42 @@ const actions = computed(() => {
       },
     })
   } else {
-    list.push({ key: 'save', icon: 'user-plus', label: t('number.actions.save'), tone: 'bg-primary-soft text-primary-dark', disabled: hidden.value, run: saveMock })
+    list.push({ key: 'save', icon: 'user-plus', label: t('number.actions.save'), tone: 'bg-primary-soft text-primary-dark', disabled: hidden.value, run: () => saveMock(e164.value) })
   }
   list.push({
     key: 'block',
-    icon: blockRule.value ? 'circle-check' : 'ban',
-    label: blockRule.value ? t('number.actions.unblock') : t('number.actions.block'),
-    tone: blockRule.value ? 'bg-[#efe8fd] text-blocked' : 'bg-scam-soft text-scam',
+    icon: isBlocked.value ? 'circle-check' : 'ban',
+    label: isBlocked.value ? t('number.actions.unblock') : t('number.actions.block'),
+    tone: isBlocked.value ? 'bg-[#efe8fd] text-blocked' : 'bg-scam-soft text-scam',
     disabled: hidden.value,
-    run: () => void toggleBlock(e164.value, displayName.value),
+    run: () => void toggleBlock(e164.value, displayName.value).then((changed) => (changed ? refresh() : undefined)),
   })
   return list
 })
 
-async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
+async function menu(action: 'copy' | 'share' | 'block' | 'trust' | 'clearMark' | 'clear') {
   menuOpen.value = false
   if (action === 'copy') return copyNumber(e164.value)
-  if (action === 'share') return ui.showToast(t('number.shareToast'))
-  if (action === 'block') return void (await toggleBlock(e164.value, displayName.value))
+  if (action === 'share') {
+    if (navigator.share) return void navigator.share({ text: e164.value }).catch(() => undefined)
+    return ui.showToast(t('number.shareToast'))
+  }
+  if (action === 'block') {
+    if (await toggleBlock(e164.value, displayName.value)) await refresh()
+    return
+  }
+  if (action === 'trust') {
+    const on = !mark.value?.trusted
+    await lookup.trust(e164.value, on)
+    if (on && block.isBlocked(e164.value)) await block.unblockNumber(e164.value)
+    ui.showToast(on ? t('number.trust.done') : t('number.trust.undone'), 'success')
+    return refresh()
+  }
+  if (action === 'clearMark') {
+    await lookup.setMark(e164.value, { trusted: false, category: undefined, name: undefined, note: undefined })
+    ui.showToast(t('number.toast.markCleared'), 'success')
+    return refresh()
+  }
   const ok = await ui.confirm({
     title: t('number.clear.title'),
     message: t('number.clear.message'),
@@ -103,9 +128,17 @@ async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
     icon: 'trash-2',
   })
   if (!ok) return
-  await calls.remove(history.value.map((e) => e.id))
+  await calls.removeNumber(e164.value)
   ui.showToast(t('number.clear.done'), 'success')
 }
+
+async function deleteNote(id: string) {
+  await SafeDial.deleteNote({ id })
+  notes.value = notes.value.filter((n) => n.id !== id)
+  ui.showToast(t('number.notes.deleted'), 'success')
+}
+
+const iso = (ms: number) => new Date(ms).toISOString()
 </script>
 
 <template>
@@ -129,16 +162,17 @@ async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
             <AppIcon name="loader-circle" :size="16" class="animate-spin" /> {{ t('number.loading') }}
           </p>
           <template v-else>
-            <RiskBadge :risk="risk" :category="profile?.category" size="md" />
+            <RiskBadge :risk="risk" :category="mark?.category" size="md" />
             <span v-if="contact" class="rounded-full bg-primary-soft px-3 py-1 text-sm font-semibold text-primary-dark">{{ t('number.contact') }}</span>
+            <span v-if="mark?.trusted" class="rounded-full bg-primary-soft px-3 py-1 text-sm font-semibold text-primary-dark">{{ t('number.trusted') }}</span>
           </template>
         </div>
         <p v-if="hidden" class="mt-3 max-w-72 text-sm text-muted">{{ t('number.hiddenDesc') }}</p>
       </section>
 
-      <ScamWarning v-if="info && dangerous && profile" :profile="profile" />
+      <ScamWarning v-if="info && dangerous" :risk="risk" :category="mark?.category" :reasons="lastReasons" />
 
-      <p v-if="blockRule" class="mx-4 flex items-center gap-2 rounded-2xl bg-[#efe8fd] px-4 py-3 text-sm font-semibold text-blocked">
+      <p v-if="isBlocked" class="mx-4 flex items-center gap-2 rounded-2xl bg-[#efe8fd] px-4 py-3 text-sm font-semibold text-blocked">
         <AppIcon name="ban" :size="18" /> {{ t('number.blockedBanner') }}
       </p>
 
@@ -160,15 +194,15 @@ async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
       </div>
 
       <template v-if="!hidden">
-        <NumberInfoCard :e164="e164" :profile="profile" :last-call="history[0]?.startedAt" />
+        <NumberInfoCard :e164="e164" :mark="mark" :last-call="history[0]?.startedAt" :call-count="history.length" />
 
-        <!-- Cộng đồng -->
+        <!-- Ghi chú của người dùng (number_marks) -->
         <section class="mx-4 rounded-2xl border border-line bg-surface p-4 shadow-card">
           <h2 class="mb-2 text-sm font-bold">{{ t('number.community.title') }}</h2>
-          <p class="text-xs text-muted">{{ t('number.community.suggestedNames') }}</p>
-          <div v-if="profile?.suggestedNames?.length" class="mt-1.5 flex flex-wrap gap-1.5">
-            <span v-for="n in profile.suggestedNames" :key="n" class="rounded-full bg-canvas px-3 py-1 text-sm font-medium">{{ n }}</span>
-          </div>
+          <template v-if="mark?.name || mark?.note">
+            <p v-if="mark?.name" class="text-[15px] font-semibold">{{ mark.name }}</p>
+            <p v-if="mark?.note" class="mt-0.5 text-sm text-muted">{{ mark.note }}</p>
+          </template>
           <p v-else class="mt-1 text-sm text-muted">{{ t('number.community.noNames') }}</p>
           <div class="mt-3 flex gap-2">
             <button class="tap flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-line text-sm font-semibold" @click="suggestOpen = true">
@@ -181,8 +215,24 @@ async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
         </section>
       </template>
 
+      <!-- Ghi chú cuộc gọi (call_notes) -->
+      <section v-if="notes.length" class="mx-4 rounded-2xl border border-line bg-surface p-4 shadow-card">
+        <h2 class="mb-2 text-sm font-bold">{{ t('number.notes.title') }}</h2>
+        <ul class="divide-y divide-line">
+          <li v-for="n in notes" :key="n.id" class="flex items-start gap-2 py-2">
+            <div class="min-w-0 flex-1">
+              <p class="text-sm">{{ n.note }}</p>
+              <p class="text-xs text-muted">{{ formatTime(iso(n.at)) }} · {{ formatDate(iso(n.at)) }}</p>
+            </div>
+            <button type="button" class="tap grid size-8 place-items-center rounded-full text-muted" :aria-label="t('number.notes.delete')" @click="deleteNote(n.id)">
+              <AppIcon name="x" :size="16" />
+            </button>
+          </li>
+        </ul>
+      </section>
+
       <!-- Cuộc gọi gần đây -->
-      <section class="overflow-hidden rounded-2xl border border-line bg-surface shadow-card mx-4">
+      <section class="mx-4 overflow-hidden rounded-2xl border border-line bg-surface shadow-card">
         <div class="flex items-center px-4 pt-3 pb-1">
           <h2 class="flex-1 text-sm font-bold">{{ t('number.recent.title') }}</h2>
           <button v-if="history.length > 3" class="tap text-sm font-semibold text-primary-dark" @click="router.push(numberPath(e164, 'history'))">
@@ -214,12 +264,21 @@ async function menu(action: 'copy' | 'share' | 'block' | 'clear') {
         <ListRow v-if="!hidden" :title="t('number.menu.share')" icon="share-2" icon-tone="blue" clickable @click="menu('share')" />
         <ListRow
           v-if="!hidden"
-          :title="blockRule ? t('number.menu.unblock') : t('number.menu.block')"
-          :icon="blockRule ? 'circle-check' : 'ban'"
+          :title="isBlocked ? t('number.menu.unblock') : t('number.menu.block')"
+          :icon="isBlocked ? 'circle-check' : 'ban'"
           icon-tone="danger"
           clickable
           @click="menu('block')"
         />
+        <ListRow
+          v-if="!hidden && !contact"
+          :title="mark?.trusted ? t('number.menu.untrust') : t('number.menu.trust')"
+          icon="shield-check"
+          icon-tone="brand"
+          clickable
+          @click="menu('trust')"
+        />
+        <ListRow v-if="mark" :title="t('number.menu.clearMark')" icon="tag" icon-tone="gray" clickable @click="menu('clearMark')" />
         <ListRow v-if="history.length" :title="t('number.menu.clear')" icon="trash-2" icon-tone="danger" danger clickable @click="menu('clear')" />
       </div>
     </BottomSheet>

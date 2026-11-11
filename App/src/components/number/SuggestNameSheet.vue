@@ -23,7 +23,7 @@ async function submit() {
   if (!v || sending.value) return
   sending.value = true
   try {
-    await lookup.suggestName(props.number, v)
+    await lookup.rename(props.number, v)
     open.value = false
     emit('done')
     ui.showToast(t('number.community.suggestDone'), 'success')

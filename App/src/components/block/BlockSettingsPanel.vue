@@ -18,13 +18,13 @@ const app = useSettingsStore()
 const ui = useUiStore()
 const sheet = ref(false)
 
-type ToggleKey = keyof Pick<BlockSettings, 'blockTopSpammers' | 'blockPrivate' | 'blockInternational' | 'blockNonContacts' | 'notifyOnBlock'>
+type ToggleKey = keyof Pick<BlockSettings, 'autoBlockReported' | 'blockPrivate' | 'blockInternational' | 'blockNonContacts' | 'notifyOnBlock'>
 const toggles: Array<{ key: ToggleKey; icon: string; tone: 'danger' | 'gray' | 'blue' | 'warn' | 'brand'; warn?: boolean }> = [
-  { key: 'blockTopSpammers', icon: 'shield-x', tone: 'danger' },
   { key: 'blockPrivate', icon: 'eye-off', tone: 'gray' },
   { key: 'blockInternational', icon: 'globe', tone: 'blue' },
   { key: 'blockNonContacts', icon: 'user-round-x', tone: 'warn', warn: true },
   { key: 'notifyOnBlock', icon: 'bell', tone: 'brand' },
+  { key: 'autoBlockReported', icon: 'shield-x', tone: 'danger' },
 ]
 
 const methods: Array<{ key: BlockMethod; icon: string }> = [
@@ -32,14 +32,14 @@ const methods: Array<{ key: BlockMethod; icon: string }> = [
   { key: 'silent', icon: 'bell-off' },
 ]
 
-const taken = computed(() => block.rules.filter((r) => r.kind === 'country').map((r) => r.value))
+const taken = computed(() => block.rules.filter((r) => r.kind === 'country').map((r) => '+' + r.value))
 
-function pickCountry(c: Country) {
-  if (taken.value.includes(c.dial)) {
+async function pickCountry(c: Country) {
+  const r = await block.addRule('country', c.dial, c.name)
+  if (!r.ok) {
     ui.showToast(t('block.form.duplicate'), 'warning')
     return
   }
-  block.addRule('country', c.dial, c.name)
   ui.showToast(t('block.settings.countryAdded', { name: c.name }), 'success')
   sheet.value = false
 }
@@ -47,6 +47,7 @@ function pickCountry(c: Country) {
 
 <template>
   <div class="pb-6">
+    <p v-if="!block.canBlock" class="mx-4 mt-3 flex items-start gap-2 rounded-xl bg-spam-soft px-3 py-2 text-[13px] leading-snug text-spam"><AppIcon name="triangle-alert" :size="16" class="mt-0.5 shrink-0" />{{ t('block.settings.noRole') }}</p>
     <SectionHeader :title="t('block.settings.header')" />
     <ul class="mx-4 divide-y divide-line overflow-hidden rounded-card bg-surface shadow-card">
       <li v-for="s in toggles" :key="s.key">

@@ -19,7 +19,7 @@ const ui = useUiStore()
 const sheet = ref<SheetMode>(null)
 
 onMounted(() => {
-  if (session.phase !== 'ringing' || !session.info) router.replace('/call/simulate')
+  if (session.phase === 'idle') router.replace('/home/calls')
 })
 
 // Popup toàn màn hình có nền sáng; các cỡ khác nằm trên màn hình chính giả (nền tím đậm).
@@ -29,9 +29,8 @@ watchEffect(() => {
   )
 })
 
-function afterEnd() {
-  router.replace(settings.state.showAfterCall ? '/call/after' : '/home/calls')
-}
+/** Điều hướng sau khi kết thúc do App.vue xử lý (theo sự kiện callEnded). */
+function afterEnd() {}
 
 async function answer() {
   const info = session.info
@@ -46,12 +45,12 @@ async function answer() {
     })
     if (!ok) return
   }
-  session.accept()
+  await session.accept()
   router.replace('/call/active')
 }
 
-function reject(toast?: string) {
-  session.reject()
+async function reject(toast?: string, message?: string) {
+  await session.reject(message)
   if (toast) ui.showToast(toast, 'success')
   afterEnd()
 }
@@ -72,8 +71,8 @@ async function blockNumber() {
     icon: 'ban',
   })
   if (!ok) return
-  const r = block.addRule('number', info.number)
-  reject(r ? t('call.incoming.blocked', { number: shown }) : t('block.form.duplicate'))
+  const ok2 = await block.blockNumber(info.number)
+  await reject(ok2 ? t('call.incoming.blocked', { number: shown }) : t('number.block.failed'))
 }
 </script>
 
@@ -94,7 +93,7 @@ async function blockNumber() {
     />
     <QuickActionSheets
       v-model="sheet"
-      @reply="(txt) => ((sheet = null), reject(t('call.incoming.replySent', { text: txt })))"
+      @reply="(txt) => ((sheet = null), reject(t('call.incoming.replySent', { text: txt }), txt))"
       @remind="(label) => ((sheet = null), reject(t('call.incoming.remindSet', { when: label })))"
       @block="blockNumber"
     />

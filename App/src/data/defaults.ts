@@ -1,12 +1,12 @@
 import type { AppSettings, BlockSettings } from '@/types'
 
 export const DEFAULT_BLOCK_SETTINGS: BlockSettings = {
-  blockTopSpammers: true,
   blockPrivate: true,
   blockInternational: false,
   blockNonContacts: false,
   method: 'hangup',
   notifyOnBlock: true,
+  autoBlockReported: false,
 }
 
 export const DEFAULT_APP_SETTINGS: AppSettings = {

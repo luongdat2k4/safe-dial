@@ -1,13 +1,26 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCallsStore } from '@/stores/calls'
+import { useContactsStore } from '@/stores/contacts'
+import { useLookupStore } from '@/stores/lookup'
 import { useSettingsStore } from '@/stores/settings'
+import { useStatsStore } from '@/stores/stats'
 import { t } from '@/composables/useT'
 import { numberPath, parseNumberParam } from '@/utils/routes'
 import { formatNumber } from '@/utils/numbers'
 import { formatDate, formatDuration, formatTime } from '@/utils/format'
-import { durationByDirection, totals, weekdayHistogram, weeklyCounts, WEEKDAY_LABELS } from '@/utils/stats'
+import {
+  dayToIso,
+  durationByDirection,
+  incomingBreakdown,
+  outgoingAnswered,
+  totals,
+  weekdayHistogram,
+  weeklyCounts,
+  WEEKDAY_LABELS,
+} from '@/utils/stats'
+import type { StatsRow } from '@/services'
 import AppBar from '@/components/AppBar.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import BaseButton from '@/components/BaseButton.vue'
@@ -20,33 +33,48 @@ import Sparkline from '@/components/charts/Sparkline.vue'
 const route = useRoute()
 const router = useRouter()
 const calls = useCallsStore()
+const contacts = useContactsStore()
+const lookup = useLookupStore()
 const settings = useSettingsStore()
-const now = ref(new Date())
+const stats = useStatsStore()
 
 const number = computed(() => parseNumberParam(route.params.number))
-onMounted(() => {
-  now.value = new Date()
-  calls.load()
-})
+/** Thống kê của số này, đọc từ call_stats_daily (không bị mất khi nhật ký cũ bị xoá). */
+const rows = ref<StatsRow[]>([])
+const today = ref(0)
 
-const entries = computed(() => calls.forNumber(number.value))
-const sum = computed(() => totals(entries.value))
-const dur = computed(() => durationByDirection(entries.value))
-const name = computed(() => entries.value.find((e) => e.name)?.name)
+watch(
+  number,
+  async (n) => {
+    calls.load()
+    contacts.load()
+    const r = await stats.forNumber(n)
+    rows.value = r.rows
+    today.value = r.today
+  },
+  { immediate: true },
+)
+
+const sum = computed(() => totals(rows.value))
+const dur = computed(() => durationByDirection(rows.value))
+const incoming = computed(() => incomingBreakdown(rows.value))
+const out = computed(() => outgoingAnswered(rows.value))
+const name = computed(() => contacts.findByNumber(number.value)?.name ?? lookup.marks[number.value]?.name)
 const display = computed(() => formatNumber(number.value, settings.state.homeCountryDial))
 
-const inTotal = computed(() => sum.value.incoming + sum.value.missed + sum.value.blocked)
-const outAnswered = computed(() => entries.value.filter((e) => e.type === 'outgoing' && e.durationSec > 0).length)
-const outNot = computed(() => sum.value.outgoing - outAnswered.value)
+const weeks = computed(() => weeklyCounts(rows.value, 8, today.value))
+const inWeekly = computed(() => weeks.value.map((w) => w.incoming))
+const outWeekly = computed(() => weeks.value.map((w) => w.outgoing))
+const weekday = computed(() => weekdayHistogram(rows.value).map((v, i) => ({ label: WEEKDAY_LABELS[i] ?? '', value: v })))
 
-const weeks = computed(() => weeklyCounts(entries.value, 8, now.value))
-const inWeekly = computed(() => weeks.value.map((w) => w.byType.incoming + w.byType.missed + w.byType.blocked))
-const outWeekly = computed(() => weeks.value.map((w) => w.byType.outgoing))
-const weekday = computed(() => weekdayHistogram(entries.value).map((v, i) => ({ label: WEEKDAY_LABELS[i] ?? '', value: v })))
-
-const sorted = computed(() => [...entries.value].sort((a, b) => a.startedAt.localeCompare(b.startedAt)))
-const first = computed(() => sorted.value[0])
-const last = computed(() => sorted.value[sorted.value.length - 1])
+/** Cuộc gọi đầu tiên: theo ngày (call_stats_daily). Gần nhất: giờ chính xác từ nhật ký nếu còn. */
+const firstText = computed(() => (rows.value.length ? formatDate(dayToIso(rows.value[0]!.day)) : '-'))
+const lastText = computed(() => {
+  const e = calls.forNumber(number.value)[0]
+  if (e) return formatDate(e.startedAt) + ' ' + formatTime(e.startedAt)
+  const last = rows.value[rows.value.length - 1]
+  return last ? formatDate(dayToIso(last.day)) : '-'
+})
 
 const segments = computed(() => [
   { label: t('common.callType.incoming'), value: sum.value.incoming, color: 'var(--color-incoming)' },
@@ -84,10 +112,10 @@ const stat = 'flex items-center justify-between py-2 text-[15px]'
         <section :class="card">
           <h2 class="flex items-center gap-2 text-[15px] font-bold"><AppIcon name="phone-incoming" :size="18" class="text-incoming" />{{ t('stats.number.incomingTitle') }}</h2>
           <dl class="mt-1 divide-y divide-line">
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.inTotal') }}</dt><dd class="font-semibold">{{ inTotal }}</dd></div>
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.inAnswered') }}</dt><dd class="font-semibold">{{ sum.incoming }}</dd></div>
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.inMissed') }}</dt><dd class="font-semibold text-missed">{{ sum.missed }}</dd></div>
-            <div v-if="sum.blocked" :class="stat"><dt class="text-muted">{{ t('stats.number.inBlocked') }}</dt><dd class="font-semibold text-blocked">{{ sum.blocked }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.inTotal') }}</dt><dd class="font-semibold">{{ incoming.total }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.inAnswered') }}</dt><dd class="font-semibold">{{ incoming.answered }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.inMissed') }}</dt><dd class="font-semibold text-missed">{{ incoming.missed }}</dd></div>
+            <div v-if="incoming.blocked" :class="stat"><dt class="text-muted">{{ t('stats.number.inBlocked') }}</dt><dd class="font-semibold text-blocked">{{ incoming.blocked }}</dd></div>
           </dl>
           <p class="mt-2 mb-1 text-xs text-muted">{{ t('stats.number.weeks') }}</p>
           <Sparkline :values="inWeekly" color="var(--color-incoming)" :aria-label="t('stats.number.weeksAria', { v: inWeekly.join(', ') })" />
@@ -97,8 +125,8 @@ const stat = 'flex items-center justify-between py-2 text-[15px]'
           <h2 class="flex items-center gap-2 text-[15px] font-bold"><AppIcon name="phone-outgoing" :size="18" class="text-outgoing" />{{ t('stats.number.outgoingTitle') }}</h2>
           <dl class="mt-1 divide-y divide-line">
             <div :class="stat"><dt class="text-muted">{{ t('stats.number.outTotal') }}</dt><dd class="font-semibold">{{ sum.outgoing }}</dd></div>
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.outAnswered') }}</dt><dd class="font-semibold">{{ outAnswered }}</dd></div>
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.outNot') }}</dt><dd class="font-semibold">{{ outNot }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.outAnswered') }}</dt><dd class="font-semibold">{{ out.answered }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.outNot') }}</dt><dd class="font-semibold">{{ out.not }}</dd></div>
           </dl>
           <p class="mt-2 mb-1 text-xs text-muted">{{ t('stats.number.weeks') }}</p>
           <Sparkline :values="outWeekly" color="var(--color-outgoing)" :aria-label="t('stats.number.weeksAria', { v: outWeekly.join(', ') })" />
@@ -112,8 +140,8 @@ const stat = 'flex items-center justify-between py-2 text-[15px]'
         <section :class="card">
           <h2 :class="h2">{{ t('stats.number.firstLast') }}</h2>
           <dl class="divide-y divide-line">
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.first') }}</dt><dd class="font-semibold">{{ first ? `${formatDate(first.startedAt)} ${formatTime(first.startedAt)}` : '-' }}</dd></div>
-            <div :class="stat"><dt class="text-muted">{{ t('stats.number.last') }}</dt><dd class="font-semibold">{{ last ? `${formatDate(last.startedAt)} ${formatTime(last.startedAt)}` : '-' }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.first') }}</dt><dd class="font-semibold">{{ firstText }}</dd></div>
+            <div :class="stat"><dt class="text-muted">{{ t('stats.number.last') }}</dt><dd class="font-semibold">{{ lastText }}</dd></div>
           </dl>
         </section>
 

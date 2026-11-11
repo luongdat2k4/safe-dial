@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useCallsStore } from '@/stores/calls'
+import { useStatsStore } from '@/stores/stats'
+import { useContactsStore } from '@/stores/contacts'
+import { useLookupStore } from '@/stores/lookup'
+import { useBlockStore } from '@/stores/block'
 import { t } from '@/composables/useT'
 import {
   callsPerDay,
-  filterPeriod,
+  dayToIso,
+  fromDayOf,
   frequencyRanking,
   riskBreakdown,
   totals,
   type Period,
+  type RankedNumber,
 } from '@/utils/stats'
 import { formatDuration } from '@/utils/format'
 import type { RiskLevel } from '@/types'
@@ -21,11 +26,16 @@ import HBar from '@/components/charts/HBar.vue'
 import FrequencyList from '@/components/charts/FrequencyList.vue'
 import StrangerList from '@/components/charts/StrangerList.vue'
 
-const calls = useCallsStore()
+const stats = useStatsStore()
+const contacts = useContactsStore()
+const lookup = useLookupStore()
+const block = useBlockStore()
 const period = ref<Period>('30d')
 onMounted(() => {
-  now.value = new Date()
-  calls.load()
+  stats.load()
+  contacts.load()
+  lookup.loadMarks()
+  block.load()
 })
 
 const tabs = computed(() => [
@@ -34,11 +44,27 @@ const tabs = computed(() => [
   { key: 'all', label: t('stats.period.all') },
 ])
 
-const now = ref(new Date())
-const list = computed(() => filterPeriod(calls.entries, period.value, now.value))
+/** Dòng call_stats_daily trong khoảng đang chọn. */
+const list = computed(() => {
+  const from = fromDayOf(period.value, stats.today)
+  return stats.rows.filter((r) => r.day >= from)
+})
 const sum = computed(() => totals(list.value))
-const days = computed(() => callsPerDay(list.value, period.value === '7d' ? 7 : 14, now.value))
-const ranking = computed(() => frequencyRanking(list.value))
+const days = computed(() => callsPerDay(list.value, period.value === '7d' ? 7 : 14, stats.today))
+const ranking = computed<RankedNumber[]>(() =>
+  frequencyRanking(list.value).map((f) => {
+    const c = contacts.findByNumber(f.number)
+    const mark = f.number ? lookup.marks[f.number] : undefined
+    return {
+      ...f,
+      name: c?.name ?? mark?.name,
+      isContact: !!c,
+      risk: lookup.riskOf({ isContact: !!c, mark }),
+      category: mark?.category,
+      lastAt: dayToIso(f.lastDay),
+    }
+  }),
+)
 const topContacts = computed(() => ranking.value.filter((r) => r.isContact && r.number).slice(0, 5))
 const strangers = computed(() => ranking.value.filter((r) => !r.isContact).slice(0, 5))
 const risks = computed(() => riskBreakdown(list.value))

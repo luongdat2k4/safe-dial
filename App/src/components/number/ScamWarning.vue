@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { NumberProfile } from '@/types'
+import type { RiskLevel, SpamCategory } from '@/types'
 import { t } from '@/composables/useT'
+import { signalsFromBits } from '@/utils/blockEngine'
 import AppIcon from '@/components/AppIcon.vue'
 
-/** Banner cảnh báo cho số spam / lừa đảo, kèm 3 mẹo an toàn. */
-const props = defineProps<{ profile: Pick<NumberProfile, 'risk' | 'category' | 'reportCount'> }>()
+/** Banner cảnh báo cho số người dùng đã đánh dấu spam / lừa đảo, kèm 3 mẹo an toàn. */
+const props = defineProps<{ risk: RiskLevel; category?: SpamCategory; reasons?: number }>()
 
-const isScam = computed(() => props.profile.risk === 'scam')
-const category = computed(() => t(`common.category.${props.profile.category ?? (isScam.value ? 'scam' : 'spam')}`))
+const isScam = computed(() => props.risk === 'scam')
+const category = computed(() => t(`common.category.${props.category ?? (isScam.value ? 'scam' : 'spam')}`))
+const signals = computed(() => (props.reasons ? signalsFromBits(props.reasons).map((s) => t(`common.signal.${s}`)).join(', ') : ''))
 </script>
 
 <template>
@@ -21,7 +23,8 @@ const category = computed(() => t(`common.category.${props.profile.category ?? (
       <AppIcon :name="isScam ? 'shield-alert' : 'triangle-alert'" :size="28" class="warn-blink mt-0.5 shrink-0" />
       <div class="min-w-0 flex-1">
         <h2 class="text-base font-bold">{{ isScam ? t('number.warning.scamTitle') : t('number.warning.spamTitle') }}</h2>
-        <p class="text-sm font-medium">{{ t('number.warning.reports', { n: profile.reportCount.toLocaleString('vi-VN'), category }) }}</p>
+        <p v-if="props.category" class="text-sm font-medium">{{ t('number.warning.marked', { category }) }}</p>
+        <p v-if="signals" class="text-sm font-medium">{{ t('number.warning.signals', { list: signals }) }}</p>
       </div>
     </div>
     <p class="mt-3 text-xs font-bold tracking-wide uppercase">{{ t('number.warning.tipsTitle') }}</p>

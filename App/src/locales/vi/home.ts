@@ -33,10 +33,15 @@ export const home = {
     },
     delete: {
       title: 'Xoá {n} cuộc gọi?',
-      message: 'Các cuộc gọi đã chọn sẽ bị xoá khỏi nhật ký.',
+      message: 'Các cuộc gọi đã chọn sẽ bị xoá khỏi nhật ký. Thống kê vẫn được giữ.',
       done: 'Đã xoá {n} cuộc gọi',
     },
     more: 'Tuỳ chọn cho cuộc gọi này',
+    noPermission: {
+      title: 'Chưa có quyền đọc nhật ký cuộc gọi',
+      description: 'Cho phép Safe Dial đọc nhật ký để xem lịch sử, lọc số lạ và thống kê.',
+      grant: 'Cấp quyền',
+    },
     actions: {
       title: 'Tuỳ chọn',
       call: 'Gọi',

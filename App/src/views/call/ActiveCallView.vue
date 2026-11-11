@@ -7,18 +7,23 @@ import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
 import { formatClock } from '@/utils/format'
 import { formatNumber } from '@/utils/numbers'
+import { isNative } from '@/services'
 import BrandOrb from '@/components/BrandOrb.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import Keypad from '@/components/Keypad.vue'
+import BottomSheet from '@/components/BottomSheet.vue'
+import BaseButton from '@/components/BaseButton.vue'
 
 const router = useRouter()
 const session = useCallSessionStore()
 const settings = useSettingsStore()
 const ui = useUiStore()
 const typed = ref('')
+const noteOpen = ref(false)
+const noteText = ref('')
 
 onMounted(() => {
-  if ((session.phase !== 'dialing' && session.phase !== 'active') || !session.info) router.replace('/home/calls')
+  if (session.phase === 'idle') router.replace('/home/calls')
 })
 
 const info = computed(() => session.info)
@@ -27,7 +32,7 @@ const status = computed(() => (session.phase === 'dialing' ? t('call.active.dial
 const title = computed(() => info.value?.name ?? formatNumber(info.value?.number ?? '', settings.state.homeCountryDial))
 
 type CtrlKey = 'muted' | 'speaker' | 'hold' | 'keypad'
-const grid: Array<{ key: string; icon: string; on?: CtrlKey }> = [
+const ALL: Array<{ key: string; icon: string; on?: CtrlKey }> = [
   { key: 'mute', icon: 'mic-off', on: 'muted' },
   { key: 'keypad', icon: 'grid-3x3', on: 'keypad' },
   { key: 'speaker', icon: 'volume-2', on: 'speaker' },
@@ -35,19 +40,37 @@ const grid: Array<{ key: string; icon: string; on?: CtrlKey }> = [
   { key: 'add', icon: 'user-plus' },
   { key: 'note', icon: 'notebook-pen' },
 ]
+// Máy thật: chưa hỗ trợ giao diện nhiều cuộc gọi cùng lúc → ẩn "Thêm cuộc gọi".
+const grid = ALL.filter((g) => !(isNative && g.key === 'add'))
 
 function press(item: (typeof grid)[number]) {
   if (item.on) {
-    session.controls[item.on] = !session.controls[item.on]
+    void session.toggle(item.on)
     return
   }
   if (item.key === 'add') router.push('/dialpad')
-  else ui.showToast(t('call.active.noteToast'), 'info')
+  else {
+    noteText.value = ''
+    noteOpen.value = true
+  }
 }
 
+function key(k: string) {
+  typed.value += k
+  session.dtmf(k)
+}
+
+async function saveNote() {
+  const v = noteText.value.trim()
+  if (!v) return
+  await session.addNote(v)
+  noteOpen.value = false
+  ui.showToast(t('call.active.noteSaved'), 'success')
+}
+
+/** Điều hướng sau khi kết thúc do App.vue xử lý (sự kiện callEnded). */
 function hangup() {
-  session.hangup()
-  router.replace(settings.state.showAfterCall ? '/call/after' : '/home/calls')
+  void session.hangup()
 }
 </script>
 
@@ -71,8 +94,8 @@ function hangup() {
     <div class="min-h-0 flex-1 overflow-y-auto pt-6">
       <div v-if="session.controls.keypad" class="pb-3">
         <p class="mb-3 h-8 text-center text-2xl tracking-widest tabular-nums">{{ typed }}</p>
-        <Keypad @press="(k) => (typed += k)" />
-        <button type="button" class="tap mx-auto mt-3 block rounded-full px-4 py-2 text-sm font-semibold opacity-85" @click="session.controls.keypad = false">
+        <Keypad @press="key" />
+        <button type="button" class="tap mx-auto mt-3 block rounded-full px-4 py-2 text-sm font-semibold opacity-85" @click="session.toggle('keypad')">
           {{ t('call.active.hideKeypad') }}
         </button>
       </div>
@@ -91,5 +114,16 @@ function hangup() {
         <AppIcon name="phone-off" :size="32" />
       </button>
     </div>
+
+    <BottomSheet v-model="noteOpen" :title="t('call.active.noteTitle')">
+      <textarea
+        v-model="noteText"
+        rows="3"
+        maxlength="500"
+        :placeholder="t('call.active.notePlaceholder')"
+        class="w-full resize-none rounded-2xl border border-line bg-canvas px-3 py-2.5 text-[15px] text-ink outline-none focus:border-primary"
+      />
+      <BaseButton class="mt-3" block :disabled="!noteText.trim()" @click="saveNote">{{ t('call.active.noteSave') }}</BaseButton>
+    </BottomSheet>
   </div>
 </template>

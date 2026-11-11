@@ -1,138 +1,168 @@
 /**
- * Bộ máy quyết định chặn cuộc gọi — thuần TypeScript, không phụ thuộc UI.
- *
- * Thứ tự kiểm tra bám theo phân tích `BlockManager.f` của CallApp
- * (data-scraping/CallApp/logic/02-…): ẩn số → quốc tế → số lạ → danh sách số →
- * quy tắc tiền tố/chứa/đuôi → spam cộng đồng. Danh bạ là "danh sách trắng ngầm"
- * cho các bước quốc tế / số lạ / quy tắc.
- *
- * Khác với bản gốc (đã sửa có chủ đích):
- *  - Quy tắc `startsWith` / `country` được ÁP DỤNG (Trust Call chỉ lưu mà không áp dụng).
- *  - Cuộc gọi bị chặn luôn ghi lại lý do để hiển thị trong lịch sử.
- *  - Số trong danh bạ không bao giờ bị chặn bởi quy tắc mẫu; chỉ danh sách số tường minh
- *    mới chặn được cả số trong danh bạ.
+ * Bộ quyết định chặn / cảnh báo — bản TypeScript của `CallDecider.java`, chỉ dùng cho
+ * bản web/mock. Trên máy thật, quyết định luôn do native thực hiện (plugin `evaluate`).
+ * Thứ tự kiểm tra theo schema mục 4: hệ thống chặn → tin cậy → danh bạ → quy tắc →
+ * số ẩn → quốc tế → số lạ → dấu hiệu cảnh báo.
  */
-import type {
-  BlockMethod,
-  BlockReason,
-  BlockRule,
-  BlockSettings,
-  NumberProfile,
-  RiskLevel,
-} from '@/types'
-import { nationalForm, normalizeNumber } from './numbers'
+import type { BlockReason, RiskLevel, SpamCategory } from '@/types'
+import {
+  REASON,
+  type ActionName,
+  type DecisionStep,
+  type NativeDecision,
+  type NativeMark,
+  type NativeRule,
+} from '@/services/native/definitions'
+import { nationalForm } from './numbers'
 
-/** Số báo cáo tối thiểu để một số spam/lừa đảo bị chặn tự động ("top spammer"). Dưới ngưỡng chỉ cảnh báo. */
-export const TOP_SPAMMER_MIN_REPORTS = 50
-
-export interface DecisionInput {
-  /** E.164, chuỗi rỗng nếu số bị ẩn. */
-  number: string
-  isContact: boolean
-  /** Hồ sơ cộng đồng nếu có. */
-  profile?: NumberProfile
+export interface DecideSettings {
+  blockPrivate: boolean
+  blockInternational: boolean
+  blockNonContacts: boolean
+  method: 'hangup' | 'silent'
+  warnInternational: boolean
+  warnPrivate: boolean
+  burstCount: number
+  burstWindowMin: number
 }
 
-export interface DecisionContext {
-  rules: BlockRule[]
-  settings: BlockSettings
-  /** Mã quay số của nước người dùng, ví dụ +84. */
+export interface DecideContext {
+  /** Mã quay số có '+', ví dụ '+84'. */
   homeDial: string
+  settings: DecideSettings
+  rules: NativeRule[]
+  isBlocked(e164: string): boolean
+  mark(e164: string): NativeMark | undefined
+  contactName(e164: string): string | undefined
+  callsFrom(e164: string, sinceMs: number): number
+  rejectedBefore(e164: string): boolean
 }
 
-export interface Decision {
-  action: 'allow' | 'block' | 'silence'
-  reason: BlockReason | null
-  ruleId?: string
-  /** Mô tả ngắn cho người dùng, ví dụ tên quy tắc đã khớp. */
-  detail?: string
-  /** Mức cảnh báo hiển thị dù cuộc gọi có bị chặn hay không. */
-  risk: RiskLevel
+export function riskOfCategory(c?: SpamCategory | null): RiskLevel {
+  if (!c) return 'unknown'
+  return c === 'scam' || c === 'fakeJob' || c === 'impersonation' ? 'scam' : 'spam'
 }
 
-/** Một quy tắc có khớp số này không (so khớp trên dạng E.164 và dạng quốc gia). */
-export function ruleMatches(rule: BlockRule, number: string, homeDial: string): boolean {
-  if (!number) return false
-  const value = normalizeNumber(rule.value)
-  if (!value) return false
-  const forms = new Set([number, nationalForm(number, homeDial), number.replace(/^\+/, '')])
-  const test = (fn: (f: string) => boolean) => [...forms].some(fn)
+/** So khớp trên dạng trong nước (0899…) và dạng quốc tế không '+' (84899…). */
+export function ruleMatches(rule: Pick<NativeRule, 'kind' | 'value'>, e164: string, homeDial: string): boolean {
+  if (!e164) return false
+  const v = rule.value.replace(/\D/g, '')
+  if (!v) return false
+  const digits = e164.replace(/^\+/, '')
+  const national = nationalForm(e164, homeDial)
   switch (rule.kind) {
-    case 'number':
-      return test((f) => f === value)
     case 'startsWith':
+      return digits.startsWith(v) || national.startsWith(v)
     case 'country':
-      return test((f) => f.startsWith(value))
+      return digits.startsWith(v)
     case 'contains':
-      return test((f) => f.includes(value))
+      return digits.includes(v) || national.includes(v)
     case 'endsWith':
-      return test((f) => f.endsWith(value))
+      return digits.endsWith(v)
   }
 }
 
-export function riskOf(input: DecisionInput): RiskLevel {
-  if (input.isContact) return 'safe'
-  if (input.profile) return input.profile.risk
-  return input.number ? 'unknown' : 'unknown'
-}
-
-function isInternational(number: string, homeDial: string): boolean {
-  return !!number && number.startsWith('+') && !number.startsWith(homeDial)
-}
-
-export function decideCall(input: DecisionInput, ctx: DecisionContext): Decision {
-  const { settings, rules, homeDial } = ctx
-  const risk = riskOf(input)
-  const onBlock: 'block' | 'silence' = methodToAction(settings.method)
-  const hit = (reason: BlockReason, extra: Partial<Decision> = {}): Decision => ({
-    action: onBlock,
-    reason,
+export function decide(e164: string, ctx: DecideContext): NativeDecision {
+  const s = ctx.settings
+  const steps: DecisionStep[] = []
+  const mark = e164 ? ctx.mark(e164) : undefined
+  const onBlock: ActionName = s.method === 'silent' ? 'silenced' : 'blocked'
+  const base = {
+    number: e164,
+    category: mark?.category ?? null,
+    trusted: !!mark?.trusted,
+    isContact: false,
+    systemBlocked: false,
+    name: mark?.name ?? null,
+    steps,
+  }
+  const done = (action: ActionName, risk: RiskLevel, reasons: number, extra: Partial<NativeDecision> = {}): NativeDecision => ({
+    ...base,
+    action,
     risk,
+    reasons,
     ...extra,
   })
 
-  // (1) Số ẩn / private
-  if (settings.blockPrivate && !input.number) return hit('private')
-
-  // (2) Quốc tế — danh bạ được miễn
-  if (settings.blockInternational && isInternational(input.number, homeDial) && !input.isContact) {
-    return hit('international')
+  if (ctx.isBlocked(e164)) {
+    steps.push({ id: 'system', state: 'match' })
+    return done('blocked', mark?.category ? riskOfCategory(mark.category) : 'spam', REASON.blacklist, { systemBlocked: true })
   }
+  steps.push({ id: 'system', state: 'pass' })
 
-  // (3) Không có trong danh bạ (người gọi ẩn cũng tính là không có trong danh bạ)
-  if (settings.blockNonContacts && !input.isContact) return hit('nonContact')
-
-  // (4) Danh sách số chặn tường minh — áp dụng cả với số trong danh bạ
-  const exact = rules.find((r) => r.kind === 'number' && ruleMatches(r, input.number, homeDial))
-  if (exact) return hit('list', { ruleId: exact.id, detail: exact.label ?? exact.value })
-
-  // (5) Quy tắc mẫu (tiền tố / chứa / đuôi / quốc gia) — danh bạ được miễn
-  if (!input.isContact) {
-    const rule = rules.find((r) => r.kind !== 'number' && ruleMatches(r, input.number, homeDial))
-    if (rule) {
-      return hit(rule.kind === 'country' ? 'country' : 'rule', {
-        ruleId: rule.id,
-        detail: rule.label ?? rule.value,
-      })
-    }
+  if (mark?.trusted) {
+    steps.push({ id: 'trusted', state: 'match' })
+    return done('allowed', 'safe', 0)
   }
+  steps.push({ id: 'trusted', state: 'pass' })
 
-  // (6) Spam cộng đồng
-  if (
-    settings.blockTopSpammers &&
-    !input.isContact &&
-    input.profile &&
-    (input.profile.risk === 'spam' || input.profile.risk === 'scam') &&
-    input.profile.reportCount >= TOP_SPAMMER_MIN_REPORTS
-  ) {
-    return hit('spammer', { detail: input.profile.category })
+  const contact = e164 ? ctx.contactName(e164) : undefined
+  if (contact) {
+    steps.push({ id: 'contact', state: 'match', detail: contact })
+    return done('allowed', 'safe', 0, { isContact: true, name: contact })
   }
+  steps.push({ id: 'contact', state: 'pass' })
 
-  return { action: 'allow', reason: null, risk }
+  const rule = e164 ? ctx.rules.find((r) => r.enabled && ruleMatches(r, e164, ctx.homeDial)) : undefined
+  if (rule) {
+    const label = rule.label ?? rule.value
+    steps.push({ id: 'rule', state: 'match', detail: label })
+    return done(onBlock, 'spam', rule.kind === 'country' ? REASON.country : REASON.rule, { ruleId: rule.id, ruleLabel: label })
+  }
+  steps.push({ id: 'rule', state: 'pass' })
+
+  const hidden = !e164
+  if (hidden && s.blockPrivate) {
+    steps.push({ id: 'private', state: 'match' })
+    return done(onBlock, 'unknown', REASON.private | REASON.nonContact)
+  }
+  steps.push({ id: 'private', state: s.blockPrivate ? 'pass' : 'off' })
+
+  const intl = !!e164 && !e164.startsWith(ctx.homeDial)
+  if (intl && s.blockInternational) {
+    steps.push({ id: 'international', state: 'match' })
+    return done(onBlock, 'unknown', REASON.international | REASON.nonContact)
+  }
+  steps.push({ id: 'international', state: s.blockInternational ? 'pass' : 'off' })
+
+  if (s.blockNonContacts) {
+    steps.push({ id: 'nonContact', state: 'match' })
+    return done(onBlock, 'unknown', REASON.nonContact)
+  }
+  steps.push({ id: 'nonContact', state: 'off' })
+
+  let reasons: number = REASON.nonContact
+  if (intl && s.warnInternational) reasons |= REASON.international
+  if (hidden && s.warnPrivate) reasons |= REASON.private
+  if (e164) {
+    if (ctx.callsFrom(e164, Date.now() - s.burstWindowMin * 60_000) + 1 >= s.burstCount) reasons |= REASON.burst
+    if (ctx.rejectedBefore(e164)) reasons |= REASON.rejectedBefore
+  }
+  const risk = mark?.category ? riskOfCategory(mark.category) : 'unknown'
+  const warn = (reasons & ~REASON.nonContact) !== 0 || risk === 'spam' || risk === 'scam'
+  steps.push({ id: 'signals', state: warn ? 'match' : 'pass' })
+  return done(warn ? 'warned' : 'allowed', risk, reasons)
 }
 
-function methodToAction(m: BlockMethod): 'block' | 'silence' {
-  return m === 'silent' ? 'silence' : 'block'
+/** Lý do hiển thị cho cuộc gọi bị chặn (từ bitmask `reasons`). */
+export function reasonFromBits(bits: number): BlockReason | undefined {
+  if (bits & REASON.blacklist) return 'list'
+  if (bits & REASON.country) return 'country'
+  if (bits & REASON.rule) return 'rule'
+  if (bits & REASON.private) return 'private'
+  if (bits & REASON.international) return 'international'
+  if (bits & REASON.nonContact) return 'nonContact'
+  return undefined
+}
+
+/** Các dấu hiệu cảnh báo (để hiển thị), không gồm "không có trong danh bạ". */
+export function signalsFromBits(bits: number): Array<'international' | 'private' | 'burst' | 'rejectedBefore'> {
+  const out: Array<'international' | 'private' | 'burst' | 'rejectedBefore'> = []
+  if (bits & REASON.international) out.push('international')
+  if (bits & REASON.private) out.push('private')
+  if (bits & REASON.burst) out.push('burst')
+  if (bits & REASON.rejectedBefore) out.push('rejectedBefore')
+  return out
 }
 
 export const REASON_LABEL: Record<BlockReason, string> = {
@@ -142,5 +172,4 @@ export const REASON_LABEL: Record<BlockReason, string> = {
   list: 'Có trong danh sách chặn',
   rule: 'Khớp quy tắc chặn',
   country: 'Chặn theo mã quốc gia',
-  spammer: 'Báo cáo spam từ cộng đồng',
 }

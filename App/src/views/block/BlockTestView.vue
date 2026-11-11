@@ -1,46 +1,67 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useBlockStore } from '@/stores/block'
+import { useLookupStore } from '@/stores/lookup'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
 import { SCENARIOS } from '@/data/seed'
+import { isNative, type DecisionStep, type NativeDecision } from '@/services'
 import { isPlausibleNumber, toE164, formatNumber } from '@/utils/numbers'
 import { countryOf } from '@/utils/countries'
-import { traceCall, type Trace } from '@/utils/blockTrace'
+import { signalsFromBits } from '@/utils/blockEngine'
 import type { CallerInfo } from '@/types'
 import AppBar from '@/components/AppBar.vue'
 import Avatar from '@/components/Avatar.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import BaseButton from '@/components/BaseButton.vue'
-import TraceStepRow from '@/components/block/TraceStepRow.vue'
+import TraceStepRow, { type TraceRow } from '@/components/block/TraceStepRow.vue'
 import TraceVerdict from '@/components/block/TraceVerdict.vue'
 
 const block = useBlockStore()
+const lookup = useLookupStore()
 const settings = useSettingsStore()
 const ui = useUiStore()
 
 const raw = ref('')
 const isPrivate = ref(false)
 const info = ref<CallerInfo | null>(null)
-const trace = ref<Trace | null>(null)
+const decision = ref<NativeDecision | null>(null)
 const busy = ref(false)
 
 const home = computed(() => settings.state.homeCountryDial)
 const e164 = computed(() => (isPrivate.value ? '' : toE164(raw.value, home.value)))
 const canRun = computed(() => isPrivate.value || isPlausibleNumber(raw.value))
-const country = computed(() => countryOf(e164.value))
+const country = computed(() => countryOf(info.value?.number ?? ''))
+
+const ORDER: DecisionStep['id'][] = ['system', 'trusted', 'contact', 'rule', 'private', 'international', 'nonContact', 'signals']
+
+/** Các bước native đã chạy + các bước phía sau đánh dấu "Không chạy". */
+const rows = computed<TraceRow[]>(() => {
+  const d = decision.value
+  if (!d) return []
+  const enabledRules = block.rules.filter((r) => r.enabled).length
+  const signals = signalsFromBits(d.reasons).map((s) => t(`common.signal.${s}`)).join(', ')
+  return ORDER.map((id) => {
+    const s = d.steps.find((x) => x.id === id)
+    if (!s) return { id, state: 'stopped', detail: t('block.trace.stoppedHint') }
+    if (s.state === 'off') return { id, state: 'off', detail: t('block.trace.offHint') }
+    const state = s.state === 'match' ? 'match' : 'pass'
+    return {
+      id,
+      state,
+      detail: t(`block.trace.detail.${id}.${state}`, { name: s.detail ?? d.ruleLabel ?? '', n: enabledRules, list: signals }),
+    }
+  })
+})
 
 async function run(number = e164.value) {
   busy.value = true
   try {
-    const { info: i } = await block.evaluate(number)
+    const [i, d] = await Promise.all([lookup.identify(number), block.evaluate(number)])
     info.value = i
-    trace.value = traceCall(
-      { number, isContact: i.isContact, profile: i.profile },
-      { rules: block.rules, settings: block.settings, homeDial: home.value },
-    )
+    decision.value = d
   } finally {
     busy.value = false
   }
@@ -90,18 +111,20 @@ function fill(s: { number: string; isPrivate?: boolean }) {
         <BaseButton block class="mt-4" icon="play" :disabled="busy" @click="submit">{{ t('block.test.run') }}</BaseButton>
       </section>
 
-      <h2 class="mt-4 mb-1.5 text-xs font-bold tracking-wide text-muted uppercase">{{ t('block.test.quick') }}</h2>
-      <div class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
-        <button
-          v-for="s in SCENARIOS"
-          :key="s.id"
-          type="button"
-          class="tap shrink-0 rounded-full border border-line bg-surface px-3.5 py-2 text-sm font-medium"
-          @click="fill(s)"
-        >{{ s.title }}</button>
-      </div>
+      <template v-if="!isNative">
+        <h2 class="mt-4 mb-1.5 text-xs font-bold tracking-wide text-muted uppercase">{{ t('block.test.quick') }}</h2>
+        <div class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
+          <button
+            v-for="s in SCENARIOS"
+            :key="s.id"
+            type="button"
+            class="tap shrink-0 rounded-full border border-line bg-surface px-3.5 py-2 text-sm font-medium"
+            @click="fill(s)"
+          >{{ s.title }}</button>
+        </div>
+      </template>
 
-      <template v-if="info && trace">
+      <template v-if="info && decision">
         <section class="mt-5 flex items-center gap-3 rounded-card bg-surface p-4 shadow-card">
           <Avatar :name="info.name" :risk="info.risk" :is-private="!info.number" :size="52" />
           <div class="min-w-0 flex-1">
@@ -109,21 +132,19 @@ function fill(s: { number: string; isPrivate?: boolean }) {
             <p v-if="info.name && info.number" class="truncate text-sm text-muted">{{ formatNumber(info.number, home) }}</p>
             <p class="truncate text-xs text-muted">
               {{ info.isContact ? t('block.test.inContacts') : t('block.test.notContact') }}
-              <template v-if="info.profile?.location || country"> · {{ info.profile?.location ?? country?.name }}</template>
-              <template v-if="info.profile?.carrier"> · {{ info.profile.carrier }}</template>
+              <template v-if="country"> · {{ country.flag }} {{ country.name }}</template>
             </p>
             <div class="mt-1.5 flex flex-wrap items-center gap-2">
-              <RiskBadge :risk="info.risk" :category="info.profile?.category" />
-              <span v-if="info.profile?.reportCount" class="text-xs text-muted">{{ t('block.test.reports', { n: info.profile.reportCount }) }}</span>
+              <RiskBadge :risk="info.risk" :category="info.mark?.category" />
             </div>
           </div>
         </section>
 
         <h2 class="mt-5 mb-1.5 text-xs font-bold tracking-wide text-muted uppercase">{{ t('block.test.traceHeader') }}</h2>
         <ol class="divide-y divide-line overflow-hidden rounded-card bg-surface shadow-card">
-          <TraceStepRow v-for="(s, i) in trace.steps" :key="s.id" :step="s" :index="i" />
+          <TraceStepRow v-for="(s, i) in rows" :key="s.id" :step="s" :index="i" />
         </ol>
-        <div class="mt-3"><TraceVerdict :decision="trace.decision" /></div>
+        <div class="mt-3"><TraceVerdict :decision="decision" /></div>
       </template>
     </div>
   </div>

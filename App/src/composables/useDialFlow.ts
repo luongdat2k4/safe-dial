@@ -6,6 +6,7 @@ import { useCallSessionStore } from '@/stores/callSession'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { formatNumber } from '@/utils/numbers'
+import { SafeDial, isNative } from '@/services'
 
 /**
  * Luồng gọi đi dùng chung: nếu `defaultSim === 'ask'` mở sheet chọn SIM, ngược lại gọi ngay.
@@ -23,8 +24,7 @@ export function useDialFlow() {
     if (busy.value) return
     busy.value = true
     try {
-      await session.dial(e164, sim)
-      await router.push('/call/active')
+      if (await session.dial(e164, sim)) await router.push('/call/active')
     } finally {
       busy.value = false
     }
@@ -58,19 +58,18 @@ export function useNumberActions() {
 
   const pretty = (e164: string) => formatNumber(e164, settings.state.homeCountryDial)
 
-  /** Chặn / bỏ chặn có xác nhận. Trả về true nếu trạng thái đã đổi. */
+  /** Chặn / bỏ chặn có xác nhận (danh sách chặn của máy). Trả về true nếu trạng thái đã đổi. */
   async function toggleBlock(e164: string, name?: string): Promise<boolean> {
     if (!e164) return false
-    const rule = block.isBlockedNumber(e164)
     const num = pretty(e164)
-    if (rule) {
+    if (block.isBlocked(e164)) {
       const ok = await ui.confirm({
         title: t('number.block.unblockTitle'),
         message: t('number.block.unblockMessage', { number: num }),
         confirmText: t('common.actions.unblock'),
       })
       if (!ok) return false
-      block.removeRule(rule.id)
+      await block.unblockNumber(e164)
       ui.showToast(t('number.block.unblockDone', { number: num }), 'success')
       return true
     }
@@ -82,7 +81,10 @@ export function useNumberActions() {
       icon: 'ban',
     })
     if (!ok) return false
-    block.addRule('number', e164, name)
+    if (!(await block.blockNumber(e164, name))) {
+      ui.showToast(t('number.block.failed'), 'warning')
+      return false
+    }
     ui.showToast(t('number.block.done', { number: num }), 'success')
     return true
   }
@@ -96,12 +98,16 @@ export function useNumberActions() {
     }
   }
 
+  /** Mở app tin nhắn (máy thật) hoặc báo giả lập (web). */
   function messageMock(e164: string, name?: string) {
-    ui.showToast(t('number.toast.message', { name: name ?? pretty(e164) }))
+    if (isNative) void SafeDial.openSms({ number: e164 })
+    else ui.showToast(t('number.toast.message', { name: name ?? pretty(e164) }))
   }
 
-  function saveMock() {
-    ui.showToast(t('number.toast.save'))
+  /** Mở màn hình thêm liên hệ của Android với số đã điền sẵn. */
+  function saveMock(e164?: string) {
+    if (isNative && e164) void SafeDial.addContact({ number: e164 })
+    else ui.showToast(t('number.toast.save'))
   }
 
   return { toggleBlock, copyNumber, messageMock, saveMock, pretty }

@@ -3,7 +3,6 @@ import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useBlockStore } from '@/stores/block'
 import { useCallSessionStore } from '@/stores/callSession'
-import { useCallsStore } from '@/stores/calls'
 import { useLookupStore } from '@/stores/lookup'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
@@ -11,6 +10,7 @@ import { t } from '@/composables/useT'
 import type { SpamCategory } from '@/types'
 import { formatDuration, formatTime } from '@/utils/format'
 import { formatNumber } from '@/utils/numbers'
+import { useNumberActions } from '@/composables/useDialFlow'
 import AppBar from '@/components/AppBar.vue'
 import Avatar from '@/components/Avatar.vue'
 import AppIcon from '@/components/AppIcon.vue'
@@ -22,7 +22,6 @@ import SuggestNameSheet from '@/components/call/SuggestNameSheet.vue'
 
 const router = useRouter()
 const session = useCallSessionStore()
-const calls = useCallsStore()
 const lookup = useLookupStore()
 const block = useBlockStore()
 const settings = useSettingsStore()
@@ -31,6 +30,7 @@ const ui = useUiStore()
 const reportOpen = ref(false)
 const suggestOpen = ref(false)
 const reported = ref(false)
+const { messageMock, saveMock } = useNumberActions()
 
 onMounted(() => {
   if (!session.lastEnded) router.replace('/home/calls')
@@ -38,25 +38,27 @@ onMounted(() => {
 
 const entry = computed(() => session.lastEnded)
 const number = computed(() => entry.value?.number ?? '')
-const isContact = computed(() => session.info?.isContact ?? !!(entry.value?.contactId || entry.value?.name))
+const isContact = computed(() => session.info?.isContact ?? !!entry.value?.isContact)
 const display = computed(() => formatNumber(number.value, settings.state.homeCountryDial))
 const title = computed(() => entry.value?.name ?? display.value)
 const risk = computed(() => session.info?.risk ?? entry.value?.risk ?? 'unknown')
+const category = computed(() => session.info?.mark?.category ?? entry.value?.category)
 const type = computed(() => entry.value?.type ?? 'incoming')
-const alreadyBlocked = computed(() => !!block.isBlockedNumber(number.value))
+const alreadyBlocked = computed(() => block.isBlocked(number.value))
 
 async function report(category: SpamCategory) {
   reportOpen.value = false
-  const p = await lookup.report(number.value, category)
-  calls.applyRisk(number.value, p.risk, p.reportCount, p.category)
-  if (session.info) session.info.risk = p.risk
+  await lookup.report(number.value, category)
+  if (session.info) session.info = await lookup.identify(number.value)
   reported.value = true
+  if (block.settings.autoBlockReported && !alreadyBlocked.value) await block.blockNumber(number.value)
   ui.showToast(t('call.after.reported'), 'success')
 }
 
 async function suggest(name: string) {
   suggestOpen.value = false
-  await lookup.suggestName(number.value, name)
+  await lookup.rename(number.value, name)
+  if (session.info) session.info = await lookup.identify(number.value)
   ui.showToast(t('call.after.suggested'), 'success')
 }
 
@@ -69,13 +71,19 @@ async function blockNumber() {
     icon: 'ban',
   })
   if (!ok) return
-  const r = block.addRule('number', number.value)
-  ui.showToast(r ? t('call.incoming.blocked', { number: display.value }) : t('block.form.duplicate'), r ? 'success' : 'warning')
+  const r = await block.blockNumber(number.value)
+  ui.showToast(r ? t('call.incoming.blocked', { number: display.value }) : t('number.block.failed'), r ? 'success' : 'warning')
+}
+
+async function notSpam() {
+  await lookup.trust(number.value, true)
+  if (session.info) session.info = await lookup.identify(number.value)
+  ui.showToast(t('call.after.notSpamToast'), 'success')
 }
 
 async function callBack() {
-  await session.dial(number.value)
-  router.replace('/call/active')
+  if (await session.dial(number.value)) router.replace('/call/active')
+  else router.replace('/home/calls')
 }
 
 function close() {
@@ -99,7 +107,7 @@ function close() {
           <div class="min-w-0 flex-1">
             <p class="truncate text-lg font-bold">{{ title }}</p>
             <p v-if="entry.name && number" class="truncate text-sm text-muted">{{ display }}</p>
-            <div class="mt-1"><RiskBadge :risk="risk" :category="entry.category" /></div>
+            <div class="mt-1"><RiskBadge :risk="risk" :category="category" /></div>
           </div>
         </div>
         <dl class="mt-3 divide-y divide-line text-[15px]">
@@ -116,18 +124,18 @@ function close() {
           <p class="mt-0.5 text-[13px] text-muted">{{ t('call.after.whoDesc') }}</p>
           <div class="mt-3 grid grid-cols-2 gap-2">
             <BaseButton variant="danger" icon="flag" :disabled="reported" @click="reportOpen = true">{{ reported ? t('call.after.reportedBtn') : t('call.after.spam') }}</BaseButton>
-            <BaseButton variant="secondary" icon="shield-check" @click="ui.showToast(t('call.after.notSpamToast'), 'success')">{{ t('call.after.notSpam') }}</BaseButton>
+            <BaseButton variant="secondary" icon="shield-check" @click="notSpam">{{ t('call.after.notSpam') }}</BaseButton>
             <BaseButton variant="ghost" icon="pencil" @click="suggestOpen = true">{{ t('call.after.suggest') }}</BaseButton>
             <BaseButton variant="ghost" icon="ban" :disabled="alreadyBlocked" @click="blockNumber">{{ alreadyBlocked ? t('call.after.alreadyBlocked') : t('common.actions.block') }}</BaseButton>
           </div>
-          <ListRow class="-mx-4 mt-2" clickable icon="user-plus" :title="t('common.actions.addToContacts')" @click="ui.showToast(t('call.after.saveToast'), 'info')" />
+          <ListRow class="-mx-4 mt-2" clickable icon="user-plus" :title="t('common.actions.addToContacts')" @click="saveMock(number)" />
         </template>
         <p v-else class="mt-1 text-[13px] text-muted">{{ t('call.after.hidden') }}</p>
       </section>
 
       <section v-else class="mt-4 flex gap-2">
         <BaseButton class="flex-1" icon="phone" @click="callBack">{{ t('call.after.callBack') }}</BaseButton>
-        <BaseButton class="flex-1" variant="secondary" icon="message-square" @click="ui.showToast(t('call.after.messageToast'), 'info')">{{ t('common.actions.message') }}</BaseButton>
+        <BaseButton class="flex-1" variant="secondary" icon="message-square" @click="messageMock(number, entry.name)">{{ t('common.actions.message') }}</BaseButton>
       </section>
 
       <BaseButton class="mt-6" block variant="ghost" @click="close">{{ t('common.actions.close') }}</BaseButton>

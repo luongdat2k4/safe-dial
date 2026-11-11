@@ -3,7 +3,6 @@ import { ref, watch } from 'vue'
 import type { SpamCategory } from '@/types'
 import { t } from '@/composables/useT'
 import { useBlockStore } from '@/stores/block'
-import { useCallsStore } from '@/stores/calls'
 import { useLookupStore } from '@/stores/lookup'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
@@ -12,13 +11,12 @@ import BottomSheet from '@/components/BottomSheet.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
 
-/** Sheet báo cáo số (dùng ở danh sách cuộc gọi và màn chi tiết số). */
+/** Sheet đánh dấu số (dùng ở danh sách cuộc gọi và màn chi tiết số). */
 const props = defineProps<{ number: string }>()
 const open = defineModel<boolean>({ default: false })
 const emit = defineEmits<{ reported: [] }>()
 
 const lookup = useLookupStore()
-const calls = useCallsStore()
 const block = useBlockStore()
 const ui = useUiStore()
 const settings = useSettingsStore()
@@ -48,26 +46,25 @@ async function submit() {
   if (sending.value || !props.number) return
   sending.value = true
   try {
-    const profile = await lookup.report(props.number, category.value, note.value.trim() || undefined)
-    calls.applyRisk(props.number, profile.risk, profile.reportCount, profile.category)
+    await lookup.report(props.number, category.value, note.value.trim() || undefined)
     open.value = false
     emit('reported')
     ui.showToast(t('number.report.thanks'), 'success')
-    if (!block.isBlockedNumber(props.number)) {
-      const num = formatNumber(props.number, settings.state.homeCountryDial)
-      const ok = await ui.confirm({
+    if (block.isBlocked(props.number)) return
+    const num = formatNumber(props.number, settings.state.homeCountryDial)
+    const ok =
+      block.settings.autoBlockReported ||
+      (await ui.confirm({
         title: t('number.report.offerTitle'),
         message: t('number.report.offerMessage', { number: num }),
         confirmText: t('number.report.offerYes'),
         cancelText: t('number.report.offerNo'),
         danger: true,
         icon: 'ban',
-      })
-      if (ok) {
-        block.addRule('number', props.number, profile.name)
-        ui.showToast(t('number.block.done', { number: num }), 'success')
-      }
-    }
+      }))
+    if (!ok) return
+    if (await block.blockNumber(props.number)) ui.showToast(t('number.block.done', { number: num }), 'success')
+    else ui.showToast(t('number.block.failed'), 'warning')
   } finally {
     sending.value = false
   }

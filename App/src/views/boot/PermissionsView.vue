@@ -1,56 +1,82 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { App as CapApp } from '@capacitor/app'
+import type { PluginListenerHandle } from '@capacitor/core'
 import AppIcon from '@/components/AppIcon.vue'
 import BaseButton from '@/components/BaseButton.vue'
-import BottomSheet from '@/components/BottomSheet.vue'
 import ListRow from '@/components/ListRow.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
+import { SafeDial, isNative, type PermAlias, type Status } from '@/services'
 
-type PermKey = 'calls' | 'contacts' | 'overlay' | 'notifications'
-type RoleKey = 'dialer' | 'screening'
+type PermKey = 'calls' | 'contacts' | 'notifications'
 
 const router = useRouter()
 const settings = useSettingsStore()
 const ui = useUiStore()
+const status = ref<Status | null>(null)
+let resumeHandle: PluginListenerHandle | undefined
 
-const perms = reactive<Record<PermKey, boolean>>({ calls: false, contacts: false, overlay: false, notifications: false })
-const roles = reactive<Record<RoleKey, boolean>>({ dialer: false, screening: false })
+/** Mỗi mục trên UI ứng với một hoặc nhiều nhóm quyền của plugin. */
+const ALIASES: Record<PermKey, PermAlias[]> = {
+  calls: ['callLog', 'phone'],
+  contacts: ['contacts'],
+  notifications: ['notifications'],
+}
 
 const permItems: { key: PermKey; icon: string; tone: 'brand' | 'blue' | 'violet' | 'warn' }[] = [
-  { key: 'calls', icon: 'phone', tone: 'brand' },
   { key: 'contacts', icon: 'contact-round', tone: 'blue' },
-  { key: 'overlay', icon: 'layers', tone: 'violet' },
+  { key: 'calls', icon: 'phone', tone: 'brand' },
   { key: 'notifications', icon: 'bell', tone: 'warn' },
 ]
-const roleItems: { key: RoleKey; icon: string }[] = [
-  { key: 'dialer', icon: 'phone-call' },
-  { key: 'screening', icon: 'shield-check' },
-]
 
-const canContinue = computed(() => perms.calls && perms.contacts)
-const allOn = computed(() => Object.values(perms).every(Boolean))
-
-const roleSheet = ref(false)
-const roleKey = ref<RoleKey>('dialer')
-
-function openRole(k: RoleKey) {
-  roleKey.value = k
-  roleSheet.value = true
+async function refresh() {
+  status.value = await SafeDial.getStatus()
 }
 
-function confirmRole() {
-  roles[roleKey.value] = true
-  roleSheet.value = false
-  ui.showToast(t('boot.permissions.roles.done'), 'success')
+onMounted(async () => {
+  await refresh()
+  // Người dùng có thể bật quyền trong Cài đặt Android rồi quay lại.
+  if (isNative) resumeHandle = await CapApp.addListener('resume', refresh)
+})
+onBeforeUnmount(() => resumeHandle?.remove())
+
+function granted(k: PermKey): boolean {
+  const s = status.value
+  return !!s && ALIASES[k].every((a) => s[a] === 'granted')
 }
 
-function allowAll() {
-  for (const k of Object.keys(perms) as PermKey[]) perms[k] = true
+const canContinue = computed(() => granted('contacts'))
+const allOn = computed(() => permItems.every((p) => granted(p.key)) && !!status.value?.dialerRole)
+
+async function request(k: PermKey) {
+  if (granted(k)) return
+  await SafeDial.requestPermissions({ permissions: ALIASES[k] })
+  await refresh()
+}
+
+async function requestRole() {
+  if (status.value?.dialerRole) return
+  // Màn hình cuộc gọi đến dựa vào thông báo full-screen → xin quyền thông báo trước.
+  if (!granted('notifications')) await request('notifications')
+  try {
+    const r = await SafeDial.requestDialerRole()
+    if (r.granted) ui.showToast(t('boot.permissions.roles.done'), 'success')
+  } catch {
+    ui.showToast(t('boot.permissions.roles.unavailable'), 'warning')
+  }
+  await refresh()
+}
+
+async function allowAll() {
+  const missing = permItems.filter((p) => !granted(p.key)).flatMap((p) => ALIASES[p.key])
+  if (missing.length) await SafeDial.requestPermissions({ permissions: missing })
+  await refresh()
+  if (!status.value?.dialerRole) await requestRole()
 }
 
 function finish(limited = false) {
@@ -69,7 +95,7 @@ function finish(limited = false) {
         </span>
         <h1 class="mt-4 text-2xl font-bold">{{ t('boot.permissions.title') }}</h1>
         <p class="mt-1 text-[15px] text-muted">{{ t('boot.permissions.subtitle') }}</p>
-        <p class="mt-2 inline-flex items-center gap-1.5 rounded-full bg-spam-soft px-3 py-1 text-xs font-medium text-spam">
+        <p v-if="!isNative" class="mt-2 inline-flex items-center gap-1.5 rounded-full bg-spam-soft px-3 py-1 text-xs font-medium text-spam">
           <AppIcon name="flask-conical" :size="14" /> {{ t('common.mockNotice') }}
         </p>
       </div>
@@ -95,29 +121,32 @@ function finish(limited = false) {
           :subtitle="t(`boot.permissions.items.${p.key}.why`)"
         >
           <template #right>
-            <ToggleSwitch v-model="perms[p.key]" :label="t(`boot.permissions.items.${p.key}.title`)" />
+            <ToggleSwitch
+              :model-value="granted(p.key)"
+              :disabled="granted(p.key)"
+              :label="t(`boot.permissions.items.${p.key}.title`)"
+              @update:model-value="request(p.key)"
+            />
           </template>
         </ListRow>
       </div>
 
       <SectionHeader :title="t('boot.permissions.sectionRoles')" />
-      <div class="mx-4 divide-y divide-line overflow-hidden rounded-card bg-surface shadow-card">
+      <div class="mx-4 overflow-hidden rounded-card bg-surface shadow-card">
         <ListRow
-          v-for="r in roleItems"
-          :key="r.key"
-          :icon="r.icon"
+          icon="phone-call"
           icon-tone="blue"
-          :title="t(`boot.permissions.roles.${r.key}.title`)"
-          :subtitle="t(`boot.permissions.roles.${r.key}.why`)"
+          :title="t('boot.permissions.roles.dialer.title')"
+          :subtitle="t('boot.permissions.roles.dialer.why')"
           chevron
-          @click="openRole(r.key)"
+          @click="requestRole"
         >
           <template #right>
             <span
               class="shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold"
-              :class="roles[r.key] ? 'bg-primary-soft text-primary-dark' : 'bg-unknown-soft text-unknown'"
+              :class="status?.dialerRole ? 'bg-primary-soft text-primary-dark' : 'bg-unknown-soft text-unknown'"
             >
-              {{ roles[r.key] ? t('boot.permissions.roles.set') : t('boot.permissions.roles.notSet') }}
+              {{ status?.dialerRole ? t('boot.permissions.roles.set') : t('boot.permissions.roles.notSet') }}
             </span>
           </template>
         </ListRow>
@@ -133,28 +162,11 @@ function finish(limited = false) {
     </div>
 
     <div class="pb-safe shrink-0 border-t border-line bg-surface px-4 pt-3 pb-3">
-      <BaseButton block size="lg" :disabled="!canContinue" @click="finish()">{{ t('common.actions.next') }}</BaseButton>
+      <BaseButton block size="lg" :disabled="!canContinue" @click="finish(!allOn)">{{ t('common.actions.next') }}</BaseButton>
       <p v-if="!canContinue" class="mt-2 text-center text-xs text-muted">{{ t('boot.permissions.needBasic') }}</p>
       <button type="button" class="tap mx-auto mt-1 block min-h-10 px-4 text-sm font-medium text-muted" @click="finish(true)">
         {{ t('boot.permissions.later') }}
       </button>
     </div>
-
-    <BottomSheet
-      v-model="roleSheet"
-      :title="t(roleKey === 'dialer' ? 'boot.permissions.roles.sheetTitleDialer' : 'boot.permissions.roles.sheetTitleScreening')"
-    >
-      <div class="flex items-center gap-3 rounded-2xl bg-canvas p-3">
-        <span class="grid size-12 place-items-center rounded-xl bg-primary-dark text-white"><AppIcon name="shield-check" :size="26" /></span>
-        <div>
-          <p class="font-semibold">{{ t('common.appName') }}</p>
-          <p class="text-[13px] text-muted">{{ t('boot.permissions.roles.sheetText') }}</p>
-        </div>
-      </div>
-      <div class="mt-4 flex flex-col gap-2">
-        <BaseButton block @click="confirmRole">{{ t('boot.permissions.roles.setDefault') }}</BaseButton>
-        <BaseButton block variant="ghost" @click="roleSheet = false">{{ t('boot.permissions.roles.cancel') }}</BaseButton>
-      </div>
-    </BottomSheet>
   </div>
 </template>

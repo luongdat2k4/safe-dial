@@ -1,26 +1,29 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { NumberProfile } from '@/types'
+import type { NumberMark } from '@/types'
 import { t } from '@/composables/useT'
 import { countryOf } from '@/utils/countries'
 import { formatDate, formatTime } from '@/utils/format'
 import AppIcon from '@/components/AppIcon.vue'
 
-const props = defineProps<{ e164: string; profile?: NumberProfile; lastCall?: string }>()
+const props = defineProps<{ e164: string; mark?: NumberMark; lastCall?: string; callCount: number }>()
 
-const none = t('number.info.none')
 const rows = computed(() => {
   const c = countryOf(props.e164)
+  const m = props.mark
   return [
-    { icon: 'map-pin', label: t('number.info.location'), value: props.profile?.location ?? none },
-    { icon: 'radio-tower', label: t('number.info.carrier'), value: props.profile?.carrier ?? none },
-    { icon: 'flag', label: t('number.info.reports'), value: (props.profile?.reportCount ?? 0).toLocaleString('vi-VN') },
+    { icon: 'globe', label: t('number.info.country'), value: c ? `${c.flag} ${c.name}` : t('number.info.none') },
+    {
+      icon: 'tag',
+      label: t('number.info.mark'),
+      value: m?.trusted ? t('number.trusted') : m?.category ? t(`common.category.${m.category}`) : t('number.info.noMark'),
+    },
+    { icon: 'phone', label: t('number.info.calls'), value: String(props.callCount) },
     {
       icon: 'clock',
       label: t('number.info.lastCall'),
       value: props.lastCall ? `${formatTime(props.lastCall)} · ${formatDate(props.lastCall)}` : t('number.info.never'),
     },
-    { icon: 'globe', label: t('number.info.country'), value: c ? `${c.flag} ${c.name}` : none },
   ]
 })
 </script>

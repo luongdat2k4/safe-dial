@@ -6,16 +6,14 @@ import { useCallsStore } from '@/stores/calls'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
-import type { BlockRule, BlockRuleKind } from '@/types'
 import { ruleMatches } from '@/utils/blockEngine'
 import { isPlausibleNumber, normalizeNumber, toE164, formatNumber } from '@/utils/numbers'
-import { isKnown } from '@/utils/stats'
 import type { Country } from '@/utils/countries'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import CountryPicker from '@/components/block/CountryPicker.vue'
-import { RULE_KINDS, RULE_META, ruleValueText } from '@/components/block/ruleMeta'
+import { RULE_KINDS, RULE_META, ruleValueText, type FormKind } from '@/components/block/ruleMeta'
 
 const router = useRouter()
 const block = useBlockStore()
@@ -24,24 +22,28 @@ const settings = useSettingsStore()
 const ui = useUiStore()
 const home = computed(() => settings.state.homeCountryDial)
 
-const kind = ref<BlockRuleKind>('number')
+const kind = ref<FormKind>('number')
 const raw = ref('')
 const label = ref('')
 const country = ref<Country | null>(null)
 const touched = ref(false)
+const saving = ref(false)
 
-onMounted(() => calls.load())
+onMounted(() => {
+  calls.load()
+  block.load()
+})
 watch(kind, () => {
   raw.value = ''
   country.value = null
   touched.value = false
 })
 
-/** Giá trị cuối cùng sẽ được lưu (đã chuẩn hoá). */
+/** Giá trị sẽ lưu: số cụ thể ở dạng E.164; quy tắc mẫu chỉ gồm chữ số (mã quốc gia không '+'). */
 const value = computed(() => {
-  if (kind.value === 'country') return country.value?.dial ?? ''
+  if (kind.value === 'country') return country.value?.dial.replace('+', '') ?? ''
   const n = normalizeNumber(raw.value)
-  return kind.value === 'number' ? toE164(n, home.value) : n
+  return kind.value === 'number' ? toE164(n, home.value) : n.replace(/\+/g, '')
 })
 
 const error = computed(() => {
@@ -52,30 +54,45 @@ const error = computed(() => {
   return digits.length >= 3 ? '' : t('block.form.errShort')
 })
 
-const duplicate = computed(() => !!value.value && block.rules.some((r) => r.kind === kind.value && r.value === value.value))
+const duplicate = computed(() => {
+  if (!value.value) return false
+  if (kind.value === 'number') return block.isBlocked(value.value)
+  return block.rules.some((r) => r.kind === kind.value && r.value === value.value)
+})
 
 const preview = computed(() => {
   if (error.value) return null
-  const rule: BlockRule = { id: 'preview', kind: kind.value, value: value.value, createdAt: '' }
-  const hits = calls.entries.filter(
-    (e) => !!e.number && (kind.value === 'number' || !isKnown(e)) && ruleMatches(rule, e.number, home.value),
-  )
+  const k = kind.value
+  const hits = calls.entries.filter((e) => {
+    if (!e.number) return false
+    if (k === 'number') return e.number === value.value
+    return !e.isContact && ruleMatches({ kind: k, value: value.value }, e.number, home.value)
+  })
   const numbers = [...new Set(hits.map((e) => e.number))]
   return { calls: hits.length, numbers: numbers.slice(0, 3), totalNumbers: numbers.length }
 })
 
+const valueText = computed(() =>
+  kind.value === 'number' ? formatNumber(value.value, home.value) : ruleValueText({ kind: kind.value, value: value.value }),
+)
+
 const showError = computed(() => touched.value && !!error.value)
 
-function save() {
+async function save() {
   touched.value = true
-  if (error.value) return
-  const r = block.addRule(kind.value, value.value, label.value)
-  if (!r) {
-    ui.showToast(t('block.form.duplicate'), 'warning')
-    return
+  if (error.value || saving.value) return
+  saving.value = true
+  try {
+    const r = kind.value === 'number' ? await block.addNumber(raw.value, label.value) : await block.addRule(kind.value, value.value, label.value)
+    if (!r.ok) {
+      ui.showToast(r.reason === 'duplicate' ? t('block.form.duplicate') : t('block.settings.noRole'), 'warning')
+      return
+    }
+    ui.showToast(t('block.form.saved'), 'success')
+    router.back()
+  } finally {
+    saving.value = false
   }
-  ui.showToast(t('block.form.saved'), 'success')
-  router.back()
 }
 </script>
 
@@ -113,7 +130,7 @@ function save() {
           <div class="max-h-72 overflow-y-auto">
             <CountryPicker
               :selected="country?.dial"
-              :taken="block.rules.filter((r) => r.kind === 'country').map((r) => r.value)"
+              :taken="block.rules.filter((r) => r.kind === 'country').map((r) => '+' + r.value)"
               :hide-home="home"
               @pick="(c) => ((country = c), (touched = true))"
             />
@@ -164,13 +181,13 @@ function save() {
         </ul>
         <p v-else class="mt-1 text-[13px] text-muted">{{ t('block.form.previewNone') }}</p>
         <p v-if="kind !== 'number'" class="mt-2 text-xs text-muted">{{ t('block.form.previewNote') }}</p>
-        <p v-if="value" class="mt-1 text-xs text-muted">{{ ruleValueText({ kind, value }, home) }}</p>
+        <p v-if="value" class="mt-1 text-xs text-muted">{{ valueText }}</p>
       </section>
     </div>
 
     <div class="pb-safe shrink-0 border-t border-line bg-surface">
       <div class="px-4 py-3">
-        <BaseButton block size="lg" icon="shield-plus" :disabled="duplicate" @click="save">{{ t('block.form.save') }}</BaseButton>
+        <BaseButton block size="lg" icon="shield-plus" :disabled="duplicate || saving" @click="save">{{ t('block.form.save') }}</BaseButton>
       </div>
     </div>
   </div>

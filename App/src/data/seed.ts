@@ -1,8 +1,8 @@
 /**
- * Dữ liệu giả lập (mock). Tất cả số điện thoại đều là số hư cấu.
- * Số trong danh bạ: +84 90x… ; số lừa đảo / spam: dải 0900 000 xxx, 1900 …, +1 202 555 01xx.
+ * Dữ liệu giả lập cho bản web / test UI (không dùng trên máy thật).
+ * Tất cả số điện thoại đều là số hư cấu.
  */
-import type { BlockRule, Contact, NumberProfile } from '@/types'
+import type { CallScenario, Contact, SpamCategory } from '@/types'
 
 export const CONTACTS: Contact[] = [
   { id: 'c1', name: 'Mẹ', numbers: ['+84901000001'], favorite: true, group: 'Gia đình' },
@@ -15,180 +15,46 @@ export const CONTACTS: Contact[] = [
   { id: 'c8', name: 'Giao hàng Khoa', numbers: ['+84907000008'], favorite: false },
   { id: 'c9', name: 'Hà Linh', numbers: ['+84908000009'], favorite: false, group: 'Bạn bè' },
   { id: 'c10', name: 'Khách sạn Biển Xanh', numbers: ['+842583000010'], favorite: false },
-  { id: 'c11', name: 'Ngân hàng (CSKH)', numbers: ['+841900545415'], favorite: false, note: 'Số tổng đài chính thức' },
+  { id: 'c11', name: 'Ngân hàng (CSKH)', numbers: ['+841900545415'], favorite: false },
   { id: 'c12', name: 'Phúc xe ôm', numbers: ['+84909000012'], favorite: false },
   { id: 'c13', name: 'Quang IT', numbers: ['+84912000013'], favorite: false, group: 'Công việc' },
   { id: 'c14', name: 'Thầy Bình', numbers: ['+84913000014'], favorite: false },
 ]
 
-/** Cơ sở dữ liệu spam cộng đồng giả lập, khoá là số E.164. */
-export const SPAM_DB: Record<string, NumberProfile> = {
-  '+84900000111': {
-    number: '+84900000111',
-    risk: 'scam',
-    category: 'impersonation',
-    reportCount: 1842,
-    location: 'Hà Nội',
-    carrier: 'Di động',
-    suggestedNames: ['Giả danh công an', 'Lừa đảo'],
-  },
-  '+84900000222': {
-    number: '+84900000222',
-    risk: 'scam',
-    category: 'fakeJob',
-    reportCount: 967,
-    location: 'TP. Hồ Chí Minh',
-    carrier: 'Di động',
-    suggestedNames: ['Việc nhẹ lương cao'],
-  },
-  '+84899999000': {
-    number: '+84899999000',
-    risk: 'spam',
-    category: 'loan',
-    reportCount: 412,
-    location: 'Việt Nam',
-    carrier: 'Di động',
-    suggestedNames: ['Vay tiền nhanh'],
-  },
-  '+841900123456': {
-    number: '+841900123456',
-    risk: 'spam',
-    category: 'telemarketing',
-    reportCount: 233,
-    location: 'Việt Nam',
-    carrier: 'Tổng đài',
-    suggestedNames: ['Quảng cáo bảo hiểm'],
-  },
-  '+84283000999': {
-    number: '+84283000999',
-    risk: 'spam',
-    category: 'robocall',
-    reportCount: 128,
-    location: 'TP. Hồ Chí Minh',
-    carrier: 'Cố định',
-  },
-  '+84908777666': {
-    number: '+84908777666',
-    risk: 'spam',
-    category: 'telemarketing',
-    reportCount: 86,
-    location: 'Việt Nam',
-    carrier: 'Di động',
-  },
-  '+12025550142': {
-    number: '+12025550142',
-    risk: 'scam',
-    category: 'scam',
-    reportCount: 604,
-    location: 'Hoa Kỳ',
-    carrier: 'VoIP',
-    suggestedNames: ['Thông báo trúng thưởng'],
-  },
-  '+2348012345678': {
-    number: '+2348012345678',
-    risk: 'scam',
-    category: 'scam',
-    reportCount: 351,
-    location: 'Nigeria',
-    carrier: 'Di động',
-  },
-  '+85512345678': {
-    number: '+85512345678',
-    risk: 'scam',
-    category: 'impersonation',
-    reportCount: 289,
-    location: 'Campuchia',
-    carrier: 'Di động',
-    suggestedNames: ['Giả danh cơ quan nhà nước'],
-  },
-  // Số lừa đảo mới nổi: ít báo cáo nên chỉ cảnh báo, chưa bị chặn tự động
-  '+84977000333': {
-    number: '+84977000333',
-    risk: 'scam',
-    category: 'impersonation',
-    reportCount: 18,
-    location: 'Việt Nam',
-    carrier: 'Di động',
-    suggestedNames: ['Giả danh nhân viên ngân hàng'],
-  },
-  // Số hợp pháp đã được cộng đồng xác minh
-  '+841900545415': {
-    number: '+841900545415',
-    name: 'Ngân hàng (CSKH)',
-    risk: 'safe',
-    reportCount: 0,
-    location: 'Việt Nam',
-    carrier: 'Tổng đài',
-  },
-  '+84909555777': {
-    number: '+84909555777',
-    name: 'Shipper giao hàng',
-    risk: 'safe',
-    reportCount: 5,
-    location: 'Việt Nam',
-    carrier: 'Di động',
-  },
-}
-
-const iso = (d = new Date()) => d.toISOString()
-
-/** Quy tắc chặn khởi tạo (minh hoạ đủ 5 loại). */
-export const DEFAULT_RULES: BlockRule[] = [
-  { id: 'r1', kind: 'number', value: '+84908777666', label: 'Số quảng cáo hay gọi', createdAt: iso() },
-  { id: 'r2', kind: 'startsWith', value: '0899', label: 'Đầu số vay tiền', createdAt: iso() },
-  { id: 'r3', kind: 'country', value: '+234', label: 'Nigeria', createdAt: iso() },
-  { id: 'r4', kind: 'endsWith', value: '0000', label: 'Đuôi số giả', createdAt: iso() },
+/** Số người dùng đã đánh dấu (number_marks). */
+export const SEED_MARKS: Array<{ number: string; category?: SpamCategory; name?: string; note?: string; trusted?: boolean }> = [
+  { number: '+84900000111', category: 'impersonation', name: 'Giả danh công an' },
+  { number: '+84900000222', category: 'fakeJob', name: 'Việc nhẹ lương cao' },
+  { number: '+84899999000', category: 'loan', name: 'Vay tiền nhanh' },
+  { number: '+841900123456', category: 'telemarketing', name: 'Quảng cáo bảo hiểm' },
+  { number: '+84283000999', category: 'robocall' },
+  { number: '+84908777666', category: 'telemarketing', name: 'Số quảng cáo hay gọi' },
+  { number: '+12025550142', category: 'scam', name: 'Thông báo trúng thưởng' },
+  { number: '+2348012345678', category: 'scam' },
+  { number: '+85512345678', category: 'impersonation', name: 'Giả danh cơ quan nhà nước' },
+  { number: '+84977000333', category: 'impersonation', name: 'Giả danh nhân viên ngân hàng', note: 'Đòi mã OTP' },
+  { number: '+84909555777', name: 'Shipper giao hàng', trusted: true },
 ]
 
-/** Kịch bản mô phỏng cuộc gọi đến. */
-export const SCENARIOS = [
-  {
-    id: 'scam-police',
-    title: 'Giả danh công an',
-    description: 'Số trong cơ sở dữ liệu lừa đảo, hơn 1.800 báo cáo',
-    number: '+84900000111',
-  },
-  {
-    id: 'scam-new',
-    title: 'Lừa đảo mới nổi',
-    description: 'Mới có 18 báo cáo nên chưa bị chặn tự động — chỉ cảnh báo',
-    number: '+84977000333',
-  },
-  {
-    id: 'unknown-vn',
-    title: 'Số lạ trong nước',
-    description: 'Chưa có báo cáo nào, không có trong danh bạ',
-    number: '+84977123456',
-  },
-  {
-    id: 'loan-spam',
-    title: 'Quảng cáo vay tiền',
-    description: 'Số spam đã bị chặn theo quy tắc đầu số 0899',
-    number: '+84899999000',
-  },
-  {
-    id: 'intl-scam',
-    title: 'Cuộc gọi quốc tế đáng ngờ',
-    description: 'Số Nigeria, khớp quy tắc chặn quốc gia',
-    number: '+2348012345678',
-  },
-  {
-    id: 'private',
-    title: 'Số ẩn danh',
-    description: 'Người gọi giấu số',
-    number: '',
-    isPrivate: true,
-  },
-  {
-    id: 'contact',
-    title: 'Người quen (Mẹ)',
-    description: 'Có trong danh bạ, an toàn',
-    number: '+84901000001',
-  },
-  {
-    id: 'verified',
-    title: 'Tổng đài ngân hàng',
-    description: 'Số đã được cộng đồng xác minh',
-    number: '+841900545415',
-  },
-] satisfies Array<{ id: string; title: string; description: string; number: string; isPrivate?: boolean }>
+/** Danh sách chặn của hệ thống (BlockedNumberContract). */
+export const SEED_BLOCKED: string[] = ['+84908777666', '+84900000111', '+12025550142']
+
+/** Quy tắc chặn mẫu (block_rules). */
+export const SEED_RULES: Array<{ kind: 'startsWith' | 'contains' | 'endsWith' | 'country'; value: string; label?: string }> = [
+  { kind: 'startsWith', value: '0899', label: 'Đầu số vay tiền' },
+  { kind: 'country', value: '234', label: 'Nigeria' },
+  { kind: 'endsWith', value: '0000', label: 'Đuôi số giả' },
+]
+
+/** Kịch bản mô phỏng cuộc gọi đến (chỉ bản web). */
+export const SCENARIOS: CallScenario[] = [
+  { id: 'scam-police', title: 'Giả danh công an', description: 'Số bạn đã chặn và đánh dấu lừa đảo', number: '+84900000111' },
+  { id: 'scam-marked', title: 'Số đã đánh dấu lừa đảo', description: 'Đã đánh dấu nhưng chưa chặn — chỉ cảnh báo', number: '+84977000333' },
+  { id: 'unknown-vn', title: 'Số lạ trong nước', description: 'Không có trong danh bạ, chưa đánh dấu', number: '+84977123456' },
+  { id: 'loan-spam', title: 'Quảng cáo vay tiền', description: 'Khớp quy tắc đầu số 0899', number: '+84899999000' },
+  { id: 'intl-scam', title: 'Cuộc gọi quốc tế', description: 'Số Nigeria, khớp quy tắc chặn quốc gia', number: '+2348012345678' },
+  { id: 'intl-unknown', title: 'Số quốc tế lạ', description: 'Không bị chặn nhưng có dấu hiệu cảnh báo', number: '+6591234567' },
+  { id: 'private', title: 'Số ẩn danh', description: 'Người gọi giấu số', number: '', isPrivate: true },
+  { id: 'contact', title: 'Người quen (Mẹ)', description: 'Có trong danh bạ, an toàn', number: '+84901000001' },
+  { id: 'trusted', title: 'Số tin cậy', description: 'Shipper bạn đã đánh dấu tin cậy', number: '+84909555777' },
+]

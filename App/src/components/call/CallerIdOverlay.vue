@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { CallerInfo, PopupPosition, PopupSize, RiskLevel } from '@/types'
-import type { Decision } from '@/utils/blockEngine'
+import type { NativeDecision } from '@/services'
+import { signalsFromBits } from '@/utils/blockEngine'
 import { useSettingsStore } from '@/stores/settings'
 import { t } from '@/composables/useT'
 import { countryOf } from '@/utils/countries'
@@ -11,7 +12,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import FakeHomeScreen from './FakeHomeScreen.vue'
 
-const props = defineProps<{ info: CallerInfo; decision?: Decision | null; size: PopupSize; position: PopupPosition }>()
+const props = defineProps<{ info: CallerInfo; decision?: NativeDecision | null; size: PopupSize; position: PopupPosition }>()
 const emit = defineEmits<{ answer: []; reject: []; more: []; message: []; remind: []; block: [] }>()
 const settings = useSettingsStore()
 
@@ -19,15 +20,18 @@ const risk = computed<RiskLevel>(() => props.info.risk)
 const danger = computed(() => risk.value === 'scam' || risk.value === 'spam')
 const showWarning = computed(() => danger.value && settings.state.scamWarning)
 const title = computed(() => props.info.name ?? formatNumber(props.info.number, settings.state.homeCountryDial))
-const reports = computed(() => props.info.profile?.reportCount ?? 0)
+const category = computed(() => props.info.mark?.category)
+const signals = computed(() => (props.decision ? signalsFromBits(props.decision.reasons).map((s) => t(`common.signal.${s}`)).join(', ') : ''))
+const subline = computed(() =>
+  category.value ? t('call.overlay.marked', { category: t(`common.category.${category.value}`) }) : signals.value ? t('call.overlay.signals', { list: signals.value }) : '',
+)
 
 const place = computed(() => {
   const c = countryOf(props.info.number)
   const parts: string[] = []
   if (!props.info.number) return t('call.overlay.hiddenCaller')
-  const loc = props.info.profile?.location ?? (c ? c.name : t('call.overlay.localCountry'))
+  const loc = c ? c.name : t('call.overlay.localCountry')
   parts.push(`${c ? c.flag + ' ' : ''}${loc}`)
-  if (props.info.profile?.carrier) parts.push(props.info.profile.carrier)
   return parts.join(' · ')
 })
 
@@ -56,7 +60,7 @@ const edge = computed(
 )
 
 const warnText = computed(() =>
-  reports.value > 0 ? t('call.overlay.warnReports', { n: reports.value.toLocaleString('vi-VN') }) : t('call.overlay.warnGeneric'),
+  category.value ? t('call.overlay.warnMarked', { category: t(`common.category.${category.value}`) }) : t('call.overlay.warnGeneric'),
 )
 </script>
 
@@ -71,8 +75,8 @@ const warnText = computed(() =>
       <h2 class="mt-5 text-3xl leading-tight font-bold break-words">{{ title }}</h2>
       <p v-if="info.name && info.number" class="mt-1 text-lg opacity-85">{{ formatNumber(info.number, settings.state.homeCountryDial) }}</p>
       <p class="mt-1 text-sm opacity-75">{{ place }}</p>
-      <div class="mt-3"><RiskBadge :risk="risk" :category="info.profile?.category" size="md" /></div>
-      <p v-if="reports" class="mt-2 text-sm opacity-85">{{ t('call.overlay.reports', { n: reports.toLocaleString('vi-VN') }) }}</p>
+      <div class="mt-3"><RiskBadge :risk="risk" :category="info.mark?.category" size="md" /></div>
+      <p v-if="subline" class="mt-2 text-sm opacity-85">{{ subline }}</p>
       <div v-if="showWarning" class="mt-5 flex max-w-xs items-start gap-2 rounded-2xl bg-white/90 text-scam px-4 py-3 text-left text-sm leading-snug" role="alert">
         <AppIcon name="triangle-alert" :size="18" class="warn-blink mt-0.5 shrink-0" />{{ warnText }}
       </div>
@@ -119,8 +123,8 @@ const warnText = computed(() =>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-2 px-4 pt-2.5">
-          <RiskBadge :risk="risk" :category="info.profile?.category" size="md" />
-          <span v-if="reports" class="text-[13px] text-muted">{{ t('call.overlay.reports', { n: reports.toLocaleString('vi-VN') }) }}</span>
+          <RiskBadge :risk="risk" :category="info.mark?.category" size="md" />
+          <span v-if="subline" class="text-[13px] text-muted">{{ subline }}</span>
         </div>
         <div v-if="showWarning" class="mx-4 mt-3 flex items-start gap-2 rounded-xl px-3 py-2 text-[13px] leading-snug" :class="risk === 'scam' ? 'bg-scam-soft text-scam' : 'bg-spam-soft text-spam'" role="alert">
           <AppIcon name="triangle-alert" :size="16" class="mt-0.5 shrink-0" />{{ warnText }}

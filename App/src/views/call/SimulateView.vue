@@ -9,7 +9,9 @@ import { t } from '@/composables/useT'
 import { SCENARIOS } from '@/data/seed'
 import { isPlausibleNumber, toE164 } from '@/utils/numbers'
 import type { CallerInfo, PopupPosition, PopupSize } from '@/types'
-import type { Decision } from '@/utils/blockEngine'
+import type { NativeDecision } from '@/services'
+import { reasonFromBits } from '@/utils/blockEngine'
+import { useLookupStore } from '@/stores/lookup'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import BaseButton from '@/components/BaseButton.vue'
@@ -26,17 +28,22 @@ const ui = useUiStore()
 
 const custom = ref('')
 const busy = ref(false)
-const result = ref<{ decision: Decision; title: string } | null>(null)
-const previews = reactive<Record<string, { info: CallerInfo; decision: Decision }>>({})
+const lookup = useLookupStore()
+const result = ref<{ decision: NativeDecision; title: string } | null>(null)
+const resultReason = computed(() => (result.value ? reasonFromBits(result.value.decision.reasons) : undefined))
+const previews = reactive<Record<string, { info: CallerInfo; decision: NativeDecision }>>({})
 
 async function refreshPreviews() {
   for (const s of SCENARIOS) {
     const number = s.isPrivate ? '' : s.number
-    const { info, decision } = await block.evaluate(number)
+    const [info, decision] = await Promise.all([lookup.identify(number), block.evaluate(number)])
     previews[s.id] = { info, decision }
   }
 }
-onMounted(refreshPreviews)
+onMounted(async () => {
+  await block.load()
+  await refreshPreviews()
+})
 watch(() => [block.rules, block.settings], refreshPreviews, { deep: true })
 
 const sizeItems = computed(() => [
@@ -54,7 +61,7 @@ async function run(number: string, isPrivate: boolean, title: string) {
   busy.value = true
   result.value = null
   try {
-    const r = await session.simulate({ number, isPrivate })
+    const r = await session.simulate(isPrivate ? '' : number)
     if (r.blocked) result.value = { decision: r.decision, title }
     else router.push('/call/incoming')
   } finally {
@@ -84,13 +91,13 @@ function runCustom() {
         <div class="flex items-center gap-2 text-blocked">
           <AppIcon name="shield-ban" :size="22" />
           <p class="text-[15px] font-bold">
-            {{ result.decision.action === 'silence' ? t('call.simulate.silenced') : t('call.simulate.blocked') }}
-            {{ result.decision.reason ? t(`common.blockReason.${result.decision.reason}`) : '' }}
+            {{ result.decision.action === 'silenced' ? t('call.simulate.silenced') : t('call.simulate.blocked') }}
+            {{ resultReason ? t(`common.blockReason.${resultReason}`) : '' }}
           </p>
         </div>
-        <p v-if="result.decision.detail" class="mt-1 text-sm text-ink">{{ t('call.simulate.detail', { d: result.decision.detail }) }}</p>
+        <p v-if="result.decision.ruleLabel" class="mt-1 text-sm text-ink">{{ t('call.simulate.detail', { d: result.decision.ruleLabel }) }}</p>
         <div class="mt-2 flex items-center justify-between gap-2">
-          <ReasonChip v-if="result.decision.reason" :reason="result.decision.reason" />
+          <ReasonChip v-if="resultReason" :reason="resultReason" />
           <BaseButton size="sm" variant="secondary" @click="router.push('/home/block')">{{ t('call.simulate.viewBlocked') }}</BaseButton>
         </div>
       </section>

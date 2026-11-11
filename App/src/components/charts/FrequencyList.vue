@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/stores/settings'
 import { t } from '@/composables/useT'
-import type { NumberFreq } from '@/utils/stats'
+import type { RankedNumber } from '@/utils/stats'
 import { formatDuration } from '@/utils/format'
 import { formatNumber } from '@/utils/numbers'
 import { numberPath } from '@/utils/routes'
@@ -11,7 +11,7 @@ import Avatar from '@/components/Avatar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import HBar from './HBar.vue'
 
-const props = defineProps<{ items: NumberFreq[] }>()
+const props = defineProps<{ items: RankedNumber[] }>()
 const router = useRouter()
 const settings = useSettingsStore()
 const max = computed(() => Math.max(1, ...props.items.map((i) => i.count)))

@@ -2,22 +2,24 @@
 import { computed } from 'vue'
 import type { CallerInfo } from '@/types'
 import { t } from '@/composables/useT'
-import { useBlockStore } from '@/stores/block'
+import { useCallsStore } from '@/stores/calls'
 import { useSettingsStore } from '@/stores/settings'
 import { formatNumber } from '@/utils/numbers'
+import { countryOf } from '@/utils/countries'
 import Avatar from '@/components/Avatar.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
 
-/** Kết quả tra cứu một số trong cộng đồng (màn Tìm kiếm). */
+/** Thông tin app biết về một số (màn Tìm kiếm): danh bạ, đánh dấu, chặn, số cuộc gọi. */
 const props = defineProps<{ info: CallerInfo | null; loading: boolean; number: string }>()
 defineEmits<{ detail: []; block: [] }>()
-const block = useBlockStore()
+const calls = useCallsStore()
 const settings = useSettingsStore()
 
-const blocked = computed(() => !!block.isBlockedNumber(props.number))
-const profile = computed(() => props.info?.profile)
+const mark = computed(() => props.info?.mark)
+const country = computed(() => countryOf(props.number))
+const callCount = computed(() => calls.forNumber(props.number).length)
 const dangerous = computed(() => props.info?.risk === 'scam' || props.info?.risk === 'spam')
 </script>
 
@@ -39,34 +41,34 @@ const dangerous = computed(() => props.info?.risk === 'scam' || props.info?.risk
         <div class="min-w-0 flex-1">
           <p class="truncate text-base font-bold">{{ info.name ?? t('dial.search.noInfo') }}</p>
           <p class="truncate text-sm text-muted">{{ formatNumber(number, settings.state.homeCountryDial) }}</p>
-          <RiskBadge class="mt-1" :risk="info.risk" :category="profile?.category" size="md" />
+          <RiskBadge class="mt-1" :risk="info.risk" :category="mark?.category" size="md" />
         </div>
       </div>
-      <p v-if="!profile && !info.isContact" class="mt-3 text-sm text-muted">{{ t('dial.search.noInfoDesc') }}</p>
-      <dl v-if="profile" class="mt-3 grid grid-cols-2 gap-2 text-sm">
+      <p v-if="!mark && !info.isContact" class="mt-3 text-sm text-muted">{{ t('dial.search.noInfoDesc') }}</p>
+      <dl class="mt-3 grid grid-cols-2 gap-2 text-sm">
         <div class="rounded-xl bg-white/70 px-3 py-2">
-          <dt class="text-xs text-muted">{{ t('dial.search.reportsLabel') }}</dt>
-          <dd class="font-bold" :class="dangerous ? 'text-scam' : ''">{{ profile.reportCount.toLocaleString('vi-VN') }}</dd>
+          <dt class="text-xs text-muted">{{ t('dial.search.calls') }}</dt>
+          <dd class="font-bold">{{ t('dial.search.callsValue', { n: callCount }) }}</dd>
         </div>
         <div class="rounded-xl bg-white/70 px-3 py-2">
-          <dt class="text-xs text-muted">{{ t('dial.search.location') }}</dt>
-          <dd class="truncate font-bold">{{ profile.location ?? '—' }}</dd>
+          <dt class="text-xs text-muted">{{ t('dial.search.country') }}</dt>
+          <dd class="truncate font-bold">{{ country ? `${country.flag} ${country.name}` : '—' }}</dd>
         </div>
-        <div class="col-span-2 rounded-xl bg-white/70 px-3 py-2">
-          <dt class="text-xs text-muted">{{ t('dial.search.carrier') }}</dt>
-          <dd class="font-bold">{{ profile.carrier ?? '—' }}</dd>
+        <div v-if="mark?.category || mark?.trusted" class="col-span-2 rounded-xl bg-white/70 px-3 py-2">
+          <dt class="text-xs text-muted">{{ t('dial.search.mark') }}</dt>
+          <dd class="font-bold" :class="dangerous ? 'text-scam' : ''">
+            {{ mark.trusted ? t('number.trusted') : t(`common.category.${mark.category}`) }}
+          </dd>
+        </div>
+        <div v-if="mark?.note" class="col-span-2 rounded-xl bg-white/70 px-3 py-2">
+          <dt class="text-xs text-muted">{{ t('dial.search.note') }}</dt>
+          <dd class="font-medium">{{ mark.note }}</dd>
         </div>
       </dl>
-      <div v-if="profile?.suggestedNames?.length" class="mt-3">
-        <p class="text-xs text-muted">{{ t('dial.search.suggested') }}</p>
-        <div class="mt-1 flex flex-wrap gap-1.5">
-          <span v-for="n in profile.suggestedNames" :key="n" class="rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium">{{ n }}</span>
-        </div>
-      </div>
       <div class="mt-4 flex gap-2">
         <BaseButton class="flex-1" icon="info" @click="$emit('detail')">{{ t('dial.search.detail') }}</BaseButton>
-        <BaseButton class="flex-1" variant="ghost" :icon="blocked ? 'circle-check' : 'ban'" @click="$emit('block')">
-          {{ blocked ? t('dial.search.unblock') : t('dial.search.block') }}
+        <BaseButton class="flex-1" variant="ghost" :icon="info.blocked ? 'circle-check' : 'ban'" @click="$emit('block')">
+          {{ info.blocked ? t('dial.search.unblock') : t('dial.search.block') }}
         </BaseButton>
       </div>
     </template>

@@ -1,64 +1,134 @@
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { BlockRule, BlockRuleKind, BlockSettings } from '@/types'
-import { DEFAULT_RULES } from '@/data/seed'
 import { DEFAULT_BLOCK_SETTINGS } from '@/data/defaults'
-import { decideCall, type Decision } from '@/utils/blockEngine'
 import { normalizeNumber, toE164 } from '@/utils/numbers'
-import { loadJSON, loadList, saveJSON } from '@/utils/storage'
+import { loadJSON } from '@/utils/storage'
+import { syncWithNative, type KeyMap } from '@/utils/nativeSettings'
+import { SafeDial, type NativeDecision, type NativeRule } from '@/services'
 import { useSettingsStore } from './settings'
 import { useLookupStore } from './lookup'
 
-const KEY_RULES = 'safedial.block.rules.v1'
 const KEY_SETTINGS = 'safedial.block.settings.v1'
 
+function toRule(r: NativeRule): BlockRule {
+  return {
+    id: r.id,
+    kind: r.kind,
+    value: r.value,
+    label: r.label ?? undefined,
+    enabled: r.enabled,
+    hitCount: r.hitCount,
+    lastHitAt: r.lastHitAt,
+    createdAt: r.createdAt,
+  }
+}
+
+/** BlockSettings ↔ key SharedPreferences mà CallScreeningService đọc. */
+const MAP: KeyMap<BlockSettings> = {
+  blockPrivate: { key: 'block.private' },
+  blockInternational: { key: 'block.international' },
+  blockNonContacts: { key: 'block.nonContacts' },
+  method: { key: 'block.method' },
+  notifyOnBlock: { key: 'block.notify' },
+  autoBlockReported: { key: 'block.autoBlockReported' },
+}
+
+export type AddRuleResult = { ok: true } | { ok: false; reason: 'invalid' | 'duplicate' | 'failed' }
+
+/**
+ * Chặn: số cụ thể nằm trong danh sách chặn của Android (BlockedNumberContract),
+ * quy tắc mẫu nằm trong block_rules, công tắc nằm trong SharedPreferences.
+ */
 export const useBlockStore = defineStore('block', () => {
-  const rules = ref<BlockRule[]>(loadList<BlockRule>(KEY_RULES, DEFAULT_RULES.map((r) => ({ ...r }))))
+  const rules = ref<BlockRule[]>([])
+  /** Số đang bị chặn (E.164). */
+  const blocked = ref<string[]>([])
+  const canBlock = ref(true)
+  const loaded = ref(false)
   const settings = reactive<BlockSettings>(loadJSON<BlockSettings>(KEY_SETTINGS, { ...DEFAULT_BLOCK_SETTINGS }))
   const app = useSettingsStore()
   const lookup = useLookupStore()
 
-  watch(rules, (v) => saveJSON(KEY_RULES, v), { deep: true })
-  watch(settings, (v) => saveJSON(KEY_SETTINGS, v), { deep: true })
+  syncWithNative(settings, MAP, KEY_SETTINGS)
 
-  /** Thêm quy tắc. Với kind `number` giá trị được chuẩn hoá về E.164. */
-  function addRule(kind: BlockRuleKind, rawValue: string, label?: string): BlockRule | null {
-    let value = normalizeNumber(rawValue)
-    if (!value) return null
-    if (kind === 'number') value = toE164(value, app.state.homeCountryDial)
-    if (rules.value.some((r) => r.kind === kind && r.value === value)) return null
-    const rule: BlockRule = {
-      id: `r-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
-      kind,
-      value,
-      label: label?.trim() || undefined,
-      createdAt: new Date().toISOString(),
-    }
-    rules.value = [rule, ...rules.value]
-    return rule
+  async function load(force = false) {
+    if (loaded.value && !force) return
+    const [r, b] = await Promise.all([SafeDial.listRules(), SafeDial.listBlocked(), lookup.loadMarks()])
+    rules.value = r.rules.map(toRule)
+    blocked.value = b.numbers
+    canBlock.value = b.canBlock
+    loaded.value = true
   }
 
-  function removeRule(id: string) {
+  function isBlocked(e164: string): boolean {
+    return !!e164 && blocked.value.includes(e164)
+  }
+
+  /** Chặn một số cụ thể (kể cả số trong danh bạ). `label` lưu thành tên đặt cho số. */
+  async function blockNumber(e164: string, label?: string): Promise<boolean> {
+    if (!e164) return false
+    try {
+      await SafeDial.block({ number: e164 })
+    } catch {
+      return false
+    }
+    if (!blocked.value.includes(e164)) blocked.value = [e164, ...blocked.value]
+    if (label?.trim() && !lookup.marks[e164]?.name) await lookup.rename(e164, label.trim())
+    if (lookup.cache[e164]) lookup.cache[e164].blocked = true
+    return true
+  }
+
+  async function unblockNumber(e164: string) {
+    await SafeDial.unblock({ number: e164 })
+    blocked.value = blocked.value.filter((n) => n !== e164)
+    if (lookup.cache[e164]) lookup.cache[e164].blocked = false
+  }
+
+  /** Thêm quy tắc mẫu. `rawValue` là dãy số (với `country` là mã quay số, có thể có '+'). */
+  async function addRule(kind: BlockRuleKind, rawValue: string, label?: string): Promise<AddRuleResult> {
+    const value = normalizeNumber(rawValue).replace(/^\+/, '')
+    if (!value) return { ok: false, reason: 'invalid' }
+    if (rules.value.some((r) => r.kind === kind && r.value === value)) return { ok: false, reason: 'duplicate' }
+    try {
+      const { rule } = await SafeDial.addRule({ kind, value, label: label?.trim() || undefined })
+      rules.value = [toRule(rule), ...rules.value]
+      return { ok: true }
+    } catch (e) {
+      return { ok: false, reason: String(e).includes('duplicate') ? 'duplicate' : 'failed' }
+    }
+  }
+
+  /** Chặn số người dùng nhập (form "Số cụ thể"). */
+  async function addNumber(rawValue: string, label?: string): Promise<AddRuleResult> {
+    const e164 = toE164(rawValue, app.state.homeCountryDial)
+    if (!e164) return { ok: false, reason: 'invalid' }
+    if (isBlocked(e164)) return { ok: false, reason: 'duplicate' }
+    return (await blockNumber(e164, label)) ? { ok: true } : { ok: false, reason: 'failed' }
+  }
+
+  async function removeRule(id: string) {
+    await SafeDial.deleteRule({ id })
     rules.value = rules.value.filter((r) => r.id !== id)
   }
 
-  function isBlockedNumber(e164: string): BlockRule | undefined {
-    return rules.value.find((r) => r.kind === 'number' && r.value === e164)
+  async function setRuleEnabled(id: string, enabled: boolean) {
+    await SafeDial.setRuleEnabled({ id, enabled })
+    const r = rules.value.find((x) => x.id === id)
+    if (r) r.enabled = enabled
   }
 
   function patchSettings(p: Partial<BlockSettings>) {
     Object.assign(settings, p)
   }
 
-  /** Chạy bộ máy chặn cho một số (hoặc số ẩn). */
-  async function evaluate(e164: string): Promise<{ decision: Decision; info: Awaited<ReturnType<typeof lookup.identify>> }> {
-    const info = await lookup.identify(e164)
-    const decision = decideCall(
-      { number: e164, isContact: info.isContact, profile: info.profile },
-      { rules: rules.value, settings, homeDial: app.state.homeCountryDial },
-    )
-    return { decision, info }
+  /** Chạy bộ quyết định (native trên máy thật) ở chế độ thử, không có cuộc gọi thật. */
+  function evaluate(e164: string): Promise<NativeDecision> {
+    return SafeDial.evaluate({ number: e164 })
   }
 
-  return { rules, settings, addRule, removeRule, isBlockedNumber, patchSettings, evaluate }
+  return {
+    rules, blocked, canBlock, settings, loaded, load, isBlocked, blockNumber, unblockNumber,
+    addRule, addNumber, removeRule, setRuleEnabled, patchSettings, evaluate,
+  }
 })

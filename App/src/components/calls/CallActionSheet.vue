@@ -17,7 +17,7 @@ const emit = defineEmits<{ action: [action: CallAction] }>()
 const block = useBlockStore()
 const settings = useSettingsStore()
 
-const blocked = computed(() => !!props.entry?.number && !!block.isBlockedNumber(props.entry.number))
+const blocked = computed(() => !!props.entry?.number && block.isBlocked(props.entry.number))
 const title = computed(() =>
   props.entry ? (props.entry.name ?? formatNumber(props.entry.number, settings.state.homeCountryDial)) : t('home.calls.actions.title'),
 )
@@ -38,7 +38,7 @@ const items = computed(() => {
       tone: 'danger',
     })
     list.push({ key: 'report', icon: 'flag', label: t('home.calls.actions.report'), tone: 'warn' })
-    if (!props.entry?.contactId) list.push({ key: 'save', icon: 'user-plus', label: t('home.calls.actions.save'), tone: 'brand' })
+    if (!props.entry?.isContact) list.push({ key: 'save', icon: 'user-plus', label: t('home.calls.actions.save'), tone: 'brand' })
     list.push({ key: 'copy', icon: 'copy', label: t('home.calls.actions.copy'), tone: 'gray' })
   }
   list.push({ key: 'delete', icon: 'trash-2', label: t('home.calls.actions.delete'), tone: 'danger', danger: true })

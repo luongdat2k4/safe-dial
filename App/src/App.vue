@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, watch } from 'vue'
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import { Capacitor } from '@capacitor/core'
 import { App as CapApp } from '@capacitor/app'
@@ -7,11 +7,20 @@ import type { PluginListenerHandle } from '@capacitor/core'
 import ToastHost from '@/components/ToastHost.vue'
 import ConfirmHost from '@/components/ConfirmHost.vue'
 import { useUiStore } from '@/stores/ui'
+import { useCallSessionStore } from '@/stores/callSession'
+import { useCallsStore } from '@/stores/calls'
+import { useContactsStore } from '@/stores/contacts'
+import { useBlockStore } from '@/stores/block'
+import { SafeDial, type LaunchInfo } from '@/services'
 
 const route = useRoute()
 const router = useRouter()
 const ui = useUiStore()
-let handle: PluginListenerHandle | undefined
+const session = useCallSessionStore()
+const calls = useCallsStore()
+const contacts = useContactsStore()
+const block = useBlockStore()
+const handles: PluginListenerHandle[] = []
 
 const ROOT_TABS = ['/home/calls', '/home/contacts', '/home/block', '/home/stats']
 
@@ -41,10 +50,41 @@ async function onBack() {
   }
 }
 
+/** Mở màn hình theo yêu cầu từ native (thông báo cuộc gọi, ACTION_DIAL của app khác). */
+function openLaunch(l: LaunchInfo) {
+  const query = l.number ? { number: l.number } : undefined
+  if (route.path !== l.route) router.push({ path: l.route, query })
+}
+
+// Màn hình theo trạng thái cuộc gọi (sự kiện callState / callEnded của InCallService).
+watch(
+  () => session.phase,
+  (phase, prev) => {
+    if (phase === 'ringing' && route.path !== '/call/incoming') router.push('/call/incoming')
+    else if ((phase === 'dialing' || phase === 'active') && prev !== phase && !route.path.startsWith('/call/active') && route.path !== '/dialpad')
+      router.push('/call/active')
+    else if (phase === 'ended' && route.path.startsWith('/call/') && route.path !== '/call/after' && route.path !== '/call/simulate')
+      router.replace(session.afterRoute())
+  },
+)
+
 onMounted(async () => {
-  if (Capacitor.isNativePlatform()) handle = await CapApp.addListener('backButton', onBack)
+  await session.start()
+  if (!Capacitor.isNativePlatform()) return
+  handles.push(await CapApp.addListener('backButton', onBack))
+  handles.push(await SafeDial.addListener('launch', openLaunch))
+  // Quay lại app: dữ liệu Android (nhật ký, danh bạ, danh sách chặn) có thể đã đổi.
+  handles.push(
+    await CapApp.addListener('resume', () => {
+      if (calls.loaded) void calls.load(true)
+      if (contacts.loaded) void contacts.load(true)
+      if (block.loaded) void block.load(true)
+    }),
+  )
+  const st = await SafeDial.getLaunchState()
+  if (st.launch) openLaunch(st.launch)
 })
-onBeforeUnmount(() => handle?.remove())
+onBeforeUnmount(() => handles.forEach((h) => h.remove()))
 </script>
 
 <template>

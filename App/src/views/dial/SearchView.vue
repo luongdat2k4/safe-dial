@@ -4,7 +4,9 @@ import { useRouter } from 'vue-router'
 import type { CallerInfo } from '@/types'
 import { t } from '@/composables/useT'
 import { useNumberActions } from '@/composables/useDialFlow'
-import { SPAM_DB } from '@/data/seed'
+import { SCENARIOS } from '@/data/seed'
+import { SafeDial, isNative } from '@/services'
+import { useBlockStore } from '@/stores/block'
 import { useCallsStore } from '@/stores/calls'
 import { useContactsStore } from '@/stores/contacts'
 import { useLookupStore } from '@/stores/lookup'
@@ -26,7 +28,13 @@ const settings = useSettingsStore()
 const contacts = useContactsStore()
 const calls = useCallsStore()
 const lookup = useLookupStore()
-const { toggleBlock, pretty } = useNumberActions()
+const block = useBlockStore()
+const { toggleBlock: toggleBlockRaw, pretty } = useNumberActions()
+
+/** Chặn / bỏ chặn rồi cập nhật lại thẻ thông tin. */
+async function toggleBlock(e164: string, name?: string) {
+  if (await toggleBlockRaw(e164, name)) info.value = await lookup.identify(e164)
+}
 
 const query = ref('')
 const recent = ref<string[]>(loadList<string>(KEY_RECENT, []).slice(0, 8))
@@ -36,6 +44,7 @@ const looking = ref(false)
 onMounted(() => {
   contacts.load()
   calls.load()
+  block.load()
 })
 
 const q = computed(() => query.value.trim())
@@ -50,7 +59,7 @@ const historyHits = computed(() => {
   const digits = normalizeNumber(q.value).replace(/^\+/, '').replace(/^0/, '')
   const map = new Map<string, { number: string; name?: string; count: number }>()
   for (const e of calls.entries) {
-    if (!e.number || e.contactId) continue
+    if (!e.number || e.isContact) continue
     const hit = (e.name ?? '').toLowerCase().includes(s) || (digits.length >= 3 && e.number.includes(digits))
     if (!hit) continue
     const cur = map.get(e.number)
@@ -60,9 +69,8 @@ const historyHits = computed(() => {
   return [...map.values()].slice(0, 6)
 })
 
-const examples = Object.values(SPAM_DB)
-  .filter((p) => p.risk === 'scam' || p.risk === 'spam')
-  .slice(0, 4)
+/** Số mẫu chỉ có ở bản web (dữ liệu giả lập). */
+const examples = isNative ? [] : SCENARIOS.filter((s) => s.number && !s.isPrivate).slice(0, 4)
 
 let timer: ReturnType<typeof setTimeout> | undefined
 let token = 0
@@ -82,19 +90,24 @@ watch(e164, (v) => {
 })
 onBeforeUnmount(() => clearTimeout(timer))
 
+/** Tìm gần đây: localStorage cho UI + SharedPreferences `ui.search.recent` (schema mục 3). */
+function persistRecent() {
+  saveJSON(KEY_RECENT, recent.value)
+  void SafeDial.setSettings({ values: { 'ui.search.recent': [...recent.value] } }).catch(() => undefined)
+}
 function remember(term: string) {
   const v = term.trim()
   if (!v) return
   recent.value = [v, ...recent.value.filter((x) => x !== v)].slice(0, 8)
-  saveJSON(KEY_RECENT, recent.value)
+  persistRecent()
 }
 function removeRecent(term: string) {
   recent.value = recent.value.filter((x) => x !== term)
-  saveJSON(KEY_RECENT, recent.value)
+  persistRecent()
 }
 function clearRecent() {
   recent.value = []
-  saveJSON(KEY_RECENT, recent.value)
+  persistRecent()
 }
 function go(number: string) {
   remember(query.value)
@@ -140,7 +153,7 @@ const hasResults = computed(() => contactHits.value.length > 0 || historyHits.va
               clickable
               @click="go(h.number)"
             >
-              <template #leading><Avatar :name="h.name" :risk="lookup.cache[h.number]?.risk ?? 'unknown'" /></template>
+              <template #leading><Avatar :name="h.name" :risk="lookup.riskOf({ isContact: false, mark: lookup.marks[h.number] })" /></template>
             </ListRow>
           </div>
         </template>
@@ -169,22 +182,24 @@ const hasResults = computed(() => contactHits.value.length > 0 || historyHits.va
         </template>
 
         <EmptyState icon="radar" :title="t('dial.search.initial.title')" :description="t('dial.search.initial.description')" class="!pb-4" />
-        <SectionHeader :title="t('dial.search.examplesTitle')" />
-        <p class="px-4 pb-2 text-sm text-muted">{{ t('dial.search.examplesDesc') }}</p>
-        <div class="bg-surface">
-          <ListRow
-            v-for="p in examples"
-            :key="p.number"
-            :title="pretty(p.number)"
-            :subtitle="t(`common.category.${p.category ?? 'spam'}`)"
-            :icon="p.risk === 'scam' ? 'shield-alert' : 'shield-x'"
-            :icon-tone="p.risk === 'scam' ? 'danger' : 'warn'"
-            clickable
-            @click="query = p.number"
-          >
-            <template #right><AppIcon name="chevron-right" :size="18" class="text-muted" /></template>
-          </ListRow>
-        </div>
+        <template v-if="examples.length">
+          <SectionHeader :title="t('dial.search.examplesTitle')" />
+          <p class="px-4 pb-2 text-sm text-muted">{{ t('dial.search.examplesDesc') }}</p>
+          <div class="bg-surface">
+            <ListRow
+              v-for="p in examples"
+              :key="p.number"
+              :title="pretty(p.number)"
+              :subtitle="p.title"
+              icon="flask-conical"
+              icon-tone="violet"
+              clickable
+              @click="query = p.number"
+            >
+              <template #right><AppIcon name="chevron-right" :size="18" class="text-muted" /></template>
+            </ListRow>
+          </div>
+        </template>
       </template>
     </main>
   </div>

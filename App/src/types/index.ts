@@ -1,7 +1,7 @@
 /** Mức độ rủi ro của một số điện thoại. */
 export type RiskLevel = 'safe' | 'unknown' | 'spam' | 'scam'
 
-/** Nhóm báo cáo do cộng đồng gán cho số điện thoại. */
+/** Loại mà người dùng đánh dấu cho một số (lưu trong `number_marks.category`). */
 export type SpamCategory =
   | 'scam'
   | 'spam'
@@ -11,25 +11,24 @@ export type SpamCategory =
   | 'telemarketing'
   | 'impersonation'
 
+/** Loại cuộc gọi hiển thị. Cuộc gọi bị từ chối (`rejected` của Android) hiển thị như cuộc gọi nhỡ. */
 export type CallType = 'incoming' | 'outgoing' | 'missed' | 'blocked'
 
-/** Vì sao một cuộc gọi bị chặn / tắt chuông (thứ tự trùng với `decideCall`). */
-export type BlockReason =
-  | 'private'
-  | 'international'
-  | 'nonContact'
-  | 'list'
-  | 'rule'
-  | 'country'
-  | 'spammer'
+/** Vì sao một cuộc gọi bị chặn / tắt chuông (suy ra từ bitmask `call_meta.reasons`). */
+export type BlockReason = 'private' | 'international' | 'nonContact' | 'list' | 'rule' | 'country'
+
+/** Hành động đã áp dụng cho cuộc gọi đến (`call_meta.action`). */
+export type CallAction = 'allowed' | 'warned' | 'silenced' | 'blocked'
 
 export interface Contact {
+  /** ContactsContract._ID (dạng chuỗi). */
   id: string
   name: string
   /** Số ở dạng E.164, ví dụ +84901234567 */
   numbers: string[]
+  /** Contacts.STARRED */
   favorite: boolean
-  note?: string
+  photoUri?: string
   group?: string
 }
 
@@ -37,52 +36,57 @@ export interface CallLogEntry {
   id: string
   /** E.164. Chuỗi rỗng = số ẩn / private. */
   number: string
+  /** Tên trong danh bạ (CACHED_NAME) hoặc tên tự đặt. */
   name?: string
-  contactId?: string
+  isContact: boolean
   type: CallType
   /** ISO 8601 */
   startedAt: string
   durationSec: number
+  /** Rủi ro hiển thị: đánh dấu hiện tại của người dùng, nếu không có thì rủi ro lúc gọi. */
   risk: RiskLevel
   category?: SpamCategory
-  reportCount: number
+  /** Có bản ghi `call_meta`. */
+  action?: CallAction
+  reasons?: number
   blockedReason?: BlockReason
-  simSlot?: 1 | 2
+  simSlot?: number
 }
 
-/** Kết quả tra cứu một số (cơ sở dữ liệu cộng đồng giả lập). */
-export interface NumberProfile {
+/** Thông tin riêng của người dùng về một số (`number_marks`). */
+export interface NumberMark {
   number: string
-  name?: string
-  risk: RiskLevel
+  trusted: boolean
   category?: SpamCategory
-  reportCount: number
-  location?: string
-  carrier?: string
-  /** Gợi ý tên do người dùng đóng góp. */
-  suggestedNames?: string[]
+  name?: string
+  note?: string
+  updatedAt: number
 }
 
-export type BlockRuleKind = 'number' | 'startsWith' | 'contains' | 'endsWith' | 'country'
+export type BlockRuleKind = 'startsWith' | 'contains' | 'endsWith' | 'country'
 
 export interface BlockRule {
   id: string
   kind: BlockRuleKind
-  /** Chỉ gồm chữ số và dấu +. Với `country` là mã quay số, ví dụ +234. */
+  /** Chỉ chữ số. Với `country` là mã quay số không '+', ví dụ 234. */
   value: string
   label?: string
-  createdAt: string
+  enabled: boolean
+  hitCount: number
+  lastHitAt?: number
+  createdAt: number
 }
 
 export type BlockMethod = 'hangup' | 'silent'
 
 export interface BlockSettings {
-  blockTopSpammers: boolean
   blockPrivate: boolean
   blockInternational: boolean
   blockNonContacts: boolean
   method: BlockMethod
   notifyOnBlock: boolean
+  /** Đánh dấu lừa đảo/spam thì thêm luôn vào danh sách chặn, không hỏi lại. */
+  autoBlockReported: boolean
 }
 
 export type PopupSize = 'classic' | 'full'
@@ -109,15 +113,19 @@ export interface AppSettings {
   defaultSim: SimChoice
 }
 
+/** Mọi thứ app biết về một số tại thời điểm hiện tại. */
 export interface CallerInfo {
   number: string
   name?: string
   isContact: boolean
-  profile?: NumberProfile
+  contactId?: string
+  starred?: boolean
+  blocked: boolean
+  mark?: NumberMark
   risk: RiskLevel
 }
 
-/** Một kịch bản cuộc gọi đến dùng cho phần mô phỏng. */
+/** Một kịch bản cuộc gọi đến dùng cho phần mô phỏng (chỉ bản web/demo). */
 export interface CallScenario {
   id: string
   title: string

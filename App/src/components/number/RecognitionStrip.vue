@@ -2,22 +2,22 @@
 import { computed } from 'vue'
 import type { CallerInfo, Contact } from '@/types'
 import { t } from '@/composables/useT'
-import { useBlockStore } from '@/stores/block'
 import { formatNumber } from '@/utils/numbers'
+import { countryOf } from '@/utils/countries'
 import { useSettingsStore } from '@/stores/settings'
 import RiskBadge from '@/components/RiskBadge.vue'
 import AppIcon from '@/components/AppIcon.vue'
 
-/** Dải nhận diện số ngay khi gõ: gợi ý danh bạ + thẻ cảnh báo rủi ro. */
+/** Dải nhận diện số ngay khi gõ: gợi ý danh bạ + thẻ cảnh báo theo đánh dấu của người dùng. */
 const props = defineProps<{ number: string; info: CallerInfo | null; loading: boolean; contacts: Contact[] }>()
 defineEmits<{ pick: [c: Contact]; unblock: []; detail: [] }>()
-const block = useBlockStore()
 const settings = useSettingsStore()
 
-const blocked = computed(() => !!props.number && !!block.isBlockedNumber(props.number))
 const risk = computed(() => props.info?.risk ?? 'unknown')
-const profile = computed(() => props.info?.profile)
+const mark = computed(() => props.info?.mark)
 const danger = computed(() => risk.value === 'scam' || risk.value === 'spam')
+const intl = computed(() => !!props.number && !props.number.startsWith(settings.state.homeCountryDial))
+const country = computed(() => (intl.value ? countryOf(props.number) : undefined))
 
 const tone = computed(() => {
   if (risk.value === 'scam') return 'border-scam/40 bg-scam-soft'
@@ -51,18 +51,19 @@ const warn = computed(() => (risk.value === 'scam' ? t('dial.recognition.scamWar
 
     <div v-else-if="info" class="rounded-2xl border p-3" :class="tone" :role="danger ? 'alert' : 'status'">
       <div class="flex items-center gap-2">
-        <RiskBadge :risk="risk" :category="profile?.category" size="md" />
+        <RiskBadge :risk="risk" :category="mark?.category" size="md" />
         <p class="min-w-0 flex-1 truncate text-sm font-bold">{{ info.name ?? '' }}</p>
         <button type="button" class="tap shrink-0 text-sm font-semibold text-primary-dark" @click="$emit('detail')">{{ t('dial.recognition.detail') }}</button>
       </div>
       <p v-if="danger" class="mt-1.5 text-[13px] leading-snug font-medium" :class="risk === 'scam' ? 'text-scam' : 'text-spam'">{{ warn }}</p>
       <p v-else-if="info.isContact" class="mt-1 text-[13px] text-muted">{{ t('dial.recognition.contact') }}</p>
-      <p v-else-if="!profile" class="mt-1 text-[13px] text-muted">{{ t('dial.recognition.unknownDesc') }}</p>
-      <p v-if="profile && (profile.reportCount > 0 || profile.location)" class="mt-1 flex flex-wrap items-center gap-x-3 text-xs text-muted">
-        <span v-if="profile.reportCount > 0">{{ t('dial.recognition.reports', { n: profile.reportCount.toLocaleString('vi-VN') }) }}</span>
-        <span v-if="profile.location" class="flex items-center gap-1"><AppIcon name="map-pin" :size="12" />{{ profile.location }}</span>
+      <p v-else-if="mark?.trusted" class="mt-1 text-[13px] text-muted">{{ t('dial.recognition.trusted') }}</p>
+      <p v-else class="mt-1 text-[13px] text-muted">{{ t('dial.recognition.unknownDesc') }}</p>
+      <p v-if="country || mark?.note" class="mt-1 flex flex-wrap items-center gap-x-3 text-xs text-muted">
+        <span v-if="country" class="flex items-center gap-1"><AppIcon name="globe" :size="12" />{{ t('dial.recognition.international') }} · {{ country.flag }} {{ country.name }}</span>
+        <span v-if="mark?.note" class="flex items-center gap-1"><AppIcon name="notebook-pen" :size="12" />{{ mark.note }}</span>
       </p>
-      <p v-if="blocked" class="mt-2 flex items-center gap-2 rounded-xl bg-white/70 px-2.5 py-1.5 text-[13px] font-semibold text-blocked">
+      <p v-if="info.blocked" class="mt-2 flex items-center gap-2 rounded-xl bg-white/70 px-2.5 py-1.5 text-[13px] font-semibold text-blocked">
         <AppIcon name="ban" :size="16" />
         <span class="flex-1">{{ t('dial.recognition.blocked') }}</span>
         <button type="button" class="tap font-bold underline" @click="$emit('unblock')">{{ t('dial.recognition.unblock') }}</button>

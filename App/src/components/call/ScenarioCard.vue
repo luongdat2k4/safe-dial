@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { CallerInfo } from '@/types'
-import type { Decision } from '@/utils/blockEngine'
+import type { NativeDecision } from '@/services'
 import { useSettingsStore } from '@/stores/settings'
 import { t } from '@/composables/useT'
 import { formatNumber } from '@/utils/numbers'
@@ -15,7 +15,7 @@ const props = defineProps<{
   number: string
   isPrivate?: boolean
   info?: CallerInfo
-  decision?: Decision
+  decision?: NativeDecision
   busy?: boolean
 }>()
 defineEmits<{ run: [] }>()
@@ -36,14 +36,14 @@ const shown = computed(() => (props.isPrivate ? t('common.privateNumber') : form
       <p class="line-clamp-2 text-[13px] leading-snug text-muted">{{ description }}</p>
       <div class="mt-1.5 flex flex-wrap items-center gap-1.5">
         <span class="text-xs font-medium text-ink">{{ shown }}</span>
-        <RiskBadge v-if="info" :risk="info.risk" :category="info.profile?.category" />
+        <RiskBadge v-if="info" :risk="info.risk" :category="info.mark?.category" />
         <span
           v-if="decision"
           class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold"
-          :class="decision.action === 'allow' ? 'bg-primary-soft text-primary-dark' : 'bg-[#efe8fd] text-blocked'"
+          :class="(decision.action === 'allowed' || decision.action === 'warned') ? 'bg-primary-soft text-primary-dark' : 'bg-[#efe8fd] text-blocked'"
         >
-          <AppIcon :name="decision.action === 'allow' ? 'phone-incoming' : 'shield-ban'" :size="12" />
-          {{ decision.action === 'allow' ? t('call.simulate.willRing') : t('call.simulate.willBlock') }}
+          <AppIcon :name="(decision.action === 'allowed' || decision.action === 'warned') ? 'phone-incoming' : 'shield-ban'" :size="12" />
+          {{ (decision.action === 'allowed' || decision.action === 'warned') ? t('call.simulate.willRing') : t('call.simulate.willBlock') }}
         </span>
       </div>
     </div>

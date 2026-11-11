@@ -6,6 +6,9 @@ import { t } from '@/composables/useT'
 import { useDialFlow, useNumberActions } from '@/composables/useDialFlow'
 import { useCallsStore } from '@/stores/calls'
 import { useContactsStore } from '@/stores/contacts'
+import { useBlockStore } from '@/stores/block'
+import { SafeDial } from '@/services'
+import BaseButton from '@/components/BaseButton.vue'
 import { useUiStore } from '@/stores/ui'
 import { numberPath } from '@/utils/routes'
 import SegmentedTabs from '@/components/SegmentedTabs.vue'
@@ -19,6 +22,7 @@ import ReportSheet from '@/components/number/ReportSheet.vue'
 
 const router = useRouter()
 const calls = useCallsStore()
+const block = useBlockStore()
 const contacts = useContactsStore()
 const ui = useUiStore()
 const { startCall, chooseSim, simSheetOpen, pendingNumber } = useDialFlow()
@@ -30,7 +34,14 @@ const filter = ref<Filter>('all')
 onMounted(() => {
   calls.load()
   contacts.load()
+  block.load()
 })
+
+/** Chưa có quyền đọc nhật ký: xin quyền rồi tải lại. */
+async function grantCallLog() {
+  await SafeDial.requestPermissions({ permissions: ['callLog', 'phone'] })
+  await calls.load(true)
+}
 
 const isRisky = (e: CallLogEntry) => e.risk === 'spam' || e.risk === 'scam'
 const matchers: Record<Filter, (e: CallLogEntry) => boolean> = {
@@ -55,7 +66,7 @@ const tabs = computed(() =>
 
 const weekAgo = () => Date.now() - 7 * 86_400_000
 const recent = computed(() => calls.entries.filter((e) => new Date(e.startedAt).getTime() >= weekAgo()))
-const suspicious = computed(() => recent.value.filter((e) => !e.contactId && e.risk !== 'safe').length)
+const suspicious = computed(() => recent.value.filter((e) => e.type !== 'outgoing' && (e.risk === 'spam' || e.risk === 'scam' || e.action === 'warned')).length)
 const blockedRecent = computed(() => recent.value.filter((e) => e.type === 'blocked').length)
 
 // Chọn nhiều
@@ -121,7 +132,7 @@ async function onAction(a: CallAction) {
       reportOpen.value = true
       return
     case 'save':
-      return saveMock()
+      return saveMock(e.number)
     case 'copy':
       return copyNumber(e.number)
     case 'delete': {
@@ -167,6 +178,10 @@ async function onAction(a: CallAction) {
       @longpress="(e) => (selecting ? toggleSelect(e) : enterSelect(e))"
       @more="openActions"
     />
+    <div v-else-if="!calls.granted" class="px-6 pt-10 text-center">
+      <EmptyState icon="phone-off" :title="t('home.calls.noPermission.title')" :description="t('home.calls.noPermission.description')" />
+      <BaseButton icon="shield-check" @click="grantCallLog">{{ t('home.calls.noPermission.grant') }}</BaseButton>
+    </div>
     <EmptyState
       v-else
       :icon="filter === 'blocked' ? 'ban' : filter === 'spam' ? 'shield-check' : 'phone'"

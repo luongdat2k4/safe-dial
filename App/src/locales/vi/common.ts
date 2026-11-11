@@ -61,7 +61,12 @@ export const common = {
     list: 'Có trong danh sách chặn',
     rule: 'Khớp quy tắc chặn',
     country: 'Chặn theo mã quốc gia',
-    spammer: 'Báo cáo spam từ cộng đồng',
+  },
+  signal: {
+    international: 'số quốc tế',
+    private: 'giấu số',
+    burst: 'gọi dồn dập',
+    rejectedBefore: 'từng bị bạn từ chối hoặc chặn',
   },
   ruleKind: {
     number: 'Số cụ thể',

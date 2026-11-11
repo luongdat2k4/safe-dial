@@ -11,6 +11,8 @@ import RadioSheet from '@/components/settings/RadioSheet.vue'
 import RateSheet from '@/components/settings/RateSheet.vue'
 import { useSettingsStore } from '@/stores/settings'
 import { useCallsStore } from '@/stores/calls'
+import { useStatsStore } from '@/stores/stats'
+import { SafeDial, isNative } from '@/services'
 import { useUiStore } from '@/stores/ui'
 import type { SimChoice } from '@/types'
 import { t } from '@/composables/useT'
@@ -49,6 +51,26 @@ async function clearHistory() {
   if (!ok) return
   await calls.clear()
   ui.showToast(t('settings.clear.done'), 'success')
+}
+
+const stats = useStatsStore()
+async function clearStats() {
+  const ok = await ui.confirm({
+    title: t('settings.clearStats.title'),
+    message: t('settings.clearStats.message'),
+    confirmText: t('settings.clear.confirm'),
+    danger: true,
+    icon: 'chart-no-axes-combined',
+  })
+  if (!ok) return
+  await stats.clear()
+  ui.showToast(t('settings.clearStats.done'), 'success')
+}
+
+/** Chỉ bản web: tạo lại dữ liệu giả lập. */
+async function resetDemo() {
+  await SafeDial.resetDemo?.()
+  location.reload()
 }
 
 async function share() {
@@ -122,10 +144,27 @@ async function share() {
           clickable
           @click="clearHistory"
         />
+        <ListRow
+          :title="t('settings.rows.clearStats')"
+          :subtitle="t('settings.rows.clearStatsSub')"
+          icon="chart-no-axes-combined"
+          icon-tone="danger"
+          danger
+          clickable
+          @click="clearStats"
+        />
+        <ListRow
+          v-if="!isNative"
+          :title="t('settings.rows.resetDemo')"
+          icon="rotate-ccw"
+          icon-tone="gray"
+          clickable
+          @click="resetDemo"
+        />
       </div>
 
-      <SectionHeader :title="t('settings.groups.lab')" />
-      <div class="mx-4 overflow-hidden rounded-card bg-surface shadow-card">
+      <SectionHeader v-if="!isNative" :title="t('settings.groups.lab')" />
+      <div v-if="!isNative" class="mx-4 overflow-hidden rounded-card bg-surface shadow-card">
         <ListRow
           :title="t('settings.rows.simulate')"
           :subtitle="t('settings.rows.simulateSub')"
