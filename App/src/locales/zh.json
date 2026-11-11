@@ -1,0 +1,1068 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "识别陌生号码，拦截诈骗",
+    "actions": {
+      "ok": "确定",
+      "cancel": "取消",
+      "close": "关闭",
+      "back": "返回",
+      "save": "保存",
+      "delete": "删除",
+      "block": "拦截",
+      "unblock": "取消拦截",
+      "call": "拨打",
+      "message": "发短信",
+      "done": "完成",
+      "next": "继续",
+      "skip": "跳过",
+      "allow": "允许",
+      "retry": "重试",
+      "copy": "复制",
+      "share": "分享",
+      "edit": "编辑",
+      "add": "添加",
+      "search": "搜索",
+      "report": "举报",
+      "viewAll": "查看全部",
+      "addToContacts": "存入通讯录",
+      "history": "历史记录"
+    },
+    "nav": {
+      "calls": "通话",
+      "contacts": "通讯录",
+      "block": "拦截",
+      "stats": "统计"
+    },
+    "risk": {
+      "safe": "安全",
+      "unknown": "陌生号码",
+      "spam": "骚扰",
+      "scam": "诈骗"
+    },
+    "category": {
+      "scam": "诈骗",
+      "spam": "骚扰",
+      "loan": "贷款 / 保险",
+      "robocall": "自动语音电话",
+      "fakeJob": "虚假招聘 / 中奖",
+      "telemarketing": "电话推销",
+      "impersonation": "冒充机关 / 银行"
+    },
+    "callType": {
+      "incoming": "来电",
+      "outgoing": "去电",
+      "missed": "未接来电",
+      "blocked": "已拦截"
+    },
+    "blockReason": {
+      "private": "隐藏号码",
+      "international": "国际来电",
+      "nonContact": "不在通讯录中",
+      "list": "在拦截名单中",
+      "rule": "匹配拦截规则",
+      "country": "按国家代码拦截"
+    },
+    "signal": {
+      "international": "国际号码",
+      "private": "隐藏号码",
+      "burst": "频繁来电",
+      "rejectedBefore": "曾被你拒接或拦截"
+    },
+    "ruleKind": {
+      "number": "指定号码",
+      "startsWith": "开头为",
+      "contains": "包含数字",
+      "endsWith": "结尾为",
+      "country": "国家代码"
+    },
+    "unknownNumber": "陌生号码",
+    "privateNumber": "隐藏号码",
+    "noName": "无名称",
+    "mockNotice": "演示版：数据和通话均为模拟。"
+  },
+  "boot": {
+    "language": {
+      "title": "选择语言",
+      "subtitle": "你可以随时在设置中更改。",
+      "confirm": "确认",
+      "saved": "语言已保存"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "识别陌生号码",
+        "protect": "安心通话",
+        "calls": "知道谁在来电",
+        "insights": "联系统计"
+      },
+      "pages": [
+        {
+          "title": "识别陌生号码",
+          "text": "即使号码不在通讯录中，也能立即知道是谁来电。响铃时即显示名称和风险类别。"
+        },
+        {
+          "title": "实时诈骗提醒",
+          "text": "当来电号码在你的黑名单中、是陌生国际号码或异常频繁来电时，Safe Dial 会发出警告。"
+        },
+        {
+          "title": "拦截骚扰并统计联系",
+          "text": "按你的规则拦截国际号码、隐藏号码和骚扰号码，并查看谁与你联系最多。"
+        }
+      ],
+      "dots": "第 {n} 页，共 {total} 页",
+      "start": "开始"
+    },
+    "permissions": {
+      "title": "为 Safe Dial 授权",
+      "subtitle": "每项权限只用于一个明确的目的。你之后可以更改。",
+      "allowAll": "全部允许",
+      "later": "稍后",
+      "laterWarn": "在授予全部权限之前，保护功能将受到限制",
+      "needBasic": "需要允许通讯录权限才能继续",
+      "sectionPermissions": "访问权限",
+      "sectionRoles": "手机上的角色",
+      "privacyTitle": "你的隐私",
+      "privacyText": "通讯录数据仅用于识别，不会出售，也不会分享给第三方。",
+      "items": {
+        "calls": {
+          "title": "电话和通话记录",
+          "why": "用于拨打电话、查看通话历史和统计。"
+        },
+        "contacts": {
+          "title": "通讯录",
+          "why": "用于显示熟人姓名，避免误拦他们。"
+        },
+        "notifications": {
+          "title": "通知",
+          "why": "用于显示来电并提醒刚被拦截的来电。"
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "默认电话应用",
+          "why": "让 Safe Dial 在响铃前接听、拨打、过滤和拦截来电。"
+        },
+        "screening": {
+          "title": "来电识别和过滤应用",
+          "why": "允许在响铃前检查并拦截来电。"
+        },
+        "set": "已设置",
+        "notSet": "未设置",
+        "sheetTitleDialer": "将 Safe Dial 设为默认电话应用？",
+        "sheetTitleScreening": "将 Safe Dial 设为来电识别和过滤应用？",
+        "sheetText": "此界面模拟系统的角色选择对话框。",
+        "setDefault": "设为默认",
+        "cancel": "暂不设置",
+        "done": "已将 Safe Dial 设为默认电话应用",
+        "unavailable": "此设备不支持更改默认电话应用"
+      },
+      "granted": "已允许"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "version": "Safe Dial 版本 {v}",
+    "groups": {
+      "general": "通用",
+      "calls": "通话",
+      "protection": "保护",
+      "data": "数据",
+      "lab": "实验功能",
+      "support": "支持"
+    },
+    "rows": {
+      "notifications": "通知",
+      "sound": "声音和振动",
+      "language": "语言",
+      "sim": "拨号 SIM 卡",
+      "callerId": "来电信息显示",
+      "callerIdSub": "弹窗、位置和显示样式",
+      "scamWarning": "诈骗提醒",
+      "scamWarningSub": "当来电号码已被你标记为诈骗、骚扰或有可疑迹象时，显示红色警告。",
+      "blockRules": "拦截规则",
+      "blockRulesSub": "黑名单、国际号码、隐藏号码",
+      "clearHistory": "清除全部通话记录",
+      "clearHistorySub": "无法撤销。统计数据将保留。",
+      "clearStats": "清除统计数据",
+      "clearStatsSub": "重置统计标签页中的全部数据",
+      "resetDemo": "重新生成演示数据",
+      "simulate": "模拟来电",
+      "simulateSub": "仅限演示版：测试提醒和拦截",
+      "rate": "为应用评分",
+      "feedback": "意见反馈",
+      "share": "分享应用",
+      "about": "关于与隐私",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "拨号 SIM 卡",
+      "ask": "每次询问",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "清除全部通话记录？",
+      "message": "通话记录中的所有通话都将被删除。拦截名单、通讯录和统计数据不受影响。",
+      "confirm": "全部清除",
+      "done": "已清除通话记录"
+    },
+    "clearStats": {
+      "title": "清除统计数据？",
+      "message": "联系频率和时长数据将被删除。通话记录不受影响。",
+      "done": "已清除统计数据"
+    },
+    "rate": {
+      "title": "为 Safe Dial 评分",
+      "text": "你觉得这款应用怎么样？",
+      "star": "{n} 星",
+      "send": "提交",
+      "thanks": "感谢你给出 {n} 星评价",
+      "labels": [
+        "很差",
+        "不太好",
+        "一般",
+        "好",
+        "非常棒"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "链接已复制"
+    },
+    "notifications": {
+      "title": "通知",
+      "callAlert": "来电通知",
+      "callAlertSub": "可疑号码来电时显示通知。",
+      "missed": "未接来电",
+      "missedSub": "错过来电时提醒你。",
+      "remind": "未接来电提醒",
+      "remindSub": "如果你还没回电，几分钟后再次提醒。",
+      "blocked": "拦截通知",
+      "blockedSub": "告诉你刚拦截了哪个号码及原因。"
+    },
+    "sound": {
+      "title": "声音和振动",
+      "ringtone": "铃声",
+      "ringtoneSheet": "选择铃声",
+      "ringtones": [
+        "默认",
+        "铃声 1",
+        "铃声 2",
+        "铃声 3",
+        "铃声 4",
+        "静音"
+      ],
+      "dial": "拨号键盘音",
+      "dialSub": "按拨号键时的反馈。",
+      "dialOptions": {
+        "silent": "静音",
+        "vibrate": "振动",
+        "sound": "声音",
+        "both": "声音和振动"
+      },
+      "demo": "演示版：不会播放真实声音。"
+    },
+    "callerId": {
+      "title": "来电信息显示",
+      "enabled": "开启来电信息窗口",
+      "enabledSub": "来电时显示名称和风险等级。",
+      "contacts": "通讯录联系人也显示",
+      "contactsSub": "默认仅对陌生号码显示。",
+      "after": "通话后显示",
+      "afterSub": "通话结束时建议保存、拦截或举报。",
+      "style": "显示样式",
+      "classic": "小弹窗",
+      "classicSub": "简洁，不遮挡屏幕",
+      "full": "全屏",
+      "fullSub": "清晰，警告醒目",
+      "position": "弹窗位置",
+      "top": "顶部",
+      "center": "中间",
+      "bottom": "底部",
+      "preview": "预览",
+      "previewCaller": "陌生号码",
+      "tryIt": "试看来电"
+    },
+    "feedback": {
+      "title": "意见反馈",
+      "easy": "应用好用吗？",
+      "yes": "是",
+      "no": "否",
+      "features": "你最常用哪个功能？",
+      "featureList": [
+        "识别陌生号码",
+        "通讯录",
+        "拦截骚扰",
+        "诈骗提醒",
+        "通话记录",
+        "联系统计"
+      ],
+      "message": "告诉我们更多",
+      "placeholder": "你希望我们改进什么？",
+      "submit": "提交反馈",
+      "thanks": "感谢你的反馈",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "关于",
+      "version": "版本 {v}",
+      "demo": "Safe Dial 是一款电话应用：通讯录和通话记录直接从手机读取，黑名单和统计数据保存在本机。",
+      "privacy": "隐私",
+      "privacyItems": [
+        {
+          "q": "Safe Dial 使用哪些数据？",
+          "a": "来电号码、通话记录和通讯录，用于识别来电者并应用拦截规则。"
+        },
+        {
+          "q": "数据保存在哪里？",
+          "a": "设置、拦截名单、标记和统计数据都保存在你的设备上。应用不会将数据发送到任何地方。"
+        },
+        {
+          "q": "通讯录会被出售吗？",
+          "a": "不会。通讯录仅用于识别，不会出售，也不会分享给第三方。"
+        }
+      ],
+      "terms": "使用条款",
+      "termsText": "你需自行承担使用本应用的责任。警告基于你自己的黑名单和标记，仅供参考。通过电话提供个人信息时请务必谨慎。",
+      "libs": "开源库",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "界面框架"
+        },
+        {
+          "name": "Vite",
+          "note": "构建工具"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "样式"
+        },
+        {
+          "name": "Pinia",
+          "note": "状态管理"
+        },
+        {
+          "name": "Vue Router",
+          "note": "路由"
+        },
+        {
+          "name": "Iconify 和 Lucide",
+          "note": "图标集"
+        },
+        {
+          "name": "Capacitor",
+          "note": "在 Android 和 iOS 上运行"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "全部",
+        "missed": "未接",
+        "incoming": "来电",
+        "outgoing": "去电",
+        "unknown": "陌生号码",
+        "spam": "骚扰/诈骗",
+        "blocked": "已拦截"
+      },
+      "summary": {
+        "title": "过去 7 天",
+        "suspicious": "可疑",
+        "blocked": "已拦截",
+        "clean": "没有可疑来电",
+        "viewBlocked": "查看已拦截来电"
+      },
+      "empty": {
+        "all": {
+          "title": "还没有通话",
+          "description": "你的通话记录将显示在这里。"
+        },
+        "missed": {
+          "title": "没有未接来电",
+          "description": "你最近没有错过任何来电。"
+        },
+        "incoming": {
+          "title": "还没有来电",
+          "description": "已接听的来电将显示在这里。"
+        },
+        "outgoing": {
+          "title": "还没有去电",
+          "description": "打开拨号键盘，拨出你的第一个电话。"
+        },
+        "unknown": {
+          "title": "没有陌生号码",
+          "description": "最近的所有来电都来自你认识或已验证的号码。"
+        },
+        "spam": {
+          "title": "未发现骚扰电话",
+          "description": "诈骗或广告电话将汇集在这里。"
+        },
+        "blocked": {
+          "title": "还没有拦截任何来电",
+          "description": "按黑名单拦截的来电将显示在这里。"
+        }
+      },
+      "select": {
+        "count": "已选择 {n} 项",
+        "all": "全选",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "delete": {
+        "title": "删除 {n} 条通话？",
+        "message": "所选通话将从通话记录中删除。统计数据将保留。",
+        "done": "已删除 {n} 条通话"
+      },
+      "more": "此通话的选项",
+      "noPermission": {
+        "title": "尚无读取通话记录的权限",
+        "description": "允许 Safe Dial 读取通话记录，以查看历史、筛选陌生号码和统计。",
+        "grant": "授权"
+      },
+      "actions": {
+        "title": "选项",
+        "call": "拨打",
+        "message": "发短信",
+        "detail": "查看详情",
+        "block": "拦截此号码",
+        "unblock": "取消拦截此号码",
+        "report": "举报骚扰",
+        "save": "存入通讯录",
+        "copy": "复制号码",
+        "delete": "从记录中删除"
+      },
+      "deleteOne": {
+        "title": "删除此通话？",
+        "message": "此通话将从通话记录中删除。"
+      }
+    },
+    "sim": {
+      "title": "使用哪张 SIM 卡拨打？",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "主卡",
+      "sim2Desc": "副卡",
+      "remember": "始终使用此 SIM 卡"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "通讯录",
+        "favorites": "收藏"
+      },
+      "search": "搜索姓名或电话号码",
+      "emptyAll": {
+        "title": "通讯录为空",
+        "description": "还没有保存任何联系人。"
+      },
+      "emptySearch": {
+        "title": "未找到",
+        "description": "没有与“{q}”匹配的联系人。"
+      },
+      "emptyFav": {
+        "title": "还没有收藏的联系人",
+        "description": "在通讯录中点按星形图标即可添加到这里。"
+      },
+      "goContacts": "打开通讯录",
+      "count": "{n} 位联系人",
+      "quickCall": "拨打给 {name}",
+      "favOn": "取消收藏 {name}",
+      "favOff": "将 {name} 加入收藏"
+    }
+  },
+  "dial": {
+    "title": "拨号键盘",
+    "placeholder": "输入电话号码",
+    "backspace": "删除一位数字",
+    "call": "拨打",
+    "save": "存入通讯录",
+    "message": "发短信",
+    "saveToast": "打开添加联系人页面",
+    "messageToast": "打开发给 {number} 的短信",
+    "suggestions": "推荐联系人",
+    "recognition": {
+      "checking": "正在检查号码...",
+      "unknownTitle": "暂无此号码的信息",
+      "unknownDesc": "陌生号码。如果对方索要个人信息，请保持警惕。",
+      "contact": "在通讯录中",
+      "trusted": "你已将此号码标记为可信",
+      "marked": "你已标记为：{category}",
+      "international": "国际号码",
+      "scamWarn": "你已将此号码标记为诈骗——切勿提供 OTP 验证码或转账。",
+      "spamWarn": "你已将此号码标记为骚扰。拨打前请慎重考虑。",
+      "blocked": "此号码已被拦截",
+      "unblock": "取消拦截",
+      "unblockToast": "已取消拦截 {number}",
+      "detail": "详情"
+    },
+    "search": {
+      "title": "搜索",
+      "placeholder": "输入电话号码或姓名",
+      "back": "返回",
+      "contacts": "通讯录",
+      "history": "通话记录中",
+      "lookupTitle": "号码信息",
+      "lookupHint": "查看该号码是否在通讯录、拦截名单中，或是否已被你标记。",
+      "lookupBtn": "检查",
+      "lookingUp": "正在检查...",
+      "noInfo": "暂无信息",
+      "noInfoDesc": "你还没有标记或命名此号码。",
+      "calls": "已联系",
+      "callsValue": "{n} 次通话",
+      "country": "国家/地区",
+      "mark": "标记",
+      "note": "你的备注",
+      "detail": "查看详情",
+      "block": "拦截",
+      "unblock": "取消拦截",
+      "recent": "最近搜索",
+      "clearAll": "全部清除",
+      "removeRecent": "从搜索记录中删除",
+      "examplesTitle": "试试检查示例号码",
+      "examplesDesc": "点按下方号码，查看提醒效果（演示版）。",
+      "noResult": {
+        "title": "无结果",
+        "description": "未找到与“{q}”匹配的联系人或通话。"
+      },
+      "initial": {
+        "title": "检查陌生号码",
+        "description": "输入电话号码，查看该号码是否安全。"
+      },
+      "callCount": "{n} 次通话"
+    }
+  },
+  "number": {
+    "title": "号码详情",
+    "hidden": "隐藏号码",
+    "hiddenDesc": "来电者隐藏了号码，因此无法标记或回拨。",
+    "loading": "加载中...",
+    "noName": "未命名",
+    "contact": "在通讯录中",
+    "trusted": "可信号码",
+    "menu": {
+      "open": "更多选项",
+      "title": "选项",
+      "copy": "复制号码",
+      "share": "分享",
+      "block": "拦截此号码",
+      "unblock": "取消拦截此号码",
+      "trust": "标记为可信",
+      "untrust": "取消可信标记",
+      "clearMark": "清除标记",
+      "clear": "清除此号码的记录"
+    },
+    "copied": "号码已复制",
+    "copyFail": "复制失败",
+    "shareToast": "已打开分享面板",
+    "warning": {
+      "scamTitle": "诈骗警告",
+      "spamTitle": "常见骚扰号码",
+      "marked": "你已标记为：{category}",
+      "signals": "最近一次来电的迹象：{list}",
+      "tipsTitle": "如何保护自己",
+      "tip1": "不要向任何人透露 OTP 验证码、卡号或密码。",
+      "tip2": "不要按电话要求转账。",
+      "tip3": "挂断电话，回拨机关或银行的官方号码。"
+    },
+    "actions": {
+      "call": "拨打",
+      "message": "发短信",
+      "favorite": "收藏",
+      "unfavorite": "取消收藏",
+      "block": "拦截",
+      "unblock": "取消拦截",
+      "save": "存入通讯录",
+      "report": "标记",
+      "suggest": "命名",
+      "trust": "可信"
+    },
+    "blockedBanner": "此号码在拦截名单中",
+    "block": {
+      "title": "拦截此号码？",
+      "message": "来自 {number} 的来电将被自动拦截。",
+      "done": "已拦截 {number}",
+      "failed": "拦截失败。请将 Safe Dial 设为默认电话应用。",
+      "unblockTitle": "取消拦截此号码？",
+      "unblockMessage": "你将重新收到来自 {number} 的来电。",
+      "unblockDone": "已取消拦截 {number}"
+    },
+    "trust": {
+      "done": "已标记为可信。此号码不会被拦截或警告。",
+      "undone": "已取消可信标记"
+    },
+    "toast": {
+      "message": "打开发给 {name} 的短信",
+      "save": "打开添加联系人页面",
+      "favOn": "已加入收藏",
+      "favOff": "已从收藏中移除",
+      "markCleared": "已清除标记"
+    },
+    "info": {
+      "title": "号码信息",
+      "country": "国家/地区",
+      "calls": "通话次数",
+      "lastCall": "最近一次通话",
+      "mark": "你的标记",
+      "none": "未知",
+      "never": "暂无",
+      "noMark": "未标记"
+    },
+    "community": {
+      "title": "你的备注",
+      "noNames": "你还没有为此号码命名或添加备注。",
+      "suggestTitle": "为此号码命名",
+      "suggestPlaceholder": "例如：快递配送",
+      "suggestSend": "保存名称",
+      "suggestDone": "已为此号码保存名称"
+    },
+    "notes": {
+      "title": "通话备注",
+      "delete": "删除备注",
+      "deleted": "已删除备注"
+    },
+    "report": {
+      "title": "标记此号码",
+      "subtitle": "选择最合适的类型，下次即可认出此号码。",
+      "note": "备注（可选）",
+      "notePlaceholder": "简要描述这通电话...",
+      "send": "保存标记",
+      "thanks": "已标记此号码",
+      "offerTitle": "顺便拦截此号码？",
+      "offerMessage": "{number} 将不会再打扰你。",
+      "offerYes": "拦截号码",
+      "offerNo": "稍后"
+    },
+    "recent": {
+      "title": "最近通话",
+      "empty": "与此号码还没有任何通话。"
+    },
+    "stats": {
+      "title": "联系统计",
+      "subtitle": "频率、时长和常通话的日子"
+    },
+    "clear": {
+      "title": "清除此号码的记录？",
+      "message": "与此号码的所有通话都将从通话记录中删除。统计数据将保留。",
+      "done": "已清除通话记录"
+    },
+    "history": {
+      "title": "通话记录",
+      "empty": {
+        "title": "还没有通话",
+        "description": "通话记录中还没有此号码的通话。"
+      },
+      "selected": "已选择 {n} 项",
+      "selectAll": "全选",
+      "delete": "删除",
+      "cancel": "取消",
+      "deleteTitle": "删除 {n} 条通话？",
+      "deleteMessage": "所选通话将从通话记录中删除。统计数据将保留。",
+      "deleted": "已删除 {n} 条通话",
+      "count": "{n} 次通话",
+      "note": "仅显示手机通话记录中仍保留的通话。"
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "已拦截",
+      "list": "黑名单",
+      "settings": "设置"
+    },
+    "blocked": {
+      "weekSummary": "过去 7 天拦截的来电",
+      "topReason": "主要原因：{reason}（{n}）",
+      "emptyTitle": "还没有拦截任何来电",
+      "emptyDesc": "来电被拦截或静音时，会连同原因显示在这里。"
+    },
+    "rules": {
+      "add": "添加规则",
+      "test": "测试号码",
+      "header": "生效中的规则（{n}）",
+      "emptyTitle": "黑名单为空",
+      "emptyDesc": "添加号码或规则，拦截不想接的来电。",
+      "deleteTitle": "删除此规则？",
+      "deleteMsg": "匹配“{name}”的来电将不再被此规则拦截。",
+      "deleted": "已删除规则",
+      "deleteAria": "删除规则 {name}",
+      "numbersHeader": "已拦截号码（{n}）",
+      "numbersEmpty": "还没有拦截任何指定号码。",
+      "numberDeleteTitle": "取消拦截此号码？",
+      "numberDeleteMsg": "你将重新收到来自 {name} 的来电。",
+      "hits": "已拦截 {n} 次 · 最近 {date}",
+      "noHits": "尚未拦截",
+      "toggleAria": "开启/关闭规则 {name}"
+    },
+    "quick": {
+      "header": "从最近通话快速拦截",
+      "none": "最近通话中没有需要拦截的陌生号码。",
+      "done": "已拦截 {number}"
+    },
+    "settings": {
+      "header": "自动拦截",
+      "autoBlockReported": {
+        "title": "自动拦截我标记为诈骗的号码",
+        "desc": "当你将号码标记为诈骗/骚扰时，该号码会立即加入拦截名单。"
+      },
+      "noRole": "需要将 Safe Dial 设为默认电话应用，拦截才能生效。",
+      "blockPrivate": {
+        "title": "拦截隐藏号码",
+        "desc": "拦截隐藏来电号码的来电。"
+      },
+      "blockInternational": {
+        "title": "拦截国际来电",
+        "desc": "仅允许国内来电。通讯录中的号码仍可来电。"
+      },
+      "blockNonContacts": {
+        "title": "拦截不在通讯录中的号码",
+        "desc": "只接听通讯录联系人的来电。",
+        "warn": "可能误拦未保存号码的熟人、快递员、银行或医生。建议考虑使用静音模式。"
+      },
+      "notifyOnBlock": {
+        "title": "拦截通知",
+        "desc": "每次拦截来电时显示通知。"
+      },
+      "methodHeader": "处理方式",
+      "method": {
+        "hangup": {
+          "title": "自动挂断",
+          "desc": "来电者会听到忙音 / 被拒接。你的手机不会响铃。"
+        },
+        "silent": {
+          "title": "静音，来电仍显示",
+          "desc": "手机保持安静，但来电仍保留在记录中，来电者仍会听到响铃。"
+        }
+      },
+      "countryHeader": "按国家/地区拦截",
+      "country": {
+        "title": "按国家/地区拦截",
+        "desc": "已拦截 {n} 个国家代码"
+      },
+      "countryAdded": "已拦截 {name} 的号码",
+      "note": "通讯录中的号码不会被号码开头、结尾、国家代码或国际来电规则拦截。只有指定号码名单才能拦截通讯录中的号码。你的国家代码：{dial}。"
+    },
+    "country": {
+      "search": "搜索国家/地区或区号",
+      "blocked": "已拦截",
+      "none": "未找到匹配的国家/地区。"
+    },
+    "form": {
+      "title": "添加拦截规则",
+      "kindHeader": "选择规则类型",
+      "help": {
+        "number": "精确拦截一个电话号码，即使该号码在通讯录中。",
+        "startsWith": "拦截所有以你输入的数字开头的号码。",
+        "contains": "拦截任何位置包含这串数字的所有号码。",
+        "endsWith": "拦截所有以你输入的数字结尾的号码。",
+        "country": "按拨号代码拦截来自某个国家/地区的所有来电。"
+      },
+      "example": {
+        "number": "例如：0901 234 567 仅拦截此号码。",
+        "startsWith": "例如：开头为 0899 → 拦截所有以 0899 开头的号码。",
+        "contains": "例如：包含 8888 → 拦截 0912 8888 11 和 0988 888 812。",
+        "endsWith": "例如：结尾为 0000 → 拦截所有以 0000 结尾的号码。",
+        "country": "例如：选择尼日利亚 (+234) → 拦截所有 +234… 号码"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "值",
+      "labelLabel": "备注（可选）",
+      "labelPlaceholder": "例如：贷款号段",
+      "picked": "已选择：{name}",
+      "errEmpty": "请输入规则的值。",
+      "errNumber": "电话号码无效（需要 8-15 位数字）。",
+      "errShort": "请至少输入 3 位数字，以免误拦过多号码。",
+      "errCountry": "请选择一个国家/地区。",
+      "duplicate": "此规则已在黑名单中。",
+      "previewTitle": "此规则匹配记录中的 {n} 条通话",
+      "previewMore": "以及其他 {n} 个号码",
+      "previewNone": "记录中还没有匹配此规则的通话。",
+      "previewNote": "通讯录中的号码不计入，因为模式规则始终会跳过熟人。",
+      "save": "保存规则",
+      "saved": "已添加拦截规则"
+    },
+    "test": {
+      "title": "测试号码",
+      "intro": "输入一个号码，逐步查看拦截引擎如何处理。不会拨出任何真实电话。",
+      "numberLabel": "电话号码",
+      "placeholder": "0901 234 567 或 +84…",
+      "private": "隐藏号码",
+      "privateDesc": "模拟隐藏号码的来电者",
+      "run": "检查",
+      "invalid": "请输入有效的电话号码，或开启“隐藏号码”。",
+      "quick": "快速填写",
+      "inContacts": "在通讯录中",
+      "notContact": "不在通讯录中",
+      "traceHeader": "检查步骤"
+    },
+    "trace": {
+      "steps": {
+        "system": "你的拦截名单",
+        "trusted": "可信号码",
+        "contact": "通讯录",
+        "rule": "号码开头 / 结尾 / 国家规则",
+        "private": "拦截隐藏号码",
+        "international": "拦截国际来电",
+        "nonContact": "拦截不在通讯录中的号码",
+        "signals": "警示迹象"
+      },
+      "state": {
+        "off": "已关闭",
+        "pass": "不匹配",
+        "match": "匹配",
+        "stopped": "未执行"
+      },
+      "offHint": "因此开关已关闭而跳过。",
+      "stoppedHint": "前面的步骤已得出结论，因此不再检查。",
+      "detail": {
+        "system": {
+          "match": "此号码在本机拦截名单中。",
+          "pass": "不在拦截名单中。"
+        },
+        "trusted": {
+          "match": "你已将此号码标记为可信。",
+          "pass": "未标记为可信。"
+        },
+        "contact": {
+          "match": "在通讯录中：{name}。",
+          "pass": "不在通讯录中。"
+        },
+        "rule": {
+          "match": "匹配规则：{name}。",
+          "pass": "不匹配 {n} 条已启用规则中的任何一条。"
+        },
+        "private": {
+          "match": "来电者隐藏了号码。",
+          "pass": "号码正常显示。"
+        },
+        "international": {
+          "match": "国际号码，不在通讯录中。",
+          "pass": "不是国际号码。"
+        },
+        "nonContact": {
+          "match": "号码不在通讯录中。",
+          "pass": "号码在通讯录中。"
+        },
+        "signals": {
+          "match": "存在迹象：{list}。",
+          "pass": "没有可疑迹象。"
+        }
+      },
+      "verdict": "结论",
+      "action": {
+        "allowed": "放行",
+        "warned": "警告",
+        "blocked": "拦截",
+        "silenced": "静音"
+      },
+      "reasonLine": "原因：{reason}",
+      "allowLine": "没有任何步骤拦截此号码，来电将正常响铃。",
+      "warnLine": "来电仍会响铃，但会显示警告：{list}。",
+      "silenceNote": "手机保持安静，来电仍显示在记录中。"
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 天",
+      "30d": "30 天",
+      "all": "全部"
+    },
+    "empty": {
+      "title": "还没有统计数据",
+      "desc": "拨打或接听电话后，统计数据将显示在这里。"
+    },
+    "kpi": {
+      "total": "通话总数",
+      "talk": "通话时长",
+      "avg": "平均 {d}",
+      "missed": "未接来电",
+      "suspicious": "可疑 / 已拦截",
+      "suspiciousSub": "骚扰、诈骗 / 已拦截号码"
+    },
+    "perDay": {
+      "title": "每日通话（最近 {n} 天）",
+      "aria": "每日通话数图表"
+    },
+    "types": {
+      "title": "通话类型",
+      "center": "通话"
+    },
+    "frequency": {
+      "title": "联系频率",
+      "none": "还没有与通讯录联系人通话。",
+      "times": "{n} 次",
+      "noTalk": "未通话"
+    },
+    "strangers": {
+      "title": "来电最多的陌生人",
+      "desc": "不在通讯录中的号码，按来电次数排序。",
+      "none": "此时间段内没有陌生人来电。",
+      "meta": "{n} 次 · 最近 {date}",
+      "blocked": "已加入拦截名单",
+      "alreadyBlocked": "已拦截",
+      "hidden": "隐藏号码"
+    },
+    "risk": {
+      "title": "来电安全程度",
+      "desc": "{n} 通来电的分布。"
+    },
+    "number": {
+      "subtitle": "此号码的统计",
+      "emptyTitle": "与此号码还没有通话",
+      "emptyDesc": "有通话后将显示统计数据。",
+      "durationTitle": "通话时长",
+      "durTotal": "总计",
+      "durIncoming": "来电",
+      "durOutgoing": "去电",
+      "avg": "每次通话平均 {d}",
+      "incomingTitle": "来电",
+      "inTotal": "来电总数",
+      "inAnswered": "已接听",
+      "inMissed": "未接",
+      "inBlocked": "已拦截",
+      "outgoingTitle": "去电",
+      "outTotal": "去电总数",
+      "outAnswered": "对方已接听",
+      "outNot": "未接听",
+      "weeks": "最近 8 周",
+      "weeksAria": "每周通话数：{v}",
+      "weekdayTitle": "常在星期几通话",
+      "weekdayAria": "按星期统计的通话数",
+      "firstLast": "时间节点",
+      "first": "首次通话",
+      "last": "最近一次通话",
+      "viewHistory": "查看记录"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "模拟来电",
+      "intro": "仅在演示版（浏览器）中可用。选择一个场景，查看 Safe Dial 如何识别和处理来电。",
+      "displayHeader": "显示样式",
+      "displayStyle": "来电者对话框",
+      "sizeClassic": "弹窗",
+      "sizeFull": "全屏",
+      "position": "弹窗位置",
+      "posTop": "顶部",
+      "posCenter": "中间",
+      "posBottom": "底部",
+      "scenarios": "场景",
+      "willRing": "将会响铃",
+      "willBlock": "将被拦截",
+      "customHeader": "自定义号码",
+      "customPlaceholder": "输入电话号码",
+      "customRun": "试拨",
+      "invalid": "请输入有效的电话号码。",
+      "blocked": "已拦截：",
+      "silenced": "已静音：",
+      "detail": "详情：{d}",
+      "viewBlocked": "查看已拦截"
+    },
+    "overlay": {
+      "incoming": "来电",
+      "head": {
+        "safe": "来电 - 安全",
+        "unknown": "来电 - 陌生号码",
+        "spam": "警告 - 疑似骚扰",
+        "scam": "警告 - 疑似诈骗"
+      },
+      "answer": "接听",
+      "reject": "拒接",
+      "moreAria": "更多操作",
+      "hiddenCaller": "来电者隐藏了号码",
+      "localCountry": "越南",
+      "marked": "你已标记为：{category}",
+      "signals": "迹象：{list}",
+      "warnMarked": "警告：你已将此号码标记为{category}。切勿提供 OTP 验证码、密码或转账。",
+      "warnGeneric": "警告：此号码有诈骗迹象。切勿提供 OTP 验证码、密码或转账。",
+      "quick": {
+        "message": "快速回复短信",
+        "remind": "稍后提醒我",
+        "block": "拦截此号码"
+      }
+    },
+    "sheets": {
+      "moreTitle": "更多操作",
+      "messageTitle": "快速回复短信",
+      "messageDesc": "拒接来电并发送一条回复短信。",
+      "replies": {
+        "r1": "我现在忙，稍后回电。",
+        "r2": "我在开会，请发短信给我。",
+        "r3": "我在开车，请稍后再打。",
+        "r4": "有什么事吗？请发短信给我。"
+      },
+      "remindTitle": "稍后提醒我",
+      "remindDesc": "拒接来电并提醒你回电。",
+      "reminds": {
+        "10s": "10 秒",
+        "1m": "1 分钟",
+        "5m": "5 分钟",
+        "15m": "15 分钟",
+        "30m": "30 分钟"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "仍要接听？",
+      "confirmMsg": "你已将此号码标记为诈骗/骚扰。仍要接听吗？",
+      "confirmOk": "仍要接听",
+      "confirmCancel": "不接听",
+      "blockTitle": "拦截此号码？",
+      "blockMsg": "下次起将拦截来自 {number} 的来电。",
+      "blocked": "已拦截 {number}",
+      "cannotBlockHidden": "无法拦截隐藏号码。请在拦截标签页中开启“拦截隐藏号码”。",
+      "replySent": "已拒接并发送短信：{text}",
+      "remindSet": "已拒接，将在 {when} 后提醒"
+    },
+    "active": {
+      "dialing": "正在拨号…",
+      "onHold": "保持中",
+      "warnScam": "诈骗警告：切勿提供 OTP 验证码、密码或转账。",
+      "warnSpam": "你已将此号码标记为骚扰。请保持警惕。",
+      "end": "结束通话",
+      "hideKeypad": "隐藏键盘",
+      "noteTitle": "通话备注",
+      "notePlaceholder": "关于这通电话需要记住的内容...",
+      "noteSave": "保存备注",
+      "noteSaved": "备注已保存",
+      "controls": {
+        "mute": "静音",
+        "keypad": "键盘",
+        "speaker": "扬声器",
+        "hold": "保持",
+        "add": "添加通话",
+        "note": "备注"
+      }
+    },
+    "after": {
+      "title": "通话刚刚结束",
+      "type": "通话类型",
+      "duration": "时长",
+      "time": "时间",
+      "whoTitle": "这是谁？",
+      "whoDesc": "标记一下，下次即可认出此号码。",
+      "hidden": "这是隐藏号码，无法单独标记或拦截。如有需要，请在拦截标签页中开启“拦截隐藏号码”。",
+      "spam": "标记为骚扰",
+      "notSpam": "不是骚扰",
+      "notSpamToast": "已将此号码标记为可信",
+      "suggest": "命名",
+      "alreadyBlocked": "已拦截",
+      "reportedBtn": "已标记",
+      "reportTitle": "标记此号码",
+      "reportDesc": "选择最符合刚才通话的类别。",
+      "reported": "已标记此号码",
+      "suggestTitle": "为此号码命名",
+      "suggestDesc": "此名称仅保存在你的手机上。",
+      "suggestPlaceholder": "例如：快递配送",
+      "suggestSend": "保存名称",
+      "suggested": "已为此号码保存名称",
+      "saveToast": "打开添加联系人页面",
+      "callBack": "回拨",
+      "messageToast": "打开短信"
+    }
+  }
+}

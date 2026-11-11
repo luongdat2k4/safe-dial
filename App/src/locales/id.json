@@ -1,0 +1,1068 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "Kenali nomor asing, blokir penipuan",
+    "actions": {
+      "ok": "OK",
+      "cancel": "Batal",
+      "close": "Tutup",
+      "back": "Kembali",
+      "save": "Simpan",
+      "delete": "Hapus",
+      "block": "Blokir",
+      "unblock": "Buka blokir",
+      "call": "Telepon",
+      "message": "Kirim pesan",
+      "done": "Selesai",
+      "next": "Lanjut",
+      "skip": "Lewati",
+      "allow": "Izinkan",
+      "retry": "Coba lagi",
+      "copy": "Salin",
+      "share": "Bagikan",
+      "edit": "Edit",
+      "add": "Tambah",
+      "search": "Cari",
+      "report": "Laporkan",
+      "viewAll": "Lihat semua",
+      "addToContacts": "Simpan ke kontak",
+      "history": "Riwayat"
+    },
+    "nav": {
+      "calls": "Panggilan",
+      "contacts": "Kontak",
+      "block": "Blokir",
+      "stats": "Statistik"
+    },
+    "risk": {
+      "safe": "Aman",
+      "unknown": "Nomor asing",
+      "spam": "Spam",
+      "scam": "Penipuan"
+    },
+    "category": {
+      "scam": "Penipuan",
+      "spam": "Spam",
+      "loan": "Pinjaman / asuransi",
+      "robocall": "Panggilan otomatis",
+      "fakeJob": "Lowongan / hadiah palsu",
+      "telemarketing": "Telemarketing",
+      "impersonation": "Mengaku instansi / bank"
+    },
+    "callType": {
+      "incoming": "Panggilan masuk",
+      "outgoing": "Panggilan keluar",
+      "missed": "Panggilan tak terjawab",
+      "blocked": "Diblokir"
+    },
+    "blockReason": {
+      "private": "Nomor pribadi",
+      "international": "Panggilan internasional",
+      "nonContact": "Tidak ada di kontak",
+      "list": "Ada di daftar blokir",
+      "rule": "Cocok dengan aturan blokir",
+      "country": "Diblokir berdasarkan kode negara"
+    },
+    "signal": {
+      "international": "nomor internasional",
+      "private": "nomor disembunyikan",
+      "burst": "menelepon bertubi-tubi",
+      "rejectedBefore": "pernah Anda tolak atau blokir"
+    },
+    "ruleKind": {
+      "number": "Nomor tertentu",
+      "startsWith": "Diawali dengan",
+      "contains": "Mengandung angka",
+      "endsWith": "Diakhiri dengan",
+      "country": "Kode negara"
+    },
+    "unknownNumber": "Nomor asing",
+    "privateNumber": "Nomor pribadi",
+    "noName": "Tanpa nama",
+    "mockNotice": "Versi demo: data dan panggilan disimulasikan."
+  },
+  "boot": {
+    "language": {
+      "title": "Pilih bahasa",
+      "subtitle": "Anda dapat mengubahnya kapan saja di Pengaturan.",
+      "confirm": "Konfirmasi",
+      "saved": "Bahasa disimpan"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "Kenali nomor asing",
+        "protect": "Terhubung dengan tenang",
+        "calls": "Tahu siapa yang menelepon",
+        "insights": "Statistik komunikasi"
+      },
+      "pages": [
+        {
+          "title": "Kenali nomor asing",
+          "text": "Langsung tahu siapa yang menelepon, meski nomornya belum ada di kontak. Nama dan kelompok risiko tampil saat ponsel berdering."
+        },
+        {
+          "title": "Peringatan penipuan real-time",
+          "text": "Safe Dial memperingatkan Anda jika nomor penelepon ada di daftar hitam, nomor internasional asing, atau menelepon bertubi-tubi secara tidak wajar."
+        },
+        {
+          "title": "Blokir spam dan statistik komunikasi",
+          "text": "Blokir nomor internasional, nomor pribadi, dan nomor spam dengan aturan Anda sendiri, serta lihat siapa yang paling sering menghubungi Anda."
+        }
+      ],
+      "dots": "Halaman {n} dari {total}",
+      "start": "Mulai"
+    },
+    "permissions": {
+      "title": "Beri izin untuk Safe Dial",
+      "subtitle": "Setiap izin hanya dipakai untuk satu tujuan yang jelas. Anda bisa mengubahnya nanti.",
+      "allowAll": "Izinkan semua",
+      "later": "Nanti saja",
+      "laterWarn": "Perlindungan akan terbatas sampai Anda memberi semua izin",
+      "needBasic": "Izinkan Kontak untuk melanjutkan",
+      "sectionPermissions": "Izin akses",
+      "sectionRoles": "Peran di ponsel",
+      "privacyTitle": "Privasi Anda",
+      "privacyText": "Data kontak hanya dipakai untuk mengenali penelepon, tidak dijual dan tidak dibagikan ke pihak ketiga.",
+      "items": {
+        "calls": {
+          "title": "Panggilan dan log panggilan",
+          "why": "Untuk menelepon, melihat riwayat, dan statistik panggilan."
+        },
+        "contacts": {
+          "title": "Kontak",
+          "why": "Untuk menampilkan nama kenalan dan tidak salah memblokir mereka."
+        },
+        "notifications": {
+          "title": "Notifikasi",
+          "why": "Untuk menampilkan panggilan masuk dan memberi tahu panggilan yang baru diblokir."
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "Aplikasi telepon default",
+          "why": "Agar Safe Dial dapat menerima, melakukan, menyaring, dan memblokir panggilan sebelum berdering."
+        },
+        "screening": {
+          "title": "Aplikasi ID penelepon dan penyaring panggilan",
+          "why": "Memungkinkan pemeriksaan dan pemblokiran panggilan sebelum berdering."
+        },
+        "set": "Sudah diatur",
+        "notSet": "Belum diatur",
+        "sheetTitleDialer": "Jadikan Safe Dial aplikasi telepon default?",
+        "sheetTitleScreening": "Jadikan Safe Dial aplikasi ID penelepon dan penyaring panggilan?",
+        "sheetText": "Layar ini menyimulasikan dialog pemilihan peran dari sistem.",
+        "setDefault": "Jadikan default",
+        "cancel": "Jangan sekarang",
+        "done": "Safe Dial kini menjadi aplikasi telepon default",
+        "unavailable": "Perangkat ini tidak mengizinkan penggantian aplikasi telepon default"
+      },
+      "granted": "Diizinkan"
+    }
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "version": "Safe Dial versi {v}",
+    "groups": {
+      "general": "Umum",
+      "calls": "Panggilan",
+      "protection": "Perlindungan",
+      "data": "Data",
+      "lab": "Eksperimen",
+      "support": "Bantuan"
+    },
+    "rows": {
+      "notifications": "Notifikasi",
+      "sound": "Suara dan getar",
+      "language": "Bahasa",
+      "sim": "SIM untuk menelepon",
+      "callerId": "Info penelepon",
+      "callerIdSub": "Popup, posisi, dan gaya tampilan",
+      "scamWarning": "Peringatan penipuan",
+      "scamWarningSub": "Tampilkan peringatan merah jika nomor penelepon sudah Anda tandai penipuan, spam, atau terlihat mencurigakan.",
+      "blockRules": "Aturan blokir",
+      "blockRulesSub": "Daftar hitam, nomor internasional, nomor pribadi",
+      "clearHistory": "Hapus semua riwayat panggilan",
+      "clearHistorySub": "Tidak dapat dibatalkan. Statistik tetap disimpan.",
+      "clearStats": "Hapus data statistik",
+      "clearStatsSub": "Atur ulang semua data di tab Statistik",
+      "resetDemo": "Buat ulang data demo",
+      "simulate": "Simulasikan panggilan masuk",
+      "simulateSub": "Hanya untuk demo: coba peringatan dan pemblokiran",
+      "rate": "Beri nilai aplikasi",
+      "feedback": "Masukan",
+      "share": "Bagikan aplikasi",
+      "about": "Tentang dan privasi",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "SIM untuk menelepon",
+      "ask": "Selalu tanya",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "Hapus semua riwayat panggilan?",
+      "message": "Semua panggilan di log akan dihapus. Daftar blokir, kontak, dan statistik tidak terpengaruh.",
+      "confirm": "Hapus semua",
+      "done": "Riwayat panggilan dihapus"
+    },
+    "clearStats": {
+      "title": "Hapus data statistik?",
+      "message": "Data frekuensi dan durasi komunikasi akan dihapus. Log panggilan tidak terpengaruh.",
+      "done": "Data statistik dihapus"
+    },
+    "rate": {
+      "title": "Beri nilai Safe Dial",
+      "text": "Bagaimana pendapat Anda tentang aplikasi ini?",
+      "star": "{n} bintang",
+      "send": "Kirim",
+      "thanks": "Terima kasih atas nilai {n} bintang Anda",
+      "labels": [
+        "Sangat buruk",
+        "Kurang baik",
+        "Lumayan",
+        "Bagus",
+        "Luar biasa"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "Tautan disalin"
+    },
+    "notifications": {
+      "title": "Notifikasi",
+      "callAlert": "Notifikasi panggilan",
+      "callAlertSub": "Tampilkan notifikasi saat ada panggilan dari nomor mencurigakan.",
+      "missed": "Panggilan tak terjawab",
+      "missedSub": "Beri tahu saat Anda melewatkan panggilan.",
+      "remind": "Pengingat panggilan tak terjawab",
+      "remindSub": "Ingatkan lagi beberapa menit kemudian jika Anda belum menelepon balik.",
+      "blocked": "Notifikasi saat memblokir",
+      "blockedSub": "Beri tahu nomor mana yang baru diblokir dan alasannya."
+    },
+    "sound": {
+      "title": "Suara dan getar",
+      "ringtone": "Nada dering",
+      "ringtoneSheet": "Pilih nada dering",
+      "ringtones": [
+        "Default",
+        "Nada 1",
+        "Nada 2",
+        "Nada 3",
+        "Nada 4",
+        "Senyap"
+      ],
+      "dial": "Nada tombol",
+      "dialSub": "Umpan balik saat Anda menekan tombol angka.",
+      "dialOptions": {
+        "silent": "Senyap",
+        "vibrate": "Getar",
+        "sound": "Suara",
+        "both": "Suara dan getar"
+      },
+      "demo": "Versi demo: tidak memutar suara sungguhan."
+    },
+    "callerId": {
+      "title": "Info penelepon",
+      "enabled": "Aktifkan jendela info penelepon",
+      "enabledSub": "Tampilkan nama dan tingkat risiko saat ada panggilan masuk.",
+      "contacts": "Tampilkan juga untuk kontak",
+      "contactsSub": "Secara default hanya untuk nomor asing.",
+      "after": "Tampilkan setelah panggilan",
+      "afterSub": "Sarankan simpan, blokir, atau laporkan saat panggilan berakhir.",
+      "style": "Gaya tampilan",
+      "classic": "Popup kecil",
+      "classicSub": "Ringkas, tidak menutupi layar",
+      "full": "Layar penuh",
+      "fullSub": "Jelas, peringatan mudah terlihat",
+      "position": "Posisi popup",
+      "top": "Atas",
+      "center": "Tengah",
+      "bottom": "Bawah",
+      "preview": "Pratinjau",
+      "previewCaller": "Nomor asing",
+      "tryIt": "Coba panggilan"
+    },
+    "feedback": {
+      "title": "Masukan",
+      "easy": "Apakah aplikasi ini mudah digunakan?",
+      "yes": "Ya",
+      "no": "Tidak",
+      "features": "Fitur apa yang paling sering Anda pakai?",
+      "featureList": [
+        "Kenali nomor asing",
+        "Kontak",
+        "Blokir spam",
+        "Peringatan penipuan",
+        "Riwayat panggilan",
+        "Statistik komunikasi"
+      ],
+      "message": "Ceritakan lebih banyak kepada kami",
+      "placeholder": "Apa yang ingin Anda kami tingkatkan?",
+      "submit": "Kirim masukan",
+      "thanks": "Terima kasih atas masukan Anda",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "Tentang",
+      "version": "Versi {v}",
+      "demo": "Safe Dial adalah aplikasi telepon: kontak dan log panggilan dibaca langsung dari ponsel, sedangkan daftar hitam dan statistik disimpan di perangkat.",
+      "privacy": "Privasi",
+      "privacyItems": [
+        {
+          "q": "Data apa yang dipakai Safe Dial?",
+          "a": "Nomor yang menelepon, log panggilan, dan kontak untuk mengenali penelepon dan menerapkan aturan blokir."
+        },
+        {
+          "q": "Di mana data disimpan?",
+          "a": "Pengaturan, daftar blokir, tanda, dan statistik disimpan di perangkat Anda. Aplikasi tidak mengirim data ke mana pun."
+        },
+        {
+          "q": "Apakah kontak saya dijual?",
+          "a": "Tidak. Kontak hanya dipakai untuk mengenali penelepon, tidak dijual dan tidak dibagikan ke pihak ketiga."
+        }
+      ],
+      "terms": "Ketentuan penggunaan",
+      "termsText": "Anda menggunakan aplikasi ini atas tanggung jawab sendiri. Peringatan didasarkan pada daftar hitam dan tanda dari Anda sendiri sehingga hanya bersifat referensi. Selalu berhati-hati saat memberikan informasi pribadi melalui telepon.",
+      "libs": "Pustaka sumber terbuka",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "Kerangka antarmuka"
+        },
+        {
+          "name": "Vite",
+          "note": "Alat build"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "Gaya tampilan"
+        },
+        {
+          "name": "Pinia",
+          "note": "Manajemen state"
+        },
+        {
+          "name": "Vue Router",
+          "note": "Navigasi"
+        },
+        {
+          "name": "Iconify dan Lucide",
+          "note": "Set ikon"
+        },
+        {
+          "name": "Capacitor",
+          "note": "Berjalan di Android dan iOS"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "Semua",
+        "missed": "Tak terjawab",
+        "incoming": "Masuk",
+        "outgoing": "Keluar",
+        "unknown": "Nomor asing",
+        "spam": "Spam/Penipuan",
+        "blocked": "Diblokir"
+      },
+      "summary": {
+        "title": "7 hari terakhir",
+        "suspicious": "mencurigakan",
+        "blocked": "diblokir",
+        "clean": "Tidak ada panggilan mencurigakan",
+        "viewBlocked": "Lihat panggilan yang diblokir"
+      },
+      "empty": {
+        "all": {
+          "title": "Belum ada panggilan",
+          "description": "Riwayat panggilan Anda akan muncul di sini."
+        },
+        "missed": {
+          "title": "Tidak ada panggilan tak terjawab",
+          "description": "Anda tidak melewatkan panggilan apa pun belakangan ini."
+        },
+        "incoming": {
+          "title": "Belum ada panggilan masuk",
+          "description": "Panggilan masuk yang dijawab akan muncul di sini."
+        },
+        "outgoing": {
+          "title": "Belum ada panggilan keluar",
+          "description": "Buka papan tombol untuk melakukan panggilan pertama."
+        },
+        "unknown": {
+          "title": "Tidak ada nomor asing",
+          "description": "Semua panggilan terbaru berasal dari nomor yang Anda kenal atau sudah terverifikasi."
+        },
+        "spam": {
+          "title": "Belum ada spam terdeteksi",
+          "description": "Panggilan penipuan atau iklan akan dikumpulkan di sini."
+        },
+        "blocked": {
+          "title": "Belum ada panggilan diblokir",
+          "description": "Panggilan yang diblokir berdasarkan daftar hitam akan muncul di sini."
+        }
+      },
+      "select": {
+        "count": "{n} dipilih",
+        "all": "Pilih semua",
+        "delete": "Hapus",
+        "cancel": "Batal"
+      },
+      "delete": {
+        "title": "Hapus {n} panggilan?",
+        "message": "Panggilan yang dipilih akan dihapus dari log. Statistik tetap disimpan.",
+        "done": "{n} panggilan dihapus"
+      },
+      "more": "Opsi untuk panggilan ini",
+      "noPermission": {
+        "title": "Belum ada izin membaca log panggilan",
+        "description": "Izinkan Safe Dial membaca log untuk melihat riwayat, menyaring nomor asing, dan membuat statistik.",
+        "grant": "Beri izin"
+      },
+      "actions": {
+        "title": "Opsi",
+        "call": "Telepon",
+        "message": "Kirim pesan",
+        "detail": "Lihat detail",
+        "block": "Blokir nomor ini",
+        "unblock": "Buka blokir nomor ini",
+        "report": "Laporkan spam",
+        "save": "Simpan ke kontak",
+        "copy": "Salin nomor",
+        "delete": "Hapus dari log"
+      },
+      "deleteOne": {
+        "title": "Hapus panggilan ini?",
+        "message": "Panggilan akan dihapus dari log."
+      }
+    },
+    "sim": {
+      "title": "Telepon dengan SIM mana?",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "Nomor utama",
+      "sim2Desc": "Nomor kedua",
+      "remember": "Selalu gunakan SIM ini"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "Kontak",
+        "favorites": "Favorit"
+      },
+      "search": "Cari nama atau nomor telepon",
+      "emptyAll": {
+        "title": "Kontak kosong",
+        "description": "Belum ada kontak yang disimpan."
+      },
+      "emptySearch": {
+        "title": "Tidak ditemukan",
+        "description": "Tidak ada kontak yang cocok dengan “{q}”."
+      },
+      "emptyFav": {
+        "title": "Belum ada kontak favorit",
+        "description": "Ketuk ikon bintang di kontak untuk menambahkannya ke sini."
+      },
+      "goContacts": "Buka kontak",
+      "count": "{n} kontak",
+      "quickCall": "Telepon {name}",
+      "favOn": "Hapus {name} dari favorit",
+      "favOff": "Tambahkan {name} ke favorit"
+    }
+  },
+  "dial": {
+    "title": "Papan tombol",
+    "placeholder": "Masukkan nomor telepon",
+    "backspace": "Hapus satu angka",
+    "call": "Telepon",
+    "save": "Simpan ke kontak",
+    "message": "Kirim pesan",
+    "saveToast": "Membuka layar tambah kontak",
+    "messageToast": "Membuka pesan ke {number}",
+    "suggestions": "Saran kontak",
+    "recognition": {
+      "checking": "Memeriksa nomor...",
+      "unknownTitle": "Belum ada info tentang nomor ini",
+      "unknownDesc": "Nomor asing. Berhati-hatilah jika penelepon meminta informasi pribadi.",
+      "contact": "Ada di kontak",
+      "trusted": "Anda menandai nomor ini sebagai tepercaya",
+      "marked": "Tanda Anda: {category}",
+      "international": "Nomor internasional",
+      "scamWarn": "Anda menandai nomor ini sebagai penipuan — jangan berikan kode OTP atau transfer uang.",
+      "spamWarn": "Anda menandai nomor ini sebagai pengganggu. Pertimbangkan sebelum menelepon.",
+      "blocked": "Nomor ini sedang diblokir",
+      "unblock": "Buka blokir",
+      "unblockToast": "Blokir {number} dibuka",
+      "detail": "Detail"
+    },
+    "search": {
+      "title": "Cari",
+      "placeholder": "Masukkan nomor telepon atau nama",
+      "back": "Kembali",
+      "contacts": "Kontak",
+      "history": "Di riwayat panggilan",
+      "lookupTitle": "Info nomor ini",
+      "lookupHint": "Lihat apakah nomor ada di kontak, daftar blokir, atau sudah Anda tandai.",
+      "lookupBtn": "Periksa",
+      "lookingUp": "Memeriksa...",
+      "noInfo": "Belum ada info",
+      "noInfoDesc": "Anda belum menandai atau memberi nama nomor ini.",
+      "calls": "Pernah dihubungi",
+      "callsValue": "{n} panggilan",
+      "country": "Negara",
+      "mark": "Tanda",
+      "note": "Catatan Anda",
+      "detail": "Lihat detail",
+      "block": "Blokir",
+      "unblock": "Buka blokir",
+      "recent": "Pencarian terbaru",
+      "clearAll": "Hapus semua",
+      "removeRecent": "Hapus dari riwayat pencarian",
+      "examplesTitle": "Coba periksa nomor contoh",
+      "examplesDesc": "Ketuk salah satu nomor di bawah untuk melihat peringatan bekerja (demo).",
+      "noResult": {
+        "title": "Tidak ada hasil",
+        "description": "Tidak ditemukan kontak atau panggilan yang cocok dengan “{q}”."
+      },
+      "initial": {
+        "title": "Periksa nomor asing",
+        "description": "Masukkan nomor telepon untuk melihat apakah nomor itu aman."
+      },
+      "callCount": "{n} panggilan"
+    }
+  },
+  "number": {
+    "title": "Detail nomor",
+    "hidden": "Nomor pribadi",
+    "hiddenDesc": "Penelepon menyembunyikan nomornya sehingga tidak bisa ditandai atau ditelepon balik.",
+    "loading": "Memuat...",
+    "noName": "Belum ada nama",
+    "contact": "Ada di kontak",
+    "trusted": "Nomor tepercaya",
+    "menu": {
+      "open": "Opsi lainnya",
+      "title": "Opsi",
+      "copy": "Salin nomor",
+      "share": "Bagikan",
+      "block": "Blokir nomor ini",
+      "unblock": "Buka blokir nomor ini",
+      "trust": "Tandai tepercaya",
+      "untrust": "Hapus tanda tepercaya",
+      "clearMark": "Hapus tanda",
+      "clear": "Hapus riwayat nomor ini"
+    },
+    "copied": "Nomor disalin",
+    "copyFail": "Gagal menyalin",
+    "shareToast": "Menu berbagi dibuka",
+    "warning": {
+      "scamTitle": "Peringatan penipuan",
+      "spamTitle": "Nomor pengganggu",
+      "marked": "Tanda Anda: {category}",
+      "signals": "Tanda pada panggilan terakhir: {list}",
+      "tipsTitle": "Cara melindungi diri",
+      "tip1": "Jangan sebutkan kode OTP, nomor kartu, atau kata sandi kepada siapa pun.",
+      "tip2": "Jangan transfer uang atas permintaan lewat telepon.",
+      "tip3": "Tutup telepon dan hubungi nomor resmi instansi atau bank."
+    },
+    "actions": {
+      "call": "Telepon",
+      "message": "Pesan",
+      "favorite": "Favorit",
+      "unfavorite": "Hapus favorit",
+      "block": "Blokir",
+      "unblock": "Buka blokir",
+      "save": "Simpan",
+      "report": "Tandai",
+      "suggest": "Beri nama",
+      "trust": "Tepercaya"
+    },
+    "blockedBanner": "Nomor ini ada di daftar blokir",
+    "block": {
+      "title": "Blokir nomor ini?",
+      "message": "Panggilan dari {number} akan diblokir otomatis.",
+      "done": "{number} diblokir",
+      "failed": "Gagal memblokir. Jadikan Safe Dial aplikasi telepon default.",
+      "unblockTitle": "Buka blokir nomor ini?",
+      "unblockMessage": "Anda akan kembali menerima panggilan dari {number}.",
+      "unblockDone": "Blokir {number} dibuka"
+    },
+    "trust": {
+      "done": "Ditandai tepercaya. Nomor ini tidak akan diblokir atau diberi peringatan.",
+      "undone": "Tanda tepercaya dihapus"
+    },
+    "toast": {
+      "message": "Membuka pesan ke {name}",
+      "save": "Membuka layar tambah kontak",
+      "favOn": "Ditambahkan ke favorit",
+      "favOff": "Dihapus dari favorit",
+      "markCleared": "Tanda dihapus"
+    },
+    "info": {
+      "title": "Info nomor",
+      "country": "Negara",
+      "calls": "Jumlah panggilan",
+      "lastCall": "Panggilan terakhir",
+      "mark": "Tanda Anda",
+      "none": "Tidak diketahui",
+      "never": "Belum ada",
+      "noMark": "Belum ditandai"
+    },
+    "community": {
+      "title": "Catatan Anda",
+      "noNames": "Anda belum memberi nama atau catatan untuk nomor ini.",
+      "suggestTitle": "Beri nama nomor ini",
+      "suggestPlaceholder": "Contoh: Kurir paket",
+      "suggestSend": "Simpan nama",
+      "suggestDone": "Nama untuk nomor ini disimpan"
+    },
+    "notes": {
+      "title": "Catatan panggilan",
+      "delete": "Hapus catatan",
+      "deleted": "Catatan dihapus"
+    },
+    "report": {
+      "title": "Tandai nomor ini",
+      "subtitle": "Pilih jenis yang paling sesuai agar nomor ini dikenali lain kali.",
+      "note": "Catatan (opsional)",
+      "notePlaceholder": "Jelaskan singkat tentang panggilan ini...",
+      "send": "Simpan tanda",
+      "thanks": "Nomor ini sudah ditandai",
+      "offerTitle": "Sekalian blokir nomor ini?",
+      "offerMessage": "{number} tidak akan mengganggu Anda lagi.",
+      "offerYes": "Blokir",
+      "offerNo": "Nanti saja"
+    },
+    "recent": {
+      "title": "Panggilan terbaru",
+      "empty": "Belum ada panggilan dengan nomor ini."
+    },
+    "stats": {
+      "title": "Statistik komunikasi",
+      "subtitle": "Frekuensi, durasi, dan hari paling sering menelepon"
+    },
+    "clear": {
+      "title": "Hapus riwayat nomor ini?",
+      "message": "Semua panggilan dengan nomor ini akan dihapus dari log. Statistik tetap disimpan.",
+      "done": "Riwayat panggilan dihapus"
+    },
+    "history": {
+      "title": "Riwayat panggilan",
+      "empty": {
+        "title": "Belum ada panggilan",
+        "description": "Belum ada panggilan dengan nomor ini di log."
+      },
+      "selected": "{n} dipilih",
+      "selectAll": "Pilih semua",
+      "delete": "Hapus",
+      "cancel": "Batal",
+      "deleteTitle": "Hapus {n} panggilan?",
+      "deleteMessage": "Panggilan yang dipilih akan dihapus dari log. Statistik tetap disimpan.",
+      "deleted": "{n} panggilan dihapus",
+      "count": "{n} panggilan",
+      "note": "Hanya menampilkan panggilan yang masih ada di log ponsel."
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "Diblokir",
+      "list": "Daftar hitam",
+      "settings": "Pengaturan"
+    },
+    "blocked": {
+      "weekSummary": "panggilan diblokir dalam 7 hari terakhir",
+      "topReason": "Paling banyak: {reason} ({n})",
+      "emptyTitle": "Belum ada panggilan diblokir",
+      "emptyDesc": "Saat panggilan diblokir atau dibisukan, panggilan itu akan muncul di sini beserta alasannya."
+    },
+    "rules": {
+      "add": "Tambah aturan",
+      "test": "Uji nomor",
+      "header": "Aturan aktif ({n})",
+      "emptyTitle": "Daftar hitam kosong",
+      "emptyDesc": "Tambahkan nomor atau aturan untuk memblokir panggilan yang tidak diinginkan.",
+      "deleteTitle": "Hapus aturan ini?",
+      "deleteMsg": "Panggilan yang cocok dengan \"{name}\" tidak akan diblokir lagi oleh aturan ini.",
+      "deleted": "Aturan dihapus",
+      "deleteAria": "Hapus aturan {name}",
+      "numbersHeader": "Nomor diblokir ({n})",
+      "numbersEmpty": "Belum ada nomor tertentu yang diblokir.",
+      "numberDeleteTitle": "Buka blokir nomor ini?",
+      "numberDeleteMsg": "Anda akan kembali menerima panggilan dari {name}.",
+      "hits": "{n} panggilan diblokir · terakhir {date}",
+      "noHits": "Belum memblokir panggilan",
+      "toggleAria": "Aktifkan/nonaktifkan aturan {name}"
+    },
+    "quick": {
+      "header": "Blokir cepat dari panggilan terbaru",
+      "none": "Tidak ada nomor asing yang perlu diblokir di panggilan terbaru.",
+      "done": "{number} diblokir"
+    },
+    "settings": {
+      "header": "Blokir otomatis",
+      "autoBlockReported": {
+        "title": "Blokir otomatis nomor yang saya tandai penipuan",
+        "desc": "Saat Anda menandai nomor sebagai penipuan/spam, nomor itu langsung masuk daftar blokir."
+      },
+      "noRole": "Jadikan Safe Dial aplikasi telepon default agar pemblokiran berfungsi.",
+      "blockPrivate": {
+        "title": "Blokir nomor pribadi",
+        "desc": "Blokir panggilan yang menyembunyikan nomor penelepon."
+      },
+      "blockInternational": {
+        "title": "Blokir panggilan internasional",
+        "desc": "Hanya izinkan panggilan domestik. Nomor di kontak tetap bisa menelepon."
+      },
+      "blockNonContacts": {
+        "title": "Blokir nomor di luar kontak",
+        "desc": "Hanya terima panggilan dari orang di kontak.",
+        "warn": "Bisa salah memblokir kenalan yang nomornya belum disimpan, kurir, bank, atau dokter. Pertimbangkan mode bisukan."
+      },
+      "notifyOnBlock": {
+        "title": "Notifikasi saat memblokir",
+        "desc": "Tampilkan notifikasi setiap kali panggilan diblokir."
+      },
+      "methodHeader": "Cara penanganan",
+      "method": {
+        "hangup": {
+          "title": "Tutup otomatis",
+          "desc": "Penelepon mendengar nada sibuk / ditolak. Ponsel Anda tidak berdering."
+        },
+        "silent": {
+          "title": "Bisukan, panggilan tetap muncul",
+          "desc": "Ponsel tetap senyap, tetapi panggilan tetap ada di riwayat dan penelepon tetap mendengar nada sambung."
+        }
+      },
+      "countryHeader": "Blokir berdasarkan negara",
+      "country": {
+        "title": "Blokir berdasarkan negara",
+        "desc": "{n} kode negara diblokir"
+      },
+      "countryAdded": "Nomor dari {name} diblokir",
+      "note": "Nomor di kontak tidak diblokir oleh aturan awalan, akhiran, kode negara, atau panggilan internasional. Hanya daftar nomor tertentu yang bisa memblokir nomor di kontak. Kode negara Anda: {dial}."
+    },
+    "country": {
+      "search": "Cari negara atau kode",
+      "blocked": "Diblokir",
+      "none": "Tidak ditemukan negara yang cocok."
+    },
+    "form": {
+      "title": "Tambah aturan blokir",
+      "kindHeader": "Pilih jenis aturan",
+      "help": {
+        "number": "Blokir tepat satu nomor telepon, meski nomor itu ada di kontak.",
+        "startsWith": "Blokir semua nomor yang diawali angka yang Anda masukkan.",
+        "contains": "Blokir semua nomor yang mengandung angka ini di posisi mana pun.",
+        "endsWith": "Blokir semua nomor yang diakhiri angka yang Anda masukkan.",
+        "country": "Blokir semua panggilan dari suatu negara berdasarkan kode panggilnya."
+      },
+      "example": {
+        "number": "Contoh: 0901 234 567 hanya memblokir nomor ini.",
+        "startsWith": "Contoh: Diawali 0899 → blokir semua nomor berawalan 0899.",
+        "contains": "Contoh: Mengandung 8888 → blokir 0912 8888 11 dan 0988 888 812.",
+        "endsWith": "Contoh: Diakhiri 0000 → blokir semua nomor berakhiran 0000.",
+        "country": "Contoh: pilih Nigeria (+234) → blokir semua nomor +234…"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "Nilai",
+      "labelLabel": "Catatan (opsional)",
+      "labelPlaceholder": "Contoh: Nomor pinjol",
+      "picked": "Dipilih: {name}",
+      "errEmpty": "Masukkan nilai untuk aturan.",
+      "errNumber": "Nomor telepon tidak valid (perlu 8-15 digit).",
+      "errShort": "Masukkan minimal 3 digit agar tidak salah memblokir terlalu banyak nomor.",
+      "errCountry": "Pilih satu negara.",
+      "duplicate": "Aturan ini sudah ada di daftar hitam.",
+      "previewTitle": "Aturan ini cocok dengan {n} panggilan di riwayat",
+      "previewMore": "dan {n} nomor lainnya",
+      "previewNone": "Belum ada panggilan di riwayat yang cocok dengan aturan ini.",
+      "previewNote": "Nomor di kontak tidak dihitung karena aturan pola selalu melewati kenalan.",
+      "save": "Simpan aturan",
+      "saved": "Aturan blokir ditambahkan"
+    },
+    "test": {
+      "title": "Uji nomor",
+      "intro": "Masukkan nomor untuk melihat cara mesin blokir memprosesnya langkah demi langkah. Tidak ada panggilan sungguhan yang dilakukan.",
+      "numberLabel": "Nomor telepon",
+      "placeholder": "0901 234 567 atau +84…",
+      "private": "Nomor pribadi",
+      "privateDesc": "Simulasikan penelepon yang menyembunyikan nomor",
+      "run": "Periksa",
+      "invalid": "Masukkan nomor telepon yang valid atau aktifkan \"Nomor pribadi\".",
+      "quick": "Isi cepat",
+      "inContacts": "Ada di kontak",
+      "notContact": "Tidak ada di kontak",
+      "traceHeader": "Langkah pemeriksaan"
+    },
+    "trace": {
+      "steps": {
+        "system": "Daftar blokir Anda",
+        "trusted": "Nomor tepercaya",
+        "contact": "Kontak",
+        "rule": "Aturan awalan / akhiran / negara",
+        "private": "Blokir nomor pribadi",
+        "international": "Blokir panggilan internasional",
+        "nonContact": "Blokir nomor di luar kontak",
+        "signals": "Tanda peringatan"
+      },
+      "state": {
+        "off": "Nonaktif",
+        "pass": "Tidak cocok",
+        "match": "COCOK",
+        "stopped": "Tidak dijalankan"
+      },
+      "offHint": "Dilewati karena sakelar ini nonaktif.",
+      "stoppedHint": "Tidak diperiksa karena sudah ada keputusan di langkah sebelumnya.",
+      "detail": {
+        "system": {
+          "match": "Nomor ini ada di daftar blokir perangkat.",
+          "pass": "Tidak ada di daftar blokir."
+        },
+        "trusted": {
+          "match": "Anda menandai nomor ini sebagai tepercaya.",
+          "pass": "Belum ditandai tepercaya."
+        },
+        "contact": {
+          "match": "Ada di kontak: {name}.",
+          "pass": "Tidak ada di kontak."
+        },
+        "rule": {
+          "match": "Cocok dengan aturan: {name}.",
+          "pass": "Tidak cocok dengan satu pun dari {n} aturan aktif."
+        },
+        "private": {
+          "match": "Penelepon menyembunyikan nomor.",
+          "pass": "Nomor tampil normal."
+        },
+        "international": {
+          "match": "Nomor internasional, tidak ada di kontak.",
+          "pass": "Bukan nomor internasional."
+        },
+        "nonContact": {
+          "match": "Nomor tidak ada di kontak.",
+          "pass": "Nomor ada di kontak."
+        },
+        "signals": {
+          "match": "Ada tanda: {list}.",
+          "pass": "Tidak ada tanda mencurigakan."
+        }
+      },
+      "verdict": "Kesimpulan",
+      "action": {
+        "allowed": "Diizinkan",
+        "warned": "Peringatan",
+        "blocked": "Blokir",
+        "silenced": "Dibisukan"
+      },
+      "reasonLine": "Alasan: {reason}",
+      "allowLine": "Tidak ada langkah yang memblokir nomor ini, panggilan akan berdering seperti biasa.",
+      "warnLine": "Panggilan tetap berdering tetapi menampilkan peringatan: {list}.",
+      "silenceNote": "Ponsel senyap, panggilan tetap muncul di riwayat."
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 hari",
+      "30d": "30 hari",
+      "all": "Semua"
+    },
+    "empty": {
+      "title": "Belum ada data statistik",
+      "desc": "Lakukan atau terima panggilan, statistik akan muncul di sini."
+    },
+    "kpi": {
+      "total": "Total panggilan",
+      "talk": "Waktu bicara",
+      "avg": "Rata-rata {d}",
+      "missed": "Panggilan tak terjawab",
+      "suspicious": "Mencurigakan / Diblokir",
+      "suspiciousSub": "Nomor spam, penipuan / diblokir"
+    },
+    "perDay": {
+      "title": "Panggilan per hari ({n} hari terakhir)",
+      "aria": "Grafik jumlah panggilan per hari"
+    },
+    "types": {
+      "title": "Jenis panggilan",
+      "center": "panggilan"
+    },
+    "frequency": {
+      "title": "Frekuensi komunikasi",
+      "none": "Belum ada komunikasi dengan nomor di kontak.",
+      "times": "{n} kali",
+      "noTalk": "Belum ada percakapan"
+    },
+    "strangers": {
+      "title": "Orang asing yang paling sering menelepon",
+      "desc": "Nomor di luar kontak, diurutkan berdasarkan jumlah panggilan.",
+      "none": "Tidak ada orang asing yang menelepon dalam periode ini.",
+      "meta": "{n} kali · terakhir {date}",
+      "blocked": "Ditambahkan ke daftar blokir",
+      "alreadyBlocked": "Diblokir",
+      "hidden": "Nomor pribadi"
+    },
+    "risk": {
+      "title": "Tingkat keamanan panggilan masuk",
+      "desc": "Sebaran {n} panggilan masuk."
+    },
+    "number": {
+      "subtitle": "Statistik nomor ini",
+      "emptyTitle": "Belum ada panggilan dengan nomor ini",
+      "emptyDesc": "Statistik akan muncul setelah ada panggilan.",
+      "durationTitle": "Durasi percakapan",
+      "durTotal": "Total",
+      "durIncoming": "Panggilan masuk",
+      "durOutgoing": "Panggilan keluar",
+      "avg": "Rata-rata per panggilan {d}",
+      "incomingTitle": "Panggilan masuk",
+      "inTotal": "Total masuk",
+      "inAnswered": "Dijawab",
+      "inMissed": "Tak terjawab",
+      "inBlocked": "Diblokir",
+      "outgoingTitle": "Panggilan keluar",
+      "outTotal": "Total keluar",
+      "outAnswered": "Diangkat",
+      "outNot": "Tidak diangkat",
+      "weeks": "8 minggu terakhir",
+      "weeksAria": "Jumlah panggilan per minggu: {v}",
+      "weekdayTitle": "Hari paling sering menelepon",
+      "weekdayAria": "Jumlah panggilan per hari dalam seminggu",
+      "firstLast": "Linimasa",
+      "first": "Panggilan pertama",
+      "last": "Panggilan terakhir",
+      "viewHistory": "Lihat riwayat"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "Simulasikan panggilan masuk",
+      "intro": "Hanya tersedia di versi demo (browser). Pilih skenario untuk melihat cara Safe Dial mengenali dan menangani panggilan.",
+      "displayHeader": "Gaya tampilan",
+      "displayStyle": "Dialog penelepon",
+      "sizeClassic": "Popup",
+      "sizeFull": "Layar penuh",
+      "position": "Posisi popup",
+      "posTop": "Atas",
+      "posCenter": "Tengah",
+      "posBottom": "Bawah",
+      "scenarios": "Skenario",
+      "willRing": "Akan berdering",
+      "willBlock": "Akan diblokir",
+      "customHeader": "Nomor kustom",
+      "customPlaceholder": "Masukkan nomor telepon",
+      "customRun": "Coba panggil",
+      "invalid": "Masukkan nomor telepon yang valid.",
+      "blocked": "Diblokir:",
+      "silenced": "Dibisukan:",
+      "detail": "Detail: {d}",
+      "viewBlocked": "Lihat bagian Diblokir"
+    },
+    "overlay": {
+      "incoming": "Panggilan masuk",
+      "head": {
+        "safe": "Panggilan masuk - Aman",
+        "unknown": "Panggilan masuk - Nomor asing",
+        "spam": "Peringatan - Diduga spam",
+        "scam": "Peringatan - Diduga penipuan"
+      },
+      "answer": "Jawab",
+      "reject": "Tolak",
+      "moreAria": "Tindakan lainnya",
+      "hiddenCaller": "Penelepon menyembunyikan nomor",
+      "localCountry": "Vietnam",
+      "marked": "Tanda Anda: {category}",
+      "signals": "Tanda: {list}",
+      "warnMarked": "Peringatan: Anda menandai nomor ini sebagai {category}. Jangan berikan kode OTP, kata sandi, atau transfer uang.",
+      "warnGeneric": "Peringatan: nomor ini menunjukkan tanda penipuan. Jangan berikan kode OTP, kata sandi, atau transfer uang.",
+      "quick": {
+        "message": "Pesan cepat",
+        "remind": "Ingatkan nanti",
+        "block": "Blokir nomor ini"
+      }
+    },
+    "sheets": {
+      "moreTitle": "Tindakan lainnya",
+      "messageTitle": "Pesan cepat",
+      "messageDesc": "Tolak panggilan dan kirim pesan balasan.",
+      "replies": {
+        "r1": "Saya sedang sibuk, nanti saya telepon balik.",
+        "r2": "Saya sedang rapat, kirim pesan saja ya.",
+        "r3": "Saya sedang menyetir, tolong telepon lagi nanti.",
+        "r4": "Ada perlu apa? Silakan kirim pesan ke saya."
+      },
+      "remindTitle": "Ingatkan nanti",
+      "remindDesc": "Tolak panggilan dan ingatkan Anda untuk menelepon balik.",
+      "reminds": {
+        "10s": "10 detik",
+        "1m": "1 menit",
+        "5m": "5 menit",
+        "15m": "15 menit",
+        "30m": "30 menit"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "Tetap jawab?",
+      "confirmMsg": "Anda menandai nomor ini sebagai penipuan/spam. Tetap jawab?",
+      "confirmOk": "Tetap jawab",
+      "confirmCancel": "Jangan jawab",
+      "blockTitle": "Blokir nomor ini?",
+      "blockMsg": "Panggilan dari {number} akan diblokir mulai berikutnya.",
+      "blocked": "{number} diblokir",
+      "cannotBlockHidden": "Nomor pribadi tidak bisa diblokir. Aktifkan \"Blokir nomor pribadi\" di tab Blokir.",
+      "replySent": "Ditolak dan pesan terkirim: {text}",
+      "remindSet": "Ditolak, akan diingatkan dalam {when}"
+    },
+    "active": {
+      "dialing": "Memanggil…",
+      "onHold": "Ditahan",
+      "warnScam": "Peringatan penipuan: jangan berikan kode OTP, kata sandi, atau transfer uang.",
+      "warnSpam": "Anda menandai nomor ini sebagai spam. Berhati-hatilah.",
+      "end": "Akhiri panggilan",
+      "hideKeypad": "Sembunyikan papan tombol",
+      "noteTitle": "Catatan panggilan",
+      "notePlaceholder": "Hal yang perlu diingat tentang panggilan ini...",
+      "noteSave": "Simpan catatan",
+      "noteSaved": "Catatan disimpan",
+      "controls": {
+        "mute": "Bisukan",
+        "keypad": "Papan tombol",
+        "speaker": "Speaker",
+        "hold": "Tahan",
+        "add": "Tambah panggilan",
+        "note": "Catatan"
+      }
+    },
+    "after": {
+      "title": "Panggilan baru saja berakhir",
+      "type": "Jenis panggilan",
+      "duration": "Durasi",
+      "time": "Waktu",
+      "whoTitle": "Siapa ini?",
+      "whoDesc": "Tandai agar nomor ini dikenali lain kali.",
+      "hidden": "Ini nomor pribadi sehingga tidak bisa ditandai atau diblokir secara terpisah. Aktifkan \"Blokir nomor pribadi\" di tab Blokir jika perlu.",
+      "spam": "Tandai spam",
+      "notSpam": "Bukan spam",
+      "notSpamToast": "Nomor ini ditandai tepercaya",
+      "suggest": "Beri nama",
+      "alreadyBlocked": "Diblokir",
+      "reportedBtn": "Sudah ditandai",
+      "reportTitle": "Tandai nomor ini",
+      "reportDesc": "Pilih kelompok yang paling sesuai dengan panggilan tadi.",
+      "reported": "Nomor ini sudah ditandai",
+      "suggestTitle": "Beri nama nomor ini",
+      "suggestDesc": "Nama ini hanya disimpan di perangkat Anda.",
+      "suggestPlaceholder": "Contoh: Kurir paket",
+      "suggestSend": "Simpan nama",
+      "suggested": "Nama untuk nomor ini disimpan",
+      "saveToast": "Membuka layar tambah kontak",
+      "callBack": "Telepon balik",
+      "messageToast": "Membuka pesan"
+    }
+  }
+}

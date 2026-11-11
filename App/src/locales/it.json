@@ -1,0 +1,1068 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "Identifica numeri sconosciuti, blocca le truffe",
+    "actions": {
+      "ok": "OK",
+      "cancel": "Annulla",
+      "close": "Chiudi",
+      "back": "Indietro",
+      "save": "Salva",
+      "delete": "Elimina",
+      "block": "Blocca",
+      "unblock": "Sblocca",
+      "call": "Chiama",
+      "message": "Messaggio",
+      "done": "Fatto",
+      "next": "Continua",
+      "skip": "Salta",
+      "allow": "Consenti",
+      "retry": "Riprova",
+      "copy": "Copia",
+      "share": "Condividi",
+      "edit": "Modifica",
+      "add": "Aggiungi",
+      "search": "Cerca",
+      "report": "Segnala",
+      "viewAll": "Vedi tutto",
+      "addToContacts": "Salva nei contatti",
+      "history": "Cronologia"
+    },
+    "nav": {
+      "calls": "Chiamate",
+      "contacts": "Contatti",
+      "block": "Blocco",
+      "stats": "Statistiche"
+    },
+    "risk": {
+      "safe": "Sicuro",
+      "unknown": "Sconosciuto",
+      "spam": "Spam",
+      "scam": "Truffa"
+    },
+    "category": {
+      "scam": "Truffa",
+      "spam": "Spam",
+      "loan": "Prestiti / assicurazioni",
+      "robocall": "Chiamata automatica",
+      "fakeJob": "Falso lavoro / falsa vincita",
+      "telemarketing": "Telemarketing",
+      "impersonation": "Finto ente / finta banca"
+    },
+    "callType": {
+      "incoming": "Chiamata in arrivo",
+      "outgoing": "Chiamata in uscita",
+      "missed": "Chiamata persa",
+      "blocked": "Bloccata"
+    },
+    "blockReason": {
+      "private": "Numero privato",
+      "international": "Chiamata internazionale",
+      "nonContact": "Non in rubrica",
+      "list": "Nella lista di blocco",
+      "rule": "Corrisponde a una regola di blocco",
+      "country": "Bloccato per prefisso internazionale"
+    },
+    "signal": {
+      "international": "numero internazionale",
+      "private": "numero nascosto",
+      "burst": "chiamate ripetute",
+      "rejectedBefore": "già rifiutato o bloccato da te"
+    },
+    "ruleKind": {
+      "number": "Numero specifico",
+      "startsWith": "Inizia con",
+      "contains": "Contiene le cifre",
+      "endsWith": "Finisce con",
+      "country": "Prefisso internazionale"
+    },
+    "unknownNumber": "Numero sconosciuto",
+    "privateNumber": "Numero privato",
+    "noName": "Senza nome",
+    "mockNotice": "Versione demo: dati e chiamate sono simulati."
+  },
+  "boot": {
+    "language": {
+      "title": "Scegli la lingua",
+      "subtitle": "Puoi cambiarla in qualsiasi momento nelle Impostazioni.",
+      "confirm": "Conferma",
+      "saved": "Lingua salvata"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "Identifica numeri sconosciuti",
+        "protect": "Chiama in tranquillità",
+        "calls": "Scopri chi ti chiama",
+        "insights": "Statistiche dei contatti"
+      },
+      "pages": [
+        {
+          "title": "Identifica numeri sconosciuti",
+          "text": "Scopri subito chi ti chiama, anche se il numero non è in rubrica. Nome e livello di rischio appaiono mentre squilla."
+        },
+        {
+          "title": "Avvisi anti-truffa in tempo reale",
+          "text": "Safe Dial ti avvisa quando il numero è nella tua lista nera, è un numero internazionale sconosciuto o chiama in modo insolitamente insistente."
+        },
+        {
+          "title": "Blocca lo spam e vedi le statistiche",
+          "text": "Blocca numeri internazionali, privati e indesiderati con le tue regole, e scopri chi ti contatta di più."
+        }
+      ],
+      "dots": "Pagina {n} di {total}",
+      "start": "Inizia"
+    },
+    "permissions": {
+      "title": "Autorizza Safe Dial",
+      "subtitle": "Ogni permesso ha uno scopo preciso. Puoi modificarli in seguito.",
+      "allowAll": "Consenti tutto",
+      "later": "Più tardi",
+      "laterWarn": "La protezione sarà limitata finché non concedi tutti i permessi",
+      "needBasic": "Per continuare consenti l'accesso ai Contatti",
+      "sectionPermissions": "Permessi di accesso",
+      "sectionRoles": "Ruoli sul telefono",
+      "privacyTitle": "La tua privacy",
+      "privacyText": "I contatti servono solo per l'identificazione: non vengono venduti né condivisi con terze parti.",
+      "items": {
+        "calls": {
+          "title": "Chiamate e registro chiamate",
+          "why": "Per chiamare, vedere la cronologia e le statistiche delle chiamate."
+        },
+        "contacts": {
+          "title": "Contatti",
+          "why": "Per mostrare i nomi dei tuoi contatti e non bloccarli per errore."
+        },
+        "notifications": {
+          "title": "Notifiche",
+          "why": "Per mostrare le chiamate in arrivo e avvisarti delle chiamate bloccate."
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "App telefono predefinita",
+          "why": "Per permettere a Safe Dial di ricevere, effettuare, filtrare e bloccare le chiamate prima che squillino."
+        },
+        "screening": {
+          "title": "App di identificazione e filtro chiamate",
+          "why": "Permette di controllare e bloccare le chiamate prima che squillino."
+        },
+        "set": "Impostata",
+        "notSet": "Non impostata",
+        "sheetTitleDialer": "Impostare Safe Dial come app telefono predefinita?",
+        "sheetTitleScreening": "Impostare Safe Dial come app di identificazione e filtro chiamate?",
+        "sheetText": "Questa schermata simula la finestra di sistema per la scelta del ruolo.",
+        "setDefault": "Imposta come predefinita",
+        "cancel": "Non ora",
+        "done": "Safe Dial è ora l'app telefono predefinita",
+        "unavailable": "Questo dispositivo non consente di cambiare l'app telefono predefinita"
+      },
+      "granted": "Consentito"
+    }
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "version": "Safe Dial versione {v}",
+    "groups": {
+      "general": "Generali",
+      "calls": "Chiamate",
+      "protection": "Protezione",
+      "data": "Dati",
+      "lab": "Sperimentale",
+      "support": "Supporto"
+    },
+    "rows": {
+      "notifications": "Notifiche",
+      "sound": "Suoni e vibrazione",
+      "language": "Lingua",
+      "sim": "SIM per chiamare",
+      "callerId": "Info sul chiamante",
+      "callerIdSub": "Popup, posizione e stile",
+      "scamWarning": "Avvisi anti-truffa",
+      "scamWarningSub": "Mostra un avviso rosso quando il numero è stato segnato da te come truffa o spam, o sembra sospetto.",
+      "blockRules": "Regole di blocco",
+      "blockRulesSub": "Lista nera, numeri internazionali, numeri privati",
+      "clearHistory": "Cancella tutta la cronologia chiamate",
+      "clearHistorySub": "Operazione irreversibile. Le statistiche restano.",
+      "clearStats": "Cancella le statistiche",
+      "clearStatsSub": "Azzera tutti i dati nella scheda Statistiche",
+      "resetDemo": "Rigenera i dati demo",
+      "simulate": "Simula una chiamata in arrivo",
+      "simulateSub": "Solo versione demo: prova avvisi e blocco",
+      "rate": "Valuta l'app",
+      "feedback": "Feedback",
+      "share": "Condividi l'app",
+      "about": "Info e privacy",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "SIM per chiamare",
+      "ask": "Chiedi sempre",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "Cancellare tutta la cronologia chiamate?",
+      "message": "Tutte le chiamate del registro verranno eliminate. Lista di blocco, contatti e statistiche non verranno toccati.",
+      "confirm": "Cancella tutto",
+      "done": "Cronologia chiamate cancellata"
+    },
+    "clearStats": {
+      "title": "Cancellare le statistiche?",
+      "message": "I dati su frequenza e durata dei contatti verranno eliminati. Il registro chiamate non verrà toccato.",
+      "done": "Statistiche cancellate"
+    },
+    "rate": {
+      "title": "Valuta Safe Dial",
+      "text": "Cosa ne pensi dell'app?",
+      "star": "{n} stelle",
+      "send": "Invia",
+      "thanks": "Grazie per le tue {n} stelle",
+      "labels": [
+        "Pessima",
+        "Scarsa",
+        "Discreta",
+        "Buona",
+        "Ottima"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "Link copiato"
+    },
+    "notifications": {
+      "title": "Notifiche",
+      "callAlert": "Avvisi di chiamata",
+      "callAlertSub": "Mostra una notifica quando chiama un numero sospetto.",
+      "missed": "Chiamate perse",
+      "missedSub": "Avvisa quando perdi una chiamata.",
+      "remind": "Promemoria chiamate perse",
+      "remindSub": "Ricorda dopo qualche minuto se non hai richiamato.",
+      "blocked": "Notifica chiamate bloccate",
+      "blockedSub": "Indica quale numero è stato bloccato e perché."
+    },
+    "sound": {
+      "title": "Suoni e vibrazione",
+      "ringtone": "Suoneria",
+      "ringtoneSheet": "Scegli la suoneria",
+      "ringtones": [
+        "Predefinita",
+        "Suoneria 1",
+        "Suoneria 2",
+        "Suoneria 3",
+        "Suoneria 4",
+        "Silenzioso"
+      ],
+      "dial": "Toni tastiera",
+      "dialSub": "Feedback quando premi i tasti del tastierino.",
+      "dialOptions": {
+        "silent": "Silenzioso",
+        "vibrate": "Vibrazione",
+        "sound": "Suono",
+        "both": "Suono e vibrazione"
+      },
+      "demo": "Versione demo: nessun suono reale."
+    },
+    "callerId": {
+      "title": "Info sul chiamante",
+      "enabled": "Attiva finestra info chiamante",
+      "enabledSub": "Mostra nome e livello di rischio durante una chiamata in arrivo.",
+      "contacts": "Mostra anche per i contatti",
+      "contactsSub": "Di norma appare solo per i numeri sconosciuti.",
+      "after": "Mostra dopo la chiamata",
+      "afterSub": "Suggerisce di salvare, bloccare o segnalare a fine chiamata.",
+      "style": "Stile di visualizzazione",
+      "classic": "Popup piccolo",
+      "classicSub": "Compatto, non copre lo schermo",
+      "full": "Schermo intero",
+      "fullSub": "Chiaro, avvisi ben visibili",
+      "position": "Posizione del popup",
+      "top": "In alto",
+      "center": "Al centro",
+      "bottom": "In basso",
+      "preview": "Anteprima",
+      "previewCaller": "Numero sconosciuto",
+      "tryIt": "Prova una chiamata"
+    },
+    "feedback": {
+      "title": "Feedback",
+      "easy": "L'app è facile da usare?",
+      "yes": "Sì",
+      "no": "No",
+      "features": "Quale funzione usi di più?",
+      "featureList": [
+        "Identificazione numeri",
+        "Contatti",
+        "Blocco spam",
+        "Avvisi anti-truffa",
+        "Cronologia chiamate",
+        "Statistiche dei contatti"
+      ],
+      "message": "Raccontaci di più",
+      "placeholder": "Cosa vorresti che migliorassimo?",
+      "submit": "Invia feedback",
+      "thanks": "Grazie per il tuo feedback",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "Info",
+      "version": "Versione {v}",
+      "demo": "Safe Dial è un'app telefono: contatti e registro chiamate vengono letti direttamente dal telefono, lista nera e statistiche restano sul dispositivo.",
+      "privacy": "Privacy",
+      "privacyItems": [
+        {
+          "q": "Quali dati usa Safe Dial?",
+          "a": "Numeri in arrivo, registro chiamate e contatti, per identificare chi chiama e applicare le regole di blocco."
+        },
+        {
+          "q": "Dove vengono salvati i dati?",
+          "a": "Impostazioni, lista di blocco, segnalazioni e statistiche restano sul tuo dispositivo. L'app non invia dati da nessuna parte."
+        },
+        {
+          "q": "I contatti vengono venduti?",
+          "a": "No. I contatti servono solo per l'identificazione: non vengono venduti né condivisi con terze parti."
+        }
+      ],
+      "terms": "Termini di utilizzo",
+      "termsText": "Usi l'app sotto la tua responsabilità. Gli avvisi si basano sulla tua lista nera e sulle tue segnalazioni, quindi sono solo indicativi: fai sempre attenzione prima di dare dati personali al telefono.",
+      "libs": "Librerie open source",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "Framework UI"
+        },
+        {
+          "name": "Vite",
+          "note": "Strumento di build"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "Stili"
+        },
+        {
+          "name": "Pinia",
+          "note": "Gestione dello stato"
+        },
+        {
+          "name": "Vue Router",
+          "note": "Navigazione"
+        },
+        {
+          "name": "Iconify e Lucide",
+          "note": "Set di icone"
+        },
+        {
+          "name": "Capacitor",
+          "note": "Esecuzione su Android e iOS"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "Tutte",
+        "missed": "Perse",
+        "incoming": "In arrivo",
+        "outgoing": "In uscita",
+        "unknown": "Sconosciuti",
+        "spam": "Spam/Truffe",
+        "blocked": "Bloccate"
+      },
+      "summary": {
+        "title": "Ultimi 7 giorni",
+        "suspicious": "sospette",
+        "blocked": "bloccate",
+        "clean": "Nessuna chiamata sospetta",
+        "viewBlocked": "Vedi chiamate bloccate"
+      },
+      "empty": {
+        "all": {
+          "title": "Ancora nessuna chiamata",
+          "description": "La cronologia delle chiamate apparirà qui."
+        },
+        "missed": {
+          "title": "Nessuna chiamata persa",
+          "description": "Non hai perso nessuna chiamata di recente."
+        },
+        "incoming": {
+          "title": "Nessuna chiamata in arrivo",
+          "description": "Le chiamate in arrivo a cui hai risposto appariranno qui."
+        },
+        "outgoing": {
+          "title": "Nessuna chiamata in uscita",
+          "description": "Apri il tastierino per fare la tua prima chiamata."
+        },
+        "unknown": {
+          "title": "Nessun numero sconosciuto",
+          "description": "Tutte le chiamate recenti provengono da numeri noti o verificati."
+        },
+        "spam": {
+          "title": "Nessuno spam rilevato",
+          "description": "Le chiamate truffa o pubblicitarie verranno raccolte qui."
+        },
+        "blocked": {
+          "title": "Nessuna chiamata bloccata",
+          "description": "Le chiamate bloccate dalla lista nera appariranno qui."
+        }
+      },
+      "select": {
+        "count": "{n} selezionate",
+        "all": "Seleziona tutto",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "delete": {
+        "title": "Eliminare {n} chiamate?",
+        "message": "Le chiamate selezionate verranno rimosse dal registro. Le statistiche restano.",
+        "done": "{n} chiamate eliminate"
+      },
+      "more": "Opzioni per questa chiamata",
+      "noPermission": {
+        "title": "Nessun accesso al registro chiamate",
+        "description": "Consenti a Safe Dial di leggere il registro per vedere la cronologia, filtrare i numeri sconosciuti e le statistiche.",
+        "grant": "Concedi accesso"
+      },
+      "actions": {
+        "title": "Opzioni",
+        "call": "Chiama",
+        "message": "Messaggio",
+        "detail": "Vedi dettagli",
+        "block": "Blocca questo numero",
+        "unblock": "Sblocca questo numero",
+        "report": "Segnala come spam",
+        "save": "Salva nei contatti",
+        "copy": "Copia numero",
+        "delete": "Elimina dal registro"
+      },
+      "deleteOne": {
+        "title": "Eliminare questa chiamata?",
+        "message": "La chiamata verrà rimossa dal registro."
+      }
+    },
+    "sim": {
+      "title": "Con quale SIM chiamare?",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "Linea principale",
+      "sim2Desc": "Linea secondaria",
+      "remember": "Usa sempre questa SIM"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "Contatti",
+        "favorites": "Preferiti"
+      },
+      "search": "Cerca nome o numero",
+      "emptyAll": {
+        "title": "Rubrica vuota",
+        "description": "Non hai ancora salvato nessun contatto."
+      },
+      "emptySearch": {
+        "title": "Nessun risultato",
+        "description": "Nessun contatto corrisponde a “{q}”."
+      },
+      "emptyFav": {
+        "title": "Nessun preferito",
+        "description": "Tocca la stella nei contatti per aggiungerli qui."
+      },
+      "goContacts": "Apri contatti",
+      "count": "{n} contatti",
+      "quickCall": "Chiama {name}",
+      "favOn": "Rimuovi {name} dai preferiti",
+      "favOff": "Aggiungi {name} ai preferiti"
+    }
+  },
+  "dial": {
+    "title": "Tastierino",
+    "placeholder": "Inserisci un numero",
+    "backspace": "Cancella una cifra",
+    "call": "Chiama",
+    "save": "Salva nei contatti",
+    "message": "Messaggio",
+    "saveToast": "Apertura nuovo contatto",
+    "messageToast": "Apertura messaggi per {number}",
+    "suggestions": "Contatti suggeriti",
+    "recognition": {
+      "checking": "Verifica del numero...",
+      "unknownTitle": "Nessuna informazione su questo numero",
+      "unknownDesc": "Numero sconosciuto. Fai attenzione se ti chiede dati personali.",
+      "contact": "In rubrica",
+      "trusted": "Hai segnato questo numero come affidabile",
+      "marked": "Hai segnato: {category}",
+      "international": "Numero internazionale",
+      "scamWarn": "Hai segnato questo numero come truffa: non dare codici OTP e non inviare denaro.",
+      "spamWarn": "Hai segnato questo numero come molesto. Pensaci prima di chiamare.",
+      "blocked": "Questo numero è bloccato",
+      "unblock": "Sblocca",
+      "unblockToast": "{number} sbloccato",
+      "detail": "Dettagli"
+    },
+    "search": {
+      "title": "Cerca",
+      "placeholder": "Inserisci numero o nome",
+      "back": "Indietro",
+      "contacts": "Contatti",
+      "history": "Nella cronologia chiamate",
+      "lookupTitle": "Info su questo numero",
+      "lookupHint": "Verifica se il numero è in rubrica, nella lista di blocco o già segnato da te.",
+      "lookupBtn": "Verifica",
+      "lookingUp": "Verifica in corso...",
+      "noInfo": "Nessuna informazione",
+      "noInfoDesc": "Non hai segnato né dato un nome a questo numero.",
+      "calls": "Contatti avuti",
+      "callsValue": "{n} chiamate",
+      "country": "Paese",
+      "mark": "Segnalazione",
+      "note": "La tua nota",
+      "detail": "Vedi dettagli",
+      "block": "Blocca",
+      "unblock": "Sblocca",
+      "recent": "Ricerche recenti",
+      "clearAll": "Cancella tutto",
+      "removeRecent": "Rimuovi dalle ricerche",
+      "examplesTitle": "Prova con un numero di esempio",
+      "examplesDesc": "Tocca un numero qui sotto per vedere gli avvisi in azione (demo).",
+      "noResult": {
+        "title": "Nessun risultato",
+        "description": "Nessun contatto o chiamata corrisponde a “{q}”."
+      },
+      "initial": {
+        "title": "Verifica un numero sconosciuto",
+        "description": "Inserisci un numero per vedere se è sicuro."
+      },
+      "callCount": "{n} chiamate"
+    }
+  },
+  "number": {
+    "title": "Dettagli numero",
+    "hidden": "Numero privato",
+    "hiddenDesc": "Il chiamante ha nascosto il numero, quindi non puoi segnarlo né richiamarlo.",
+    "loading": "Caricamento...",
+    "noName": "Senza nome",
+    "contact": "In rubrica",
+    "trusted": "Numero affidabile",
+    "menu": {
+      "open": "Altre opzioni",
+      "title": "Opzioni",
+      "copy": "Copia numero",
+      "share": "Condividi",
+      "block": "Blocca questo numero",
+      "unblock": "Sblocca questo numero",
+      "trust": "Segna come affidabile",
+      "untrust": "Rimuovi affidabile",
+      "clearMark": "Rimuovi segnalazione",
+      "clear": "Cancella cronologia del numero"
+    },
+    "copied": "Numero copiato",
+    "copyFail": "Impossibile copiare",
+    "shareToast": "Menu di condivisione aperto",
+    "warning": {
+      "scamTitle": "Avviso truffa",
+      "spamTitle": "Numero molesto",
+      "marked": "Hai segnato: {category}",
+      "signals": "L'ultima chiamata mostrava segnali di: {list}",
+      "tipsTitle": "Come proteggerti",
+      "tip1": "Non comunicare a nessuno codici OTP, numeri di carta o password.",
+      "tip2": "Non inviare denaro su richiesta telefonica.",
+      "tip3": "Riaggancia e richiama il numero ufficiale dell'ente o della banca."
+    },
+    "actions": {
+      "call": "Chiama",
+      "message": "Messaggio",
+      "favorite": "Preferito",
+      "unfavorite": "Togli preferito",
+      "block": "Blocca",
+      "unblock": "Sblocca",
+      "save": "Salva",
+      "report": "Segnala",
+      "suggest": "Dai un nome",
+      "trust": "Affidabile"
+    },
+    "blockedBanner": "Questo numero è nella lista di blocco",
+    "block": {
+      "title": "Bloccare questo numero?",
+      "message": "Le chiamate da {number} verranno bloccate automaticamente.",
+      "done": "{number} bloccato",
+      "failed": "Impossibile bloccare. Imposta Safe Dial come app telefono predefinita.",
+      "unblockTitle": "Sbloccare questo numero?",
+      "unblockMessage": "Riceverai di nuovo le chiamate da {number}.",
+      "unblockDone": "{number} sbloccato"
+    },
+    "trust": {
+      "done": "Segnato come affidabile. Questo numero non verrà bloccato né segnalato.",
+      "undone": "Rimosso dagli affidabili"
+    },
+    "toast": {
+      "message": "Apertura messaggi per {name}",
+      "save": "Apertura nuovo contatto",
+      "favOn": "Aggiunto ai preferiti",
+      "favOff": "Rimosso dai preferiti",
+      "markCleared": "Segnalazione rimossa"
+    },
+    "info": {
+      "title": "Info sul numero",
+      "country": "Paese",
+      "calls": "Chiamate",
+      "lastCall": "Ultima chiamata",
+      "mark": "La tua segnalazione",
+      "none": "Sconosciuto",
+      "never": "Mai",
+      "noMark": "Non segnato"
+    },
+    "community": {
+      "title": "Le tue note",
+      "noNames": "Non hai dato un nome né scritto note per questo numero.",
+      "suggestTitle": "Dai un nome a questo numero",
+      "suggestPlaceholder": "Es.: Corriere espresso",
+      "suggestSend": "Salva nome",
+      "suggestDone": "Nome salvato per questo numero"
+    },
+    "notes": {
+      "title": "Note di chiamata",
+      "delete": "Elimina nota",
+      "deleted": "Nota eliminata"
+    },
+    "report": {
+      "title": "Segnala questo numero",
+      "subtitle": "Scegli la categoria più adatta per riconoscerlo la prossima volta.",
+      "note": "Nota (facoltativa)",
+      "notePlaceholder": "Breve descrizione della chiamata...",
+      "send": "Salva segnalazione",
+      "thanks": "Numero segnalato",
+      "offerTitle": "Bloccare anche questo numero?",
+      "offerMessage": "{number} non ti disturberà più.",
+      "offerYes": "Blocca",
+      "offerNo": "Più tardi"
+    },
+    "recent": {
+      "title": "Chiamate recenti",
+      "empty": "Nessuna chiamata con questo numero."
+    },
+    "stats": {
+      "title": "Statistiche dei contatti",
+      "subtitle": "Frequenza, durata e giorni preferiti"
+    },
+    "clear": {
+      "title": "Cancellare la cronologia di questo numero?",
+      "message": "Tutte le chiamate con questo numero verranno rimosse dal registro. Le statistiche restano.",
+      "done": "Cronologia chiamate cancellata"
+    },
+    "history": {
+      "title": "Cronologia chiamate",
+      "empty": {
+        "title": "Nessuna chiamata",
+        "description": "Nel registro non ci sono chiamate con questo numero."
+      },
+      "selected": "{n} selezionate",
+      "selectAll": "Seleziona tutto",
+      "delete": "Elimina",
+      "cancel": "Annulla",
+      "deleteTitle": "Eliminare {n} chiamate?",
+      "deleteMessage": "Le chiamate selezionate verranno rimosse dal registro. Le statistiche restano.",
+      "deleted": "{n} chiamate eliminate",
+      "count": "{n} chiamate",
+      "note": "Mostra solo le chiamate ancora presenti nel registro del telefono."
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "Bloccate",
+      "list": "Lista nera",
+      "settings": "Impostazioni"
+    },
+    "blocked": {
+      "weekSummary": "chiamate bloccate negli ultimi 7 giorni",
+      "topReason": "Principalmente: {reason} ({n})",
+      "emptyTitle": "Nessuna chiamata bloccata",
+      "emptyDesc": "Quando una chiamata viene bloccata o silenziata, appare qui con il motivo."
+    },
+    "rules": {
+      "add": "Aggiungi regola",
+      "test": "Verifica un numero",
+      "header": "Regole attive ({n})",
+      "emptyTitle": "Lista nera vuota",
+      "emptyDesc": "Aggiungi numeri o regole per bloccare le chiamate indesiderate.",
+      "deleteTitle": "Eliminare questa regola?",
+      "deleteMsg": "Le chiamate che corrispondono a \"{name}\" non verranno più bloccate da questa regola.",
+      "deleted": "Regola eliminata",
+      "deleteAria": "Elimina la regola {name}",
+      "numbersHeader": "Numeri bloccati ({n})",
+      "numbersEmpty": "Nessun numero specifico bloccato.",
+      "numberDeleteTitle": "Sbloccare questo numero?",
+      "numberDeleteMsg": "Riceverai di nuovo le chiamate da {name}.",
+      "hits": "{n} chiamate bloccate · ultima {date}",
+      "noHits": "Nessuna chiamata bloccata",
+      "toggleAria": "Attiva/disattiva la regola {name}"
+    },
+    "quick": {
+      "header": "Blocco rapido dalle chiamate recenti",
+      "none": "Nessun numero sconosciuto da bloccare tra le chiamate recenti.",
+      "done": "{number} bloccato"
+    },
+    "settings": {
+      "header": "Blocco automatico",
+      "autoBlockReported": {
+        "title": "Blocca i numeri che segno come truffa",
+        "desc": "Quando segni un numero come truffa/spam, viene subito aggiunto alla lista di blocco."
+      },
+      "noRole": "Il blocco funziona solo se Safe Dial è l'app telefono predefinita.",
+      "blockPrivate": {
+        "title": "Blocca numeri privati",
+        "desc": "Blocca le chiamate con numero nascosto."
+      },
+      "blockInternational": {
+        "title": "Blocca chiamate internazionali",
+        "desc": "Consenti solo le chiamate nazionali. I contatti in rubrica possono comunque chiamare."
+      },
+      "blockNonContacts": {
+        "title": "Blocca chi non è in rubrica",
+        "desc": "Ricevi chiamate solo dai contatti in rubrica.",
+        "warn": "Potresti bloccare per errore conoscenti non salvati, corrieri, banche o medici. Valuta la modalità silenziosa."
+      },
+      "notifyOnBlock": {
+        "title": "Notifica al blocco",
+        "desc": "Mostra una notifica ogni volta che una chiamata viene bloccata."
+      },
+      "methodHeader": "Modalità di gestione",
+      "method": {
+        "hangup": {
+          "title": "Riaggancia automaticamente",
+          "desc": "Il chiamante sente occupato / rifiutato. Il tuo telefono non squilla."
+        },
+        "silent": {
+          "title": "Silenzia, la chiamata resta visibile",
+          "desc": "Il telefono resta muto ma la chiamata appare nella cronologia; il chiamante sente squillare."
+        }
+      },
+      "countryHeader": "Blocco per paese",
+      "country": {
+        "title": "Blocco per paese",
+        "desc": "{n} prefissi internazionali bloccati"
+      },
+      "countryAdded": "Prefisso di {name} bloccato",
+      "note": "I contatti in rubrica non vengono bloccati dalle regole su prefisso, finale, paese o chiamate internazionali. Solo la lista di numeri specifici blocca anche i contatti. Il tuo prefisso: {dial}."
+    },
+    "country": {
+      "search": "Cerca paese o prefisso",
+      "blocked": "Bloccato",
+      "none": "Nessun paese trovato."
+    },
+    "form": {
+      "title": "Aggiungi regola di blocco",
+      "kindHeader": "Scegli il tipo di regola",
+      "help": {
+        "number": "Blocca esattamente un numero, anche se è in rubrica.",
+        "startsWith": "Blocca tutti i numeri che iniziano con le cifre inserite.",
+        "contains": "Blocca tutti i numeri che contengono queste cifre in qualsiasi posizione.",
+        "endsWith": "Blocca tutti i numeri che finiscono con le cifre inserite.",
+        "country": "Blocca tutte le chiamate da un paese in base al prefisso."
+      },
+      "example": {
+        "number": "Es.: 0901 234 567 blocca solo questo numero.",
+        "startsWith": "Es.: Inizia con 0899 → blocca tutti i numeri che iniziano con 0899.",
+        "contains": "Es.: Contiene 8888 → blocca 0912 8888 11 e 0988 888 812.",
+        "endsWith": "Es.: Finisce con 0000 → blocca tutti i numeri che finiscono con 0000.",
+        "country": "Es.: scegli Nigeria (+234) → blocca tutti i numeri +234…"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "Valore",
+      "labelLabel": "Nota (facoltativa)",
+      "labelPlaceholder": "Es.: Prefisso prestiti",
+      "picked": "Selezionato: {name}",
+      "errEmpty": "Inserisci un valore per la regola.",
+      "errNumber": "Numero non valido (servono 8-15 cifre).",
+      "errShort": "Inserisci almeno 3 cifre per non bloccare troppi numeri per errore.",
+      "errCountry": "Scegli un paese.",
+      "duplicate": "Questa regola è già nella lista nera.",
+      "previewTitle": "Questa regola corrisponde a {n} chiamate nella cronologia",
+      "previewMore": "e altri {n} numeri",
+      "previewNone": "Nessuna chiamata nella cronologia corrisponde a questa regola.",
+      "previewNote": "I contatti in rubrica non sono conteggiati perché le regole ignorano sempre i conoscenti.",
+      "save": "Salva regola",
+      "saved": "Regola di blocco aggiunta"
+    },
+    "test": {
+      "title": "Verifica un numero",
+      "intro": "Inserisci un numero per vedere come lo gestisce il sistema di blocco, passo dopo passo. Non viene effettuata nessuna chiamata reale.",
+      "numberLabel": "Numero di telefono",
+      "placeholder": "0901 234 567 o +84…",
+      "private": "Numero privato",
+      "privateDesc": "Simula un chiamante con numero nascosto",
+      "run": "Verifica",
+      "invalid": "Inserisci un numero valido o attiva \"Numero privato\".",
+      "quick": "Riempi rapido",
+      "inContacts": "In rubrica",
+      "notContact": "Non in rubrica",
+      "traceHeader": "Passaggi della verifica"
+    },
+    "trace": {
+      "steps": {
+        "system": "La tua lista di blocco",
+        "trusted": "Numero affidabile",
+        "contact": "Contatti",
+        "rule": "Regole prefisso / finale / paese",
+        "private": "Blocca numeri privati",
+        "international": "Blocca chiamate internazionali",
+        "nonContact": "Blocca chi non è in rubrica",
+        "signals": "Segnali di allarme"
+      },
+      "state": {
+        "off": "Disattivato",
+        "pass": "Nessuna corrispondenza",
+        "match": "CORRISPONDE",
+        "stopped": "Non eseguito"
+      },
+      "offHint": "Saltato perché questo interruttore è disattivato.",
+      "stoppedHint": "Non valutato perché un passaggio precedente ha già deciso.",
+      "detail": {
+        "system": {
+          "match": "Questo numero è nella lista di blocco del telefono.",
+          "pass": "Non è nella lista di blocco."
+        },
+        "trusted": {
+          "match": "Hai segnato questo numero come affidabile.",
+          "pass": "Non segnato come affidabile."
+        },
+        "contact": {
+          "match": "In rubrica: {name}.",
+          "pass": "Non in rubrica."
+        },
+        "rule": {
+          "match": "Corrisponde alla regola: {name}.",
+          "pass": "Nessuna corrispondenza tra le {n} regole attive."
+        },
+        "private": {
+          "match": "Il chiamante ha nascosto il numero.",
+          "pass": "Il numero è visibile normalmente."
+        },
+        "international": {
+          "match": "Numero internazionale, non in rubrica.",
+          "pass": "Non è un numero internazionale."
+        },
+        "nonContact": {
+          "match": "Il numero non è in rubrica.",
+          "pass": "Il numero è in rubrica."
+        },
+        "signals": {
+          "match": "Segnali rilevati: {list}.",
+          "pass": "Nessun segnale sospetto."
+        }
+      },
+      "verdict": "Esito",
+      "action": {
+        "allowed": "Consentita",
+        "warned": "Avviso",
+        "blocked": "Bloccata",
+        "silenced": "Silenziata"
+      },
+      "reasonLine": "Motivo: {reason}",
+      "allowLine": "Nessun passaggio blocca questo numero: la chiamata squillerà normalmente.",
+      "warnLine": "La chiamata squilla comunque ma mostra un avviso: {list}.",
+      "silenceNote": "Il telefono resta muto, la chiamata appare comunque nella cronologia."
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 giorni",
+      "30d": "30 giorni",
+      "all": "Tutto"
+    },
+    "empty": {
+      "title": "Ancora nessuna statistica",
+      "desc": "Fai o ricevi chiamate e le statistiche appariranno qui."
+    },
+    "kpi": {
+      "total": "Chiamate totali",
+      "talk": "Tempo di conversazione",
+      "avg": "Media {d}",
+      "missed": "Chiamate perse",
+      "suspicious": "Sospette / Bloccate",
+      "suspiciousSub": "Spam, truffe / bloccate"
+    },
+    "perDay": {
+      "title": "Chiamate al giorno (ultimi {n} giorni)",
+      "aria": "Grafico delle chiamate al giorno"
+    },
+    "types": {
+      "title": "Tipi di chiamata",
+      "center": "chiamate"
+    },
+    "frequency": {
+      "title": "Frequenza dei contatti",
+      "none": "Nessun contatto con numeri in rubrica.",
+      "times": "{n} volte",
+      "noTalk": "Nessuna conversazione"
+    },
+    "strangers": {
+      "title": "Sconosciuti più frequenti",
+      "desc": "Numeri non in rubrica, ordinati per numero di chiamate.",
+      "none": "Nessuno sconosciuto ha chiamato in questo periodo.",
+      "meta": "{n} volte · ultima {date}",
+      "blocked": "Aggiunto alla lista di blocco",
+      "alreadyBlocked": "Bloccato",
+      "hidden": "Numero privato"
+    },
+    "risk": {
+      "title": "Sicurezza delle chiamate in arrivo",
+      "desc": "Distribuzione di {n} chiamate in arrivo."
+    },
+    "number": {
+      "subtitle": "Statistiche di questo numero",
+      "emptyTitle": "Nessuna chiamata con questo numero",
+      "emptyDesc": "Le statistiche appariranno dopo la prima chiamata.",
+      "durationTitle": "Durata conversazioni",
+      "durTotal": "Totale",
+      "durIncoming": "In arrivo",
+      "durOutgoing": "In uscita",
+      "avg": "Media per chiamata {d}",
+      "incomingTitle": "Chiamate in arrivo",
+      "inTotal": "Totale in arrivo",
+      "inAnswered": "Risposte",
+      "inMissed": "Perse",
+      "inBlocked": "Bloccate",
+      "outgoingTitle": "Chiamate in uscita",
+      "outTotal": "Totale in uscita",
+      "outAnswered": "Con risposta",
+      "outNot": "Senza risposta",
+      "weeks": "Ultime 8 settimane",
+      "weeksAria": "Chiamate per settimana: {v}",
+      "weekdayTitle": "Giorni più frequenti",
+      "weekdayAria": "Chiamate per giorno della settimana",
+      "firstLast": "Cronologia",
+      "first": "Prima chiamata",
+      "last": "Ultima chiamata",
+      "viewHistory": "Vedi cronologia"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "Simula una chiamata in arrivo",
+      "intro": "Disponibile solo nella demo (browser). Scegli uno scenario per vedere come Safe Dial identifica e gestisce la chiamata.",
+      "displayHeader": "Stile di visualizzazione",
+      "displayStyle": "Finestra del chiamante",
+      "sizeClassic": "Popup",
+      "sizeFull": "Schermo intero",
+      "position": "Posizione del popup",
+      "posTop": "In alto",
+      "posCenter": "Al centro",
+      "posBottom": "In basso",
+      "scenarios": "Scenari",
+      "willRing": "Squillerà",
+      "willBlock": "Verrà bloccata",
+      "customHeader": "Numero personalizzato",
+      "customPlaceholder": "Inserisci un numero",
+      "customRun": "Prova chiamata",
+      "invalid": "Inserisci un numero valido.",
+      "blocked": "Bloccata:",
+      "silenced": "Silenziata:",
+      "detail": "Dettagli: {d}",
+      "viewBlocked": "Vedi Bloccate"
+    },
+    "overlay": {
+      "incoming": "Chiamata in arrivo",
+      "head": {
+        "safe": "Chiamata in arrivo - Sicura",
+        "unknown": "Chiamata in arrivo - Sconosciuto",
+        "spam": "Avviso - Possibile spam",
+        "scam": "Avviso - Possibile truffa"
+      },
+      "answer": "Rispondi",
+      "reject": "Rifiuta",
+      "moreAria": "Altre azioni",
+      "hiddenCaller": "Numero nascosto",
+      "localCountry": "Vietnam",
+      "marked": "Hai segnato: {category}",
+      "signals": "Segnali: {list}",
+      "warnMarked": "Attenzione: hai segnato questo numero come {category}. Non dare codici OTP o password e non inviare denaro.",
+      "warnGeneric": "Attenzione: questo numero mostra segni di truffa. Non dare codici OTP o password e non inviare denaro.",
+      "quick": {
+        "message": "Messaggio rapido",
+        "remind": "Ricordamelo",
+        "block": "Blocca questo numero"
+      }
+    },
+    "sheets": {
+      "moreTitle": "Altre azioni",
+      "messageTitle": "Messaggio rapido",
+      "messageDesc": "Rifiuta la chiamata e invia un messaggio di risposta.",
+      "replies": {
+        "r1": "Sono occupato, ti richiamo più tardi.",
+        "r2": "Sono in riunione, scrivimi un messaggio.",
+        "r3": "Sto guidando, richiamami più tardi.",
+        "r4": "Di cosa hai bisogno? Scrivimi un messaggio."
+      },
+      "remindTitle": "Ricordamelo",
+      "remindDesc": "Rifiuta la chiamata e ricordati di richiamare.",
+      "reminds": {
+        "10s": "10 secondi",
+        "1m": "1 minuto",
+        "5m": "5 minuti",
+        "15m": "15 minuti",
+        "30m": "30 minuti"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "Rispondere comunque?",
+      "confirmMsg": "Hai segnato questo numero come truffa/spam. Rispondere comunque?",
+      "confirmOk": "Rispondi comunque",
+      "confirmCancel": "Non rispondere",
+      "blockTitle": "Bloccare questo numero?",
+      "blockMsg": "Le chiamate da {number} verranno bloccate d'ora in poi.",
+      "blocked": "{number} bloccato",
+      "cannotBlockHidden": "Impossibile bloccare un numero privato. Attiva \"Blocca numeri privati\" nella scheda Blocco.",
+      "replySent": "Rifiutata e inviato: {text}",
+      "remindSet": "Rifiutata, promemoria tra {when}"
+    },
+    "active": {
+      "dialing": "Chiamata in corso…",
+      "onHold": "In attesa",
+      "warnScam": "Avviso truffa: non dare codici OTP o password e non inviare denaro.",
+      "warnSpam": "Hai segnato questo numero come spam. Fai attenzione.",
+      "end": "Termina chiamata",
+      "hideKeypad": "Nascondi tastierino",
+      "noteTitle": "Note di chiamata",
+      "notePlaceholder": "Cosa ricordare di questa chiamata...",
+      "noteSave": "Salva nota",
+      "noteSaved": "Nota salvata",
+      "controls": {
+        "mute": "Muto",
+        "keypad": "Tastierino",
+        "speaker": "Vivavoce",
+        "hold": "Attesa",
+        "add": "Aggiungi",
+        "note": "Nota"
+      }
+    },
+    "after": {
+      "title": "Chiamata terminata",
+      "type": "Tipo di chiamata",
+      "duration": "Durata",
+      "time": "Ora",
+      "whoTitle": "Chi era?",
+      "whoDesc": "Segnalo per riconoscerlo la prossima volta.",
+      "hidden": "È un numero privato, quindi non puoi segnarlo o bloccarlo singolarmente. Se serve, attiva \"Blocca numeri privati\" nella scheda Blocco.",
+      "spam": "Segna come spam",
+      "notSpam": "Non è spam",
+      "notSpamToast": "Numero segnato come affidabile",
+      "suggest": "Dai un nome",
+      "alreadyBlocked": "Bloccato",
+      "reportedBtn": "Segnalato",
+      "reportTitle": "Segnala questo numero",
+      "reportDesc": "Scegli la categoria più adatta alla chiamata appena conclusa.",
+      "reported": "Numero segnalato",
+      "suggestTitle": "Dai un nome a questo numero",
+      "suggestDesc": "Il nome resta solo sul tuo telefono.",
+      "suggestPlaceholder": "Es.: Corriere espresso",
+      "suggestSend": "Salva nome",
+      "suggested": "Nome salvato per questo numero",
+      "saveToast": "Apertura nuovo contatto",
+      "callBack": "Richiama",
+      "messageToast": "Apertura messaggi"
+    }
+  }
+}

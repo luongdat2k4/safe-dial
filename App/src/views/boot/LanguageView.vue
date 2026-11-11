@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
@@ -7,6 +7,7 @@ import BaseButton from '@/components/BaseButton.vue'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
+import { LOCALES, flagUrl, setLocale, type Locale } from '@/i18n'
 
 const route = useRoute()
 const router = useRouter()
@@ -14,14 +15,18 @@ const settings = useSettingsStore()
 const ui = useUiStore()
 
 const fromSettings = computed(() => route.query.from === 'settings')
-const selected = ref<'vi' | 'en'>(settings.state.language)
+const selected = ref<Locale>(settings.state.language)
+let confirmed = false
 
-const options = [
-  { code: 'vi' as const, flag: '🇻🇳', title: t('boot.language.vi'), sub: t('boot.language.viNative') },
-  { code: 'en' as const, flag: '🇬🇧', title: t('boot.language.en'), sub: t('boot.language.enNative'), note: t('boot.language.enSoon') },
-]
+
+/** Xem trước ngay: giao diện đổi theo ngôn ngữ vừa chọn. */
+async function pick(code: Locale) {
+  selected.value = code
+  await setLocale(code)
+}
 
 function confirm() {
+  confirmed = true
   settings.patch({ language: selected.value })
   if (fromSettings.value) {
     ui.showToast(t('boot.language.saved'), 'success')
@@ -30,6 +35,11 @@ function confirm() {
     router.push('/onboarding')
   }
 }
+
+// Rời màn mà không xác nhận → trả lại ngôn ngữ đang lưu.
+onBeforeUnmount(() => {
+  if (!confirmed && selected.value !== settings.state.language) void setLocale(settings.state.language)
+})
 </script>
 
 <template>
@@ -47,20 +57,19 @@ function confirm() {
 
       <div role="radiogroup" :aria-label="t('boot.language.title')" class="flex flex-col gap-3">
         <button
-          v-for="o in options"
+          v-for="o in LOCALES"
           :key="o.code"
           type="button"
           role="radio"
           :aria-checked="selected === o.code"
-          class="tap flex min-h-16 items-center gap-3 rounded-card border-2 bg-surface px-4 py-3 text-left shadow-card"
+          :lang="o.code"
+          class="tap flex min-h-16 items-center gap-3 rounded-card border-2 bg-surface px-4 py-3 text-start shadow-card"
           :class="selected === o.code ? 'border-primary/40 bg-primary-soft' : 'border-white'"
-          @click="selected = o.code"
+          @click="pick(o.code)"
         >
-          <span class="text-3xl leading-none" aria-hidden="true">{{ o.flag }}</span>
+          <img :src="flagUrl(o.code)" alt="" width="32" height="32" class="size-8 shrink-0 rounded-full" loading="lazy" />
           <span class="min-w-0 flex-1">
-            <span class="block text-base font-semibold">{{ o.title }}</span>
-            <span class="block text-[13px] text-muted">{{ o.sub }}</span>
-            <span v-if="o.note" class="mt-0.5 block text-xs text-spam">{{ o.note }}</span>
+            <span class="block text-base font-semibold">{{ o.native }}</span>
           </span>
           <span
             class="grid size-6 shrink-0 place-items-center rounded-full border-2"

@@ -85,11 +85,6 @@
     "language": {
       "title": "Chọn ngôn ngữ",
       "subtitle": "Bạn có thể thay đổi lại trong Cài đặt bất cứ lúc nào.",
-      "vi": "Tiếng Việt",
-      "viNative": "Việt Nam",
-      "en": "English",
-      "enNative": "Tiếng Anh",
-      "enSoon": "Bản dịch tiếng Anh sắp có",
       "confirm": "Xác nhận",
       "saved": "Đã lưu ngôn ngữ"
     },
@@ -179,10 +174,6 @@
       "notifications": "Thông báo",
       "sound": "Âm thanh và rung",
       "language": "Ngôn ngữ",
-      "languageValue": {
-        "vi": "Tiếng Việt",
-        "en": "English"
-      },
       "sim": "SIM gọi đi",
       "callerId": "Hiển thị thông tin người gọi",
       "callerIdSub": "Popup, vị trí và kiểu hiển thị",

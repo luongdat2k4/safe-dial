@@ -1,3 +1,4 @@
+import type { Locale } from '@/i18n'
 /** Mức độ rủi ro của một số điện thoại. */
 export type RiskLevel = 'safe' | 'unknown' | 'spam' | 'scam'
 
@@ -97,7 +98,7 @@ export type SimChoice = 'ask' | 'sim1' | 'sim2'
 export interface AppSettings {
   onboardingDone: boolean
   permissionsDone: boolean
-  language: 'vi' | 'en'
+  language: Locale
   homeCountryDial: string
   callerIdEnabled: boolean
   showForContacts: boolean

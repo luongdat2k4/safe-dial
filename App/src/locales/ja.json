@@ -1,0 +1,1068 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "知らない番号を識別し、詐欺をブロック",
+    "actions": {
+      "ok": "OK",
+      "cancel": "キャンセル",
+      "close": "閉じる",
+      "back": "戻る",
+      "save": "保存",
+      "delete": "削除",
+      "block": "ブロック",
+      "unblock": "ブロック解除",
+      "call": "発信",
+      "message": "メッセージ",
+      "done": "完了",
+      "next": "次へ",
+      "skip": "スキップ",
+      "allow": "許可",
+      "retry": "再試行",
+      "copy": "コピー",
+      "share": "共有",
+      "edit": "編集",
+      "add": "追加",
+      "search": "検索",
+      "report": "報告",
+      "viewAll": "すべて表示",
+      "addToContacts": "連絡先に保存",
+      "history": "履歴"
+    },
+    "nav": {
+      "calls": "通話",
+      "contacts": "連絡先",
+      "block": "ブロック",
+      "stats": "統計"
+    },
+    "risk": {
+      "safe": "安全",
+      "unknown": "不明な番号",
+      "spam": "迷惑電話",
+      "scam": "詐欺"
+    },
+    "category": {
+      "scam": "詐欺",
+      "spam": "迷惑電話",
+      "loan": "ローン / 保険",
+      "robocall": "自動音声電話",
+      "fakeJob": "偽の求人 / 当選",
+      "telemarketing": "電話勧誘",
+      "impersonation": "機関 / 銀行のなりすまし"
+    },
+    "callType": {
+      "incoming": "着信",
+      "outgoing": "発信",
+      "missed": "不在着信",
+      "blocked": "ブロック済み"
+    },
+    "blockReason": {
+      "private": "非通知",
+      "international": "国際電話",
+      "nonContact": "連絡先にない番号",
+      "list": "ブロックリストに登録済み",
+      "rule": "ブロックルールに一致",
+      "country": "国番号でブロック"
+    },
+    "signal": {
+      "international": "国際番号",
+      "private": "非通知",
+      "burst": "短時間に何度も着信",
+      "rejectedBefore": "以前に拒否またはブロックした番号"
+    },
+    "ruleKind": {
+      "number": "特定の番号",
+      "startsWith": "先頭が一致",
+      "contains": "数字を含む",
+      "endsWith": "末尾が一致",
+      "country": "国番号"
+    },
+    "unknownNumber": "不明な番号",
+    "privateNumber": "非通知",
+    "noName": "名前なし",
+    "mockNotice": "デモ版：データと通話はシミュレーションです。"
+  },
+  "boot": {
+    "language": {
+      "title": "言語を選択",
+      "subtitle": "設定からいつでも変更できます。",
+      "confirm": "確認",
+      "saved": "言語を保存しました"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "知らない番号を識別",
+        "protect": "安心してつながる",
+        "calls": "誰からの電話かわかる",
+        "insights": "連絡の統計"
+      },
+      "pages": [
+        {
+          "title": "知らない番号を識別",
+          "text": "連絡先にない番号でも、誰からの電話かすぐにわかります。着信時に名前とリスクの種類を表示します。"
+        },
+        {
+          "title": "リアルタイムの詐欺警告",
+          "text": "着信番号がブラックリストに登録されている場合、見慣れない国際番号の場合、異常に何度もかかってくる場合に Safe Dial が警告します。"
+        },
+        {
+          "title": "迷惑電話のブロックと連絡の統計",
+          "text": "国際番号、非通知、迷惑番号をあなたのルールでブロックし、よく連絡を取る相手を確認できます。"
+        }
+      ],
+      "dots": "{total} ページ中 {n} ページ目",
+      "start": "はじめる"
+    },
+    "permissions": {
+      "title": "Safe Dial に権限を許可",
+      "subtitle": "各権限は明確な目的にのみ使用します。あとで変更できます。",
+      "allowAll": "すべて許可",
+      "later": "あとで",
+      "laterWarn": "すべての権限を許可するまで、保護機能は制限されます",
+      "needBasic": "続行するには連絡先へのアクセスを許可してください",
+      "sectionPermissions": "アクセス権限",
+      "sectionRoles": "スマートフォン上の役割",
+      "privacyTitle": "あなたのプライバシー",
+      "privacyText": "連絡先データは識別にのみ使用し、販売や第三者への共有は行いません。",
+      "items": {
+        "calls": {
+          "title": "電話と通話履歴",
+          "why": "電話の発信、履歴と統計の確認に使用します。"
+        },
+        "contacts": {
+          "title": "連絡先",
+          "why": "知り合いの名前を表示し、誤ってブロックしないために使用します。"
+        },
+        "notifications": {
+          "title": "通知",
+          "why": "着信の表示や、ブロックした着信のお知らせに使用します。"
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "デフォルトの電話アプリ",
+          "why": "着信音が鳴る前に Safe Dial が通話の受信、発信、フィルタ、ブロックを行えるようにします。"
+        },
+        "screening": {
+          "title": "発信者識別・通話フィルタアプリ",
+          "why": "着信音が鳴る前に通話を確認・ブロックできるようにします。"
+        },
+        "set": "設定済み",
+        "notSet": "未設定",
+        "sheetTitleDialer": "Safe Dial をデフォルトの電話アプリに設定しますか？",
+        "sheetTitleScreening": "Safe Dial を発信者識別・通話フィルタアプリに設定しますか？",
+        "sheetText": "この画面はシステムの役割選択ダイアログを再現したものです。",
+        "setDefault": "デフォルトに設定",
+        "cancel": "今はしない",
+        "done": "Safe Dial をデフォルトの電話アプリに設定しました",
+        "unavailable": "この端末ではデフォルトの電話アプリを変更できません"
+      },
+      "granted": "許可済み"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "version": "Safe Dial バージョン {v}",
+    "groups": {
+      "general": "一般",
+      "calls": "通話",
+      "protection": "保護",
+      "data": "データ",
+      "lab": "試験運用",
+      "support": "サポート"
+    },
+    "rows": {
+      "notifications": "通知",
+      "sound": "サウンドとバイブ",
+      "language": "言語",
+      "sim": "発信用 SIM",
+      "callerId": "発信者情報の表示",
+      "callerIdSub": "ポップアップ、位置、表示スタイル",
+      "scamWarning": "詐欺警告",
+      "scamWarningSub": "詐欺・迷惑電話としてマークした番号や不審な兆候がある番号からの着信時に赤い警告を表示します。",
+      "blockRules": "ブロックルール",
+      "blockRulesSub": "ブラックリスト、国際番号、非通知",
+      "clearHistory": "通話履歴をすべて削除",
+      "clearHistorySub": "元に戻せません。統計は保持されます。",
+      "clearStats": "統計データを削除",
+      "clearStatsSub": "統計タブのデータをすべてリセット",
+      "resetDemo": "デモデータを再作成",
+      "simulate": "着信をシミュレート",
+      "simulateSub": "デモ版のみ：警告とブロックを試す",
+      "rate": "アプリを評価",
+      "feedback": "フィードバック",
+      "share": "アプリを共有",
+      "about": "アプリ情報とプライバシー",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "発信用 SIM",
+      "ask": "毎回確認",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "通話履歴をすべて削除しますか？",
+      "message": "履歴内のすべての通話が削除されます。ブロックリスト、連絡先、統計には影響しません。",
+      "confirm": "すべて削除",
+      "done": "通話履歴を削除しました"
+    },
+    "clearStats": {
+      "title": "統計データを削除しますか？",
+      "message": "連絡の頻度と通話時間のデータが削除されます。通話履歴には影響しません。",
+      "done": "統計データを削除しました"
+    },
+    "rate": {
+      "title": "Safe Dial を評価",
+      "text": "アプリの使い心地はいかがですか？",
+      "star": "星 {n}",
+      "send": "送信",
+      "thanks": "星 {n} の評価をありがとうございます",
+      "labels": [
+        "とても悪い",
+        "いまいち",
+        "普通",
+        "良い",
+        "最高"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "リンクをコピーしました"
+    },
+    "notifications": {
+      "title": "通知",
+      "callAlert": "着信通知",
+      "callAlertSub": "不審な番号から着信があったときに通知を表示します。",
+      "missed": "不在着信",
+      "missedSub": "電話に出られなかったときにお知らせします。",
+      "remind": "不在着信のリマインダー",
+      "remindSub": "折り返していない場合、数分後に再度お知らせします。",
+      "blocked": "ブロック時の通知",
+      "blockedSub": "ブロックした番号とその理由をお知らせします。"
+    },
+    "sound": {
+      "title": "サウンドとバイブ",
+      "ringtone": "着信音",
+      "ringtoneSheet": "着信音を選択",
+      "ringtones": [
+        "デフォルト",
+        "着信音 1",
+        "着信音 2",
+        "着信音 3",
+        "着信音 4",
+        "サイレント"
+      ],
+      "dial": "キーパッド音",
+      "dialSub": "ダイヤルキーを押したときのフィードバック。",
+      "dialOptions": {
+        "silent": "サイレント",
+        "vibrate": "バイブ",
+        "sound": "サウンド",
+        "both": "サウンドとバイブ"
+      },
+      "demo": "デモ版：実際の音は再生されません。"
+    },
+    "callerId": {
+      "title": "発信者情報の表示",
+      "enabled": "発信者情報ウィンドウをオン",
+      "enabledSub": "着信時に名前とリスクレベルを表示します。",
+      "contacts": "連絡先の相手にも表示",
+      "contactsSub": "デフォルトでは不明な番号のみ表示します。",
+      "after": "通話後に表示",
+      "afterSub": "通話終了時に保存、ブロック、報告を提案します。",
+      "style": "表示スタイル",
+      "classic": "小さなポップアップ",
+      "classicSub": "コンパクトで画面を覆わない",
+      "full": "全画面",
+      "fullSub": "見やすく、警告に気づきやすい",
+      "position": "ポップアップの位置",
+      "top": "上",
+      "center": "中央",
+      "bottom": "下",
+      "preview": "プレビュー",
+      "previewCaller": "不明な番号",
+      "tryIt": "着信を試す"
+    },
+    "feedback": {
+      "title": "フィードバック",
+      "easy": "アプリは使いやすいですか？",
+      "yes": "はい",
+      "no": "いいえ",
+      "features": "よく使う機能はどれですか？",
+      "featureList": [
+        "知らない番号の識別",
+        "連絡先",
+        "迷惑電話ブロック",
+        "詐欺警告",
+        "通話履歴",
+        "連絡の統計"
+      ],
+      "message": "ご意見をお聞かせください",
+      "placeholder": "改善してほしい点はありますか？",
+      "submit": "フィードバックを送信",
+      "thanks": "フィードバックをありがとうございます",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "アプリ情報",
+      "version": "バージョン {v}",
+      "demo": "Safe Dial は電話アプリです。連絡先と通話履歴はスマートフォンから直接読み込み、ブラックリストと統計は端末内に保存されます。",
+      "privacy": "プライバシー",
+      "privacyItems": [
+        {
+          "q": "Safe Dial はどんなデータを使いますか？",
+          "a": "発信者の識別とブロックルールの適用のために、着信番号、通話履歴、連絡先を使用します。"
+        },
+        {
+          "q": "データはどこに保存されますか？",
+          "a": "設定、ブロックリスト、マーク、統計はすべてお使いの端末に保存されます。アプリがデータを外部に送信することはありません。"
+        },
+        {
+          "q": "連絡先が販売されることはありますか？",
+          "a": "いいえ。連絡先は識別にのみ使用し、販売や第三者への共有は行いません。"
+        }
+      ],
+      "terms": "利用規約",
+      "termsText": "本アプリはご自身の責任でご利用ください。警告はご自身のブラックリストとマークに基づくため参考情報です。電話で個人情報を伝える際は常に注意してください。",
+      "libs": "オープンソースライブラリ",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "UI フレームワーク"
+        },
+        {
+          "name": "Vite",
+          "note": "ビルドツール"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "スタイル"
+        },
+        {
+          "name": "Pinia",
+          "note": "状態管理"
+        },
+        {
+          "name": "Vue Router",
+          "note": "ルーティング"
+        },
+        {
+          "name": "Iconify と Lucide",
+          "note": "アイコンセット"
+        },
+        {
+          "name": "Capacitor",
+          "note": "Android と iOS で動作"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "すべて",
+        "missed": "不在",
+        "incoming": "着信",
+        "outgoing": "発信",
+        "unknown": "不明",
+        "spam": "迷惑/詐欺",
+        "blocked": "ブロック済み"
+      },
+      "summary": {
+        "title": "過去 7 日間",
+        "suspicious": "不審",
+        "blocked": "ブロック済み",
+        "clean": "不審な着信はありません",
+        "viewBlocked": "ブロックした着信を見る"
+      },
+      "empty": {
+        "all": {
+          "title": "通話はまだありません",
+          "description": "通話履歴がここに表示されます。"
+        },
+        "missed": {
+          "title": "不在着信はありません",
+          "description": "最近、出られなかった電話はありません。"
+        },
+        "incoming": {
+          "title": "着信はまだありません",
+          "description": "応答した着信がここに表示されます。"
+        },
+        "outgoing": {
+          "title": "発信はまだありません",
+          "description": "キーパッドを開いて最初の電話をかけましょう。"
+        },
+        "unknown": {
+          "title": "不明な番号はありません",
+          "description": "最近の着信はすべて知っている番号か確認済みの番号です。"
+        },
+        "spam": {
+          "title": "迷惑電話は検出されていません",
+          "description": "詐欺や広告の電話はここにまとめられます。"
+        },
+        "blocked": {
+          "title": "ブロックした着信はありません",
+          "description": "ブラックリストでブロックした着信がここに表示されます。"
+        }
+      },
+      "select": {
+        "count": "{n} 件選択中",
+        "all": "すべて選択",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "delete": {
+        "title": "{n} 件の通話を削除しますか？",
+        "message": "選択した通話は履歴から削除されます。統計は保持されます。",
+        "done": "{n} 件の通話を削除しました"
+      },
+      "more": "この通話のオプション",
+      "noPermission": {
+        "title": "通話履歴を読み取る権限がありません",
+        "description": "履歴の表示、不明な番号の絞り込み、統計のために Safe Dial に通話履歴の読み取りを許可してください。",
+        "grant": "権限を許可"
+      },
+      "actions": {
+        "title": "オプション",
+        "call": "発信",
+        "message": "メッセージ",
+        "detail": "詳細を見る",
+        "block": "この番号をブロック",
+        "unblock": "この番号のブロックを解除",
+        "report": "迷惑電話として報告",
+        "save": "連絡先に保存",
+        "copy": "番号をコピー",
+        "delete": "履歴から削除"
+      },
+      "deleteOne": {
+        "title": "この通話を削除しますか？",
+        "message": "この通話は履歴から削除されます。"
+      }
+    },
+    "sim": {
+      "title": "どの SIM で発信しますか？",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "メイン回線",
+      "sim2Desc": "サブ回線",
+      "remember": "常にこの SIM を使用"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "連絡先",
+        "favorites": "お気に入り"
+      },
+      "search": "名前または電話番号を検索",
+      "emptyAll": {
+        "title": "連絡先はありません",
+        "description": "保存された連絡先はまだありません。"
+      },
+      "emptySearch": {
+        "title": "見つかりません",
+        "description": "「{q}」に一致する連絡先はありません。"
+      },
+      "emptyFav": {
+        "title": "お気に入りの連絡先はありません",
+        "description": "連絡先で星アイコンをタップすると、ここに追加されます。"
+      },
+      "goContacts": "連絡先を開く",
+      "count": "{n} 件の連絡先",
+      "quickCall": "{name} に発信",
+      "favOn": "{name} をお気に入りから外す",
+      "favOff": "{name} をお気に入りに追加"
+    }
+  },
+  "dial": {
+    "title": "キーパッド",
+    "placeholder": "電話番号を入力",
+    "backspace": "1 文字削除",
+    "call": "発信",
+    "save": "連絡先に保存",
+    "message": "メッセージ",
+    "saveToast": "連絡先の追加画面を開きます",
+    "messageToast": "{number} へのメッセージを開きます",
+    "suggestions": "おすすめの連絡先",
+    "recognition": {
+      "checking": "番号を確認中...",
+      "unknownTitle": "この番号の情報はありません",
+      "unknownDesc": "不明な番号です。個人情報を求められたら注意してください。",
+      "contact": "連絡先に登録済み",
+      "trusted": "この番号を信頼済みとしてマークしています",
+      "marked": "マーク済み：{category}",
+      "international": "国際番号",
+      "scamWarn": "この番号は詐欺としてマークされています。OTP コードを伝えたり送金したりしないでください。",
+      "spamWarn": "この番号は迷惑電話としてマークされています。発信する前によく考えてください。",
+      "blocked": "この番号はブロック中です",
+      "unblock": "ブロック解除",
+      "unblockToast": "{number} のブロックを解除しました",
+      "detail": "詳細"
+    },
+    "search": {
+      "title": "検索",
+      "placeholder": "電話番号または名前を入力",
+      "back": "戻る",
+      "contacts": "連絡先",
+      "history": "通話履歴内",
+      "lookupTitle": "この番号の情報",
+      "lookupHint": "番号が連絡先やブロックリストにあるか、マーク済みかを確認できます。",
+      "lookupBtn": "確認",
+      "lookingUp": "確認中...",
+      "noInfo": "情報はありません",
+      "noInfoDesc": "この番号にはまだマークや名前を付けていません。",
+      "calls": "連絡済み",
+      "callsValue": "{n} 件の通話",
+      "country": "国",
+      "mark": "マーク",
+      "note": "あなたのメモ",
+      "detail": "詳細を見る",
+      "block": "ブロック",
+      "unblock": "ブロック解除",
+      "recent": "最近の検索",
+      "clearAll": "すべて削除",
+      "removeRecent": "検索履歴から削除",
+      "examplesTitle": "サンプル番号で試す",
+      "examplesDesc": "下の番号をタップして警告の動作を確認できます（デモ版）。",
+      "noResult": {
+        "title": "結果なし",
+        "description": "「{q}」に一致する連絡先や通話は見つかりませんでした。"
+      },
+      "initial": {
+        "title": "不明な番号をチェック",
+        "description": "電話番号を入力して、安全かどうかを確認しましょう。"
+      },
+      "callCount": "{n} 件の通話"
+    }
+  },
+  "number": {
+    "title": "番号の詳細",
+    "hidden": "非通知",
+    "hiddenDesc": "発信者が番号を非通知にしているため、マークや折り返しはできません。",
+    "loading": "読み込み中...",
+    "noName": "名前なし",
+    "contact": "連絡先に登録済み",
+    "trusted": "信頼済みの番号",
+    "menu": {
+      "open": "その他のオプション",
+      "title": "オプション",
+      "copy": "番号をコピー",
+      "share": "共有",
+      "block": "この番号をブロック",
+      "unblock": "この番号のブロックを解除",
+      "trust": "信頼済みにする",
+      "untrust": "信頼済みを解除",
+      "clearMark": "マークを削除",
+      "clear": "この番号の履歴を削除"
+    },
+    "copied": "番号をコピーしました",
+    "copyFail": "コピーできませんでした",
+    "shareToast": "共有パネルを開きました",
+    "warning": {
+      "scamTitle": "詐欺警告",
+      "spamTitle": "迷惑電話の多い番号",
+      "marked": "マーク済み：{category}",
+      "signals": "直近の着信の兆候：{list}",
+      "tipsTitle": "身を守るために",
+      "tip1": "OTP コード、カード番号、パスワードを誰にも伝えないでください。",
+      "tip2": "電話で求められても送金しないでください。",
+      "tip3": "電話を切り、機関や銀行の公式番号にかけ直してください。"
+    },
+    "actions": {
+      "call": "発信",
+      "message": "メッセージ",
+      "favorite": "お気に入り",
+      "unfavorite": "お気に入り解除",
+      "block": "ブロック",
+      "unblock": "ブロック解除",
+      "save": "連絡先に保存",
+      "report": "マーク",
+      "suggest": "名前を付ける",
+      "trust": "信頼"
+    },
+    "blockedBanner": "この番号はブロックリストに登録されています",
+    "block": {
+      "title": "この番号をブロックしますか？",
+      "message": "{number} からの着信は自動的にブロックされます。",
+      "done": "{number} をブロックしました",
+      "failed": "ブロックできませんでした。Safe Dial をデフォルトの電話アプリに設定してください。",
+      "unblockTitle": "この番号のブロックを解除しますか？",
+      "unblockMessage": "{number} からの着信を再び受けられるようになります。",
+      "unblockDone": "{number} のブロックを解除しました"
+    },
+    "trust": {
+      "done": "信頼済みにしました。この番号はブロックや警告の対象になりません。",
+      "undone": "信頼済みを解除しました"
+    },
+    "toast": {
+      "message": "{name} へのメッセージを開きます",
+      "save": "連絡先の追加画面を開きます",
+      "favOn": "お気に入りに追加しました",
+      "favOff": "お気に入りから外しました",
+      "markCleared": "マークを削除しました"
+    },
+    "info": {
+      "title": "番号の情報",
+      "country": "国",
+      "calls": "通話回数",
+      "lastCall": "最後の通話",
+      "mark": "あなたのマーク",
+      "none": "不明",
+      "never": "なし",
+      "noMark": "マークなし"
+    },
+    "community": {
+      "title": "あなたのメモ",
+      "noNames": "この番号にはまだ名前やメモを付けていません。",
+      "suggestTitle": "この番号に名前を付ける",
+      "suggestPlaceholder": "例：宅配便",
+      "suggestSend": "名前を保存",
+      "suggestDone": "この番号の名前を保存しました"
+    },
+    "notes": {
+      "title": "通話メモ",
+      "delete": "メモを削除",
+      "deleted": "メモを削除しました"
+    },
+    "report": {
+      "title": "この番号をマーク",
+      "subtitle": "最も当てはまる種類を選ぶと、次回この番号を見分けられます。",
+      "note": "メモ（任意）",
+      "notePlaceholder": "通話の簡単な説明...",
+      "send": "マークを保存",
+      "thanks": "この番号をマークしました",
+      "offerTitle": "この番号もブロックしますか？",
+      "offerMessage": "{number} から迷惑を受けることはなくなります。",
+      "offerYes": "ブロック",
+      "offerNo": "あとで"
+    },
+    "recent": {
+      "title": "最近の通話",
+      "empty": "この番号との通話はまだありません。"
+    },
+    "stats": {
+      "title": "連絡の統計",
+      "subtitle": "頻度、通話時間、よく話す曜日"
+    },
+    "clear": {
+      "title": "この番号の履歴を削除しますか？",
+      "message": "この番号とのすべての通話が履歴から削除されます。統計は保持されます。",
+      "done": "通話履歴を削除しました"
+    },
+    "history": {
+      "title": "通話履歴",
+      "empty": {
+        "title": "通話はまだありません",
+        "description": "履歴にこの番号との通話はありません。"
+      },
+      "selected": "{n} 件選択中",
+      "selectAll": "すべて選択",
+      "delete": "削除",
+      "cancel": "キャンセル",
+      "deleteTitle": "{n} 件の通話を削除しますか？",
+      "deleteMessage": "選択した通話は履歴から削除されます。統計は保持されます。",
+      "deleted": "{n} 件の通話を削除しました",
+      "count": "{n} 件の通話",
+      "note": "端末の通話履歴に残っている通話のみ表示します。"
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "ブロック済み",
+      "list": "ブラックリスト",
+      "settings": "設定"
+    },
+    "blocked": {
+      "weekSummary": "過去 7 日間にブロックした着信",
+      "topReason": "主な理由：{reason}（{n}）",
+      "emptyTitle": "ブロックした着信はありません",
+      "emptyDesc": "着信をブロックまたは消音すると、理由とともにここに表示されます。"
+    },
+    "rules": {
+      "add": "ルールを追加",
+      "test": "番号をテスト",
+      "header": "適用中のルール（{n}）",
+      "emptyTitle": "ブラックリストは空です",
+      "emptyDesc": "番号やルールを追加して、不要な着信をブロックしましょう。",
+      "deleteTitle": "このルールを削除しますか？",
+      "deleteMsg": "「{name}」に一致する着信は、このルールではブロックされなくなります。",
+      "deleted": "ルールを削除しました",
+      "deleteAria": "ルール {name} を削除",
+      "numbersHeader": "ブロック中の番号（{n}）",
+      "numbersEmpty": "特定の番号はまだブロックしていません。",
+      "numberDeleteTitle": "この番号のブロックを解除しますか？",
+      "numberDeleteMsg": "{name} からの着信を再び受けられるようになります。",
+      "hits": "{n} 件ブロック · 最新 {date}",
+      "noHits": "ブロック実績なし",
+      "toggleAria": "ルール {name} のオン/オフ"
+    },
+    "quick": {
+      "header": "最近の通話からすばやくブロック",
+      "none": "最近の通話にブロックが必要な不明な番号はありません。",
+      "done": "{number} をブロックしました"
+    },
+    "settings": {
+      "header": "自動ブロック",
+      "autoBlockReported": {
+        "title": "詐欺としてマークした番号を自動ブロック",
+        "desc": "番号を詐欺/迷惑電話としてマークすると、すぐにブロックリストに追加されます。"
+      },
+      "noRole": "ブロックを有効にするには、Safe Dial をデフォルトの電話アプリに設定する必要があります。",
+      "blockPrivate": {
+        "title": "非通知をブロック",
+        "desc": "番号を非通知にした着信をブロックします。"
+      },
+      "blockInternational": {
+        "title": "国際電話をブロック",
+        "desc": "国内からの着信のみ許可します。連絡先の番号からは引き続き着信します。"
+      },
+      "blockNonContacts": {
+        "title": "連絡先にない番号をブロック",
+        "desc": "連絡先に登録した相手からの着信のみ受けます。",
+        "warn": "番号を保存していない知り合い、配達員、銀行、医師などを誤ってブロックするおそれがあります。消音モードの利用をご検討ください。"
+      },
+      "notifyOnBlock": {
+        "title": "ブロック時に通知",
+        "desc": "着信をブロックするたびに通知を表示します。"
+      },
+      "methodHeader": "処理方法",
+      "method": {
+        "hangup": {
+          "title": "自動的に切断",
+          "desc": "発信者には話し中 / 拒否の音が聞こえます。あなたの端末は鳴りません。"
+        },
+        "silent": {
+          "title": "消音（着信は表示）",
+          "desc": "端末は鳴りませんが、着信は履歴に残り、発信者には呼び出し音が聞こえます。"
+        }
+      },
+      "countryHeader": "国別ブロック",
+      "country": {
+        "title": "国別ブロック",
+        "desc": "{n} 件の国番号をブロック中"
+      },
+      "countryAdded": "{name} の番号をブロックしました",
+      "note": "連絡先の番号は、先頭・末尾の番号、国番号、国際電話のルールではブロックされません。連絡先の番号もブロックできるのは特定番号のリストだけです。あなたの国番号：{dial}。"
+    },
+    "country": {
+      "search": "国名または国番号を検索",
+      "blocked": "ブロック済み",
+      "none": "一致する国が見つかりません。"
+    },
+    "form": {
+      "title": "ブロックルールを追加",
+      "kindHeader": "ルールの種類を選択",
+      "help": {
+        "number": "特定の電話番号を 1 件だけブロックします。連絡先にある番号も対象です。",
+        "startsWith": "入力した数字で始まるすべての番号をブロックします。",
+        "contains": "この数字列をどこかに含むすべての番号をブロックします。",
+        "endsWith": "入力した数字で終わるすべての番号をブロックします。",
+        "country": "国番号を指定して、その国からのすべての着信をブロックします。"
+      },
+      "example": {
+        "number": "例：0901 234 567 はこの番号だけをブロックします。",
+        "startsWith": "例：先頭が 0899 → 0899 で始まるすべての番号をブロック。",
+        "contains": "例：8888 を含む → 0912 8888 11 と 0988 888 812 をブロック。",
+        "endsWith": "例：末尾が 0000 → 0000 で終わるすべての番号をブロック。",
+        "country": "例：ナイジェリア (+234) を選択 → すべての +234… 番号をブロック"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "値",
+      "labelLabel": "メモ（任意）",
+      "labelPlaceholder": "例：ローン勧誘の番号",
+      "picked": "選択中：{name}",
+      "errEmpty": "ルールの値を入力してください。",
+      "errNumber": "電話番号が正しくありません（8〜15 桁が必要です）。",
+      "errShort": "誤って多くの番号をブロックしないよう、3 桁以上入力してください。",
+      "errCountry": "国を選択してください。",
+      "duplicate": "このルールはすでにブラックリストにあります。",
+      "previewTitle": "このルールは履歴内の {n} 件の通話に一致します",
+      "previewMore": "ほか {n} 件の番号",
+      "previewNone": "履歴にこのルールに一致する通話はまだありません。",
+      "previewNote": "パターンルールは常に知り合いを除外するため、連絡先の番号は含まれません。",
+      "save": "ルールを保存",
+      "saved": "ブロックルールを追加しました"
+    },
+    "test": {
+      "title": "番号をテスト",
+      "intro": "番号を入力すると、ブロックエンジンの処理を 1 ステップずつ確認できます。実際の発信は行われません。",
+      "numberLabel": "電話番号",
+      "placeholder": "0901 234 567 または +84…",
+      "private": "非通知",
+      "privateDesc": "非通知の発信者をシミュレート",
+      "run": "確認",
+      "invalid": "有効な電話番号を入力するか、「非通知」をオンにしてください。",
+      "quick": "クイック入力",
+      "inContacts": "連絡先に登録済み",
+      "notContact": "連絡先にない",
+      "traceHeader": "確認ステップ"
+    },
+    "trace": {
+      "steps": {
+        "system": "あなたのブロックリスト",
+        "trusted": "信頼済みの番号",
+        "contact": "連絡先",
+        "rule": "先頭 / 末尾 / 国のルール",
+        "private": "非通知をブロック",
+        "international": "国際電話をブロック",
+        "nonContact": "連絡先にない番号をブロック",
+        "signals": "警告の兆候"
+      },
+      "state": {
+        "off": "オフ",
+        "pass": "一致なし",
+        "match": "一致",
+        "stopped": "未実行"
+      },
+      "offHint": "このスイッチがオフのためスキップしました。",
+      "stoppedHint": "前のステップで結論が出たため確認していません。",
+      "detail": {
+        "system": {
+          "match": "この番号は端末のブロックリストにあります。",
+          "pass": "ブロックリストにありません。"
+        },
+        "trusted": {
+          "match": "この番号を信頼済みとしてマークしています。",
+          "pass": "信頼済みではありません。"
+        },
+        "contact": {
+          "match": "連絡先に登録済み：{name}。",
+          "pass": "連絡先にありません。"
+        },
+        "rule": {
+          "match": "一致したルール：{name}。",
+          "pass": "有効な {n} 件のルールのいずれにも一致しません。"
+        },
+        "private": {
+          "match": "発信者が番号を非通知にしています。",
+          "pass": "番号は通常どおり表示されています。"
+        },
+        "international": {
+          "match": "国際番号で、連絡先にありません。",
+          "pass": "国際番号ではありません。"
+        },
+        "nonContact": {
+          "match": "番号は連絡先にありません。",
+          "pass": "番号は連絡先にあります。"
+        },
+        "signals": {
+          "match": "兆候あり：{list}。",
+          "pass": "不審な兆候はありません。"
+        }
+      },
+      "verdict": "結論",
+      "action": {
+        "allowed": "許可",
+        "warned": "警告",
+        "blocked": "ブロック",
+        "silenced": "消音"
+      },
+      "reasonLine": "理由：{reason}",
+      "allowLine": "この番号をブロックするステップはなく、着信は通常どおり鳴ります。",
+      "warnLine": "着信は鳴りますが、警告を表示します：{list}。",
+      "silenceNote": "端末は鳴りませんが、着信は履歴に表示されます。"
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 日間",
+      "30d": "30 日間",
+      "all": "すべて"
+    },
+    "empty": {
+      "title": "統計データはまだありません",
+      "desc": "電話をかけるか受けると、ここに統計が表示されます。"
+    },
+    "kpi": {
+      "total": "通話合計",
+      "talk": "通話時間",
+      "avg": "平均 {d}",
+      "missed": "不在着信",
+      "suspicious": "不審 / ブロック済み",
+      "suspiciousSub": "迷惑・詐欺 / ブロックした番号"
+    },
+    "perDay": {
+      "title": "1 日あたりの通話（直近 {n} 日間）",
+      "aria": "1 日あたりの通話数のグラフ"
+    },
+    "types": {
+      "title": "通話の種類",
+      "center": "通話"
+    },
+    "frequency": {
+      "title": "連絡の頻度",
+      "none": "連絡先の相手との通話はまだありません。",
+      "times": "{n} 回",
+      "noTalk": "通話なし"
+    },
+    "strangers": {
+      "title": "よくかけてくる知らない人",
+      "desc": "連絡先にない番号を着信回数順に表示します。",
+      "none": "この期間に知らない人からの着信はありません。",
+      "meta": "{n} 回 · 最新 {date}",
+      "blocked": "ブロックリストに追加しました",
+      "alreadyBlocked": "ブロック済み",
+      "hidden": "非通知"
+    },
+    "risk": {
+      "title": "着信の安全度",
+      "desc": "{n} 件の着信の内訳。"
+    },
+    "number": {
+      "subtitle": "この番号の統計",
+      "emptyTitle": "この番号との通話はまだありません",
+      "emptyDesc": "通話があると統計が表示されます。",
+      "durationTitle": "通話時間",
+      "durTotal": "合計",
+      "durIncoming": "着信",
+      "durOutgoing": "発信",
+      "avg": "1 通話あたり平均 {d}",
+      "incomingTitle": "着信",
+      "inTotal": "着信合計",
+      "inAnswered": "応答済み",
+      "inMissed": "不在",
+      "inBlocked": "ブロック済み",
+      "outgoingTitle": "発信",
+      "outTotal": "発信合計",
+      "outAnswered": "相手が応答",
+      "outNot": "応答なし",
+      "weeks": "直近 8 週間",
+      "weeksAria": "週ごとの通話数：{v}",
+      "weekdayTitle": "よく通話する曜日",
+      "weekdayAria": "曜日ごとの通話数",
+      "firstLast": "タイムライン",
+      "first": "最初の通話",
+      "last": "最後の通話",
+      "viewHistory": "履歴を見る"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "着信をシミュレート",
+      "intro": "デモ版（ブラウザ）のみ。シナリオを選んで、Safe Dial が着信をどう識別・処理するかを確認できます。",
+      "displayHeader": "表示スタイル",
+      "displayStyle": "発信者ダイアログ",
+      "sizeClassic": "ポップアップ",
+      "sizeFull": "全画面",
+      "position": "ポップアップの位置",
+      "posTop": "上",
+      "posCenter": "中央",
+      "posBottom": "下",
+      "scenarios": "シナリオ",
+      "willRing": "着信音が鳴る",
+      "willBlock": "ブロックされる",
+      "customHeader": "任意の番号",
+      "customPlaceholder": "電話番号を入力",
+      "customRun": "試しに発信",
+      "invalid": "有効な電話番号を入力してください。",
+      "blocked": "ブロック：",
+      "silenced": "消音：",
+      "detail": "詳細：{d}",
+      "viewBlocked": "ブロック済みを見る"
+    },
+    "overlay": {
+      "incoming": "着信",
+      "head": {
+        "safe": "着信 - 安全",
+        "unknown": "着信 - 不明な番号",
+        "spam": "警告 - 迷惑電話の疑い",
+        "scam": "警告 - 詐欺の疑い"
+      },
+      "answer": "応答",
+      "reject": "拒否",
+      "moreAria": "その他の操作",
+      "hiddenCaller": "非通知の発信者",
+      "localCountry": "ベトナム",
+      "marked": "マーク済み：{category}",
+      "signals": "兆候：{list}",
+      "warnMarked": "警告：この番号を「{category}」としてマークしています。OTP コードやパスワードを伝えたり、送金したりしないでください。",
+      "warnGeneric": "警告：この番号には詐欺の兆候があります。OTP コードやパスワードを伝えたり、送金したりしないでください。",
+      "quick": {
+        "message": "クイック返信",
+        "remind": "あとで通知",
+        "block": "この番号をブロック"
+      }
+    },
+    "sheets": {
+      "moreTitle": "その他の操作",
+      "messageTitle": "クイック返信",
+      "messageDesc": "着信を拒否して返信メッセージを送ります。",
+      "replies": {
+        "r1": "今忙しいので、あとでかけ直します。",
+        "r2": "会議中です。メッセージをお願いします。",
+        "r3": "運転中です。あとでかけ直してください。",
+        "r4": "ご用件は何ですか？メッセージでお知らせください。"
+      },
+      "remindTitle": "あとで通知",
+      "remindDesc": "着信を拒否して、折り返しをお知らせします。",
+      "reminds": {
+        "10s": "10 秒",
+        "1m": "1 分",
+        "5m": "5 分",
+        "15m": "15 分",
+        "30m": "30 分"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "応答しますか？",
+      "confirmMsg": "この番号は詐欺/迷惑電話としてマークされています。それでも応答しますか？",
+      "confirmOk": "応答する",
+      "confirmCancel": "応答しない",
+      "blockTitle": "この番号をブロックしますか？",
+      "blockMsg": "次回から {number} からの着信はブロックされます。",
+      "blocked": "{number} をブロックしました",
+      "cannotBlockHidden": "非通知の番号はブロックできません。ブロックタブで「非通知をブロック」をオンにしてください。",
+      "replySent": "拒否してメッセージを送信しました：{text}",
+      "remindSet": "拒否しました。{when}後にお知らせします"
+    },
+    "active": {
+      "dialing": "発信中…",
+      "onHold": "保留中",
+      "warnScam": "詐欺警告：OTP コードやパスワードを伝えたり、送金したりしないでください。",
+      "warnSpam": "この番号は迷惑電話としてマークされています。ご注意ください。",
+      "end": "通話を終了",
+      "hideKeypad": "キーパッドを隠す",
+      "noteTitle": "通話メモ",
+      "notePlaceholder": "この通話について覚えておきたいこと...",
+      "noteSave": "メモを保存",
+      "noteSaved": "メモを保存しました",
+      "controls": {
+        "mute": "ミュート",
+        "keypad": "キーパッド",
+        "speaker": "スピーカー",
+        "hold": "保留",
+        "add": "通話を追加",
+        "note": "メモ"
+      }
+    },
+    "after": {
+      "title": "通話が終了しました",
+      "type": "通話の種類",
+      "duration": "通話時間",
+      "time": "日時",
+      "whoTitle": "この相手は誰ですか？",
+      "whoDesc": "マークすると、次回この番号を見分けられます。",
+      "hidden": "非通知の番号のため、個別にマークやブロックはできません。必要に応じてブロックタブで「非通知をブロック」をオンにしてください。",
+      "spam": "迷惑電話としてマーク",
+      "notSpam": "迷惑電話ではない",
+      "notSpamToast": "この番号を信頼済みにしました",
+      "suggest": "名前を付ける",
+      "alreadyBlocked": "ブロック済み",
+      "reportedBtn": "マーク済み",
+      "reportTitle": "この番号をマーク",
+      "reportDesc": "今の通話に最も当てはまる種類を選んでください。",
+      "reported": "この番号をマークしました",
+      "suggestTitle": "この番号に名前を付ける",
+      "suggestDesc": "この名前はあなたの端末にのみ保存されます。",
+      "suggestPlaceholder": "例：宅配便",
+      "suggestSend": "名前を保存",
+      "suggested": "この番号の名前を保存しました",
+      "saveToast": "連絡先の追加画面を開きます",
+      "callBack": "折り返す",
+      "messageToast": "メッセージを開きます"
+    }
+  }
+}

@@ -1,0 +1,1068 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "Herken onbekende nummers, blokkeer oplichting",
+    "actions": {
+      "ok": "OK",
+      "cancel": "Annuleren",
+      "close": "Sluiten",
+      "back": "Terug",
+      "save": "Opslaan",
+      "delete": "Verwijderen",
+      "block": "Blokkeren",
+      "unblock": "Deblokkeren",
+      "call": "Bellen",
+      "message": "Bericht",
+      "done": "Klaar",
+      "next": "Doorgaan",
+      "skip": "Overslaan",
+      "allow": "Toestaan",
+      "retry": "Opnieuw",
+      "copy": "Kopiëren",
+      "share": "Delen",
+      "edit": "Bewerken",
+      "add": "Toevoegen",
+      "search": "Zoeken",
+      "report": "Melden",
+      "viewAll": "Alles bekijken",
+      "addToContacts": "Opslaan in contacten",
+      "history": "Geschiedenis"
+    },
+    "nav": {
+      "calls": "Oproepen",
+      "contacts": "Contacten",
+      "block": "Blokkeren",
+      "stats": "Statistieken"
+    },
+    "risk": {
+      "safe": "Veilig",
+      "unknown": "Onbekend",
+      "spam": "Spam",
+      "scam": "Oplichting"
+    },
+    "category": {
+      "scam": "Oplichting",
+      "spam": "Spam",
+      "loan": "Leningen / verzekeringen",
+      "robocall": "Automatische oproep",
+      "fakeJob": "Nepbaan / nepprijs",
+      "telemarketing": "Telemarketing",
+      "impersonation": "Nep-instantie / nepbank"
+    },
+    "callType": {
+      "incoming": "Inkomende oproep",
+      "outgoing": "Uitgaande oproep",
+      "missed": "Gemiste oproep",
+      "blocked": "Geblokkeerd"
+    },
+    "blockReason": {
+      "private": "Afgeschermd nummer",
+      "international": "Internationale oproep",
+      "nonContact": "Niet in contacten",
+      "list": "Op de blokkeerlijst",
+      "rule": "Komt overeen met blokkeerregel",
+      "country": "Geblokkeerd op landcode"
+    },
+    "signal": {
+      "international": "internationaal nummer",
+      "private": "afgeschermd nummer",
+      "burst": "herhaaldelijk bellen",
+      "rejectedBefore": "eerder door jou geweigerd of geblokkeerd"
+    },
+    "ruleKind": {
+      "number": "Specifiek nummer",
+      "startsWith": "Begint met",
+      "contains": "Bevat cijfers",
+      "endsWith": "Eindigt op",
+      "country": "Landcode"
+    },
+    "unknownNumber": "Onbekend nummer",
+    "privateNumber": "Afgeschermd nummer",
+    "noName": "Geen naam",
+    "mockNotice": "Demoversie: gegevens en oproepen zijn gesimuleerd."
+  },
+  "boot": {
+    "language": {
+      "title": "Kies je taal",
+      "subtitle": "Je kunt dit altijd wijzigen in Instellingen.",
+      "confirm": "Bevestigen",
+      "saved": "Taal opgeslagen"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "Herken onbekende nummers",
+        "protect": "Bel met een gerust hart",
+        "calls": "Weet wie er belt",
+        "insights": "Contactstatistieken"
+      },
+      "pages": [
+        {
+          "title": "Herken onbekende nummers",
+          "text": "Zie meteen wie er belt, ook als het nummer niet in je contacten staat. Naam en risiconiveau verschijnen terwijl de telefoon overgaat."
+        },
+        {
+          "title": "Realtime waarschuwingen voor oplichting",
+          "text": "Safe Dial waarschuwt als een nummer op je zwarte lijst staat, een onbekend buitenlands nummer is of opvallend vaak achter elkaar belt."
+        },
+        {
+          "title": "Blokkeer spam en bekijk statistieken",
+          "text": "Blokkeer buitenlandse, afgeschermde en ongewenste nummers met je eigen regels, en zie wie het meest contact met je heeft."
+        }
+      ],
+      "dots": "Pagina {n} van {total}",
+      "start": "Aan de slag"
+    },
+    "permissions": {
+      "title": "Machtigingen voor Safe Dial",
+      "subtitle": "Elke machtiging heeft een duidelijk doel. Je kunt ze later wijzigen.",
+      "allowAll": "Alles toestaan",
+      "later": "Later",
+      "laterWarn": "Bescherming is beperkt totdat je alle machtigingen geeft",
+      "needBasic": "Sta toegang tot Contacten toe om door te gaan",
+      "sectionPermissions": "Toegangsrechten",
+      "sectionRoles": "Rollen op de telefoon",
+      "privacyTitle": "Jouw privacy",
+      "privacyText": "Contactgegevens worden alleen gebruikt voor herkenning, niet verkocht en niet gedeeld met derden.",
+      "items": {
+        "calls": {
+          "title": "Oproepen en oproeplogboek",
+          "why": "Om te bellen en je oproepgeschiedenis en statistieken te bekijken."
+        },
+        "contacts": {
+          "title": "Contacten",
+          "why": "Om namen van bekenden te tonen en hen niet per ongeluk te blokkeren."
+        },
+        "notifications": {
+          "title": "Meldingen",
+          "why": "Om inkomende oproepen te tonen en je te laten weten wanneer een oproep is geblokkeerd."
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "Standaard telefoon-app",
+          "why": "Zodat Safe Dial oproepen kan ontvangen, plaatsen, filteren en blokkeren voordat ze overgaan."
+        },
+        "screening": {
+          "title": "App voor nummerherkenning en filtering",
+          "why": "Hiermee kunnen oproepen gecontroleerd en geblokkeerd worden voordat ze overgaan."
+        },
+        "set": "Ingesteld",
+        "notSet": "Niet ingesteld",
+        "sheetTitleDialer": "Safe Dial instellen als standaard telefoon-app?",
+        "sheetTitleScreening": "Safe Dial instellen als app voor nummerherkenning en filtering?",
+        "sheetText": "Dit scherm simuleert het systeemvenster voor het kiezen van een rol.",
+        "setDefault": "Als standaard instellen",
+        "cancel": "Niet nu",
+        "done": "Safe Dial is nu je standaard telefoon-app",
+        "unavailable": "Op dit toestel kan de standaard telefoon-app niet worden gewijzigd"
+      },
+      "granted": "Toegestaan"
+    }
+  },
+  "settings": {
+    "title": "Instellingen",
+    "version": "Safe Dial versie {v}",
+    "groups": {
+      "general": "Algemeen",
+      "calls": "Oproepen",
+      "protection": "Bescherming",
+      "data": "Gegevens",
+      "lab": "Experimenteel",
+      "support": "Ondersteuning"
+    },
+    "rows": {
+      "notifications": "Meldingen",
+      "sound": "Geluid en trillen",
+      "language": "Taal",
+      "sim": "SIM voor bellen",
+      "callerId": "Bellerinformatie",
+      "callerIdSub": "Pop-up, positie en weergave",
+      "scamWarning": "Waarschuwing voor oplichting",
+      "scamWarningSub": "Toon een rode waarschuwing als je het nummer als oplichting of spam hebt gemarkeerd, of als het verdacht lijkt.",
+      "blockRules": "Blokkeerregels",
+      "blockRulesSub": "Zwarte lijst, buitenlandse nummers, afgeschermde nummers",
+      "clearHistory": "Volledige oproepgeschiedenis wissen",
+      "clearHistorySub": "Kan niet ongedaan worden gemaakt. Statistieken blijven bewaard.",
+      "clearStats": "Statistieken wissen",
+      "clearStatsSub": "Zet alle gegevens op het tabblad Statistieken terug",
+      "resetDemo": "Demogegevens opnieuw maken",
+      "simulate": "Inkomende oproep simuleren",
+      "simulateSub": "Alleen in de demo: test waarschuwingen en blokkeren",
+      "rate": "App beoordelen",
+      "feedback": "Feedback",
+      "share": "App delen",
+      "about": "Over en privacy",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "SIM voor bellen",
+      "ask": "Altijd vragen",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "Volledige oproepgeschiedenis wissen?",
+      "message": "Alle oproepen in het logboek worden verwijderd. Blokkeerlijst, contacten en statistieken blijven ongewijzigd.",
+      "confirm": "Alles wissen",
+      "done": "Oproepgeschiedenis gewist"
+    },
+    "clearStats": {
+      "title": "Statistieken wissen?",
+      "message": "Gegevens over contactfrequentie en gespreksduur worden verwijderd. Het oproeplogboek blijft ongewijzigd.",
+      "done": "Statistieken gewist"
+    },
+    "rate": {
+      "title": "Safe Dial beoordelen",
+      "text": "Wat vind je van de app?",
+      "star": "{n} sterren",
+      "send": "Versturen",
+      "thanks": "Bedankt voor je {n} sterren",
+      "labels": [
+        "Heel slecht",
+        "Matig",
+        "Redelijk",
+        "Goed",
+        "Geweldig"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "Link gekopieerd"
+    },
+    "notifications": {
+      "title": "Meldingen",
+      "callAlert": "Oproepmeldingen",
+      "callAlertSub": "Toon een melding als een verdacht nummer belt.",
+      "missed": "Gemiste oproepen",
+      "missedSub": "Laat weten wanneer je een oproep hebt gemist.",
+      "remind": "Herinnering gemiste oproep",
+      "remindSub": "Herinnert je na een paar minuten als je nog niet hebt teruggebeld.",
+      "blocked": "Melding bij blokkeren",
+      "blockedSub": "Laat zien welk nummer is geblokkeerd en waarom."
+    },
+    "sound": {
+      "title": "Geluid en trillen",
+      "ringtone": "Beltoon",
+      "ringtoneSheet": "Kies een beltoon",
+      "ringtones": [
+        "Standaard",
+        "Beltoon 1",
+        "Beltoon 2",
+        "Beltoon 3",
+        "Beltoon 4",
+        "Stil"
+      ],
+      "dial": "Toetsenbordtonen",
+      "dialSub": "Feedback wanneer je op de kiestoetsen drukt.",
+      "dialOptions": {
+        "silent": "Stil",
+        "vibrate": "Trillen",
+        "sound": "Geluid",
+        "both": "Geluid en trillen"
+      },
+      "demo": "Demoversie: er wordt geen echt geluid afgespeeld."
+    },
+    "callerId": {
+      "title": "Bellerinformatie",
+      "enabled": "Bellervenster inschakelen",
+      "enabledSub": "Toon naam en risiconiveau bij inkomende oproepen.",
+      "contacts": "Ook tonen voor contacten",
+      "contactsSub": "Standaard alleen voor onbekende nummers.",
+      "after": "Tonen na het gesprek",
+      "afterSub": "Stelt voor om op te slaan, te blokkeren of te melden na afloop.",
+      "style": "Weergave",
+      "classic": "Kleine pop-up",
+      "classicSub": "Compact, bedekt het scherm niet",
+      "full": "Volledig scherm",
+      "fullSub": "Duidelijk, waarschuwingen goed zichtbaar",
+      "position": "Positie van pop-up",
+      "top": "Boven",
+      "center": "Midden",
+      "bottom": "Onder",
+      "preview": "Voorbeeld",
+      "previewCaller": "Onbekend nummer",
+      "tryIt": "Testoproep bekijken"
+    },
+    "feedback": {
+      "title": "Feedback",
+      "easy": "Is de app makkelijk te gebruiken?",
+      "yes": "Ja",
+      "no": "Nee",
+      "features": "Welke functie gebruik je het meest?",
+      "featureList": [
+        "Nummerherkenning",
+        "Contacten",
+        "Spam blokkeren",
+        "Waarschuwingen voor oplichting",
+        "Oproepgeschiedenis",
+        "Contactstatistieken"
+      ],
+      "message": "Vertel ons meer",
+      "placeholder": "Wat kunnen we verbeteren?",
+      "submit": "Feedback versturen",
+      "thanks": "Bedankt voor je feedback",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "Over",
+      "version": "Versie {v}",
+      "demo": "Safe Dial is een telefoon-app: contacten en oproeplogboek worden rechtstreeks van je telefoon gelezen; zwarte lijst en statistieken blijven op het toestel.",
+      "privacy": "Privacy",
+      "privacyItems": [
+        {
+          "q": "Welke gegevens gebruikt Safe Dial?",
+          "a": "Inkomende nummers, oproeplogboek en contacten, om bellers te herkennen en blokkeerregels toe te passen."
+        },
+        {
+          "q": "Waar worden gegevens opgeslagen?",
+          "a": "Instellingen, blokkeerlijst, markeringen en statistieken blijven op je toestel. De app verstuurt nergens gegevens naartoe."
+        },
+        {
+          "q": "Worden contacten verkocht?",
+          "a": "Nee. Contacten worden alleen gebruikt voor herkenning, niet verkocht en niet gedeeld met derden."
+        }
+      ],
+      "terms": "Gebruiksvoorwaarden",
+      "termsText": "Je gebruikt de app op eigen verantwoordelijkheid. Waarschuwingen zijn gebaseerd op je eigen zwarte lijst en markeringen en dus alleen indicatief: wees altijd voorzichtig met het delen van persoonlijke gegevens via de telefoon.",
+      "libs": "Opensourcebibliotheken",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "UI-framework"
+        },
+        {
+          "name": "Vite",
+          "note": "Buildtool"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "Styling"
+        },
+        {
+          "name": "Pinia",
+          "note": "Statusbeheer"
+        },
+        {
+          "name": "Vue Router",
+          "note": "Navigatie"
+        },
+        {
+          "name": "Iconify en Lucide",
+          "note": "Iconensets"
+        },
+        {
+          "name": "Capacitor",
+          "note": "Draait op Android en iOS"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "Alle",
+        "missed": "Gemist",
+        "incoming": "Inkomend",
+        "outgoing": "Uitgaand",
+        "unknown": "Onbekend",
+        "spam": "Spam/Oplichting",
+        "blocked": "Geblokkeerd"
+      },
+      "summary": {
+        "title": "Afgelopen 7 dagen",
+        "suspicious": "verdacht",
+        "blocked": "geblokkeerd",
+        "clean": "Geen verdachte oproepen",
+        "viewBlocked": "Geblokkeerde oproepen bekijken"
+      },
+      "empty": {
+        "all": {
+          "title": "Nog geen oproepen",
+          "description": "Je oproepgeschiedenis verschijnt hier."
+        },
+        "missed": {
+          "title": "Geen gemiste oproepen",
+          "description": "Je hebt recent geen oproepen gemist."
+        },
+        "incoming": {
+          "title": "Nog geen inkomende oproepen",
+          "description": "Beantwoorde inkomende oproepen verschijnen hier."
+        },
+        "outgoing": {
+          "title": "Nog geen uitgaande oproepen",
+          "description": "Open het toetsenblok om je eerste oproep te doen."
+        },
+        "unknown": {
+          "title": "Geen onbekende nummers",
+          "description": "Alle recente oproepen komen van bekende of geverifieerde nummers."
+        },
+        "spam": {
+          "title": "Geen spam gevonden",
+          "description": "Oplichtings- en reclameoproepen worden hier verzameld."
+        },
+        "blocked": {
+          "title": "Nog geen oproepen geblokkeerd",
+          "description": "Oproepen die via de zwarte lijst zijn geblokkeerd, verschijnen hier."
+        }
+      },
+      "select": {
+        "count": "{n} geselecteerd",
+        "all": "Alles selecteren",
+        "delete": "Verwijderen",
+        "cancel": "Annuleren"
+      },
+      "delete": {
+        "title": "{n} oproepen verwijderen?",
+        "message": "De geselecteerde oproepen worden uit het logboek verwijderd. Statistieken blijven bewaard.",
+        "done": "{n} oproepen verwijderd"
+      },
+      "more": "Opties voor deze oproep",
+      "noPermission": {
+        "title": "Geen toegang tot oproeplogboek",
+        "description": "Sta Safe Dial toe het logboek te lezen voor geschiedenis, het filteren van onbekende nummers en statistieken.",
+        "grant": "Toegang geven"
+      },
+      "actions": {
+        "title": "Opties",
+        "call": "Bellen",
+        "message": "Bericht",
+        "detail": "Details bekijken",
+        "block": "Dit nummer blokkeren",
+        "unblock": "Dit nummer deblokkeren",
+        "report": "Melden als spam",
+        "save": "Opslaan in contacten",
+        "copy": "Nummer kopiëren",
+        "delete": "Uit logboek verwijderen"
+      },
+      "deleteOne": {
+        "title": "Deze oproep verwijderen?",
+        "message": "De oproep wordt uit het logboek verwijderd."
+      }
+    },
+    "sim": {
+      "title": "Met welke SIM bellen?",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "Hoofdlijn",
+      "sim2Desc": "Tweede lijn",
+      "remember": "Altijd deze SIM gebruiken"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "Contacten",
+        "favorites": "Favorieten"
+      },
+      "search": "Zoek naam of nummer",
+      "emptyAll": {
+        "title": "Geen contacten",
+        "description": "Je hebt nog geen contacten opgeslagen."
+      },
+      "emptySearch": {
+        "title": "Niets gevonden",
+        "description": "Geen contacten die overeenkomen met “{q}”."
+      },
+      "emptyFav": {
+        "title": "Nog geen favorieten",
+        "description": "Tik op de ster bij een contact om het hier toe te voegen."
+      },
+      "goContacts": "Contacten openen",
+      "count": "{n} contacten",
+      "quickCall": "{name} bellen",
+      "favOn": "{name} uit favorieten verwijderen",
+      "favOff": "{name} aan favorieten toevoegen"
+    }
+  },
+  "dial": {
+    "title": "Toetsenblok",
+    "placeholder": "Voer een nummer in",
+    "backspace": "Eén cijfer wissen",
+    "call": "Bellen",
+    "save": "Opslaan in contacten",
+    "message": "Bericht",
+    "saveToast": "Nieuw contact openen",
+    "messageToast": "Bericht aan {number} openen",
+    "suggestions": "Voorgestelde contacten",
+    "recognition": {
+      "checking": "Nummer controleren...",
+      "unknownTitle": "Geen informatie over dit nummer",
+      "unknownDesc": "Onbekend nummer. Wees voorzichtig als om persoonlijke gegevens wordt gevraagd.",
+      "contact": "In contacten",
+      "trusted": "Je hebt dit nummer als vertrouwd gemarkeerd",
+      "marked": "Door jou gemarkeerd: {category}",
+      "international": "Internationaal nummer",
+      "scamWarn": "Je hebt dit nummer als oplichting gemarkeerd — geef geen OTP-code en maak geen geld over.",
+      "spamWarn": "Je hebt dit nummer als hinderlijk gemarkeerd. Denk na voordat je belt.",
+      "blocked": "Dit nummer is geblokkeerd",
+      "unblock": "Deblokkeren",
+      "unblockToast": "{number} gedeblokkeerd",
+      "detail": "Details"
+    },
+    "search": {
+      "title": "Zoeken",
+      "placeholder": "Voer nummer of naam in",
+      "back": "Terug",
+      "contacts": "Contacten",
+      "history": "In oproepgeschiedenis",
+      "lookupTitle": "Info over dit nummer",
+      "lookupHint": "Bekijk of het nummer in je contacten, op de blokkeerlijst of al door jou gemarkeerd is.",
+      "lookupBtn": "Controleren",
+      "lookingUp": "Controleren...",
+      "noInfo": "Geen informatie",
+      "noInfoDesc": "Je hebt dit nummer nog niet gemarkeerd of een naam gegeven.",
+      "calls": "Contact gehad",
+      "callsValue": "{n} oproepen",
+      "country": "Land",
+      "mark": "Markering",
+      "note": "Jouw notitie",
+      "detail": "Details bekijken",
+      "block": "Blokkeren",
+      "unblock": "Deblokkeren",
+      "recent": "Recente zoekopdrachten",
+      "clearAll": "Alles wissen",
+      "removeRecent": "Uit zoekgeschiedenis verwijderen",
+      "examplesTitle": "Probeer een voorbeeldnummer",
+      "examplesDesc": "Tik hieronder op een nummer om de waarschuwingen in actie te zien (demo).",
+      "noResult": {
+        "title": "Geen resultaten",
+        "description": "Geen contacten of oproepen die overeenkomen met “{q}”."
+      },
+      "initial": {
+        "title": "Onbekend nummer controleren",
+        "description": "Voer een nummer in om te zien of het veilig is."
+      },
+      "callCount": "{n} oproepen"
+    }
+  },
+  "number": {
+    "title": "Nummerdetails",
+    "hidden": "Afgeschermd nummer",
+    "hiddenDesc": "De beller heeft het nummer afgeschermd, dus markeren of terugbellen is niet mogelijk.",
+    "loading": "Laden...",
+    "noName": "Nog geen naam",
+    "contact": "In contacten",
+    "trusted": "Vertrouwd nummer",
+    "menu": {
+      "open": "Meer opties",
+      "title": "Opties",
+      "copy": "Nummer kopiëren",
+      "share": "Delen",
+      "block": "Dit nummer blokkeren",
+      "unblock": "Dit nummer deblokkeren",
+      "trust": "Markeren als vertrouwd",
+      "untrust": "Niet meer vertrouwen",
+      "clearMark": "Markering verwijderen",
+      "clear": "Geschiedenis van dit nummer wissen"
+    },
+    "copied": "Nummer gekopieerd",
+    "copyFail": "Kopiëren mislukt",
+    "shareToast": "Deelmenu geopend",
+    "warning": {
+      "scamTitle": "Waarschuwing: oplichting",
+      "spamTitle": "Hinderlijk nummer",
+      "marked": "Door jou gemarkeerd: {category}",
+      "signals": "De laatste oproep vertoonde signalen van: {list}",
+      "tipsTitle": "Zo bescherm je jezelf",
+      "tip1": "Geef nooit OTP-codes, kaartnummers of wachtwoorden aan iemand.",
+      "tip2": "Maak geen geld over op verzoek via de telefoon.",
+      "tip3": "Hang op en bel zelf het officiële nummer van de instantie of bank."
+    },
+    "actions": {
+      "call": "Bellen",
+      "message": "Bericht",
+      "favorite": "Favoriet",
+      "unfavorite": "Geen favoriet",
+      "block": "Blokkeren",
+      "unblock": "Deblokkeren",
+      "save": "Opslaan",
+      "report": "Markeren",
+      "suggest": "Naam geven",
+      "trust": "Vertrouwd"
+    },
+    "blockedBanner": "Dit nummer staat op de blokkeerlijst",
+    "block": {
+      "title": "Dit nummer blokkeren?",
+      "message": "Oproepen van {number} worden automatisch geblokkeerd.",
+      "done": "{number} geblokkeerd",
+      "failed": "Blokkeren mislukt. Stel Safe Dial in als standaard telefoon-app.",
+      "unblockTitle": "Dit nummer deblokkeren?",
+      "unblockMessage": "Je ontvangt weer oproepen van {number}.",
+      "unblockDone": "{number} gedeblokkeerd"
+    },
+    "trust": {
+      "done": "Gemarkeerd als vertrouwd. Dit nummer wordt niet geblokkeerd of gewaarschuwd.",
+      "undone": "Niet meer vertrouwd"
+    },
+    "toast": {
+      "message": "Bericht aan {name} openen",
+      "save": "Nieuw contact openen",
+      "favOn": "Toegevoegd aan favorieten",
+      "favOff": "Verwijderd uit favorieten",
+      "markCleared": "Markering verwijderd"
+    },
+    "info": {
+      "title": "Nummerinfo",
+      "country": "Land",
+      "calls": "Oproepen",
+      "lastCall": "Laatste oproep",
+      "mark": "Jouw markering",
+      "none": "Onbekend",
+      "never": "Nooit",
+      "noMark": "Niet gemarkeerd"
+    },
+    "community": {
+      "title": "Jouw notities",
+      "noNames": "Je hebt dit nummer nog geen naam of notitie gegeven.",
+      "suggestTitle": "Dit nummer een naam geven",
+      "suggestPlaceholder": "Bijv.: Pakketbezorger",
+      "suggestSend": "Naam opslaan",
+      "suggestDone": "Naam opgeslagen voor dit nummer"
+    },
+    "notes": {
+      "title": "Gespreksnotities",
+      "delete": "Notitie verwijderen",
+      "deleted": "Notitie verwijderd"
+    },
+    "report": {
+      "title": "Dit nummer markeren",
+      "subtitle": "Kies de best passende categorie om het nummer volgende keer te herkennen.",
+      "note": "Notitie (optioneel)",
+      "notePlaceholder": "Korte beschrijving van de oproep...",
+      "send": "Markering opslaan",
+      "thanks": "Nummer gemarkeerd",
+      "offerTitle": "Dit nummer ook blokkeren?",
+      "offerMessage": "{number} zal je niet meer lastigvallen.",
+      "offerYes": "Blokkeren",
+      "offerNo": "Later"
+    },
+    "recent": {
+      "title": "Recente oproepen",
+      "empty": "Nog geen oproepen met dit nummer."
+    },
+    "stats": {
+      "title": "Contactstatistieken",
+      "subtitle": "Frequentie, duur en favoriete beldagen"
+    },
+    "clear": {
+      "title": "Geschiedenis van dit nummer wissen?",
+      "message": "Alle oproepen met dit nummer worden uit het logboek verwijderd. Statistieken blijven bewaard.",
+      "done": "Oproepgeschiedenis gewist"
+    },
+    "history": {
+      "title": "Oproepgeschiedenis",
+      "empty": {
+        "title": "Geen oproepen",
+        "description": "Er staan geen oproepen met dit nummer in het logboek."
+      },
+      "selected": "{n} geselecteerd",
+      "selectAll": "Alles selecteren",
+      "delete": "Verwijderen",
+      "cancel": "Annuleren",
+      "deleteTitle": "{n} oproepen verwijderen?",
+      "deleteMessage": "De geselecteerde oproepen worden uit het logboek verwijderd. Statistieken blijven bewaard.",
+      "deleted": "{n} oproepen verwijderd",
+      "count": "{n} oproepen",
+      "note": "Toont alleen oproepen die nog in het logboek van de telefoon staan."
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "Geblokkeerd",
+      "list": "Zwarte lijst",
+      "settings": "Instellingen"
+    },
+    "blocked": {
+      "weekSummary": "oproepen geblokkeerd in de afgelopen 7 dagen",
+      "topReason": "Vooral: {reason} ({n})",
+      "emptyTitle": "Nog geen oproepen geblokkeerd",
+      "emptyDesc": "Als een oproep wordt geblokkeerd of gedempt, verschijnt die hier met de reden."
+    },
+    "rules": {
+      "add": "Regel toevoegen",
+      "test": "Nummer testen",
+      "header": "Actieve regels ({n})",
+      "emptyTitle": "Zwarte lijst is leeg",
+      "emptyDesc": "Voeg nummers of regels toe om ongewenste oproepen te blokkeren.",
+      "deleteTitle": "Deze regel verwijderen?",
+      "deleteMsg": "Oproepen die overeenkomen met \"{name}\" worden niet meer door deze regel geblokkeerd.",
+      "deleted": "Regel verwijderd",
+      "deleteAria": "Regel {name} verwijderen",
+      "numbersHeader": "Geblokkeerde nummers ({n})",
+      "numbersEmpty": "Nog geen specifieke nummers geblokkeerd.",
+      "numberDeleteTitle": "Dit nummer deblokkeren?",
+      "numberDeleteMsg": "Je ontvangt weer oproepen van {name}.",
+      "hits": "{n} oproepen geblokkeerd · laatste {date}",
+      "noHits": "Nog niets geblokkeerd",
+      "toggleAria": "Regel {name} aan/uit"
+    },
+    "quick": {
+      "header": "Snel blokkeren uit recente oproepen",
+      "none": "Geen onbekende nummers om te blokkeren in recente oproepen.",
+      "done": "{number} geblokkeerd"
+    },
+    "settings": {
+      "header": "Automatisch blokkeren",
+      "autoBlockReported": {
+        "title": "Nummers blokkeren die ik als oplichting markeer",
+        "desc": "Als je een nummer als oplichting/spam markeert, wordt het meteen aan de blokkeerlijst toegevoegd."
+      },
+      "noRole": "Blokkeren werkt alleen als Safe Dial je standaard telefoon-app is.",
+      "blockPrivate": {
+        "title": "Afgeschermde nummers blokkeren",
+        "desc": "Blokkeer oproepen met een verborgen nummer."
+      },
+      "blockInternational": {
+        "title": "Internationale oproepen blokkeren",
+        "desc": "Alleen binnenlandse oproepen toestaan. Contacten kunnen je nog steeds bellen."
+      },
+      "blockNonContacts": {
+        "title": "Nummers buiten je contacten blokkeren",
+        "desc": "Alleen oproepen van je contacten ontvangen.",
+        "warn": "Hiermee blokkeer je mogelijk onbewaarde bekenden, bezorgers, banken of artsen. Overweeg de stille modus."
+      },
+      "notifyOnBlock": {
+        "title": "Melding bij blokkeren",
+        "desc": "Toon een melding telkens wanneer een oproep wordt geblokkeerd."
+      },
+      "methodHeader": "Afhandeling",
+      "method": {
+        "hangup": {
+          "title": "Automatisch ophangen",
+          "desc": "De beller hoort een bezet- of weigertoon. Je telefoon gaat niet over."
+        },
+        "silent": {
+          "title": "Dempen, oproep blijft zichtbaar",
+          "desc": "Je telefoon blijft stil, maar de oproep staat in de geschiedenis; de beller hoort de telefoon overgaan."
+        }
+      },
+      "countryHeader": "Blokkeren per land",
+      "country": {
+        "title": "Blokkeren per land",
+        "desc": "{n} landcodes geblokkeerd"
+      },
+      "countryAdded": "Landcode van {name} geblokkeerd",
+      "note": "Contacten worden niet geblokkeerd door regels voor begin, einde, landcode of internationale oproepen. Alleen de lijst met specifieke nummers blokkeert ook contacten. Jouw landcode: {dial}."
+    },
+    "country": {
+      "search": "Zoek land of landcode",
+      "blocked": "Geblokkeerd",
+      "none": "Geen land gevonden."
+    },
+    "form": {
+      "title": "Blokkeerregel toevoegen",
+      "kindHeader": "Kies het type regel",
+      "help": {
+        "number": "Blokkeert precies één nummer, ook als het in je contacten staat.",
+        "startsWith": "Blokkeert alle nummers die beginnen met de ingevoerde cijfers.",
+        "contains": "Blokkeert alle nummers die deze cijfers ergens bevatten.",
+        "endsWith": "Blokkeert alle nummers die eindigen op de ingevoerde cijfers.",
+        "country": "Blokkeert alle oproepen uit een land op basis van de landcode."
+      },
+      "example": {
+        "number": "Bijv.: 0901 234 567 blokkeert alleen dit nummer.",
+        "startsWith": "Bijv.: Begint met 0899 → blokkeert alle nummers die met 0899 beginnen.",
+        "contains": "Bijv.: Bevat 8888 → blokkeert 0912 8888 11 en 0988 888 812.",
+        "endsWith": "Bijv.: Eindigt op 0000 → blokkeert alle nummers die op 0000 eindigen.",
+        "country": "Bijv.: kies Nigeria (+234) → blokkeert alle +234…-nummers"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "Waarde",
+      "labelLabel": "Notitie (optioneel)",
+      "labelPlaceholder": "Bijv.: Leningnummers",
+      "picked": "Gekozen: {name}",
+      "errEmpty": "Voer een waarde in voor de regel.",
+      "errNumber": "Ongeldig telefoonnummer (8-15 cijfers nodig).",
+      "errShort": "Voer minstens 3 cijfers in om niet te veel nummers per ongeluk te blokkeren.",
+      "errCountry": "Kies een land.",
+      "duplicate": "Deze regel staat al op de zwarte lijst.",
+      "previewTitle": "Deze regel komt overeen met {n} oproepen in je geschiedenis",
+      "previewMore": "en {n} andere nummers",
+      "previewNone": "Geen oproepen in je geschiedenis komen overeen met deze regel.",
+      "previewNote": "Contacten worden niet meegeteld, omdat patroonregels bekenden altijd overslaan.",
+      "save": "Regel opslaan",
+      "saved": "Blokkeerregel toegevoegd"
+    },
+    "test": {
+      "title": "Nummer testen",
+      "intro": "Voer een nummer in om stap voor stap te zien hoe de blokkering ermee omgaat. Er wordt niet echt gebeld.",
+      "numberLabel": "Telefoonnummer",
+      "placeholder": "0901 234 567 of +84…",
+      "private": "Afgeschermd nummer",
+      "privateDesc": "Simuleer een beller met verborgen nummer",
+      "run": "Testen",
+      "invalid": "Voer een geldig nummer in of zet \"Afgeschermd nummer\" aan.",
+      "quick": "Snel invullen",
+      "inContacts": "In contacten",
+      "notContact": "Niet in contacten",
+      "traceHeader": "Controlestappen"
+    },
+    "trace": {
+      "steps": {
+        "system": "Jouw blokkeerlijst",
+        "trusted": "Vertrouwd nummer",
+        "contact": "Contacten",
+        "rule": "Regels voor begin / einde / land",
+        "private": "Afgeschermde nummers blokkeren",
+        "international": "Internationale oproepen blokkeren",
+        "nonContact": "Nummers buiten je contacten blokkeren",
+        "signals": "Waarschuwingssignalen"
+      },
+      "state": {
+        "off": "Uit",
+        "pass": "Geen match",
+        "match": "MATCH",
+        "stopped": "Niet uitgevoerd"
+      },
+      "offHint": "Overgeslagen omdat deze schakelaar uit staat.",
+      "stoppedHint": "Niet gecontroleerd omdat een eerdere stap al heeft beslist.",
+      "detail": {
+        "system": {
+          "match": "Dit nummer staat op de blokkeerlijst van de telefoon.",
+          "pass": "Staat niet op de blokkeerlijst."
+        },
+        "trusted": {
+          "match": "Je hebt dit nummer als vertrouwd gemarkeerd.",
+          "pass": "Niet als vertrouwd gemarkeerd."
+        },
+        "contact": {
+          "match": "In contacten: {name}.",
+          "pass": "Niet in contacten."
+        },
+        "rule": {
+          "match": "Komt overeen met regel: {name}.",
+          "pass": "Geen van de {n} actieve regels komt overeen."
+        },
+        "private": {
+          "match": "De beller heeft het nummer afgeschermd.",
+          "pass": "Het nummer wordt normaal weergegeven."
+        },
+        "international": {
+          "match": "Internationaal nummer, niet in contacten.",
+          "pass": "Geen internationaal nummer."
+        },
+        "nonContact": {
+          "match": "Het nummer staat niet in je contacten.",
+          "pass": "Het nummer staat in je contacten."
+        },
+        "signals": {
+          "match": "Signalen gevonden: {list}.",
+          "pass": "Geen verdachte signalen."
+        }
+      },
+      "verdict": "Uitkomst",
+      "action": {
+        "allowed": "Toegestaan",
+        "warned": "Waarschuwing",
+        "blocked": "Geblokkeerd",
+        "silenced": "Gedempt"
+      },
+      "reasonLine": "Reden: {reason}",
+      "allowLine": "Geen enkele stap blokkeert dit nummer; de telefoon gaat normaal over.",
+      "warnLine": "De telefoon gaat over, maar met een waarschuwing: {list}.",
+      "silenceNote": "De telefoon blijft stil, de oproep staat wel in de geschiedenis."
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 dagen",
+      "30d": "30 dagen",
+      "all": "Alles"
+    },
+    "empty": {
+      "title": "Nog geen statistieken",
+      "desc": "Bel of word gebeld, dan verschijnen hier statistieken."
+    },
+    "kpi": {
+      "total": "Totaal oproepen",
+      "talk": "Gesprekstijd",
+      "avg": "Gemiddeld {d}",
+      "missed": "Gemiste oproepen",
+      "suspicious": "Verdacht / Geblokkeerd",
+      "suspiciousSub": "Spam, oplichting / geblokkeerd"
+    },
+    "perDay": {
+      "title": "Oproepen per dag (laatste {n} dagen)",
+      "aria": "Grafiek van oproepen per dag"
+    },
+    "types": {
+      "title": "Soorten oproepen",
+      "center": "oproepen"
+    },
+    "frequency": {
+      "title": "Contactfrequentie",
+      "none": "Nog geen contact met nummers uit je contacten.",
+      "times": "{n} keer",
+      "noTalk": "Geen gesprek"
+    },
+    "strangers": {
+      "title": "Onbekenden die het vaakst bellen",
+      "desc": "Nummers die niet in je contacten staan, gesorteerd op aantal oproepen.",
+      "none": "Geen onbekenden gebeld in deze periode.",
+      "meta": "{n} keer · laatste {date}",
+      "blocked": "Toegevoegd aan de blokkeerlijst",
+      "alreadyBlocked": "Geblokkeerd",
+      "hidden": "Afgeschermd nummer"
+    },
+    "risk": {
+      "title": "Veiligheid van inkomende oproepen",
+      "desc": "Verdeling van {n} inkomende oproepen."
+    },
+    "number": {
+      "subtitle": "Statistieken van dit nummer",
+      "emptyTitle": "Nog geen oproepen met dit nummer",
+      "emptyDesc": "Statistieken verschijnen na de eerste oproep.",
+      "durationTitle": "Gespreksduur",
+      "durTotal": "Totaal",
+      "durIncoming": "Inkomend",
+      "durOutgoing": "Uitgaand",
+      "avg": "Gemiddeld per oproep {d}",
+      "incomingTitle": "Inkomende oproepen",
+      "inTotal": "Totaal inkomend",
+      "inAnswered": "Beantwoord",
+      "inMissed": "Gemist",
+      "inBlocked": "Geblokkeerd",
+      "outgoingTitle": "Uitgaande oproepen",
+      "outTotal": "Totaal uitgaand",
+      "outAnswered": "Opgenomen",
+      "outNot": "Niet opgenomen",
+      "weeks": "Laatste 8 weken",
+      "weeksAria": "Oproepen per week: {v}",
+      "weekdayTitle": "Meest gebelde dagen",
+      "weekdayAria": "Oproepen per dag van de week",
+      "firstLast": "Tijdlijn",
+      "first": "Eerste oproep",
+      "last": "Laatste oproep",
+      "viewHistory": "Geschiedenis bekijken"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "Inkomende oproep simuleren",
+      "intro": "Alleen beschikbaar in de demo (browser). Kies een scenario om te zien hoe Safe Dial de oproep herkent en afhandelt.",
+      "displayHeader": "Weergave",
+      "displayStyle": "Bellervenster",
+      "sizeClassic": "Pop-up",
+      "sizeFull": "Volledig scherm",
+      "position": "Positie van pop-up",
+      "posTop": "Boven",
+      "posCenter": "Midden",
+      "posBottom": "Onder",
+      "scenarios": "Scenario's",
+      "willRing": "Gaat over",
+      "willBlock": "Wordt geblokkeerd",
+      "customHeader": "Eigen nummer",
+      "customPlaceholder": "Voer een nummer in",
+      "customRun": "Testoproep",
+      "invalid": "Voer een geldig telefoonnummer in.",
+      "blocked": "Geblokkeerd:",
+      "silenced": "Gedempt:",
+      "detail": "Details: {d}",
+      "viewBlocked": "Geblokkeerd bekijken"
+    },
+    "overlay": {
+      "incoming": "Inkomende oproep",
+      "head": {
+        "safe": "Inkomende oproep - Veilig",
+        "unknown": "Inkomende oproep - Onbekend",
+        "spam": "Waarschuwing - Mogelijk spam",
+        "scam": "Waarschuwing - Mogelijk oplichting"
+      },
+      "answer": "Opnemen",
+      "reject": "Weigeren",
+      "moreAria": "Meer acties",
+      "hiddenCaller": "Afgeschermde beller",
+      "localCountry": "Vietnam",
+      "marked": "Door jou gemarkeerd: {category}",
+      "signals": "Signalen: {list}",
+      "warnMarked": "Let op: je hebt dit nummer gemarkeerd als {category}. Geef geen OTP-code of wachtwoord en maak geen geld over.",
+      "warnGeneric": "Let op: dit nummer vertoont tekenen van oplichting. Geef geen OTP-code of wachtwoord en maak geen geld over.",
+      "quick": {
+        "message": "Snel bericht",
+        "remind": "Herinner me later",
+        "block": "Dit nummer blokkeren"
+      }
+    },
+    "sheets": {
+      "moreTitle": "Meer acties",
+      "messageTitle": "Snel bericht",
+      "messageDesc": "Weiger de oproep en stuur een antwoordbericht.",
+      "replies": {
+        "r1": "Ik ben bezig, ik bel je later terug.",
+        "r2": "Ik zit in een vergadering, stuur me een bericht.",
+        "r3": "Ik rijd, bel me later terug.",
+        "r4": "Waar gaat het over? Stuur me een bericht."
+      },
+      "remindTitle": "Herinner me later",
+      "remindDesc": "Weiger de oproep en krijg een herinnering om terug te bellen.",
+      "reminds": {
+        "10s": "10 seconden",
+        "1m": "1 minuut",
+        "5m": "5 minuten",
+        "15m": "15 minuten",
+        "30m": "30 minuten"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "Toch opnemen?",
+      "confirmMsg": "Je hebt dit nummer als oplichting/spam gemarkeerd. Toch opnemen?",
+      "confirmOk": "Toch opnemen",
+      "confirmCancel": "Niet opnemen",
+      "blockTitle": "Dit nummer blokkeren?",
+      "blockMsg": "Oproepen van {number} worden voortaan geblokkeerd.",
+      "blocked": "{number} geblokkeerd",
+      "cannotBlockHidden": "Een afgeschermd nummer kan niet worden geblokkeerd. Zet \"Afgeschermde nummers blokkeren\" aan op het tabblad Blokkeren.",
+      "replySent": "Geweigerd en verstuurd: {text}",
+      "remindSet": "Geweigerd, herinnering over {when}"
+    },
+    "active": {
+      "dialing": "Bellen…",
+      "onHold": "In de wacht",
+      "warnScam": "Waarschuwing: geef geen OTP-code of wachtwoord en maak geen geld over.",
+      "warnSpam": "Je hebt dit nummer als spam gemarkeerd. Wees voorzichtig.",
+      "end": "Oproep beëindigen",
+      "hideKeypad": "Toetsenblok verbergen",
+      "noteTitle": "Gespreksnotities",
+      "notePlaceholder": "Wat wil je onthouden van dit gesprek...",
+      "noteSave": "Notitie opslaan",
+      "noteSaved": "Notitie opgeslagen",
+      "controls": {
+        "mute": "Dempen",
+        "keypad": "Toetsen",
+        "speaker": "Luidspreker",
+        "hold": "Wacht",
+        "add": "Toevoegen",
+        "note": "Notitie"
+      }
+    },
+    "after": {
+      "title": "Oproep beëindigd",
+      "type": "Soort oproep",
+      "duration": "Duur",
+      "time": "Tijdstip",
+      "whoTitle": "Wie was dit?",
+      "whoDesc": "Markeer het nummer om het volgende keer te herkennen.",
+      "hidden": "Dit is een afgeschermd nummer, dus apart markeren of blokkeren kan niet. Zet zo nodig \"Afgeschermde nummers blokkeren\" aan op het tabblad Blokkeren.",
+      "spam": "Markeren als spam",
+      "notSpam": "Geen spam",
+      "notSpamToast": "Nummer gemarkeerd als vertrouwd",
+      "suggest": "Naam geven",
+      "alreadyBlocked": "Geblokkeerd",
+      "reportedBtn": "Gemarkeerd",
+      "reportTitle": "Dit nummer markeren",
+      "reportDesc": "Kies de categorie die het best past bij deze oproep.",
+      "reported": "Nummer gemarkeerd",
+      "suggestTitle": "Dit nummer een naam geven",
+      "suggestDesc": "Deze naam wordt alleen op je telefoon bewaard.",
+      "suggestPlaceholder": "Bijv.: Pakketbezorger",
+      "suggestSend": "Naam opslaan",
+      "suggested": "Naam opgeslagen voor dit nummer",
+      "saveToast": "Nieuw contact openen",
+      "callBack": "Terugbellen",
+      "messageToast": "Berichten openen"
+    }
+  }
+}

@@ -1,9 +1,10 @@
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { AppSettings } from '@/types'
 import { DEFAULT_APP_SETTINGS } from '@/data/defaults'
 import { loadJSON } from '@/utils/storage'
 import { syncWithNative, type KeyMap } from '@/utils/nativeSettings'
+import { setLocale } from '@/i18n'
 
 const KEY = 'safedial.settings.v1'
 
@@ -30,6 +31,8 @@ const MAP: KeyMap<AppSettings> = {
 export const useSettingsStore = defineStore('settings', () => {
   const state = reactive<AppSettings>(loadJSON<AppSettings>(KEY, { ...DEFAULT_APP_SETTINGS }))
   syncWithNative(state, MAP, KEY)
+  // Ngôn ngữ giao diện theo cài đặt (kể cả khi giá trị được nạp từ native).
+  watch(() => state.language, (code) => void setLocale(code), { immediate: true })
 
   function patch(partial: Partial<AppSettings>) {
     Object.assign(state, partial)

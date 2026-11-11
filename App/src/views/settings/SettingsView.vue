@@ -16,6 +16,7 @@ import { SafeDial, isNative } from '@/services'
 import { useUiStore } from '@/stores/ui'
 import type { SimChoice } from '@/types'
 import { t } from '@/composables/useT'
+import { LOCALES } from '@/i18n'
 
 const APP_VERSION = '0.1.0'
 
@@ -33,7 +34,7 @@ const simOptions: { value: SimChoice; label: string }[] = [
   { value: 'sim2', label: t('settings.sim.sim2') },
 ]
 const simLabel = computed(() => simOptions.find((o) => o.value === settings.state.defaultSim)?.label ?? '')
-const langLabel = computed(() => t(`settings.rows.languageValue.${settings.state.language}`))
+const langLabel = computed(() => LOCALES.find((l) => l.code === settings.state.language)?.native ?? settings.state.language)
 
 const defaultSim = computed({
   get: () => settings.state.defaultSim,

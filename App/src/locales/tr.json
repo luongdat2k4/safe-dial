@@ -1,0 +1,1068 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "Bilinmeyen numaraları tanı, dolandırıcıları engelle",
+    "actions": {
+      "ok": "Tamam",
+      "cancel": "İptal",
+      "close": "Kapat",
+      "back": "Geri",
+      "save": "Kaydet",
+      "delete": "Sil",
+      "block": "Engelle",
+      "unblock": "Engeli kaldır",
+      "call": "Ara",
+      "message": "Mesaj",
+      "done": "Bitti",
+      "next": "Devam",
+      "skip": "Atla",
+      "allow": "İzin ver",
+      "retry": "Tekrar dene",
+      "copy": "Kopyala",
+      "share": "Paylaş",
+      "edit": "Düzenle",
+      "add": "Ekle",
+      "search": "Ara",
+      "report": "Bildir",
+      "viewAll": "Tümünü gör",
+      "addToContacts": "Kişilere kaydet",
+      "history": "Geçmiş"
+    },
+    "nav": {
+      "calls": "Aramalar",
+      "contacts": "Kişiler",
+      "block": "Engelleme",
+      "stats": "İstatistik"
+    },
+    "risk": {
+      "safe": "Güvenli",
+      "unknown": "Bilinmeyen",
+      "spam": "Spam",
+      "scam": "Dolandırıcılık"
+    },
+    "category": {
+      "scam": "Dolandırıcılık",
+      "spam": "Spam",
+      "loan": "Kredi / sigorta",
+      "robocall": "Otomatik arama",
+      "fakeJob": "Sahte iş / ödül",
+      "telemarketing": "Telefonla pazarlama",
+      "impersonation": "Kurum / banka taklidi"
+    },
+    "callType": {
+      "incoming": "Gelen arama",
+      "outgoing": "Giden arama",
+      "missed": "Cevapsız arama",
+      "blocked": "Engellendi"
+    },
+    "blockReason": {
+      "private": "Gizli numara",
+      "international": "Uluslararası arama",
+      "nonContact": "Kişilerde yok",
+      "list": "Engel listesinde",
+      "rule": "Engelleme kuralına uyuyor",
+      "country": "Ülke koduna göre engellendi"
+    },
+    "signal": {
+      "international": "uluslararası numara",
+      "private": "gizli numara",
+      "burst": "art arda arama",
+      "rejectedBefore": "daha önce reddettiğiniz veya engellediğiniz"
+    },
+    "ruleKind": {
+      "number": "Belirli numara",
+      "startsWith": "Şununla başlar",
+      "contains": "Rakam dizisi içerir",
+      "endsWith": "Şununla biter",
+      "country": "Ülke kodu"
+    },
+    "unknownNumber": "Bilinmeyen numara",
+    "privateNumber": "Gizli numara",
+    "noName": "İsimsiz",
+    "mockNotice": "Demo sürüm: veriler ve aramalar simüle edilmiştir."
+  },
+  "boot": {
+    "language": {
+      "title": "Dil seçin",
+      "subtitle": "Dili istediğiniz zaman Ayarlar'dan değiştirebilirsiniz.",
+      "confirm": "Onayla",
+      "saved": "Dil kaydedildi"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "Numara tanıma",
+        "protect": "Gönül rahatlığıyla konuşun",
+        "calls": "Kimin aradığını bilin",
+        "insights": "İletişim istatistikleri"
+      },
+      "pages": [
+        {
+          "title": "Bilinmeyen numaraları tanıyın",
+          "text": "Numara kişilerinizde olmasa bile kimin aradığını hemen öğrenin. İsim ve risk grubu telefon çalarken görünür."
+        },
+        {
+          "title": "Anlık dolandırıcılık uyarıları",
+          "text": "Safe Dial, arayan numara kara listenizdeyse, tanımadık bir uluslararası numaraysa ya da olağandışı sıklıkta arıyorsa sizi uyarır."
+        },
+        {
+          "title": "Spam engelleme ve istatistikler",
+          "text": "Uluslararası, gizli ve spam numaraları kendi kurallarınızla engelleyin; sizi en çok kimin aradığını görün."
+        }
+      ],
+      "dots": "Sayfa {n} / {total}",
+      "start": "Başla"
+    },
+    "permissions": {
+      "title": "Safe Dial'a izin verin",
+      "subtitle": "Her izin tek ve net bir amaç için kullanılır. Daha sonra değiştirebilirsiniz.",
+      "allowAll": "Tümüne izin ver",
+      "later": "Sonra",
+      "laterWarn": "Tüm izinleri verene kadar koruma sınırlı olacak",
+      "needBasic": "Devam etmek için Kişiler iznini verin",
+      "sectionPermissions": "Erişim izinleri",
+      "sectionRoles": "Telefondaki roller",
+      "privacyTitle": "Gizliliğiniz",
+      "privacyText": "Kişi verileri yalnızca tanıma için kullanılır; satılmaz ve üçüncü taraflarla paylaşılmaz.",
+      "items": {
+        "calls": {
+          "title": "Aramalar ve arama kaydı",
+          "why": "Arama yapmak, geçmişi ve arama istatistiklerini görmek için."
+        },
+        "contacts": {
+          "title": "Kişiler",
+          "why": "Tanıdıklarınızın adını göstermek ve onları yanlışlıkla engellememek için."
+        },
+        "notifications": {
+          "title": "Bildirimler",
+          "why": "Gelen aramaları göstermek ve engellenen aramaları bildirmek için."
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "Varsayılan telefon uygulaması",
+          "why": "Safe Dial'ın aramaları telefon çalmadan önce alması, yapması, filtrelemesi ve engellemesi için."
+        },
+        "screening": {
+          "title": "Arayan kimliği ve arama filtreleme uygulaması",
+          "why": "Aramaları telefon çalmadan önce kontrol edip engellemeye izin verir."
+        },
+        "set": "Ayarlandı",
+        "notSet": "Ayarlanmadı",
+        "sheetTitleDialer": "Safe Dial varsayılan telefon uygulaması olsun mu?",
+        "sheetTitleScreening": "Safe Dial arayan kimliği ve filtreleme uygulaması olsun mu?",
+        "sheetText": "Bu ekran, sistemin rol seçme penceresini taklit eder.",
+        "setDefault": "Varsayılan yap",
+        "cancel": "Şimdi değil",
+        "done": "Safe Dial varsayılan telefon uygulaması yapıldı",
+        "unavailable": "Bu cihaz varsayılan telefon uygulamasının değiştirilmesine izin vermiyor"
+      },
+      "granted": "İzin verildi"
+    }
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "version": "Safe Dial sürüm {v}",
+    "groups": {
+      "general": "Genel",
+      "calls": "Aramalar",
+      "protection": "Koruma",
+      "data": "Veriler",
+      "lab": "Deneysel",
+      "support": "Destek"
+    },
+    "rows": {
+      "notifications": "Bildirimler",
+      "sound": "Ses ve titreşim",
+      "language": "Dil",
+      "sim": "Arama SIM'i",
+      "callerId": "Arayan bilgisi",
+      "callerIdSub": "Açılır pencere, konum ve görünüm",
+      "scamWarning": "Dolandırıcılık uyarısı",
+      "scamWarningSub": "Arayan numarayı dolandırıcı veya spam olarak işaretlediyseniz ya da şüpheli görünüyorsa kırmızı uyarı göster.",
+      "blockRules": "Engelleme kuralları",
+      "blockRulesSub": "Kara liste, uluslararası, gizli numaralar",
+      "clearHistory": "Tüm arama geçmişini sil",
+      "clearHistorySub": "Geri alınamaz. İstatistikler korunur.",
+      "clearStats": "İstatistik verilerini sil",
+      "clearStatsSub": "İstatistik sekmesindeki tüm verileri sıfırla",
+      "resetDemo": "Demo verilerini yeniden oluştur",
+      "simulate": "Gelen arama simülasyonu",
+      "simulateSub": "Yalnızca demo: uyarı ve engellemeyi deneyin",
+      "rate": "Uygulamayı değerlendir",
+      "feedback": "Geri bildirim",
+      "share": "Uygulamayı paylaş",
+      "about": "Hakkında ve gizlilik",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "Arama SIM'i",
+      "ask": "Her zaman sor",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "Tüm arama geçmişi silinsin mi?",
+      "message": "Kayıttaki tüm aramalar silinecek. Engel listesi, kişiler ve istatistikler etkilenmez.",
+      "confirm": "Tümünü sil",
+      "done": "Arama geçmişi silindi"
+    },
+    "clearStats": {
+      "title": "İstatistik verileri silinsin mi?",
+      "message": "İletişim sıklığı ve süre verileri silinecek. Arama kaydı etkilenmez.",
+      "done": "İstatistik verileri silindi"
+    },
+    "rate": {
+      "title": "Safe Dial'ı değerlendirin",
+      "text": "Uygulamayı nasıl buldunuz?",
+      "star": "{n} yıldız",
+      "send": "Gönder",
+      "thanks": "{n} yıldızlı değerlendirmeniz için teşekkürler",
+      "labels": [
+        "Çok kötü",
+        "Kötü",
+        "İdare eder",
+        "İyi",
+        "Harika"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "Bağlantı kopyalandı"
+    },
+    "notifications": {
+      "title": "Bildirimler",
+      "callAlert": "Arama bildirimleri",
+      "callAlertSub": "Şüpheli numaralardan gelen aramalarda bildirim göster.",
+      "missed": "Cevapsız aramalar",
+      "missedSub": "Bir aramayı kaçırdığınızda bildir.",
+      "remind": "Cevapsız arama hatırlatıcısı",
+      "remindSub": "Geri aramadıysanız birkaç dakika sonra hatırlat.",
+      "blocked": "Engellenen arama bildirimi",
+      "blockedSub": "Hangi numaranın neden engellendiğini göster."
+    },
+    "sound": {
+      "title": "Ses ve titreşim",
+      "ringtone": "Zil sesi",
+      "ringtoneSheet": "Zil sesi seçin",
+      "ringtones": [
+        "Varsayılan",
+        "Zil 1",
+        "Zil 2",
+        "Zil 3",
+        "Zil 4",
+        "Sessiz"
+      ],
+      "dial": "Tuş sesi",
+      "dialSub": "Tuşlara basarken geri bildirim.",
+      "dialOptions": {
+        "silent": "Sessiz",
+        "vibrate": "Titreşim",
+        "sound": "Ses",
+        "both": "Ses ve titreşim"
+      },
+      "demo": "Demo sürüm: gerçek ses çalınmaz."
+    },
+    "callerId": {
+      "title": "Arayan bilgisi",
+      "enabled": "Arayan bilgisi penceresini aç",
+      "enabledSub": "Gelen aramada ismi ve risk düzeyini göster.",
+      "contacts": "Kişilerim için de göster",
+      "contactsSub": "Varsayılan olarak yalnızca bilinmeyen numaralarda gösterilir.",
+      "after": "Arama sonrasında göster",
+      "afterSub": "Arama bitince kaydetmeyi, engellemeyi veya bildirmeyi öner.",
+      "style": "Görünüm",
+      "classic": "Küçük pencere",
+      "classicSub": "Kompakt, ekranı kapatmaz",
+      "full": "Tam ekran",
+      "fullSub": "Net, uyarılar kolay görünür",
+      "position": "Pencere konumu",
+      "top": "Üst",
+      "center": "Orta",
+      "bottom": "Alt",
+      "preview": "Önizleme",
+      "previewCaller": "Bilinmeyen numara",
+      "tryIt": "Aramayı dene"
+    },
+    "feedback": {
+      "title": "Geri bildirim",
+      "easy": "Uygulama kullanımı kolay mı?",
+      "yes": "Evet",
+      "no": "Hayır",
+      "features": "En çok hangi özelliği kullanıyorsunuz?",
+      "featureList": [
+        "Numara tanıma",
+        "Kişiler",
+        "Spam engelleme",
+        "Dolandırıcılık uyarısı",
+        "Arama geçmişi",
+        "İletişim istatistikleri"
+      ],
+      "message": "Bize biraz daha anlatın",
+      "placeholder": "Neyi geliştirmemizi istersiniz?",
+      "submit": "Gönder",
+      "thanks": "Geri bildiriminiz için teşekkürler",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "Hakkında",
+      "version": "Sürüm {v}",
+      "demo": "Safe Dial bir telefon uygulamasıdır: kişiler ve arama kaydı doğrudan telefondan okunur, kara liste ve istatistikler cihazda saklanır.",
+      "privacy": "Gizlilik",
+      "privacyItems": [
+        {
+          "q": "Safe Dial hangi verileri kullanır?",
+          "a": "Arayanı tanımak ve engelleme kurallarını uygulamak için gelen numaralar, arama kaydı ve kişiler."
+        },
+        {
+          "q": "Veriler nerede saklanır?",
+          "a": "Ayarlar, engel listesi, işaretler ve istatistikler cihazınızda saklanır. Uygulama verileri hiçbir yere göndermez."
+        },
+        {
+          "q": "Kişilerim satılıyor mu?",
+          "a": "Hayır. Kişiler yalnızca tanıma için kullanılır; satılmaz ve üçüncü taraflarla paylaşılmaz."
+        }
+      ],
+      "terms": "Kullanım koşulları",
+      "termsText": "Uygulamayı kendi sorumluluğunuzda kullanırsınız. Uyarılar kendi kara listenize ve işaretlerinize dayanır, bu yüzden yalnızca bilgi amaçlıdır. Telefonda kişisel bilgi verirken her zaman dikkatli olun.",
+      "libs": "Açık kaynak kütüphaneler",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "Arayüz çatısı"
+        },
+        {
+          "name": "Vite",
+          "note": "Derleme aracı"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "Stil"
+        },
+        {
+          "name": "Pinia",
+          "note": "Durum yönetimi"
+        },
+        {
+          "name": "Vue Router",
+          "note": "Yönlendirme"
+        },
+        {
+          "name": "Iconify ve Lucide",
+          "note": "Simge setleri"
+        },
+        {
+          "name": "Capacitor",
+          "note": "Android ve iOS'ta çalıştırma"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "Tümü",
+        "missed": "Cevapsız",
+        "incoming": "Gelen",
+        "outgoing": "Giden",
+        "unknown": "Bilinmeyen",
+        "spam": "Spam/Dolandırıcı",
+        "blocked": "Engellenen"
+      },
+      "summary": {
+        "title": "Son 7 gün",
+        "suspicious": "şüpheli",
+        "blocked": "engellendi",
+        "clean": "Şüpheli arama yok",
+        "viewBlocked": "Engellenen aramaları gör"
+      },
+      "empty": {
+        "all": {
+          "title": "Henüz arama yok",
+          "description": "Arama geçmişiniz burada görünecek."
+        },
+        "missed": {
+          "title": "Cevapsız arama yok",
+          "description": "Son zamanlarda hiçbir aramayı kaçırmadınız."
+        },
+        "incoming": {
+          "title": "Henüz gelen arama yok",
+          "description": "Cevapladığınız gelen aramalar burada görünecek."
+        },
+        "outgoing": {
+          "title": "Henüz giden arama yok",
+          "description": "İlk aramanızı yapmak için tuş takımını açın."
+        },
+        "unknown": {
+          "title": "Bilinmeyen numara yok",
+          "description": "Son aramaların hepsi tanıdığınız veya doğrulanmış numaralardan."
+        },
+        "spam": {
+          "title": "Spam bulunmadı",
+          "description": "Dolandırıcılık ve reklam aramaları burada toplanacak."
+        },
+        "blocked": {
+          "title": "Henüz engellenen arama yok",
+          "description": "Kara listeye göre engellenen aramalar burada görünecek."
+        }
+      },
+      "select": {
+        "count": "{n} seçildi",
+        "all": "Tümünü seç",
+        "delete": "Sil",
+        "cancel": "İptal"
+      },
+      "delete": {
+        "title": "{n} arama silinsin mi?",
+        "message": "Seçilen aramalar kayıttan silinecek. İstatistikler korunur.",
+        "done": "{n} arama silindi"
+      },
+      "more": "Bu arama için seçenekler",
+      "noPermission": {
+        "title": "Arama kaydını okuma izni yok",
+        "description": "Geçmişi görmek, bilinmeyen numaraları filtrelemek ve istatistik için Safe Dial'ın arama kaydını okumasına izin verin.",
+        "grant": "İzin ver"
+      },
+      "actions": {
+        "title": "Seçenekler",
+        "call": "Ara",
+        "message": "Mesaj",
+        "detail": "Ayrıntılar",
+        "block": "Bu numarayı engelle",
+        "unblock": "Bu numaranın engelini kaldır",
+        "report": "Spam bildir",
+        "save": "Kişilere kaydet",
+        "copy": "Numarayı kopyala",
+        "delete": "Kayıttan sil"
+      },
+      "deleteOne": {
+        "title": "Bu arama silinsin mi?",
+        "message": "Arama kayıttan silinecek."
+      }
+    },
+    "sim": {
+      "title": "Hangi SIM ile aransın?",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "Ana hat",
+      "sim2Desc": "İkinci hat",
+      "remember": "Her zaman bu SIM'i kullan"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "Kişiler",
+        "favorites": "Favoriler"
+      },
+      "search": "İsim veya numara ara",
+      "emptyAll": {
+        "title": "Kişi listesi boş",
+        "description": "Henüz kayıtlı kişi yok."
+      },
+      "emptySearch": {
+        "title": "Bulunamadı",
+        "description": "“{q}” ile eşleşen kişi yok."
+      },
+      "emptyFav": {
+        "title": "Henüz favori kişi yok",
+        "description": "Buraya eklemek için kişilerdeki yıldız simgesine dokunun."
+      },
+      "goContacts": "Kişileri aç",
+      "count": "{n} kişi",
+      "quickCall": "{name} kişisini ara",
+      "favOn": "{name} favorilerden çıkar",
+      "favOff": "{name} favorilere ekle"
+    }
+  },
+  "dial": {
+    "title": "Tuş takımı",
+    "placeholder": "Telefon numarası girin",
+    "backspace": "Bir rakam sil",
+    "call": "Ara",
+    "save": "Kişilere kaydet",
+    "message": "Mesaj",
+    "saveToast": "Kişi ekleme ekranı açılıyor",
+    "messageToast": "{number} için mesajlar açılıyor",
+    "suggestions": "Önerilen kişiler",
+    "recognition": {
+      "checking": "Numara kontrol ediliyor...",
+      "unknownTitle": "Bu numara hakkında bilgi yok",
+      "unknownDesc": "Bilinmeyen numara. Kişisel bilgi isterse dikkatli olun.",
+      "contact": "Kişilerde kayıtlı",
+      "trusted": "Bu numarayı güvenilir olarak işaretlediniz",
+      "marked": "İşaretiniz: {category}",
+      "international": "Uluslararası numara",
+      "scamWarn": "Bu numarayı dolandırıcı olarak işaretlediniz — OTP kodu vermeyin, para göndermeyin.",
+      "spamWarn": "Bu numarayı rahatsız edici olarak işaretlediniz. Aramadan önce düşünün.",
+      "blocked": "Bu numara engelli",
+      "unblock": "Engeli kaldır",
+      "unblockToast": "{number} engeli kaldırıldı",
+      "detail": "Ayrıntılar"
+    },
+    "search": {
+      "title": "Ara",
+      "placeholder": "Numara veya isim girin",
+      "back": "Geri",
+      "contacts": "Kişiler",
+      "history": "Arama geçmişinde",
+      "lookupTitle": "Numara bilgisi",
+      "lookupHint": "Numaranın kişilerde, engel listesinde olup olmadığını veya işaretlenip işaretlenmediğini görün.",
+      "lookupBtn": "Kontrol et",
+      "lookingUp": "Kontrol ediliyor...",
+      "noInfo": "Bilgi yok",
+      "noInfoDesc": "Bu numarayı henüz işaretlemediniz veya adlandırmadınız.",
+      "calls": "İletişim",
+      "callsValue": "{n} arama",
+      "country": "Ülke",
+      "mark": "İşaret",
+      "note": "Notunuz",
+      "detail": "Ayrıntılar",
+      "block": "Engelle",
+      "unblock": "Engeli kaldır",
+      "recent": "Son aramalar",
+      "clearAll": "Tümünü temizle",
+      "removeRecent": "Arama geçmişinden kaldır",
+      "examplesTitle": "Örnek bir numarayı deneyin",
+      "examplesDesc": "Uyarıyı iş başında görmek için aşağıdaki bir numaraya dokunun (demo).",
+      "noResult": {
+        "title": "Sonuç yok",
+        "description": "“{q}” ile eşleşen kişi veya arama bulunamadı."
+      },
+      "initial": {
+        "title": "Bilinmeyen numarayı kontrol et",
+        "description": "Güvenli olup olmadığını görmek için bir numara girin."
+      },
+      "callCount": "{n} arama"
+    }
+  },
+  "number": {
+    "title": "Numara ayrıntıları",
+    "hidden": "Gizli numara",
+    "hiddenDesc": "Arayan numarasını gizlediği için işaretlenemez veya geri aranamaz.",
+    "loading": "Yükleniyor...",
+    "noName": "İsim yok",
+    "contact": "Kişilerde kayıtlı",
+    "trusted": "Güvenilir numara",
+    "menu": {
+      "open": "Diğer seçenekler",
+      "title": "Seçenekler",
+      "copy": "Numarayı kopyala",
+      "share": "Paylaş",
+      "block": "Bu numarayı engelle",
+      "unblock": "Bu numaranın engelini kaldır",
+      "trust": "Güvenilir olarak işaretle",
+      "untrust": "Güvenilir işaretini kaldır",
+      "clearMark": "İşareti kaldır",
+      "clear": "Bu numaranın geçmişini sil"
+    },
+    "copied": "Numara kopyalandı",
+    "copyFail": "Kopyalanamadı",
+    "shareToast": "Paylaşım menüsü açıldı",
+    "warning": {
+      "scamTitle": "Dolandırıcılık uyarısı",
+      "spamTitle": "Rahatsız edici numara",
+      "marked": "İşaretiniz: {category}",
+      "signals": "Son aramadaki işaretler: {list}",
+      "tipsTitle": "Kendinizi nasıl korursunuz",
+      "tip1": "OTP kodunu, kart numarasını veya şifreyi kimseye söylemeyin.",
+      "tip2": "Telefonda istenen para transferlerini yapmayın.",
+      "tip3": "Kapatın ve kurumun veya bankanın resmi numarasını kendiniz arayın."
+    },
+    "actions": {
+      "call": "Ara",
+      "message": "Mesaj",
+      "favorite": "Favori",
+      "unfavorite": "Favoriden çıkar",
+      "block": "Engelle",
+      "unblock": "Engeli kaldır",
+      "save": "Kaydet",
+      "report": "İşaretle",
+      "suggest": "Adlandır",
+      "trust": "Güvenilir"
+    },
+    "blockedBanner": "Bu numara engel listesinde",
+    "block": {
+      "title": "Bu numara engellensin mi?",
+      "message": "{number} numarasından gelen aramalar otomatik engellenecek.",
+      "done": "{number} engellendi",
+      "failed": "Engellenemedi. Safe Dial'ı varsayılan telefon uygulaması yapın.",
+      "unblockTitle": "Engel kaldırılsın mı?",
+      "unblockMessage": "{number} numarasından yeniden arama alacaksınız.",
+      "unblockDone": "{number} engeli kaldırıldı"
+    },
+    "trust": {
+      "done": "Güvenilir olarak işaretlendi. Bu numara engellenmeyecek ve uyarı vermeyecek.",
+      "undone": "Güvenilir işareti kaldırıldı"
+    },
+    "toast": {
+      "message": "{name} için mesajlar açılıyor",
+      "save": "Kişi ekleme ekranı açılıyor",
+      "favOn": "Favorilere eklendi",
+      "favOff": "Favorilerden çıkarıldı",
+      "markCleared": "İşaret kaldırıldı"
+    },
+    "info": {
+      "title": "Numara bilgisi",
+      "country": "Ülke",
+      "calls": "Arama sayısı",
+      "lastCall": "Son arama",
+      "mark": "İşaretiniz",
+      "none": "Bilinmiyor",
+      "never": "Hiç",
+      "noMark": "İşaretlenmedi"
+    },
+    "community": {
+      "title": "Notunuz",
+      "noNames": "Bu numaraya henüz isim veya not eklemediniz.",
+      "suggestTitle": "Bu numarayı adlandırın",
+      "suggestPlaceholder": "Örn: Hızlı kargo",
+      "suggestSend": "İsmi kaydet",
+      "suggestDone": "Numaranın ismi kaydedildi"
+    },
+    "notes": {
+      "title": "Arama notları",
+      "delete": "Notu sil",
+      "deleted": "Not silindi"
+    },
+    "report": {
+      "title": "Bu numarayı işaretle",
+      "subtitle": "Bir dahaki sefere tanımak için en uygun türü seçin.",
+      "note": "Not (isteğe bağlı)",
+      "notePlaceholder": "Aramayı kısaca anlatın...",
+      "send": "İşareti kaydet",
+      "thanks": "Numara işaretlendi",
+      "offerTitle": "Bu numara da engellensin mi?",
+      "offerMessage": "{number} sizi artık rahatsız etmeyecek.",
+      "offerYes": "Engelle",
+      "offerNo": "Sonra"
+    },
+    "recent": {
+      "title": "Son aramalar",
+      "empty": "Bu numarayla henüz arama yok."
+    },
+    "stats": {
+      "title": "İletişim istatistikleri",
+      "subtitle": "Sıklık, süre ve en çok aranan günler"
+    },
+    "clear": {
+      "title": "Bu numaranın geçmişi silinsin mi?",
+      "message": "Bu numarayla yapılan tüm aramalar kayıttan silinecek. İstatistikler korunur.",
+      "done": "Arama geçmişi silindi"
+    },
+    "history": {
+      "title": "Arama geçmişi",
+      "empty": {
+        "title": "Arama yok",
+        "description": "Kayıtta bu numaraya ait arama yok."
+      },
+      "selected": "{n} seçildi",
+      "selectAll": "Tümünü seç",
+      "delete": "Sil",
+      "cancel": "İptal",
+      "deleteTitle": "{n} arama silinsin mi?",
+      "deleteMessage": "Seçilen aramalar kayıttan silinecek. İstatistikler korunur.",
+      "deleted": "{n} arama silindi",
+      "count": "{n} arama",
+      "note": "Yalnızca telefonun kaydında kalan aramalar gösterilir."
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "Engellenen",
+      "list": "Kara liste",
+      "settings": "Ayarlar"
+    },
+    "blocked": {
+      "weekSummary": "arama son 7 günde engellendi",
+      "topReason": "En sık: {reason} ({n})",
+      "emptyTitle": "Henüz engellenen arama yok",
+      "emptyDesc": "Bir arama engellendiğinde veya sessize alındığında, nedeniyle birlikte burada görünür."
+    },
+    "rules": {
+      "add": "Kural ekle",
+      "test": "Numara test et",
+      "header": "Etkin kurallar ({n})",
+      "emptyTitle": "Kara liste boş",
+      "emptyDesc": "İstenmeyen aramaları engellemek için numara veya kural ekleyin.",
+      "deleteTitle": "Bu kural silinsin mi?",
+      "deleteMsg": "\"{name}\" ile eşleşen aramalar artık bu kuralla engellenmeyecek.",
+      "deleted": "Kural silindi",
+      "deleteAria": "{name} kuralını sil",
+      "numbersHeader": "Engellenen numaralar ({n})",
+      "numbersEmpty": "Henüz belirli bir numara engellenmedi.",
+      "numberDeleteTitle": "Engel kaldırılsın mı?",
+      "numberDeleteMsg": "{name} kişisinden yeniden arama alacaksınız.",
+      "hits": "{n} arama engellendi · son {date}",
+      "noHits": "Henüz engellenen yok",
+      "toggleAria": "{name} kuralını aç/kapat"
+    },
+    "quick": {
+      "header": "Son aramalardan hızlı engelle",
+      "none": "Son aramalarda engellenecek bilinmeyen numara yok.",
+      "done": "{number} engellendi"
+    },
+    "settings": {
+      "header": "Otomatik engelleme",
+      "autoBlockReported": {
+        "title": "Dolandırıcı olarak işaretlediklerimi engelle",
+        "desc": "Bir numarayı dolandırıcı/spam olarak işaretlediğinizde hemen engel listesine eklenir."
+      },
+      "noRole": "Engellemenin çalışması için Safe Dial'ı varsayılan telefon uygulaması yapın.",
+      "blockPrivate": {
+        "title": "Gizli numaraları engelle",
+        "desc": "Numarasını gizleyen aramaları engelle."
+      },
+      "blockInternational": {
+        "title": "Uluslararası aramaları engelle",
+        "desc": "Yalnızca yurt içi aramalara izin ver. Kişileriniz yine arayabilir."
+      },
+      "blockNonContacts": {
+        "title": "Kişilerde olmayan numaraları engelle",
+        "desc": "Yalnızca kişilerinizden gelen aramaları al.",
+        "warn": "Numarasını kaydetmediğiniz tanıdıklar, kuryeler, banka veya doktor yanlışlıkla engellenebilir. Sessize alma modunu kullanmayı düşünün."
+      },
+      "notifyOnBlock": {
+        "title": "Engellemede bildir",
+        "desc": "Her arama engellendiğinde bildirim göster."
+      },
+      "methodHeader": "İşlem şekli",
+      "method": {
+        "hangup": {
+          "title": "Otomatik kapat",
+          "desc": "Arayan meşgul / reddedildi sinyali duyar. Telefonunuz çalmaz."
+        },
+        "silent": {
+          "title": "Sessize al, arama görünsün",
+          "desc": "Telefon sessiz kalır ama arama geçmişte görünür, arayan çalma sesini duymaya devam eder."
+        }
+      },
+      "countryHeader": "Ülkeye göre engelle",
+      "country": {
+        "title": "Ülkeye göre engelle",
+        "desc": "{n} ülke kodu engellendi"
+      },
+      "countryAdded": "{name} numaraları engellendi",
+      "note": "Kişilerinizdeki numaralar ön ek, son ek, ülke kodu veya uluslararası arama kurallarıyla engellenmez. Kişileri yalnızca belirli numara listesi engelleyebilir. Ülke kodunuz: {dial}."
+    },
+    "country": {
+      "search": "Ülke veya kod ara",
+      "blocked": "Engellendi",
+      "none": "Uygun ülke bulunamadı."
+    },
+    "form": {
+      "title": "Engelleme kuralı ekle",
+      "kindHeader": "Kural türünü seçin",
+      "help": {
+        "number": "Kişilerinizde olsa bile tam olarak bir numarayı engeller.",
+        "startsWith": "Girdiğiniz rakamlarla başlayan tüm numaraları engeller.",
+        "contains": "Bu rakam dizisini herhangi bir yerinde içeren tüm numaraları engeller.",
+        "endsWith": "Girdiğiniz rakamlarla biten tüm numaraları engeller.",
+        "country": "Bir ülkeden gelen tüm aramaları ülke koduna göre engeller."
+      },
+      "example": {
+        "number": "Örn: 0901 234 567 yalnızca bu numarayı engeller.",
+        "startsWith": "Örn: 0899 ile başlar → 0899 ile başlayan tüm numaralar engellenir.",
+        "contains": "Örn: 8888 içerir → 0912 8888 11 ve 0988 888 812 engellenir.",
+        "endsWith": "Örn: 0000 ile biter → 0000 ile biten tüm numaralar engellenir.",
+        "country": "Örn: Nijerya (+234) seçin → tüm +234… numaraları engellenir"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "Değer",
+      "labelLabel": "Not (isteğe bağlı)",
+      "labelPlaceholder": "Örn: Kredi numaraları",
+      "picked": "Seçilen: {name}",
+      "errEmpty": "Kural için bir değer girin.",
+      "errNumber": "Geçersiz telefon numarası (8-15 rakam olmalı).",
+      "errShort": "Çok fazla numarayı yanlışlıkla engellememek için en az 3 rakam girin.",
+      "errCountry": "Bir ülke seçin.",
+      "duplicate": "Bu kural zaten kara listede.",
+      "previewTitle": "Bu kural geçmişteki {n} aramayla eşleşiyor",
+      "previewMore": "ve {n} numara daha",
+      "previewNone": "Geçmişte bu kuralla eşleşen arama yok.",
+      "previewNote": "Kişilerdeki numaralar sayılmaz, çünkü kalıp kuralları tanıdıkları her zaman atlar.",
+      "save": "Kuralı kaydet",
+      "saved": "Engelleme kuralı eklendi"
+    },
+    "test": {
+      "title": "Numara test et",
+      "intro": "Engelleme motorunun bir numarayı adım adım nasıl işlediğini görmek için numara girin. Gerçek arama yapılmaz.",
+      "numberLabel": "Telefon numarası",
+      "placeholder": "0901 234 567 veya +84…",
+      "private": "Gizli numara",
+      "privateDesc": "Numarasını gizleyen arayanı simüle et",
+      "run": "Test et",
+      "invalid": "Geçerli bir numara girin veya \"Gizli numara\"yı açın.",
+      "quick": "Hızlı doldur",
+      "inContacts": "Kişilerde var",
+      "notContact": "Kişilerde yok",
+      "traceHeader": "Kontrol adımları"
+    },
+    "trace": {
+      "steps": {
+        "system": "Engel listeniz",
+        "trusted": "Güvenilir numara",
+        "contact": "Kişiler",
+        "rule": "Ön ek / son ek / ülke kuralları",
+        "private": "Gizli numara engeli",
+        "international": "Uluslararası arama engeli",
+        "nonContact": "Kişilerde olmayan numara engeli",
+        "signals": "Uyarı işaretleri"
+      },
+      "state": {
+        "off": "Kapalı",
+        "pass": "Eşleşmedi",
+        "match": "EŞLEŞTİ",
+        "stopped": "Çalışmadı"
+      },
+      "offHint": "Bu anahtar kapalı olduğu için atlandı.",
+      "stoppedHint": "Önceki adımda karar verildiği için değerlendirilmedi.",
+      "detail": {
+        "system": {
+          "match": "Bu numara cihazın engel listesinde.",
+          "pass": "Engel listesinde değil."
+        },
+        "trusted": {
+          "match": "Bu numarayı güvenilir olarak işaretlediniz.",
+          "pass": "Güvenilir olarak işaretlenmedi."
+        },
+        "contact": {
+          "match": "Kişilerde var: {name}.",
+          "pass": "Kişilerde yok."
+        },
+        "rule": {
+          "match": "Kuralla eşleşti: {name}.",
+          "pass": "Etkin {n} kuralın hiçbiriyle eşleşmedi."
+        },
+        "private": {
+          "match": "Arayan numarasını gizledi.",
+          "pass": "Numara normal görünüyor."
+        },
+        "international": {
+          "match": "Uluslararası numara, kişilerde yok.",
+          "pass": "Uluslararası numara değil."
+        },
+        "nonContact": {
+          "match": "Numara kişilerde yok.",
+          "pass": "Numara kişilerde var."
+        },
+        "signals": {
+          "match": "İşaretler: {list}.",
+          "pass": "Şüpheli işaret yok."
+        }
+      },
+      "verdict": "Sonuç",
+      "action": {
+        "allowed": "İzin verildi",
+        "warned": "Uyarı",
+        "blocked": "Engellendi",
+        "silenced": "Sessize alındı"
+      },
+      "reasonLine": "Neden: {reason}",
+      "allowLine": "Hiçbir adım bu numarayı engellemiyor, arama normal şekilde çalacak.",
+      "warnLine": "Arama çalar ama uyarı gösterilir: {list}.",
+      "silenceNote": "Telefon sessiz kalır, arama geçmişte görünmeye devam eder."
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 gün",
+      "30d": "30 gün",
+      "all": "Tümü"
+    },
+    "empty": {
+      "title": "Henüz istatistik yok",
+      "desc": "Arama yapın veya alın, istatistikler burada görünecek."
+    },
+    "kpi": {
+      "total": "Toplam arama",
+      "talk": "Konuşma süresi",
+      "avg": "Ortalama {d}",
+      "missed": "Cevapsız arama",
+      "suspicious": "Şüpheli / Engellenen",
+      "suspiciousSub": "Spam, dolandırıcı / engellenen numaralar"
+    },
+    "perDay": {
+      "title": "Günlük aramalar (son {n} gün)",
+      "aria": "Günlük arama sayısı grafiği"
+    },
+    "types": {
+      "title": "Arama türleri",
+      "center": "arama"
+    },
+    "frequency": {
+      "title": "İletişim sıklığı",
+      "none": "Kişilerinizle henüz iletişim yok.",
+      "times": "{n} kez",
+      "noTalk": "Konuşma yok"
+    },
+    "strangers": {
+      "title": "En çok arayan yabancılar",
+      "desc": "Kişilerde olmayan numaralar, arama sayısına göre.",
+      "none": "Bu dönemde arayan yabancı yok.",
+      "meta": "{n} kez · son {date}",
+      "blocked": "Engel listesine eklendi",
+      "alreadyBlocked": "Engellendi",
+      "hidden": "Gizli numara"
+    },
+    "risk": {
+      "title": "Gelen aramaların güvenlik düzeyi",
+      "desc": "{n} gelen aramanın dağılımı."
+    },
+    "number": {
+      "subtitle": "Bu numaranın istatistikleri",
+      "emptyTitle": "Bu numarayla henüz arama yok",
+      "emptyDesc": "İstatistikler arama yapıldıktan sonra görünür.",
+      "durationTitle": "Konuşma süresi",
+      "durTotal": "Toplam",
+      "durIncoming": "Gelen arama",
+      "durOutgoing": "Giden arama",
+      "avg": "Arama başına ortalama {d}",
+      "incomingTitle": "Gelen aramalar",
+      "inTotal": "Toplam gelen",
+      "inAnswered": "Cevaplanan",
+      "inMissed": "Cevapsız",
+      "inBlocked": "Engellenen",
+      "outgoingTitle": "Giden aramalar",
+      "outTotal": "Toplam giden",
+      "outAnswered": "Cevaplandı",
+      "outNot": "Cevaplanmadı",
+      "weeks": "Son 8 hafta",
+      "weeksAria": "Haftalık arama sayısı: {v}",
+      "weekdayTitle": "En çok hangi gün aranıyor",
+      "weekdayAria": "Haftanın günlerine göre arama sayısı",
+      "firstLast": "Zaman çizelgesi",
+      "first": "İlk arama",
+      "last": "Son arama",
+      "viewHistory": "Geçmişi gör"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "Gelen arama simülasyonu",
+      "intro": "Yalnızca demo sürümde (tarayıcı). Safe Dial'ın aramayı nasıl tanıyıp işlediğini görmek için bir senaryo seçin.",
+      "displayHeader": "Görünüm",
+      "displayStyle": "Arayan penceresi",
+      "sizeClassic": "Açılır pencere",
+      "sizeFull": "Tam ekran",
+      "position": "Pencere konumu",
+      "posTop": "Üst",
+      "posCenter": "Orta",
+      "posBottom": "Alt",
+      "scenarios": "Senaryolar",
+      "willRing": "Çalacak",
+      "willBlock": "Engellenecek",
+      "customHeader": "Özel numara",
+      "customPlaceholder": "Telefon numarası girin",
+      "customRun": "Deneme araması",
+      "invalid": "Geçerli bir telefon numarası girin.",
+      "blocked": "Engellendi:",
+      "silenced": "Sessize alındı:",
+      "detail": "Ayrıntı: {d}",
+      "viewBlocked": "Engellenenleri gör"
+    },
+    "overlay": {
+      "incoming": "Gelen arama",
+      "head": {
+        "safe": "Gelen arama - Güvenli",
+        "unknown": "Gelen arama - Bilinmeyen numara",
+        "spam": "Uyarı - Spam şüphesi",
+        "scam": "Uyarı - Dolandırıcılık şüphesi"
+      },
+      "answer": "Cevapla",
+      "reject": "Reddet",
+      "moreAria": "Diğer işlemler",
+      "hiddenCaller": "Gizli arayan",
+      "localCountry": "Vietnam",
+      "marked": "İşaretiniz: {category}",
+      "signals": "İşaretler: {list}",
+      "warnMarked": "Uyarı: bu numarayı {category} olarak işaretlediniz. OTP kodu, şifre vermeyin ve para göndermeyin.",
+      "warnGeneric": "Uyarı: bu numarada dolandırıcılık işaretleri var. OTP kodu, şifre vermeyin ve para göndermeyin.",
+      "quick": {
+        "message": "Hızlı mesaj",
+        "remind": "Sonra hatırlat",
+        "block": "Bu numarayı engelle"
+      }
+    },
+    "sheets": {
+      "moreTitle": "Diğer işlemler",
+      "messageTitle": "Hızlı mesaj",
+      "messageDesc": "Aramayı reddet ve bir yanıt mesajı gönder.",
+      "replies": {
+        "r1": "Şu an meşgulüm, sonra ararım.",
+        "r2": "Toplantıdayım, lütfen mesaj atın.",
+        "r3": "Araç kullanıyorum, lütfen sonra arayın.",
+        "r4": "Ne için aradınız? Lütfen mesaj atın."
+      },
+      "remindTitle": "Sonra hatırlat",
+      "remindDesc": "Aramayı reddet ve geri aramanızı hatırlat.",
+      "reminds": {
+        "10s": "10 saniye",
+        "1m": "1 dakika",
+        "5m": "5 dakika",
+        "15m": "15 dakika",
+        "30m": "30 dakika"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "Yine de cevaplansın mı?",
+      "confirmMsg": "Bu numarayı dolandırıcı/spam olarak işaretlediniz. Yine de cevaplansın mı?",
+      "confirmOk": "Yine de cevapla",
+      "confirmCancel": "Cevaplama",
+      "blockTitle": "Bu numara engellensin mi?",
+      "blockMsg": "{number} numarasından gelecek aramalar bundan sonra engellenecek.",
+      "blocked": "{number} engellendi",
+      "cannotBlockHidden": "Gizli numara engellenemez. Engelleme sekmesinde \"Gizli numaraları engelle\"yi açın.",
+      "replySent": "Reddedildi ve mesaj gönderildi: {text}",
+      "remindSet": "Reddedildi, {when} sonra hatırlatılacak"
+    },
+    "active": {
+      "dialing": "Aranıyor…",
+      "onHold": "Beklemede",
+      "warnScam": "Dolandırıcılık uyarısı: OTP kodu, şifre vermeyin ve para göndermeyin.",
+      "warnSpam": "Bu numarayı spam olarak işaretlediniz. Dikkatli olun.",
+      "end": "Aramayı bitir",
+      "hideKeypad": "Tuş takımını gizle",
+      "noteTitle": "Arama notu",
+      "notePlaceholder": "Bu aramayla ilgili hatırlanacaklar...",
+      "noteSave": "Notu kaydet",
+      "noteSaved": "Not kaydedildi",
+      "controls": {
+        "mute": "Sessiz",
+        "keypad": "Tuş takımı",
+        "speaker": "Hoparlör",
+        "hold": "Beklet",
+        "add": "Arama ekle",
+        "note": "Not"
+      }
+    },
+    "after": {
+      "title": "Arama sona erdi",
+      "type": "Arama türü",
+      "duration": "Süre",
+      "time": "Zaman",
+      "whoTitle": "Bu kimdi?",
+      "whoDesc": "Bir dahaki sefere tanımak için numarayı işaretleyin.",
+      "hidden": "Bu gizli bir numara, ayrıca işaretlenemez veya engellenemez. Gerekirse Engelleme sekmesinde \"Gizli numaraları engelle\"yi açın.",
+      "spam": "Spam olarak işaretle",
+      "notSpam": "Spam değil",
+      "notSpamToast": "Numara güvenilir olarak işaretlendi",
+      "suggest": "Adlandır",
+      "alreadyBlocked": "Engellendi",
+      "reportedBtn": "İşaretlendi",
+      "reportTitle": "Bu numarayı işaretle",
+      "reportDesc": "Az önceki aramaya en uygun grubu seçin.",
+      "reported": "Numara işaretlendi",
+      "suggestTitle": "Bu numarayı adlandırın",
+      "suggestDesc": "Bu isim yalnızca cihazınızda saklanır.",
+      "suggestPlaceholder": "Örn: Hızlı kargo",
+      "suggestSend": "İsmi kaydet",
+      "suggested": "Numaranın ismi kaydedildi",
+      "saveToast": "Kişi ekleme ekranı açılıyor",
+      "callBack": "Geri ara",
+      "messageToast": "Mesajlar açılıyor"
+    }
+  }
+}
