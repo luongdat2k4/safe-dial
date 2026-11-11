@@ -1,0 +1,1077 @@
+{
+  "common": {
+    "appName": "Safe Dial",
+    "tagline": "Nhận diện số lạ, chặn lừa đảo",
+    "actions": {
+      "ok": "Đồng ý",
+      "cancel": "Huỷ",
+      "close": "Đóng",
+      "back": "Quay lại",
+      "save": "Lưu",
+      "delete": "Xoá",
+      "block": "Chặn",
+      "unblock": "Bỏ chặn",
+      "call": "Gọi",
+      "message": "Nhắn tin",
+      "done": "Xong",
+      "next": "Tiếp tục",
+      "skip": "Bỏ qua",
+      "allow": "Cho phép",
+      "retry": "Thử lại",
+      "copy": "Sao chép",
+      "share": "Chia sẻ",
+      "edit": "Sửa",
+      "add": "Thêm",
+      "search": "Tìm kiếm",
+      "report": "Báo cáo",
+      "viewAll": "Xem tất cả",
+      "addToContacts": "Lưu vào danh bạ",
+      "history": "Lịch sử"
+    },
+    "nav": {
+      "calls": "Cuộc gọi",
+      "contacts": "Danh bạ",
+      "block": "Chặn",
+      "stats": "Thống kê"
+    },
+    "risk": {
+      "safe": "An toàn",
+      "unknown": "Số lạ",
+      "spam": "Spam",
+      "scam": "Lừa đảo"
+    },
+    "category": {
+      "scam": "Lừa đảo",
+      "spam": "Spam",
+      "loan": "Vay tiền / bảo hiểm",
+      "robocall": "Cuộc gọi tự động",
+      "fakeJob": "Việc làm / trúng thưởng giả",
+      "telemarketing": "Tiếp thị qua điện thoại",
+      "impersonation": "Giả danh cơ quan / ngân hàng"
+    },
+    "callType": {
+      "incoming": "Cuộc gọi đến",
+      "outgoing": "Cuộc gọi đi",
+      "missed": "Cuộc gọi nhỡ",
+      "blocked": "Đã chặn"
+    },
+    "blockReason": {
+      "private": "Số ẩn danh",
+      "international": "Cuộc gọi quốc tế",
+      "nonContact": "Không có trong danh bạ",
+      "list": "Có trong danh sách chặn",
+      "rule": "Khớp quy tắc chặn",
+      "country": "Chặn theo mã quốc gia"
+    },
+    "signal": {
+      "international": "số quốc tế",
+      "private": "giấu số",
+      "burst": "gọi dồn dập",
+      "rejectedBefore": "từng bị bạn từ chối hoặc chặn"
+    },
+    "ruleKind": {
+      "number": "Số cụ thể",
+      "startsWith": "Bắt đầu bằng",
+      "contains": "Chứa dãy số",
+      "endsWith": "Kết thúc bằng",
+      "country": "Mã quốc gia"
+    },
+    "unknownNumber": "Số lạ",
+    "privateNumber": "Số ẩn",
+    "noName": "Không có tên",
+    "mockNotice": "Bản demo: dữ liệu và cuộc gọi được giả lập."
+  },
+  "boot": {
+    "language": {
+      "title": "Chọn ngôn ngữ",
+      "subtitle": "Bạn có thể thay đổi lại trong Cài đặt bất cứ lúc nào.",
+      "vi": "Tiếng Việt",
+      "viNative": "Việt Nam",
+      "en": "English",
+      "enNative": "Tiếng Anh",
+      "enSoon": "Bản dịch tiếng Anh sắp có",
+      "confirm": "Xác nhận",
+      "saved": "Đã lưu ngôn ngữ"
+    },
+    "onboarding": {
+      "art": {
+        "identify": "Nhận diện số lạ",
+        "protect": "An tâm kết nối",
+        "calls": "Biết ai đang gọi",
+        "insights": "Thống kê liên lạc"
+      },
+      "pages": [
+        {
+          "title": "Nhận diện số lạ",
+          "text": "Biết ngay ai đang gọi, kể cả khi số chưa có trong danh bạ. Tên và nhóm rủi ro hiện ngay lúc đổ chuông."
+        },
+        {
+          "title": "Cảnh báo lừa đảo theo thời gian thực",
+          "text": "Safe Dial cảnh báo khi số gọi nằm trong danh sách đen của bạn, là số quốc tế lạ hoặc gọi dồn dập bất thường."
+        },
+        {
+          "title": "Chặn spam và thống kê liên lạc",
+          "text": "Chặn số quốc tế, số ẩn, số rác theo quy tắc của bạn, và xem ai liên lạc với bạn nhiều nhất."
+        }
+      ],
+      "dots": "Trang {n} trên {total}",
+      "start": "Bắt đầu"
+    },
+    "permissions": {
+      "title": "Cấp quyền cho Safe Dial",
+      "subtitle": "Mỗi quyền chỉ dùng cho một mục đích rõ ràng. Bạn có thể đổi lại sau.",
+      "allowAll": "Cho phép tất cả",
+      "later": "Để sau",
+      "laterWarn": "Bảo vệ sẽ bị hạn chế cho đến khi bạn cấp đủ quyền",
+      "needBasic": "Cần cho phép Danh bạ để tiếp tục",
+      "sectionPermissions": "Quyền truy cập",
+      "sectionRoles": "Vai trò trên điện thoại",
+      "privacyTitle": "Quyền riêng tư của bạn",
+      "privacyText": "Dữ liệu danh bạ chỉ dùng để nhận diện, không bán và không chia sẻ cho bên thứ ba.",
+      "items": {
+        "calls": {
+          "title": "Cuộc gọi và nhật ký cuộc gọi",
+          "why": "Để gọi điện, xem lịch sử và thống kê cuộc gọi."
+        },
+        "contacts": {
+          "title": "Danh bạ",
+          "why": "Để hiện tên người quen và không chặn nhầm họ."
+        },
+        "notifications": {
+          "title": "Thông báo",
+          "why": "Để hiện cuộc gọi đến và báo cuộc gọi vừa bị chặn."
+        }
+      },
+      "roles": {
+        "dialer": {
+          "title": "Ứng dụng gọi điện mặc định",
+          "why": "Để Safe Dial nhận, gọi, lọc và chặn cuộc gọi trước khi đổ chuông."
+        },
+        "screening": {
+          "title": "Ứng dụng nhận diện và lọc cuộc gọi",
+          "why": "Cho phép kiểm tra và chặn cuộc gọi trước khi đổ chuông."
+        },
+        "set": "Đã đặt",
+        "notSet": "Chưa đặt",
+        "sheetTitleDialer": "Đặt Safe Dial làm ứng dụng gọi điện mặc định?",
+        "sheetTitleScreening": "Đặt Safe Dial làm ứng dụng nhận diện và lọc cuộc gọi?",
+        "sheetText": "Màn hình này mô phỏng hộp thoại chọn vai trò của hệ thống.",
+        "setDefault": "Đặt làm mặc định",
+        "cancel": "Không phải bây giờ",
+        "done": "Đã đặt Safe Dial làm ứng dụng gọi điện mặc định",
+        "unavailable": "Máy này không cho đổi ứng dụng gọi điện mặc định"
+      },
+      "granted": "Đã cho phép"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "version": "Safe Dial phiên bản {v}",
+    "groups": {
+      "general": "Chung",
+      "calls": "Cuộc gọi",
+      "protection": "Bảo vệ",
+      "data": "Dữ liệu",
+      "lab": "Thử nghiệm",
+      "support": "Hỗ trợ"
+    },
+    "rows": {
+      "notifications": "Thông báo",
+      "sound": "Âm thanh và rung",
+      "language": "Ngôn ngữ",
+      "languageValue": {
+        "vi": "Tiếng Việt",
+        "en": "English"
+      },
+      "sim": "SIM gọi đi",
+      "callerId": "Hiển thị thông tin người gọi",
+      "callerIdSub": "Popup, vị trí và kiểu hiển thị",
+      "scamWarning": "Cảnh báo lừa đảo",
+      "scamWarningSub": "Hiện cảnh báo đỏ khi số gọi đã bị bạn đánh dấu lừa đảo, spam hoặc có dấu hiệu đáng ngờ.",
+      "blockRules": "Quy tắc chặn",
+      "blockRulesSub": "Danh sách đen, số quốc tế, số ẩn",
+      "clearHistory": "Xoá toàn bộ lịch sử cuộc gọi",
+      "clearHistorySub": "Không thể hoàn tác. Thống kê vẫn được giữ.",
+      "clearStats": "Xoá dữ liệu thống kê",
+      "clearStatsSub": "Đặt lại toàn bộ số liệu ở tab Thống kê",
+      "resetDemo": "Tạo lại dữ liệu demo",
+      "simulate": "Mô phỏng cuộc gọi đến",
+      "simulateSub": "Chỉ dành cho bản demo: thử cảnh báo và chặn",
+      "rate": "Đánh giá ứng dụng",
+      "feedback": "Góp ý",
+      "share": "Chia sẻ ứng dụng",
+      "about": "Giới thiệu và quyền riêng tư",
+      "demoTag": "DEMO"
+    },
+    "sim": {
+      "title": "SIM gọi đi",
+      "ask": "Luôn hỏi",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2"
+    },
+    "clear": {
+      "title": "Xoá toàn bộ lịch sử cuộc gọi?",
+      "message": "Mọi cuộc gọi trong nhật ký sẽ bị xoá. Danh sách chặn, danh bạ và thống kê không bị ảnh hưởng.",
+      "confirm": "Xoá hết",
+      "done": "Đã xoá lịch sử cuộc gọi"
+    },
+    "clearStats": {
+      "title": "Xoá dữ liệu thống kê?",
+      "message": "Số liệu tần suất và thời lượng liên lạc sẽ bị xoá. Nhật ký cuộc gọi không bị ảnh hưởng.",
+      "done": "Đã xoá dữ liệu thống kê"
+    },
+    "rate": {
+      "title": "Đánh giá Safe Dial",
+      "text": "Bạn thấy ứng dụng thế nào?",
+      "star": "{n} sao",
+      "send": "Gửi",
+      "thanks": "Cảm ơn bạn đã đánh giá {n} sao",
+      "labels": [
+        "Rất tệ",
+        "Chưa tốt",
+        "Tạm được",
+        "Tốt",
+        "Tuyệt vời"
+      ]
+    },
+    "share": {
+      "link": "https://safedial.example/app",
+      "copied": "Đã sao chép liên kết"
+    },
+    "notifications": {
+      "title": "Thông báo",
+      "callAlert": "Thông báo cuộc gọi",
+      "callAlertSub": "Hiện thông báo khi có cuộc gọi đến từ số đáng ngờ.",
+      "missed": "Cuộc gọi nhỡ",
+      "missedSub": "Báo khi bạn bỏ lỡ một cuộc gọi.",
+      "remind": "Nhắc cuộc gọi nhỡ",
+      "remindSub": "Nhắc lại sau ít phút nếu bạn chưa gọi lại.",
+      "blocked": "Thông báo khi chặn cuộc gọi",
+      "blockedSub": "Cho biết số nào vừa bị chặn và lý do."
+    },
+    "sound": {
+      "title": "Âm thanh và rung",
+      "ringtone": "Nhạc chuông",
+      "ringtoneSheet": "Chọn nhạc chuông",
+      "ringtones": [
+        "Mặc định",
+        "Chuông 1",
+        "Chuông 2",
+        "Chuông 3",
+        "Chuông 4",
+        "Im lặng"
+      ],
+      "dial": "Âm bàn phím",
+      "dialSub": "Phản hồi khi bạn bấm phím quay số.",
+      "dialOptions": {
+        "silent": "Im lặng",
+        "vibrate": "Rung",
+        "sound": "Âm thanh",
+        "both": "Âm thanh và rung"
+      },
+      "demo": "Bản demo: không phát âm thanh thật."
+    },
+    "callerId": {
+      "title": "Hiển thị thông tin người gọi",
+      "enabled": "Bật cửa sổ thông tin người gọi",
+      "enabledSub": "Hiện tên và mức rủi ro khi có cuộc gọi đến.",
+      "contacts": "Hiện cả với người trong danh bạ",
+      "contactsSub": "Mặc định chỉ hiện với số lạ.",
+      "after": "Hiện sau cuộc gọi",
+      "afterSub": "Gợi ý lưu, chặn hoặc báo cáo khi cuộc gọi kết thúc.",
+      "style": "Kiểu hiển thị",
+      "classic": "Popup nhỏ",
+      "classicSub": "Gọn, không che màn hình",
+      "full": "Toàn màn hình",
+      "fullSub": "Rõ ràng, dễ thấy cảnh báo",
+      "position": "Vị trí popup",
+      "top": "Trên",
+      "center": "Giữa",
+      "bottom": "Dưới",
+      "preview": "Xem trước",
+      "previewCaller": "Số lạ",
+      "tryIt": "Xem thử cuộc gọi"
+    },
+    "feedback": {
+      "title": "Góp ý",
+      "easy": "Ứng dụng có dễ dùng không?",
+      "yes": "Có",
+      "no": "Không",
+      "features": "Bạn dùng tính năng nào nhiều nhất?",
+      "featureList": [
+        "Nhận diện số lạ",
+        "Danh bạ",
+        "Chặn spam",
+        "Cảnh báo lừa đảo",
+        "Lịch sử cuộc gọi",
+        "Thống kê liên lạc"
+      ],
+      "message": "Chia sẻ thêm với chúng tôi",
+      "placeholder": "Bạn muốn chúng tôi cải thiện điều gì?",
+      "submit": "Gửi góp ý",
+      "thanks": "Cảm ơn bạn đã góp ý",
+      "counter": "{n}/500"
+    },
+    "about": {
+      "title": "Giới thiệu",
+      "version": "Phiên bản {v}",
+      "demo": "Safe Dial là ứng dụng gọi điện: danh bạ và nhật ký cuộc gọi đọc trực tiếp từ điện thoại, danh sách đen và thống kê lưu ngay trên máy.",
+      "privacy": "Quyền riêng tư",
+      "privacyItems": [
+        {
+          "q": "Safe Dial dùng dữ liệu gì?",
+          "a": "Số điện thoại gọi đến, nhật ký cuộc gọi và danh bạ để nhận diện người gọi và áp dụng quy tắc chặn."
+        },
+        {
+          "q": "Dữ liệu được lưu ở đâu?",
+          "a": "Cài đặt, danh sách chặn, đánh dấu và thống kê được lưu ngay trên thiết bị của bạn. Ứng dụng không gửi dữ liệu đi đâu."
+        },
+        {
+          "q": "Danh bạ có bị bán không?",
+          "a": "Không. Danh bạ chỉ dùng để nhận diện, không bán và không chia sẻ cho bên thứ ba."
+        }
+      ],
+      "terms": "Điều khoản sử dụng",
+      "termsText": "Bạn dùng ứng dụng với trách nhiệm của mình. Cảnh báo dựa trên danh sách đen và đánh dấu của chính bạn nên chỉ mang tính tham khảo, hãy luôn thận trọng khi cung cấp thông tin cá nhân qua điện thoại.",
+      "libs": "Thư viện mã nguồn mở",
+      "libList": [
+        {
+          "name": "Vue",
+          "note": "Khung giao diện"
+        },
+        {
+          "name": "Vite",
+          "note": "Công cụ build"
+        },
+        {
+          "name": "Tailwind CSS",
+          "note": "Kiểu dáng"
+        },
+        {
+          "name": "Pinia",
+          "note": "Quản lý trạng thái"
+        },
+        {
+          "name": "Vue Router",
+          "note": "Điều hướng"
+        },
+        {
+          "name": "Iconify và Lucide",
+          "note": "Bộ biểu tượng"
+        },
+        {
+          "name": "Capacitor",
+          "note": "Chạy trên Android và iOS"
+        }
+      ]
+    }
+  },
+  "home": {
+    "calls": {
+      "filters": {
+        "all": "Tất cả",
+        "missed": "Nhỡ",
+        "incoming": "Đến",
+        "outgoing": "Đi",
+        "unknown": "Số lạ",
+        "spam": "Spam/Lừa đảo",
+        "blocked": "Đã chặn"
+      },
+      "summary": {
+        "title": "7 ngày qua",
+        "suspicious": "đáng ngờ",
+        "blocked": "đã chặn",
+        "clean": "Không có cuộc gọi đáng ngờ",
+        "viewBlocked": "Xem cuộc gọi đã chặn"
+      },
+      "empty": {
+        "all": {
+          "title": "Chưa có cuộc gọi nào",
+          "description": "Lịch sử cuộc gọi của bạn sẽ hiện ở đây."
+        },
+        "missed": {
+          "title": "Không có cuộc gọi nhỡ",
+          "description": "Bạn không bỏ lỡ cuộc gọi nào gần đây."
+        },
+        "incoming": {
+          "title": "Chưa có cuộc gọi đến",
+          "description": "Các cuộc gọi đến đã nghe sẽ hiện ở đây."
+        },
+        "outgoing": {
+          "title": "Chưa có cuộc gọi đi",
+          "description": "Hãy mở bàn phím để thực hiện cuộc gọi đầu tiên."
+        },
+        "unknown": {
+          "title": "Không có số lạ",
+          "description": "Mọi cuộc gọi gần đây đều từ số bạn quen hoặc đã được xác minh."
+        },
+        "spam": {
+          "title": "Chưa phát hiện spam",
+          "description": "Cuộc gọi lừa đảo hoặc quảng cáo sẽ được gom lại ở đây."
+        },
+        "blocked": {
+          "title": "Chưa chặn cuộc gọi nào",
+          "description": "Cuộc gọi bị chặn theo danh sách đen sẽ hiện ở đây."
+        }
+      },
+      "select": {
+        "count": "Đã chọn {n}",
+        "all": "Chọn tất cả",
+        "delete": "Xoá",
+        "cancel": "Huỷ"
+      },
+      "delete": {
+        "title": "Xoá {n} cuộc gọi?",
+        "message": "Các cuộc gọi đã chọn sẽ bị xoá khỏi nhật ký. Thống kê vẫn được giữ.",
+        "done": "Đã xoá {n} cuộc gọi"
+      },
+      "more": "Tuỳ chọn cho cuộc gọi này",
+      "noPermission": {
+        "title": "Chưa có quyền đọc nhật ký cuộc gọi",
+        "description": "Cho phép Safe Dial đọc nhật ký để xem lịch sử, lọc số lạ và thống kê.",
+        "grant": "Cấp quyền"
+      },
+      "actions": {
+        "title": "Tuỳ chọn",
+        "call": "Gọi",
+        "message": "Nhắn tin",
+        "detail": "Xem chi tiết",
+        "block": "Chặn số này",
+        "unblock": "Bỏ chặn số này",
+        "report": "Báo cáo spam",
+        "save": "Lưu vào danh bạ",
+        "copy": "Sao chép số",
+        "delete": "Xoá khỏi nhật ký"
+      },
+      "deleteOne": {
+        "title": "Xoá cuộc gọi này?",
+        "message": "Cuộc gọi sẽ bị xoá khỏi nhật ký."
+      }
+    },
+    "sim": {
+      "title": "Gọi bằng SIM nào?",
+      "sim1": "SIM 1",
+      "sim2": "SIM 2",
+      "sim1Desc": "Thuê bao chính",
+      "sim2Desc": "Thuê bao phụ",
+      "remember": "Luôn dùng SIM này"
+    },
+    "contacts": {
+      "tabs": {
+        "all": "Danh bạ",
+        "favorites": "Yêu thích"
+      },
+      "search": "Tìm tên hoặc số điện thoại",
+      "emptyAll": {
+        "title": "Danh bạ trống",
+        "description": "Chưa có liên hệ nào được lưu."
+      },
+      "emptySearch": {
+        "title": "Không tìm thấy",
+        "description": "Không có liên hệ khớp với “{q}”."
+      },
+      "emptyFav": {
+        "title": "Chưa có liên hệ yêu thích",
+        "description": "Chạm biểu tượng ngôi sao ở danh bạ để thêm vào đây."
+      },
+      "goContacts": "Mở danh bạ",
+      "count": "{n} liên hệ",
+      "quickCall": "Gọi {name}",
+      "favOn": "Bỏ yêu thích {name}",
+      "favOff": "Thêm {name} vào yêu thích"
+    }
+  },
+  "dial": {
+    "title": "Bàn phím",
+    "placeholder": "Nhập số điện thoại",
+    "backspace": "Xoá một số",
+    "call": "Gọi",
+    "save": "Lưu vào danh bạ",
+    "message": "Nhắn tin",
+    "saveToast": "Mở màn hình thêm liên hệ",
+    "messageToast": "Mở tin nhắn tới {number}",
+    "suggestions": "Liên hệ gợi ý",
+    "recognition": {
+      "checking": "Đang kiểm tra số...",
+      "unknownTitle": "Chưa có thông tin về số này",
+      "unknownDesc": "Số lạ. Hãy cẩn trọng nếu người này yêu cầu thông tin cá nhân.",
+      "contact": "Có trong danh bạ",
+      "trusted": "Bạn đã đánh dấu số này là tin cậy",
+      "marked": "Bạn đã đánh dấu: {category}",
+      "international": "Số quốc tế",
+      "scamWarn": "Bạn đã đánh dấu số này là lừa đảo — đừng cung cấp mã OTP hay chuyển tiền.",
+      "spamWarn": "Bạn đã đánh dấu số này là làm phiền. Cân nhắc trước khi gọi.",
+      "blocked": "Số này đang bị chặn",
+      "unblock": "Bỏ chặn",
+      "unblockToast": "Đã bỏ chặn {number}",
+      "detail": "Chi tiết"
+    },
+    "search": {
+      "title": "Tìm kiếm",
+      "placeholder": "Nhập số điện thoại hoặc tên",
+      "back": "Quay lại",
+      "contacts": "Danh bạ",
+      "history": "Trong lịch sử cuộc gọi",
+      "lookupTitle": "Thông tin số này",
+      "lookupHint": "Xem số có trong danh bạ, danh sách chặn hay đã được bạn đánh dấu chưa.",
+      "lookupBtn": "Kiểm tra",
+      "lookingUp": "Đang kiểm tra...",
+      "noInfo": "Chưa có thông tin",
+      "noInfoDesc": "Bạn chưa đánh dấu hay đặt tên cho số này.",
+      "calls": "Đã liên lạc",
+      "callsValue": "{n} cuộc gọi",
+      "country": "Quốc gia",
+      "mark": "Đánh dấu",
+      "note": "Ghi chú của bạn",
+      "detail": "Xem chi tiết",
+      "block": "Chặn",
+      "unblock": "Bỏ chặn",
+      "recent": "Tìm gần đây",
+      "clearAll": "Xoá tất cả",
+      "removeRecent": "Xoá khỏi lịch sử tìm kiếm",
+      "examplesTitle": "Thử kiểm tra một số mẫu",
+      "examplesDesc": "Chạm một số bên dưới để xem cảnh báo hoạt động (bản demo).",
+      "noResult": {
+        "title": "Không có kết quả",
+        "description": "Không tìm thấy liên hệ hoặc cuộc gọi khớp với “{q}”."
+      },
+      "initial": {
+        "title": "Kiểm tra số lạ",
+        "description": "Nhập số điện thoại để xem số đó có an toàn không."
+      },
+      "callCount": "{n} cuộc gọi"
+    }
+  },
+  "number": {
+    "title": "Chi tiết số",
+    "hidden": "Số ẩn",
+    "hiddenDesc": "Người gọi đã giấu số nên không thể đánh dấu hay gọi lại.",
+    "loading": "Đang tải...",
+    "noName": "Chưa có tên",
+    "contact": "Có trong danh bạ",
+    "trusted": "Số tin cậy",
+    "menu": {
+      "open": "Thêm tuỳ chọn",
+      "title": "Tuỳ chọn",
+      "copy": "Sao chép số",
+      "share": "Chia sẻ",
+      "block": "Chặn số này",
+      "unblock": "Bỏ chặn số này",
+      "trust": "Đánh dấu tin cậy",
+      "untrust": "Bỏ đánh dấu tin cậy",
+      "clearMark": "Xoá đánh dấu",
+      "clear": "Xoá lịch sử số này"
+    },
+    "copied": "Đã sao chép số",
+    "copyFail": "Không sao chép được",
+    "shareToast": "Đã mở bảng chia sẻ",
+    "warning": {
+      "scamTitle": "Cảnh báo lừa đảo",
+      "spamTitle": "Số hay làm phiền",
+      "marked": "Bạn đã đánh dấu: {category}",
+      "signals": "Lần gọi gần nhất có dấu hiệu: {list}",
+      "tipsTitle": "Cách tự bảo vệ",
+      "tip1": "Không đọc mã OTP, số thẻ hoặc mật khẩu cho bất kỳ ai.",
+      "tip2": "Không chuyển tiền theo yêu cầu qua điện thoại.",
+      "tip3": "Cúp máy và gọi lại số chính thức của cơ quan hoặc ngân hàng."
+    },
+    "actions": {
+      "call": "Gọi",
+      "message": "Nhắn tin",
+      "favorite": "Yêu thích",
+      "unfavorite": "Bỏ thích",
+      "block": "Chặn",
+      "unblock": "Bỏ chặn",
+      "save": "Lưu danh bạ",
+      "report": "Đánh dấu",
+      "suggest": "Đặt tên",
+      "trust": "Tin cậy"
+    },
+    "blockedBanner": "Số này đang nằm trong danh sách chặn",
+    "block": {
+      "title": "Chặn số này?",
+      "message": "Cuộc gọi từ {number} sẽ bị chặn tự động.",
+      "done": "Đã chặn {number}",
+      "failed": "Không chặn được. Hãy đặt Safe Dial làm ứng dụng gọi điện mặc định.",
+      "unblockTitle": "Bỏ chặn số này?",
+      "unblockMessage": "Bạn sẽ nhận lại cuộc gọi từ {number}.",
+      "unblockDone": "Đã bỏ chặn {number}"
+    },
+    "trust": {
+      "done": "Đã đánh dấu tin cậy. Số này sẽ không bị chặn hay cảnh báo.",
+      "undone": "Đã bỏ đánh dấu tin cậy"
+    },
+    "toast": {
+      "message": "Mở tin nhắn tới {name}",
+      "save": "Mở màn hình thêm liên hệ",
+      "favOn": "Đã thêm vào yêu thích",
+      "favOff": "Đã bỏ khỏi yêu thích",
+      "markCleared": "Đã xoá đánh dấu"
+    },
+    "info": {
+      "title": "Thông tin số",
+      "country": "Quốc gia",
+      "calls": "Số cuộc gọi",
+      "lastCall": "Lần gọi gần nhất",
+      "mark": "Đánh dấu của bạn",
+      "none": "Chưa rõ",
+      "never": "Chưa có",
+      "noMark": "Chưa đánh dấu"
+    },
+    "community": {
+      "title": "Ghi chú của bạn",
+      "noNames": "Bạn chưa đặt tên hay ghi chú cho số này.",
+      "suggestTitle": "Đặt tên cho số này",
+      "suggestPlaceholder": "Ví dụ: Giao hàng nhanh",
+      "suggestSend": "Lưu tên",
+      "suggestDone": "Đã lưu tên cho số này"
+    },
+    "notes": {
+      "title": "Ghi chú cuộc gọi",
+      "delete": "Xoá ghi chú",
+      "deleted": "Đã xoá ghi chú"
+    },
+    "report": {
+      "title": "Đánh dấu số này",
+      "subtitle": "Chọn loại phù hợp nhất để nhận ra số này lần sau.",
+      "note": "Ghi chú (không bắt buộc)",
+      "notePlaceholder": "Mô tả ngắn về cuộc gọi...",
+      "send": "Lưu đánh dấu",
+      "thanks": "Đã đánh dấu số này",
+      "offerTitle": "Chặn số này luôn?",
+      "offerMessage": "Bạn sẽ không bị {number} làm phiền nữa.",
+      "offerYes": "Chặn số",
+      "offerNo": "Để sau"
+    },
+    "recent": {
+      "title": "Cuộc gọi gần đây",
+      "empty": "Chưa có cuộc gọi nào với số này."
+    },
+    "stats": {
+      "title": "Thống kê liên lạc",
+      "subtitle": "Tần suất, thời lượng và ngày hay gọi"
+    },
+    "clear": {
+      "title": "Xoá lịch sử số này?",
+      "message": "Toàn bộ cuộc gọi với số này sẽ bị xoá khỏi nhật ký. Thống kê vẫn được giữ.",
+      "done": "Đã xoá lịch sử cuộc gọi"
+    },
+    "history": {
+      "title": "Lịch sử cuộc gọi",
+      "empty": {
+        "title": "Chưa có cuộc gọi",
+        "description": "Số này chưa có cuộc gọi nào trong nhật ký."
+      },
+      "selected": "Đã chọn {n}",
+      "selectAll": "Chọn tất cả",
+      "delete": "Xoá",
+      "cancel": "Huỷ",
+      "deleteTitle": "Xoá {n} cuộc gọi?",
+      "deleteMessage": "Các cuộc gọi đã chọn sẽ bị xoá khỏi nhật ký. Thống kê vẫn được giữ.",
+      "deleted": "Đã xoá {n} cuộc gọi",
+      "count": "{n} cuộc gọi",
+      "note": "Chỉ hiển thị các cuộc gọi còn trong nhật ký của máy."
+    }
+  },
+  "block": {
+    "tabs": {
+      "blocked": "Đã chặn",
+      "list": "Danh sách đen",
+      "settings": "Cài đặt"
+    },
+    "blocked": {
+      "weekSummary": "cuộc gọi bị chặn trong 7 ngày qua",
+      "topReason": "Chủ yếu: {reason} ({n})",
+      "emptyTitle": "Chưa chặn cuộc gọi nào",
+      "emptyDesc": "Khi một cuộc gọi bị chặn hoặc tắt chuông, nó sẽ hiện ở đây kèm lý do."
+    },
+    "rules": {
+      "add": "Thêm quy tắc",
+      "test": "Kiểm tra một số",
+      "header": "Quy tắc đang áp dụng ({n})",
+      "emptyTitle": "Danh sách đen trống",
+      "emptyDesc": "Thêm số hoặc quy tắc để chặn những cuộc gọi không mong muốn.",
+      "deleteTitle": "Xoá quy tắc này?",
+      "deleteMsg": "Cuộc gọi khớp \"{name}\" sẽ không còn bị chặn bởi quy tắc này.",
+      "deleted": "Đã xoá quy tắc",
+      "deleteAria": "Xoá quy tắc {name}",
+      "numbersHeader": "Số bị chặn ({n})",
+      "numbersEmpty": "Chưa chặn số cụ thể nào.",
+      "numberDeleteTitle": "Bỏ chặn số này?",
+      "numberDeleteMsg": "Bạn sẽ nhận lại cuộc gọi từ {name}.",
+      "hits": "Đã chặn {n} cuộc · gần nhất {date}",
+      "noHits": "Chưa chặn cuộc nào",
+      "toggleAria": "Bật/tắt quy tắc {name}"
+    },
+    "quick": {
+      "header": "Chặn nhanh từ cuộc gọi gần đây",
+      "none": "Không có số lạ nào cần chặn trong các cuộc gọi gần đây.",
+      "done": "Đã chặn {number}"
+    },
+    "settings": {
+      "header": "Tự động chặn",
+      "autoBlockReported": {
+        "title": "Tự chặn số tôi đánh dấu lừa đảo",
+        "desc": "Khi bạn đánh dấu một số là lừa đảo/spam, số đó được thêm luôn vào danh sách chặn."
+      },
+      "noRole": "Cần đặt Safe Dial làm ứng dụng gọi điện mặc định thì việc chặn mới có tác dụng.",
+      "blockPrivate": {
+        "title": "Chặn số ẩn danh",
+        "desc": "Chặn cuộc gọi giấu số người gọi."
+      },
+      "blockInternational": {
+        "title": "Chặn cuộc gọi quốc tế",
+        "desc": "Chỉ cho phép cuộc gọi trong nước. Số trong danh bạ vẫn gọi được."
+      },
+      "blockNonContacts": {
+        "title": "Chặn số không có trong danh bạ",
+        "desc": "Chỉ nhận cuộc gọi từ người trong danh bạ.",
+        "warn": "Có thể chặn nhầm người quen chưa lưu số, shipper, ngân hàng hoặc bác sĩ. Hãy cân nhắc dùng chế độ tắt chuông."
+      },
+      "notifyOnBlock": {
+        "title": "Thông báo khi chặn",
+        "desc": "Hiện thông báo mỗi khi một cuộc gọi bị chặn."
+      },
+      "methodHeader": "Cách xử lý",
+      "method": {
+        "hangup": {
+          "title": "Tự động cúp máy",
+          "desc": "Người gọi nghe tín hiệu bận / bị từ chối. Điện thoại của bạn không đổ chuông."
+        },
+        "silent": {
+          "title": "Tắt chuông, cuộc gọi vẫn hiện",
+          "desc": "Điện thoại im lặng nhưng cuộc gọi vẫn nằm trong lịch sử, người gọi vẫn nghe đổ chuông."
+        }
+      },
+      "countryHeader": "Chặn theo quốc gia",
+      "country": {
+        "title": "Chặn theo quốc gia",
+        "desc": "Đã chặn {n} mã quốc gia"
+      },
+      "countryAdded": "Đã chặn đầu số của {name}",
+      "note": "Số trong danh bạ không bị chặn bởi quy tắc đầu số, đuôi số, mã quốc gia hoặc cuộc gọi quốc tế. Chỉ danh sách số cụ thể mới chặn được cả số trong danh bạ. Mã nước của bạn: {dial}."
+    },
+    "country": {
+      "search": "Tìm quốc gia hoặc mã vùng",
+      "blocked": "Đã chặn",
+      "none": "Không tìm thấy quốc gia phù hợp."
+    },
+    "form": {
+      "title": "Thêm quy tắc chặn",
+      "kindHeader": "Chọn loại quy tắc",
+      "help": {
+        "number": "Chặn đúng một số điện thoại, kể cả khi số đó có trong danh bạ.",
+        "startsWith": "Chặn mọi số bắt đầu bằng dãy bạn nhập.",
+        "contains": "Chặn mọi số có chứa dãy số này ở bất kỳ vị trí nào.",
+        "endsWith": "Chặn mọi số kết thúc bằng dãy bạn nhập.",
+        "country": "Chặn mọi cuộc gọi đến từ một quốc gia theo mã quay số."
+      },
+      "example": {
+        "number": "Ví dụ: 0901 234 567 chỉ chặn đúng số này.",
+        "startsWith": "Ví dụ: Bắt đầu bằng 0899 → chặn mọi số có đầu 0899.",
+        "contains": "Ví dụ: Chứa 8888 → chặn 0912 8888 11 và 0988 888 812.",
+        "endsWith": "Ví dụ: Kết thúc bằng 0000 → chặn mọi số có đuôi 0000.",
+        "country": "Ví dụ: chọn Nigeria (+234) → chặn mọi số +234…"
+      },
+      "placeholder": {
+        "number": "0901 234 567",
+        "startsWith": "0899",
+        "contains": "8888",
+        "endsWith": "0000"
+      },
+      "valueLabel": "Giá trị",
+      "labelLabel": "Ghi chú (không bắt buộc)",
+      "labelPlaceholder": "Ví dụ: Đầu số vay tiền",
+      "picked": "Đã chọn: {name}",
+      "errEmpty": "Hãy nhập giá trị cho quy tắc.",
+      "errNumber": "Số điện thoại chưa hợp lệ (cần 8-15 chữ số).",
+      "errShort": "Nhập ít nhất 3 chữ số để tránh chặn nhầm quá nhiều số.",
+      "errCountry": "Hãy chọn một quốc gia.",
+      "duplicate": "Quy tắc này đã có trong danh sách đen.",
+      "previewTitle": "Quy tắc này khớp {n} cuộc gọi trong lịch sử",
+      "previewMore": "và {n} số khác",
+      "previewNone": "Chưa có cuộc gọi nào trong lịch sử khớp quy tắc này.",
+      "previewNote": "Số trong danh bạ không bị tính vì quy tắc mẫu luôn bỏ qua người quen.",
+      "save": "Lưu quy tắc",
+      "saved": "Đã thêm quy tắc chặn"
+    },
+    "test": {
+      "title": "Kiểm tra một số",
+      "intro": "Nhập một số để xem bộ máy chặn xử lý thế nào, từng bước một. Không có cuộc gọi thật nào được thực hiện.",
+      "numberLabel": "Số điện thoại",
+      "placeholder": "0901 234 567 hoặc +84…",
+      "private": "Số ẩn",
+      "privateDesc": "Giả lập người gọi giấu số",
+      "run": "Kiểm tra",
+      "invalid": "Hãy nhập số điện thoại hợp lệ hoặc bật \"Số ẩn\".",
+      "quick": "Điền nhanh",
+      "inContacts": "Có trong danh bạ",
+      "notContact": "Không có trong danh bạ",
+      "traceHeader": "Các bước kiểm tra"
+    },
+    "trace": {
+      "steps": {
+        "system": "Danh sách chặn của bạn",
+        "trusted": "Số tin cậy",
+        "contact": "Danh bạ",
+        "rule": "Quy tắc đầu số / đuôi số / quốc gia",
+        "private": "Chặn số ẩn danh",
+        "international": "Chặn cuộc gọi quốc tế",
+        "nonContact": "Chặn số không có trong danh bạ",
+        "signals": "Dấu hiệu cảnh báo"
+      },
+      "state": {
+        "off": "Đang tắt",
+        "pass": "Không khớp",
+        "match": "KHỚP",
+        "stopped": "Không chạy"
+      },
+      "offHint": "Bỏ qua vì công tắc này đang tắt.",
+      "stoppedHint": "Không xét vì đã có kết luận ở bước trước.",
+      "detail": {
+        "system": {
+          "match": "Số này có trong danh sách chặn của máy.",
+          "pass": "Không có trong danh sách chặn."
+        },
+        "trusted": {
+          "match": "Bạn đã đánh dấu số này là tin cậy.",
+          "pass": "Chưa đánh dấu tin cậy."
+        },
+        "contact": {
+          "match": "Có trong danh bạ: {name}.",
+          "pass": "Không có trong danh bạ."
+        },
+        "rule": {
+          "match": "Khớp quy tắc: {name}.",
+          "pass": "Không khớp quy tắc nào trong {n} quy tắc đang bật."
+        },
+        "private": {
+          "match": "Người gọi giấu số.",
+          "pass": "Số hiển thị bình thường."
+        },
+        "international": {
+          "match": "Số quốc tế, không có trong danh bạ.",
+          "pass": "Không phải số quốc tế."
+        },
+        "nonContact": {
+          "match": "Số không có trong danh bạ.",
+          "pass": "Số có trong danh bạ."
+        },
+        "signals": {
+          "match": "Có dấu hiệu: {list}.",
+          "pass": "Không có dấu hiệu đáng ngờ."
+        }
+      },
+      "verdict": "Kết luận",
+      "action": {
+        "allowed": "Cho qua",
+        "warned": "Cảnh báo",
+        "blocked": "Chặn",
+        "silenced": "Tắt chuông"
+      },
+      "reasonLine": "Lý do: {reason}",
+      "allowLine": "Không có bước nào chặn số này, cuộc gọi sẽ đổ chuông bình thường.",
+      "warnLine": "Cuộc gọi vẫn đổ chuông nhưng hiện cảnh báo: {list}.",
+      "silenceNote": "Điện thoại im lặng, cuộc gọi vẫn hiện trong lịch sử."
+    }
+  },
+  "stats": {
+    "period": {
+      "7d": "7 ngày",
+      "30d": "30 ngày",
+      "all": "Tất cả"
+    },
+    "empty": {
+      "title": "Chưa có dữ liệu thống kê",
+      "desc": "Thực hiện hoặc nhận cuộc gọi, thống kê sẽ xuất hiện ở đây."
+    },
+    "kpi": {
+      "total": "Tổng cuộc gọi",
+      "talk": "Thời gian đàm thoại",
+      "avg": "Trung bình {d}",
+      "missed": "Cuộc gọi nhỡ",
+      "suspicious": "Đáng ngờ / Đã chặn",
+      "suspiciousSub": "Số spam, lừa đảo / bị chặn"
+    },
+    "perDay": {
+      "title": "Cuộc gọi mỗi ngày ({n} ngày gần nhất)",
+      "aria": "Biểu đồ số cuộc gọi mỗi ngày"
+    },
+    "types": {
+      "title": "Loại cuộc gọi",
+      "center": "cuộc gọi"
+    },
+    "frequency": {
+      "title": "Tần suất liên lạc",
+      "none": "Chưa có liên lạc với số trong danh bạ.",
+      "times": "{n} lần",
+      "noTalk": "Chưa đàm thoại"
+    },
+    "strangers": {
+      "title": "Người lạ gọi nhiều nhất",
+      "desc": "Số không có trong danh bạ, xếp theo số lần gọi.",
+      "none": "Không có người lạ nào gọi trong khoảng thời gian này.",
+      "meta": "{n} lần · gần nhất {date}",
+      "blocked": "Đã thêm vào danh sách chặn",
+      "alreadyBlocked": "Đã chặn",
+      "hidden": "Số ẩn"
+    },
+    "risk": {
+      "title": "Mức độ an toàn của cuộc gọi đến",
+      "desc": "Phân bổ {n} cuộc gọi đến."
+    },
+    "number": {
+      "subtitle": "Thống kê số này",
+      "emptyTitle": "Chưa có cuộc gọi với số này",
+      "emptyDesc": "Thống kê sẽ xuất hiện sau khi có cuộc gọi.",
+      "durationTitle": "Thời lượng đàm thoại",
+      "durTotal": "Tổng cộng",
+      "durIncoming": "Cuộc gọi đến",
+      "durOutgoing": "Cuộc gọi đi",
+      "avg": "Mỗi cuộc gọi trung bình {d}",
+      "incomingTitle": "Cuộc gọi đến",
+      "inTotal": "Tổng đến",
+      "inAnswered": "Đã nghe",
+      "inMissed": "Nhỡ",
+      "inBlocked": "Đã chặn",
+      "outgoingTitle": "Cuộc gọi đi",
+      "outTotal": "Tổng đi",
+      "outAnswered": "Được nghe máy",
+      "outNot": "Không nghe",
+      "weeks": "8 tuần gần nhất",
+      "weeksAria": "Số cuộc gọi theo tuần: {v}",
+      "weekdayTitle": "Thường gọi vào thứ mấy",
+      "weekdayAria": "Số cuộc gọi theo thứ trong tuần",
+      "firstLast": "Mốc thời gian",
+      "first": "Cuộc gọi đầu tiên",
+      "last": "Cuộc gọi gần nhất",
+      "viewHistory": "Xem lịch sử"
+    }
+  },
+  "call": {
+    "simulate": {
+      "title": "Mô phỏng cuộc gọi đến",
+      "intro": "Chỉ có trên bản demo (trình duyệt). Chọn một kịch bản để xem Safe Dial nhận diện và xử lý cuộc gọi.",
+      "displayHeader": "Kiểu hiển thị",
+      "displayStyle": "Hộp thoại người gọi",
+      "sizeClassic": "Popup",
+      "sizeFull": "Toàn màn hình",
+      "position": "Vị trí popup",
+      "posTop": "Trên",
+      "posCenter": "Giữa",
+      "posBottom": "Dưới",
+      "scenarios": "Kịch bản",
+      "willRing": "Sẽ đổ chuông",
+      "willBlock": "Sẽ bị chặn",
+      "customHeader": "Số tuỳ chọn",
+      "customPlaceholder": "Nhập số điện thoại",
+      "customRun": "Gọi thử",
+      "invalid": "Hãy nhập số điện thoại hợp lệ.",
+      "blocked": "Đã chặn:",
+      "silenced": "Đã tắt chuông:",
+      "detail": "Chi tiết: {d}",
+      "viewBlocked": "Xem mục Đã chặn"
+    },
+    "overlay": {
+      "incoming": "Cuộc gọi đến",
+      "head": {
+        "safe": "Cuộc gọi đến - An toàn",
+        "unknown": "Cuộc gọi đến - Số lạ",
+        "spam": "Cảnh báo - Nghi spam",
+        "scam": "Cảnh báo - Nghi lừa đảo"
+      },
+      "answer": "Trả lời",
+      "reject": "Từ chối",
+      "moreAria": "Thêm hành động",
+      "hiddenCaller": "Người gọi giấu số",
+      "localCountry": "Việt Nam",
+      "marked": "Bạn đã đánh dấu: {category}",
+      "signals": "Dấu hiệu: {list}",
+      "warnMarked": "Cảnh báo: bạn đã đánh dấu số này là {category}. Đừng cung cấp mã OTP, mật khẩu hay chuyển tiền.",
+      "warnGeneric": "Cảnh báo: số này có dấu hiệu lừa đảo. Đừng cung cấp mã OTP, mật khẩu hay chuyển tiền.",
+      "quick": {
+        "message": "Nhắn tin nhanh",
+        "remind": "Nhắc tôi sau",
+        "block": "Chặn số này"
+      }
+    },
+    "sheets": {
+      "moreTitle": "Thêm hành động",
+      "messageTitle": "Nhắn tin nhanh",
+      "messageDesc": "Từ chối cuộc gọi và gửi một tin nhắn trả lời.",
+      "replies": {
+        "r1": "Tôi đang bận, sẽ gọi lại sau.",
+        "r2": "Tôi đang họp, nhắn tin giúp tôi nhé.",
+        "r3": "Tôi đang lái xe, xin gọi lại sau.",
+        "r4": "Bạn cần gì vậy? Hãy nhắn tin cho tôi."
+      },
+      "remindTitle": "Nhắc tôi sau",
+      "remindDesc": "Từ chối cuộc gọi và nhắc bạn gọi lại.",
+      "reminds": {
+        "10s": "10 giây",
+        "1m": "1 phút",
+        "5m": "5 phút",
+        "15m": "15 phút",
+        "30m": "30 phút"
+      }
+    },
+    "incoming": {
+      "confirmTitle": "Vẫn nghe máy?",
+      "confirmMsg": "Bạn đã đánh dấu số này là lừa đảo/spam. Vẫn nghe máy?",
+      "confirmOk": "Vẫn nghe máy",
+      "confirmCancel": "Không nghe",
+      "blockTitle": "Chặn số này?",
+      "blockMsg": "Cuộc gọi từ {number} sẽ bị chặn từ lần sau.",
+      "blocked": "Đã chặn {number}",
+      "cannotBlockHidden": "Không thể chặn số ẩn. Hãy bật \"Chặn số ẩn danh\" trong tab Chặn.",
+      "replySent": "Đã từ chối và gửi tin: {text}",
+      "remindSet": "Đã từ chối, sẽ nhắc sau {when}"
+    },
+    "active": {
+      "dialing": "Đang gọi…",
+      "onHold": "Đang giữ máy",
+      "warnScam": "Cảnh báo lừa đảo: không cung cấp mã OTP, mật khẩu hay chuyển tiền.",
+      "warnSpam": "Bạn đã đánh dấu số này là spam. Hãy cẩn trọng.",
+      "end": "Kết thúc cuộc gọi",
+      "hideKeypad": "Ẩn bàn phím",
+      "noteTitle": "Ghi chú cuộc gọi",
+      "notePlaceholder": "Nội dung cần nhớ về cuộc gọi này...",
+      "noteSave": "Lưu ghi chú",
+      "noteSaved": "Đã lưu ghi chú",
+      "controls": {
+        "mute": "Tắt tiếng",
+        "keypad": "Bàn phím",
+        "speaker": "Loa ngoài",
+        "hold": "Giữ máy",
+        "add": "Thêm cuộc gọi",
+        "note": "Ghi chú"
+      }
+    },
+    "after": {
+      "title": "Cuộc gọi vừa kết thúc",
+      "type": "Loại cuộc gọi",
+      "duration": "Thời lượng",
+      "time": "Thời điểm",
+      "whoTitle": "Đây là ai?",
+      "whoDesc": "Đánh dấu để nhận ra số này lần sau.",
+      "hidden": "Đây là số ẩn nên không thể đánh dấu hay chặn riêng. Bật \"Chặn số ẩn danh\" trong tab Chặn nếu cần.",
+      "spam": "Đánh dấu spam",
+      "notSpam": "Không phải spam",
+      "notSpamToast": "Đã đánh dấu số này là tin cậy",
+      "suggest": "Đặt tên",
+      "alreadyBlocked": "Đã chặn",
+      "reportedBtn": "Đã đánh dấu",
+      "reportTitle": "Đánh dấu số này",
+      "reportDesc": "Chọn nhóm phù hợp nhất với cuộc gọi vừa rồi.",
+      "reported": "Đã đánh dấu số này",
+      "suggestTitle": "Đặt tên cho số này",
+      "suggestDesc": "Tên này chỉ lưu trên máy của bạn.",
+      "suggestPlaceholder": "Ví dụ: Giao hàng nhanh",
+      "suggestSend": "Lưu tên",
+      "suggested": "Đã lưu tên cho số này",
+      "saveToast": "Mở màn hình thêm liên hệ",
+      "callBack": "Gọi lại",
+      "messageToast": "Mở tin nhắn"
+    }
+  }
+}

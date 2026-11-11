@@ -5,6 +5,7 @@ import lucide from '@iconify-json/lucide/icons.json'
 
 import App from './App.vue'
 import router from './router'
+import { i18n } from './i18n'
 import { initNavigationBar } from './utils/statusBar'
 import './assets/main.css'
 
@@ -12,5 +13,5 @@ import './assets/main.css'
 addCollection(lucide as Parameters<typeof addCollection>[0])
 
 // Thanh trạng thái được đổi theo từng màn trong router.afterEach (src/router/index.ts).
-createApp(App).use(createPinia()).use(router).mount('#app')
+createApp(App).use(createPinia()).use(router).use(i18n).mount('#app')
 void initNavigationBar()

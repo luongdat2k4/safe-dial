@@ -1,25 +1,14 @@
-import { vi } from '@/locales/vi'
+import { i18n } from '@/i18n'
 
 type Params = Record<string, string | number>
 
-function lookup(obj: unknown, path: string): unknown {
-  return path.split('.').reduce<unknown>((acc, key) => {
-    if (acc && typeof acc === 'object' && key in (acc as Record<string, unknown>)) {
-      return (acc as Record<string, unknown>)[key]
-    }
-    return undefined
-  }, obj)
-}
-
 /**
- * Dịch chuỗi theo khoá dạng `khu_vuc.nhom.khoa`, hỗ trợ tham số `{ten}`.
+ * Dịch chuỗi theo khoá dạng `khu_vuc.nhom.khoa` (xem src/locales/vi.json), hỗ trợ tham số `{ten}`.
+ * Dùng được cả ngoài component (store, utils). Trong component có thể dùng `useI18n()` / `$t`.
  * Khoá thiếu trả về chính khoá để dễ phát hiện khi test.
  */
 export function t(key: string, params?: Params): string {
-  const raw = lookup(vi, key)
-  if (typeof raw !== 'string') return key
-  if (!params) return raw
-  return raw.replace(/\{(\w+)\}/g, (_, k: string) => String(params[k] ?? `{${k}}`))
+  return params ? i18n.global.t(key, params) : i18n.global.t(key)
 }
 
 export function useT() {
