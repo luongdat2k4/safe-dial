@@ -116,9 +116,7 @@
       "title": "Safe Dial に権限を許可",
       "subtitle": "各権限は明確な目的にのみ使用します。あとで変更できます。",
       "allowAll": "すべて許可",
-      "later": "あとで",
       "laterWarn": "すべての権限を許可するまで、保護機能は制限されます",
-      "needBasic": "続行するには連絡先へのアクセスを許可してください",
       "sectionPermissions": "アクセス権限",
       "sectionRoles": "スマートフォン上の役割",
       "privacyTitle": "あなたのプライバシー",
@@ -164,7 +162,9 @@
       "openSystem": "システム設定を開く",
       "openSystemHint": "以前に権限を拒否した場合は、Android の設定 → 権限 で再度オンにしてください。",
       "openSystemFailed": "設定を開けません。",
-      "deniedHint": "権限が許可されていません。ダイアログが出ない場合はシステム設定で有効にしてください。"
+      "deniedHint": "権限が許可されていません。ダイアログが出ない場合はシステム設定で有効にしてください。",
+      "needRequired": "続けるには、連絡先を許可し、Safe Dial を既定の電話アプリに設定してください。",
+      "required": "必須"
     }
   },
   "settings": {

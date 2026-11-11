@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import BrandOrb from '@/components/BrandOrb.vue'
 import { useSettingsStore } from '@/stores/settings'
+import { SafeDial, isNative } from '@/services'
 import { t } from '@/composables/useT'
 
 const router = useRouter()
@@ -10,14 +11,21 @@ const settings = useSettingsStore()
 let timer: ReturnType<typeof setTimeout> | undefined
 
 onMounted(() => {
-  timer = setTimeout(() => {
+  timer = setTimeout(async () => {
     const s = settings.state
     if (!s.onboardingDone) router.replace('/language')
-    else if (!s.permissionsDone) router.replace('/permissions')
+    else if (!s.permissionsDone || !(await hasRequired())) router.replace('/permissions')
     else router.replace('/home/calls')
   }, 1200)
 })
 onBeforeUnmount(() => clearTimeout(timer))
+
+/** Điều kiện để dùng app trên máy thật: có quyền danh bạ và là ứng dụng gọi điện mặc định. */
+async function hasRequired(): Promise<boolean> {
+  if (!isNative) return true
+  const st = await SafeDial.getStatus().catch(() => null)
+  return !st || (st.dialerRole && st.contacts === 'granted')
+}
 </script>
 
 <template>

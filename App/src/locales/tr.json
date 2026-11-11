@@ -116,9 +116,7 @@
       "title": "Safe Dial'a izin verin",
       "subtitle": "Her izin tek ve net bir amaç için kullanılır. Daha sonra değiştirebilirsiniz.",
       "allowAll": "Tümüne izin ver",
-      "later": "Sonra",
       "laterWarn": "Tüm izinleri verene kadar koruma sınırlı olacak",
-      "needBasic": "Devam etmek için Kişiler iznini verin",
       "sectionPermissions": "Erişim izinleri",
       "sectionRoles": "Telefondaki roller",
       "privacyTitle": "Gizliliğiniz",
@@ -164,7 +162,9 @@
       "openSystem": "Sistem ayarlarını aç",
       "openSystemHint": "Daha önce bir izni reddettiyseniz Android Ayarlar → İzinler bölümünden tekrar açın.",
       "openSystemFailed": "Ayarlar açılamadı.",
-      "deniedHint": "İzin verilmedi. İletişim kutusu görünmüyorsa sistem ayarlarından açın."
+      "deniedHint": "İzin verilmedi. İletişim kutusu görünmüyorsa sistem ayarlarından açın.",
+      "needRequired": "Devam etmek için Kişiler'e izin verin ve Safe Dial'ı varsayılan telefon uygulaması yapın.",
+      "required": "Zorunlu"
     }
   },
   "settings": {

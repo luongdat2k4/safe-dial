@@ -116,9 +116,7 @@
       "title": "Beri izin untuk Safe Dial",
       "subtitle": "Setiap izin hanya dipakai untuk satu tujuan yang jelas. Anda bisa mengubahnya nanti.",
       "allowAll": "Izinkan semua",
-      "later": "Nanti saja",
       "laterWarn": "Perlindungan akan terbatas sampai Anda memberi semua izin",
-      "needBasic": "Izinkan Kontak untuk melanjutkan",
       "sectionPermissions": "Izin akses",
       "sectionRoles": "Peran di ponsel",
       "privacyTitle": "Privasi Anda",
@@ -164,7 +162,9 @@
       "openSystem": "Buka setelan sistem",
       "openSystemHint": "Jika sebelumnya Anda menolak izin, aktifkan lagi di Setelan Android → Izin.",
       "openSystemFailed": "Tidak dapat membuka Setelan.",
-      "deniedHint": "Izin belum diberikan. Jika dialog tidak muncul, aktifkan di setelan sistem."
+      "deniedHint": "Izin belum diberikan. Jika dialog tidak muncul, aktifkan di setelan sistem.",
+      "needRequired": "Izinkan Kontak dan jadikan Safe Dial aplikasi telepon default untuk melanjutkan.",
+      "required": "Wajib"
     }
   },
   "settings": {

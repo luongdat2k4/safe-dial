@@ -116,9 +116,7 @@
       "title": "Autorisations pour Safe Dial",
       "subtitle": "Chaque autorisation a un seul objectif précis. Vous pourrez les modifier plus tard.",
       "allowAll": "Tout autoriser",
-      "later": "Plus tard",
       "laterWarn": "La protection sera limitée tant que toutes les autorisations ne sont pas accordées",
-      "needBasic": "L'accès aux contacts est requis pour continuer",
       "sectionPermissions": "Accès",
       "sectionRoles": "Rôles sur le téléphone",
       "privacyTitle": "Votre vie privée",
@@ -164,7 +162,9 @@
       "openSystem": "Ouvrir les paramètres système",
       "openSystemHint": "Si vous avez refusé une autorisation, réactivez-la dans Paramètres Android → Autorisations.",
       "openSystemFailed": "Impossible d'ouvrir les Paramètres.",
-      "deniedHint": "Autorisation non accordée. Si aucune fenêtre n'apparaît, activez-la dans les paramètres système."
+      "deniedHint": "Autorisation non accordée. Si aucune fenêtre n'apparaît, activez-la dans les paramètres système.",
+      "needRequired": "Autorisez les contacts et définissez Safe Dial comme application Téléphone par défaut pour continuer.",
+      "required": "Obligatoire"
     }
   },
   "settings": {

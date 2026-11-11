@@ -116,9 +116,7 @@
       "title": "Uprawnienia dla Safe Dial",
       "subtitle": "Każde uprawnienie ma jasno określony cel. Możesz je później zmienić.",
       "allowAll": "Zezwól na wszystko",
-      "later": "Później",
       "laterWarn": "Ochrona będzie ograniczona, dopóki nie udzielisz wszystkich uprawnień",
-      "needBasic": "Aby kontynuować, zezwól na dostęp do Kontaktów",
       "sectionPermissions": "Uprawnienia dostępu",
       "sectionRoles": "Role w telefonie",
       "privacyTitle": "Twoja prywatność",
@@ -164,7 +162,9 @@
       "openSystem": "Otwórz ustawienia systemu",
       "openSystemHint": "Jeśli wcześniej odmówiono uprawnienia, włącz je w Ustawieniach Androida → Uprawnienia.",
       "openSystemFailed": "Nie udało się otworzyć Ustawień.",
-      "deniedHint": "Nie przyznano uprawnienia. Jeśli okno się nie pojawia, włącz je w ustawieniach systemu."
+      "deniedHint": "Nie przyznano uprawnienia. Jeśli okno się nie pojawia, włącz je w ustawieniach systemu.",
+      "needRequired": "Aby kontynuować, zezwól na Kontakty i ustaw Safe Dial jako domyślną aplikację telefonu.",
+      "required": "Wymagane"
     }
   },
   "settings": {

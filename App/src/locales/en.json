@@ -116,9 +116,7 @@
       "title": "Grant permissions to Safe Dial",
       "subtitle": "Each permission is used for one clear purpose. You can change them later.",
       "allowAll": "Allow all",
-      "later": "Later",
       "laterWarn": "Protection will be limited until you grant all permissions",
-      "needBasic": "Contacts access is required to continue",
       "sectionPermissions": "Access",
       "sectionRoles": "Phone roles",
       "privacyTitle": "Your privacy",
@@ -164,7 +162,9 @@
       "openSystem": "Open system settings",
       "openSystemHint": "If you denied a permission before, turn it back on in Android Settings → Permissions.",
       "openSystemFailed": "Couldn't open Settings.",
-      "deniedHint": "Permission not granted. If no dialog appears, enable it in system settings."
+      "deniedHint": "Permission not granted. If no dialog appears, enable it in system settings.",
+      "needRequired": "Allow Contacts and set Safe Dial as the default phone app to continue.",
+      "required": "Required"
     }
   },
   "settings": {

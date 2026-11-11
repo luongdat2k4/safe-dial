@@ -56,7 +56,11 @@ function granted(k: PermKey): boolean {
   return !!s && ALIASES[k].every((a) => s[a] === 'granted')
 }
 
-const canContinue = computed(() => granted('contacts'))
+/** Máy không cho đổi ứng dụng gọi điện mặc định (hiếm): không chặn người dùng ở lại màn này. */
+const roleUnavailable = ref(false)
+/** Bắt buộc để dùng app: quyền đọc danh bạ và Safe Dial là ứng dụng gọi điện mặc định. */
+const hasRole = computed(() => !!status.value?.dialerRole || roleUnavailable.value)
+const canContinue = computed(() => granted('contacts') && hasRole.value)
 const allOn = computed(() => permItems.every((p) => granted(p.key)) && !!status.value?.dialerRole)
 
 async function request(k: PermKey) {
@@ -83,6 +87,7 @@ async function requestRole() {
     const r = await SafeDial.requestDialerRole()
     if (r.granted) ui.showToast(t('boot.permissions.roles.done'), 'success')
   } catch {
+    roleUnavailable.value = true
     ui.showToast(t('boot.permissions.roles.unavailable'), 'warning')
   }
   await refresh()
@@ -149,7 +154,9 @@ function finish(limited = false) {
         </ListRow>
       </div>
 
-      <SectionHeader :title="t('boot.permissions.sectionRoles')" />
+      <SectionHeader :title="t('boot.permissions.sectionRoles')">
+        <span v-if="!fromSettings && !status?.dialerRole" class="rounded-full bg-scam-soft px-2 py-0.5 text-[11px] font-bold text-scam">{{ t('boot.permissions.required') }}</span>
+      </SectionHeader>
       <div class="mx-4 overflow-hidden rounded-card bg-surface shadow-card">
         <ListRow
           icon="phone-call"
@@ -187,10 +194,7 @@ function finish(limited = false) {
     </div>
     <div v-else class="pb-safe shrink-0 border-t border-line bg-surface px-4 pt-3 pb-3">
       <BaseButton block size="lg" :disabled="!canContinue" @click="finish(!allOn)">{{ t('common.actions.next') }}</BaseButton>
-      <p v-if="!canContinue" class="mt-2 text-center text-xs text-muted">{{ t('boot.permissions.needBasic') }}</p>
-      <button type="button" class="tap mx-auto mt-1 block min-h-10 px-4 text-sm font-medium text-muted" @click="finish(true)">
-        {{ t('boot.permissions.later') }}
-      </button>
+      <p v-if="!canContinue" class="mt-2 text-center text-xs text-muted">{{ t('boot.permissions.needRequired') }}</p>
     </div>
   </div>
 </template>

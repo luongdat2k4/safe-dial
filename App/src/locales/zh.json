@@ -116,9 +116,7 @@
       "title": "为 Safe Dial 授权",
       "subtitle": "每项权限只用于一个明确的目的。你之后可以更改。",
       "allowAll": "全部允许",
-      "later": "稍后",
       "laterWarn": "在授予全部权限之前，保护功能将受到限制",
-      "needBasic": "需要允许通讯录权限才能继续",
       "sectionPermissions": "访问权限",
       "sectionRoles": "手机上的角色",
       "privacyTitle": "你的隐私",
@@ -164,7 +162,9 @@
       "openSystem": "打开系统设置",
       "openSystemHint": "如果之前拒绝过某项权限，请在 Android 设置 → 权限中重新开启。",
       "openSystemFailed": "无法打开设置。",
-      "deniedHint": "未授予权限。如果没有弹出对话框，请在系统设置中开启。"
+      "deniedHint": "未授予权限。如果没有弹出对话框，请在系统设置中开启。",
+      "needRequired": "需要允许通讯录并将 Safe Dial 设为默认电话应用才能继续。",
+      "required": "必需"
     }
   },
   "settings": {

@@ -116,9 +116,7 @@
       "title": "Autorizza Safe Dial",
       "subtitle": "Ogni permesso ha uno scopo preciso. Puoi modificarli in seguito.",
       "allowAll": "Consenti tutto",
-      "later": "Più tardi",
       "laterWarn": "La protezione sarà limitata finché non concedi tutti i permessi",
-      "needBasic": "Per continuare consenti l'accesso ai Contatti",
       "sectionPermissions": "Permessi di accesso",
       "sectionRoles": "Ruoli sul telefono",
       "privacyTitle": "La tua privacy",
@@ -164,7 +162,9 @@
       "openSystem": "Apri impostazioni di sistema",
       "openSystemHint": "Se in passato hai negato un'autorizzazione, riattivala in Impostazioni Android → Autorizzazioni.",
       "openSystemFailed": "Impossibile aprire le Impostazioni.",
-      "deniedHint": "Autorizzazione non concessa. Se non compare la finestra, attivala nelle impostazioni di sistema."
+      "deniedHint": "Autorizzazione non concessa. Se non compare la finestra, attivala nelle impostazioni di sistema.",
+      "needRequired": "Consenti i contatti e imposta Safe Dial come app Telefono predefinita per continuare.",
+      "required": "Obbligatorio"
     }
   },
   "settings": {

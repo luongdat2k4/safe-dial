@@ -116,9 +116,7 @@
       "title": "Machtigingen voor Safe Dial",
       "subtitle": "Elke machtiging heeft een duidelijk doel. Je kunt ze later wijzigen.",
       "allowAll": "Alles toestaan",
-      "later": "Later",
       "laterWarn": "Bescherming is beperkt totdat je alle machtigingen geeft",
-      "needBasic": "Sta toegang tot Contacten toe om door te gaan",
       "sectionPermissions": "Toegangsrechten",
       "sectionRoles": "Rollen op de telefoon",
       "privacyTitle": "Jouw privacy",
@@ -164,7 +162,9 @@
       "openSystem": "Systeeminstellingen openen",
       "openSystemHint": "Heb je eerder een recht geweigerd? Zet het weer aan via Android-instellingen → Rechten.",
       "openSystemFailed": "Instellingen openen mislukt.",
-      "deniedHint": "Recht niet verleend. Verschijnt er geen venster, zet het dan aan in de systeeminstellingen."
+      "deniedHint": "Recht niet verleend. Verschijnt er geen venster, zet het dan aan in de systeeminstellingen.",
+      "needRequired": "Sta Contacten toe en stel Safe Dial in als standaard telefoon-app om door te gaan.",
+      "required": "Verplicht"
     }
   },
   "settings": {

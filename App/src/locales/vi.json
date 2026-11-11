@@ -116,9 +116,7 @@
       "title": "Cấp quyền cho Safe Dial",
       "subtitle": "Mỗi quyền chỉ dùng cho một mục đích rõ ràng. Bạn có thể đổi lại sau.",
       "allowAll": "Cho phép tất cả",
-      "later": "Để sau",
       "laterWarn": "Bảo vệ sẽ bị hạn chế cho đến khi bạn cấp đủ quyền",
-      "needBasic": "Cần cho phép Danh bạ để tiếp tục",
       "sectionPermissions": "Quyền truy cập",
       "sectionRoles": "Vai trò trên điện thoại",
       "privacyTitle": "Quyền riêng tư của bạn",
@@ -164,7 +162,9 @@
       "openSystem": "Mở cài đặt hệ thống",
       "openSystemHint": "Nếu đã từ chối một quyền trước đó, hãy bật lại trong Cài đặt Android → Quyền.",
       "openSystemFailed": "Không mở được Cài đặt.",
-      "deniedHint": "Quyền chưa được cấp. Nếu không thấy hộp thoại, hãy bật trong Cài đặt hệ thống."
+      "deniedHint": "Quyền chưa được cấp. Nếu không thấy hộp thoại, hãy bật trong Cài đặt hệ thống.",
+      "needRequired": "Cần cho phép Danh bạ và đặt Safe Dial làm ứng dụng gọi điện mặc định để tiếp tục.",
+      "required": "Bắt buộc"
     }
   },
   "settings": {

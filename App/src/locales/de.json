@@ -116,9 +116,7 @@
       "title": "Berechtigungen für Safe Dial",
       "subtitle": "Jede Berechtigung dient einem klaren Zweck. Du kannst sie später ändern.",
       "allowAll": "Alle erlauben",
-      "later": "Später",
       "laterWarn": "Der Schutz bleibt eingeschränkt, bis du alle Berechtigungen erteilst",
-      "needBasic": "Zugriff auf Kontakte ist zum Fortfahren nötig",
       "sectionPermissions": "Zugriffe",
       "sectionRoles": "Rollen auf dem Telefon",
       "privacyTitle": "Deine Privatsphäre",
@@ -164,7 +162,9 @@
       "openSystem": "Systemeinstellungen öffnen",
       "openSystemHint": "Falls du eine Berechtigung abgelehnt hast, aktiviere sie in den Android-Einstellungen → Berechtigungen.",
       "openSystemFailed": "Einstellungen konnten nicht geöffnet werden.",
-      "deniedHint": "Berechtigung nicht erteilt. Erscheint kein Dialog, aktiviere sie in den Systemeinstellungen."
+      "deniedHint": "Berechtigung nicht erteilt. Erscheint kein Dialog, aktiviere sie in den Systemeinstellungen.",
+      "needRequired": "Erlaube Kontakte und lege Safe Dial als Standard-Telefon-App fest, um fortzufahren.",
+      "required": "Erforderlich"
     }
   },
   "settings": {

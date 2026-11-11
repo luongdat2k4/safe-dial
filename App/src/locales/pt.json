@@ -116,9 +116,7 @@
       "title": "Permissões do Safe Dial",
       "subtitle": "Cada permissão tem uma finalidade clara. Você pode alterá-las depois.",
       "allowAll": "Permitir tudo",
-      "later": "Mais tarde",
       "laterWarn": "A proteção ficará limitada até você conceder todas as permissões",
-      "needBasic": "Permita o acesso aos Contatos para continuar",
       "sectionPermissions": "Permissões de acesso",
       "sectionRoles": "Funções no telefone",
       "privacyTitle": "Sua privacidade",
@@ -164,7 +162,9 @@
       "openSystem": "Abrir configurações do sistema",
       "openSystemHint": "Se você negou uma permissão antes, ative-a em Configurações do Android → Permissões.",
       "openSystemFailed": "Não foi possível abrir as Configurações.",
-      "deniedHint": "Permissão não concedida. Se a caixa de diálogo não aparecer, ative-a nas configurações do sistema."
+      "deniedHint": "Permissão não concedida. Se a caixa de diálogo não aparecer, ative-a nas configurações do sistema.",
+      "needRequired": "Permita Contatos e defina o Safe Dial como app de telefone padrão para continuar.",
+      "required": "Obrigatório"
     }
   },
   "settings": {

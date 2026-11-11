@@ -8,6 +8,7 @@ import ToastHost from '@/components/ToastHost.vue'
 import ConfirmHost from '@/components/ConfirmHost.vue'
 import { useUiStore } from '@/stores/ui'
 import { useCallSessionStore } from '@/stores/callSession'
+import { useSettingsStore } from '@/stores/settings'
 import { useCallsStore } from '@/stores/calls'
 import { useContactsStore } from '@/stores/contacts'
 import { useBlockStore } from '@/stores/block'
@@ -17,6 +18,7 @@ const route = useRoute()
 const router = useRouter()
 const ui = useUiStore()
 const session = useCallSessionStore()
+const settings = useSettingsStore()
 const calls = useCallsStore()
 const contacts = useContactsStore()
 const block = useBlockStore()
@@ -28,6 +30,14 @@ const ROOT_TABS = ['/home/calls', '/home/contacts', '/home/block', '/home/stats'
  * Nút Back của Android: ở tab khác thì về tab Cuộc gọi, ở tab Cuộc gọi hỏi thoát,
  * màn con thì lùi lại (chỉ chạy khi chạy native; trên web trình duyệt tự xử lý).
  */
+const BOOT = ['/', '/language', '/onboarding', '/permissions']
+/** Đổi ứng dụng gọi điện mặc định sang app khác (hoặc thu hồi quyền danh bạ) → bắt cấp lại mới dùng tiếp. */
+async function enforceRequired() {
+  if (!settings.state.permissionsDone || BOOT.includes(route.path) || session.isLive) return
+  const st = await SafeDial.getStatus().catch(() => null)
+  if (st && (!st.dialerRole || st.contacts !== 'granted')) router.replace('/permissions')
+}
+
 async function onBack() {
   const path = route.path
   if (path === '/home/calls') {
@@ -39,6 +49,9 @@ async function onBack() {
       icon: 'log-out',
     })
     if (ok) await CapApp.exitApp()
+  } else if (path === '/permissions' && route.query.from !== 'settings') {
+    // Màn cấp quyền bắt buộc: không quay lại được.
+    return
   } else if (ROOT_TABS.includes(path)) {
     router.replace('/home/calls')
   } else if (route.meta.noBack) {
@@ -81,6 +94,7 @@ onMounted(async () => {
       // Có thể vừa bật quyền chỉnh sửa danh bạ trong Cài đặt hệ thống.
       if (contacts.canEdit === false) void contacts.checkEdit()
       if (block.loaded) void block.load(true)
+      void enforceRequired()
     }),
   )
   const st = await SafeDial.getLaunchState()
