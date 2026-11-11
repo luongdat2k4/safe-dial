@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { applyStatusBar, type StatusBarConfig } from '@/utils/statusBar'
 
 declare module 'vue-router' {
@@ -62,7 +62,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 // Hash history để chạy được trong WebView của Capacitor (capacitor://localhost) mà không cần cấu hình server.
-const router = createRouter({ history: createWebHashHistory(), routes })
+const router = createRouter({ history: createWebHistory(import.meta.env.BASE_URL), routes })
 
 // Đổi thanh trạng thái theo màn hình (route con ghi đè route cha).
 router.afterEach((to) => {
