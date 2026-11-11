@@ -162,15 +162,14 @@
 .app-bar button { border: 1px solid #ede8f5; background: #ffffffd9; }
 .search-field { background: #f2eff9; border-color: transparent; box-shadow: none; }
 .call-groups { margin-inline: 20px; }
-.call-group { margin-bottom: 16px; }
-.call-group > div:first-child { padding: 15px 0 8px; }
+.call-day-header > div { padding: 15px 0 8px; }
 .call-row { background: transparent; border-color: #f0edf6; }
-.call-row:last-child { border-bottom: 0; }
+.call-row.call-row-last { border-bottom: 0; padding-bottom: 16px; }
 .call-row > [role='button'] { padding: 19px 0; }
 .call-row > button { margin-right: -8px; }
 .sheet-panel[role='dialog'] { background: linear-gradient(155deg, #fff, #faf7ff); border: 1px solid #fff; box-shadow: 0 -10px 60px #4e2c811a; }
 .contact-list { margin: 8px 20px 0; background: transparent; }
-.contact-list section > [role='button'] { border-bottom: 1px solid var(--color-line); padding: 18px 0; }
+.contact-list .contact-row > [role='button'] { border-bottom: 1px solid var(--color-line); padding: 18px 0; }
 .contact-avatar { border: 2px solid #fff; box-shadow: 0 0 0 1px #eee9f8; }
 .nav-surface { background: #ffffffed; border: 1px solid #fff; box-shadow: 0 -4px 28px #54358108, 0 4px 15px #54358104; backdrop-filter: blur(18px); }
 .nav-icon { display: grid; width: 40px; height: 36px; place-items: center; border-radius: 50%; }

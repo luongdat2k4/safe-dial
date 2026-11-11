@@ -9,6 +9,7 @@ import { numberPath } from '@/utils/routes'
 import SegmentedTabs from '@/components/SegmentedTabs.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
+import VirtualList from '@/components/VirtualList.vue'
 import ContactItem from '@/components/ContactItem.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import Avatar from '@/components/Avatar.vue'
@@ -37,26 +38,41 @@ const fold = (s: string) =>
     .replace(/đ/gi, 'd')
     .toLowerCase()
 
-function letterOf(name: string): string {
-  const last = name.trim().split(/\s+/).pop() ?? ''
-  const ch = fold(last).charAt(0).toUpperCase()
-  return /[A-Z]/.test(ch) ? ch : '#'
-}
-
 const results = computed(() => contacts.search(query.value))
-const sections = computed(() => {
-  const map = new Map<string, Contact[]>()
-  for (const c of results.value) {
-    const k = letterOf(c.name)
-    map.set(k, [...(map.get(k) ?? []), c])
+
+const collator = new Intl.Collator('vi', { sensitivity: 'base' })
+
+type Row = { key: string; kind: 'letter'; letter: string } | { key: string; kind: 'contact'; contact: Contact }
+
+/**
+ * Gom theo chữ cái đầu của tên (từ cuối) rồi làm phẳng thành các dòng cho danh sách ảo.
+ * Khoá sắp xếp tính một lần cho mỗi liên hệ (không bỏ dấu lại ở mỗi lần so sánh).
+ */
+const rows = computed<Row[]>(() => {
+  const keyed = results.value.map((c) => {
+    const last = fold(c.name.trim().split(/\s+/).pop() ?? '')
+    const ch = last.charAt(0).toUpperCase()
+    return { c, last, letter: /[A-Z]/.test(ch) ? ch : '#' }
+  })
+  keyed.sort(
+    (a, b) =>
+      (a.letter === '#' ? 1 : 0) - (b.letter === '#' ? 1 : 0) ||
+      a.letter.localeCompare(b.letter) ||
+      collator.compare(a.last, b.last) ||
+      collator.compare(a.c.name, b.c.name),
+  )
+  const out: Row[] = []
+  let letter = ''
+  for (const k of keyed) {
+    if (k.letter !== letter) {
+      letter = k.letter
+      out.push({ key: 'letter:' + letter, kind: 'letter', letter })
+    }
+    out.push({ key: k.c.id, kind: 'contact', contact: k.c })
   }
-  return [...map.entries()]
-    .sort(([a], [b]) => (a === '#' ? 1 : b === '#' ? -1 : a.localeCompare(b)))
-    .map(([letter, items]) => ({
-      letter,
-      items: [...items].sort((x, y) => fold(x.name.split(/\s+/).pop() ?? '').localeCompare(fold(y.name.split(/\s+/).pop() ?? '')) || x.name.localeCompare(y.name, 'vi')),
-    }))
+  return out
 })
+const estimate = (r: Row) => (r.kind === 'letter' ? 40 : 78)
 
 const openContact = (c: Contact) => router.push(numberPath(c.numbers[0] ?? ''))
 const call = (c: Contact) => startCall(c.numbers[0] ?? '')
@@ -68,19 +84,21 @@ const call = (c: Contact) => startCall(c.numbers[0] ?? '')
 
     <template v-if="tab === 'all'">
       <div class="px-4 pb-2"><SearchBar v-model="query" :placeholder="t('home.contacts.search')" /></div>
-      <div v-if="sections.length" class="contact-list bg-surface">
-        <section v-for="s in sections" :key="s.letter">
-          <SectionHeader :title="s.letter" />
-          <ContactItem
-            v-for="c in s.items"
-            :key="c.id"
-            :contact="c"
-            show-favorite
-            @open="openContact(c)"
-            @call="call(c)"
-            @favorite="contacts.toggleFavorite(c.id)"
-          />
-        </section>
+      <div v-if="rows.length" class="contact-list bg-surface">
+        <VirtualList :items="rows" :estimate="estimate">
+          <template #default="{ item: r }">
+            <SectionHeader v-if="r.kind === 'letter'" :title="r.letter" />
+            <div v-else class="contact-row">
+              <ContactItem
+                :contact="r.contact"
+                show-favorite
+                @open="openContact(r.contact)"
+                @call="call(r.contact)"
+                @favorite="contacts.toggleFavorite(r.contact.id)"
+              />
+            </div>
+          </template>
+        </VirtualList>
         <p class="py-4 text-center text-xs text-muted">{{ t('home.contacts.count', { n: results.length }) }}</p>
       </div>
       <EmptyState

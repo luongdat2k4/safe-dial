@@ -169,6 +169,7 @@ async function onAction(a: CallAction) {
     <CallDayList
       v-if="filtered.length"
       :entries="filtered"
+      @end="calls.loadMore()"
       :selectable="selecting"
       :selected-ids="selected"
       show-call

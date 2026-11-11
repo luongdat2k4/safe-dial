@@ -19,6 +19,7 @@
     "@capacitor/status-bar": "^8.0.4",
     "@iconify-json/lucide": "^1.2.153",
     "@iconify/vue": "^5.0.5",
+    "@tanstack/vue-virtual": "^3.13.52",
     "pinia": "^4.1.0",
     "vue": "^3.5.45",
     "vue-i18n": "^11.4.18",
