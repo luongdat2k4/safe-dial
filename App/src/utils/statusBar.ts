@@ -1,4 +1,4 @@
-import { Capacitor } from '@capacitor/core'
+import { Capacitor, SystemBars, SystemBarsStyle, SystemBarType } from '@capacitor/core'
 import { StatusBar, Style } from '@capacitor/status-bar'
 
 /**
@@ -28,4 +28,13 @@ export async function applyStatusBar(cfg: StatusBarConfig = DEFAULT_STATUS_BAR):
     StatusBar.setStyle({ style: cfg.style === 'dark' ? Style.Dark : Style.Light }),
     StatusBar.setBackgroundColor({ color }),
   ])
+}
+
+/**
+ * Thanh điều hướng của hệ thống: app không vẽ đè lên nó (xem `#app` trong main.css), phía sau
+ * thanh là nền sáng của app → dùng biểu tượng màu tối cho dễ nhìn.
+ */
+export async function initNavigationBar(): Promise<void> {
+  if (!Capacitor.isNativePlatform()) return
+  await SystemBars.setStyle({ style: SystemBarsStyle.Light, bar: SystemBarType.NavigationBar }).catch(() => undefined)
 }

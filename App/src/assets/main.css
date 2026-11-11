@@ -28,10 +28,22 @@
 }
 
 @layer base {
+  /* Vùng an toàn của hệ thống. Capacitor (SystemBars, insetsHandling "css") bơm --safe-area-inset-*,
+     chính xác hơn env() trên WebView cũ; env() là dự phòng (trình duyệt / iOS). */
+  :root {
+    --sai-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+    --sai-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  }
   html,
   body,
   #app {
     height: 100%;
+  }
+  /* Toàn bộ app kết thúc phía trên thanh điều hướng của điện thoại (cử chỉ hoặc 3 nút):
+     không view, sheet hay overlay nào được vẽ đè lên thanh này. */
+  #app {
+    box-sizing: border-box;
+    padding-bottom: var(--sai-bottom);
   }
   body {
     margin: 0;
@@ -64,10 +76,11 @@
 
 @layer utilities {
   .pt-safe {
-    padding-top: env(safe-area-inset-top);
+    padding-top: var(--sai-top);
   }
+  /* Thanh điều hướng đã được chừa ở #app, nên ở đây chỉ còn khoảng đệm tối thiểu. */
   .pb-safe {
-    padding-bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
+    padding-bottom: 1rem;
   }
   .tap {
     transition: transform 0.12s ease, background-color 0.12s ease, opacity 0.12s ease;
@@ -163,8 +176,8 @@
 .nav-icon { display: grid; width: 40px; height: 36px; place-items: center; border-radius: 50%; }
 .nav-active .nav-icon { background: radial-gradient(circle at 70% 15%, #dc8df8, #9a4df5 42%, #6930df 80%); color: #fff; box-shadow: 0 3px 14px #964de64d, inset 0 0 0 2px #ffffff40; }
 .nav-active { color: var(--color-primary); }
-.bottom-navigation.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
-.home-header { padding-top: max(env(safe-area-inset-top, 0px), 20px); }
+.bottom-navigation.pb-safe { padding-bottom: 0; }
+.home-header { padding-top: max(var(--sai-top), 20px); }
 .kpi-card { border: 1px solid #f0ebf8; background: linear-gradient(140deg, #fff, #fcfaff); }
 .number-hero { margin: 0 16px; padding: 28px 16px; border-radius: 28px; background: radial-gradient(ellipse at 50% 0%, #eee4ff, transparent 75%), #fff; border: 1px solid #f2ecfa; }
 .call-screen { background: radial-gradient(ellipse at 50% 22%, #eee2ff 0%, transparent 45%), linear-gradient(160deg, #faf6ff, #fff 65%, #fff5fc); color: var(--color-ink); }
