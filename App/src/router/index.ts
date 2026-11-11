@@ -1,7 +1,10 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
+import { applyStatusBar, type StatusBarConfig } from '@/utils/statusBar'
 
 declare module 'vue-router' {
   interface RouteMeta {
+    /** Thanh trạng thái của màn này; bỏ trống = nền sáng mặc định. */
+    statusBar?: StatusBarConfig
     /** Chặn nút Back (splash, cuộc gọi đang diễn ra). */
     noBack?: boolean
     /** Khoá để Transition coi các tab con là cùng một trang. */
@@ -43,7 +46,7 @@ const routes: RouteRecordRaw[] = [
 
   // Cuộc gọi (mô phỏng)
   { path: '/call/simulate', name: 'call-simulate', component: () => import('@/views/call/SimulateView.vue') },
-  { path: '/call/incoming', name: 'call-incoming', component: () => import('@/views/call/IncomingCallView.vue'), meta: { noBack: true } },
+  { path: '/call/incoming', name: 'call-incoming', component: () => import('@/views/call/IncomingCallView.vue'), meta: { noBack: true, statusBar: { style: 'dark', color: '#bbb1eb' } } },
   { path: '/call/active', name: 'call-active', component: () => import('@/views/call/ActiveCallView.vue'), meta: { noBack: true } },
   { path: '/call/after', name: 'call-after', component: () => import('@/views/call/AfterCallView.vue') },
 
@@ -60,5 +63,10 @@ const routes: RouteRecordRaw[] = [
 
 // Hash history để chạy được trong WebView của Capacitor (capacitor://localhost) mà không cần cấu hình server.
 const router = createRouter({ history: createWebHashHistory(), routes })
+
+// Đổi thanh trạng thái theo màn hình (route con ghi đè route cha).
+router.afterEach((to) => {
+  void applyStatusBar(to.meta.statusBar)
+})
 
 export default router

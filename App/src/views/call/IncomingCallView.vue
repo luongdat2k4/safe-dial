@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
+import { applyStatusBar } from '@/utils/statusBar'
 import { useRouter } from 'vue-router'
 import { useBlockStore } from '@/stores/block'
 import { useCallSessionStore } from '@/stores/callSession'
@@ -19,6 +20,13 @@ const sheet = ref<SheetMode>(null)
 
 onMounted(() => {
   if (session.phase !== 'ringing' || !session.info) router.replace('/call/simulate')
+})
+
+// Popup toàn màn hình có nền sáng; các cỡ khác nằm trên màn hình chính giả (nền tím đậm).
+watchEffect(() => {
+  void applyStatusBar(
+    settings.state.popupSize === 'full' ? { style: 'light', color: '#f4edff' } : { style: 'dark', color: '#bbb1eb' },
+  )
 })
 
 function afterEnd() {
