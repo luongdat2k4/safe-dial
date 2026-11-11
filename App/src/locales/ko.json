@@ -174,7 +174,6 @@
       "general": "일반",
       "calls": "통화",
       "protection": "보호",
-      "data": "데이터",
       "support": "지원"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "사기·스팸으로 표시한 번호나 의심스러운 징후가 있는 번호에서 전화가 오면 빨간색 경고를 표시합니다.",
       "blockRules": "차단 규칙",
       "blockRulesSub": "블랙리스트, 국제 번호, 발신번호 표시 제한",
-      "clearHistory": "모든 통화 기록 삭제",
-      "clearHistorySub": "되돌릴 수 없습니다. 통계는 유지됩니다.",
-      "clearStats": "통계 데이터 삭제",
-      "clearStatsSub": "통계 탭의 모든 데이터를 초기화",
-      "resetDemo": "데모 데이터 다시 만들기",
       "rate": "앱 평가하기",
       "feedback": "의견 보내기",
       "share": "앱 공유",
@@ -206,17 +200,6 @@
       "ask": "항상 묻기",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "모든 통화 기록을 삭제할까요?",
-      "message": "통화 기록의 모든 통화가 삭제됩니다. 차단 목록, 연락처, 통계에는 영향이 없습니다.",
-      "confirm": "모두 삭제",
-      "done": "통화 기록이 삭제되었습니다"
-    },
-    "clearStats": {
-      "title": "통계 데이터를 삭제할까요?",
-      "message": "연락 빈도와 통화 시간 데이터가 삭제됩니다. 통화 기록에는 영향이 없습니다.",
-      "done": "통계 데이터가 삭제되었습니다"
     },
     "rate": {
       "title": "Safe Dial 평가하기",

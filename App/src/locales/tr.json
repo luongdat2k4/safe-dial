@@ -174,7 +174,6 @@
       "general": "Genel",
       "calls": "Aramalar",
       "protection": "Koruma",
-      "data": "Veriler",
       "support": "Destek"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Arayan numarayı dolandırıcı veya spam olarak işaretlediyseniz ya da şüpheli görünüyorsa kırmızı uyarı göster.",
       "blockRules": "Engelleme kuralları",
       "blockRulesSub": "Kara liste, uluslararası, gizli numaralar",
-      "clearHistory": "Tüm arama geçmişini sil",
-      "clearHistorySub": "Geri alınamaz. İstatistikler korunur.",
-      "clearStats": "İstatistik verilerini sil",
-      "clearStatsSub": "İstatistik sekmesindeki tüm verileri sıfırla",
-      "resetDemo": "Demo verilerini yeniden oluştur",
       "rate": "Uygulamayı değerlendir",
       "feedback": "Geri bildirim",
       "share": "Uygulamayı paylaş",
@@ -206,17 +200,6 @@
       "ask": "Her zaman sor",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Tüm arama geçmişi silinsin mi?",
-      "message": "Kayıttaki tüm aramalar silinecek. Engel listesi, kişiler ve istatistikler etkilenmez.",
-      "confirm": "Tümünü sil",
-      "done": "Arama geçmişi silindi"
-    },
-    "clearStats": {
-      "title": "İstatistik verileri silinsin mi?",
-      "message": "İletişim sıklığı ve süre verileri silinecek. Arama kaydı etkilenmez.",
-      "done": "İstatistik verileri silindi"
     },
     "rate": {
       "title": "Safe Dial'ı değerlendirin",

@@ -174,7 +174,6 @@
       "general": "Chung",
       "calls": "Cuộc gọi",
       "protection": "Bảo vệ",
-      "data": "Dữ liệu",
       "support": "Hỗ trợ"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Hiện cảnh báo đỏ khi số gọi đã bị bạn đánh dấu lừa đảo, spam hoặc có dấu hiệu đáng ngờ.",
       "blockRules": "Quy tắc chặn",
       "blockRulesSub": "Danh sách đen, số quốc tế, số ẩn",
-      "clearHistory": "Xoá toàn bộ lịch sử cuộc gọi",
-      "clearHistorySub": "Không thể hoàn tác. Thống kê vẫn được giữ.",
-      "clearStats": "Xoá dữ liệu thống kê",
-      "clearStatsSub": "Đặt lại toàn bộ số liệu ở tab Thống kê",
-      "resetDemo": "Tạo lại dữ liệu demo",
       "rate": "Đánh giá ứng dụng",
       "feedback": "Góp ý",
       "share": "Chia sẻ ứng dụng",
@@ -206,17 +200,6 @@
       "ask": "Luôn hỏi",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Xoá toàn bộ lịch sử cuộc gọi?",
-      "message": "Mọi cuộc gọi trong nhật ký sẽ bị xoá. Danh sách chặn, danh bạ và thống kê không bị ảnh hưởng.",
-      "confirm": "Xoá hết",
-      "done": "Đã xoá lịch sử cuộc gọi"
-    },
-    "clearStats": {
-      "title": "Xoá dữ liệu thống kê?",
-      "message": "Số liệu tần suất và thời lượng liên lạc sẽ bị xoá. Nhật ký cuộc gọi không bị ảnh hưởng.",
-      "done": "Đã xoá dữ liệu thống kê"
     },
     "rate": {
       "title": "Đánh giá Safe Dial",

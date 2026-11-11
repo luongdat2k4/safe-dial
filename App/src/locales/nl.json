@@ -174,7 +174,6 @@
       "general": "Algemeen",
       "calls": "Oproepen",
       "protection": "Bescherming",
-      "data": "Gegevens",
       "support": "Ondersteuning"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Toon een rode waarschuwing als je het nummer als oplichting of spam hebt gemarkeerd, of als het verdacht lijkt.",
       "blockRules": "Blokkeerregels",
       "blockRulesSub": "Zwarte lijst, buitenlandse nummers, afgeschermde nummers",
-      "clearHistory": "Volledige oproepgeschiedenis wissen",
-      "clearHistorySub": "Kan niet ongedaan worden gemaakt. Statistieken blijven bewaard.",
-      "clearStats": "Statistieken wissen",
-      "clearStatsSub": "Zet alle gegevens op het tabblad Statistieken terug",
-      "resetDemo": "Demogegevens opnieuw maken",
       "rate": "App beoordelen",
       "feedback": "Feedback",
       "share": "App delen",
@@ -206,17 +200,6 @@
       "ask": "Altijd vragen",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Volledige oproepgeschiedenis wissen?",
-      "message": "Alle oproepen in het logboek worden verwijderd. Blokkeerlijst, contacten en statistieken blijven ongewijzigd.",
-      "confirm": "Alles wissen",
-      "done": "Oproepgeschiedenis gewist"
-    },
-    "clearStats": {
-      "title": "Statistieken wissen?",
-      "message": "Gegevens over contactfrequentie en gespreksduur worden verwijderd. Het oproeplogboek blijft ongewijzigd.",
-      "done": "Statistieken gewist"
     },
     "rate": {
       "title": "Safe Dial beoordelen",

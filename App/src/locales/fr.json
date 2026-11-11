@@ -174,7 +174,6 @@
       "general": "Général",
       "calls": "Appels",
       "protection": "Protection",
-      "data": "Données",
       "support": "Assistance"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Afficher une alerte rouge si l'appelant a été marqué comme arnaque ou spam, ou semble suspect.",
       "blockRules": "Règles de blocage",
       "blockRulesSub": "Liste noire, numéros internationaux et masqués",
-      "clearHistory": "Effacer tout l'historique d'appels",
-      "clearHistorySub": "Action irréversible. Les statistiques sont conservées.",
-      "clearStats": "Effacer les statistiques",
-      "clearStatsSub": "Réinitialiser toutes les données de l'onglet Stats",
-      "resetDemo": "Régénérer les données démo",
       "rate": "Noter l'application",
       "feedback": "Votre avis",
       "share": "Partager l'application",
@@ -206,17 +200,6 @@
       "ask": "Toujours demander",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Effacer tout l'historique d'appels ?",
-      "message": "Tous les appels du journal seront supprimés. La liste de blocage, les contacts et les statistiques ne sont pas affectés.",
-      "confirm": "Tout effacer",
-      "done": "Historique d'appels effacé"
-    },
-    "clearStats": {
-      "title": "Effacer les statistiques ?",
-      "message": "Les données de fréquence et de durée des appels seront supprimées. Le journal d'appels n'est pas affecté.",
-      "done": "Statistiques effacées"
     },
     "rate": {
       "title": "Noter Safe Dial",

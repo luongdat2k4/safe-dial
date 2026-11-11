@@ -174,7 +174,6 @@
       "general": "Ogólne",
       "calls": "Połączenia",
       "protection": "Ochrona",
-      "data": "Dane",
       "support": "Pomoc"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Pokazuje czerwone ostrzeżenie, gdy numer został przez ciebie oznaczony jako oszustwo lub spam albo wygląda podejrzanie.",
       "blockRules": "Reguły blokowania",
       "blockRulesSub": "Czarna lista, numery zagraniczne, numery zastrzeżone",
-      "clearHistory": "Wyczyść całą historię połączeń",
-      "clearHistorySub": "Tego nie można cofnąć. Statystyki zostaną zachowane.",
-      "clearStats": "Wyczyść statystyki",
-      "clearStatsSub": "Resetuje wszystkie dane na karcie Statystyki",
-      "resetDemo": "Odtwórz dane demo",
       "rate": "Oceń aplikację",
       "feedback": "Opinia",
       "share": "Udostępnij aplikację",
@@ -206,17 +200,6 @@
       "ask": "Zawsze pytaj",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Wyczyścić całą historię połączeń?",
-      "message": "Wszystkie połączenia z rejestru zostaną usunięte. Lista blokowanych, kontakty i statystyki pozostaną bez zmian.",
-      "confirm": "Wyczyść wszystko",
-      "done": "Wyczyszczono historię połączeń"
-    },
-    "clearStats": {
-      "title": "Wyczyścić statystyki?",
-      "message": "Dane o częstotliwości i czasie kontaktów zostaną usunięte. Rejestr połączeń pozostanie bez zmian.",
-      "done": "Wyczyszczono statystyki"
     },
     "rate": {
       "title": "Oceń Safe Dial",

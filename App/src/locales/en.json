@@ -174,7 +174,6 @@
       "general": "General",
       "calls": "Calls",
       "protection": "Protection",
-      "data": "Data",
       "support": "Support"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Show a red warning when a caller is one you marked as scam or spam, or looks suspicious.",
       "blockRules": "Block rules",
       "blockRulesSub": "Blacklist, international, private numbers",
-      "clearHistory": "Clear all call history",
-      "clearHistorySub": "This can't be undone. Stats are kept.",
-      "clearStats": "Clear stats data",
-      "clearStatsSub": "Reset all figures in the Stats tab",
-      "resetDemo": "Regenerate demo data",
       "rate": "Rate the app",
       "feedback": "Feedback",
       "share": "Share the app",
@@ -206,17 +200,6 @@
       "ask": "Always ask",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Clear all call history?",
-      "message": "All calls in the log will be deleted. Your block list, contacts and stats won't be affected.",
-      "confirm": "Clear all",
-      "done": "Call history cleared"
-    },
-    "clearStats": {
-      "title": "Clear stats data?",
-      "message": "Contact frequency and duration data will be deleted. Your call log won't be affected.",
-      "done": "Stats data cleared"
     },
     "rate": {
       "title": "Rate Safe Dial",

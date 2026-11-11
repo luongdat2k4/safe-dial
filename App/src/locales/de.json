@@ -174,7 +174,6 @@
       "general": "Allgemein",
       "calls": "Anrufe",
       "protection": "Schutz",
-      "data": "Daten",
       "support": "Support"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Rote Warnung anzeigen, wenn du den Anrufer als Betrug oder Spam markiert hast oder er verdächtig wirkt.",
       "blockRules": "Sperrregeln",
       "blockRulesSub": "Schwarze Liste, Auslands- und unterdrückte Nummern",
-      "clearHistory": "Gesamten Anrufverlauf löschen",
-      "clearHistorySub": "Nicht rückgängig zu machen. Statistiken bleiben erhalten.",
-      "clearStats": "Statistikdaten löschen",
-      "clearStatsSub": "Alle Werte im Tab Statistik zurücksetzen",
-      "resetDemo": "Demodaten neu erzeugen",
       "rate": "App bewerten",
       "feedback": "Feedback",
       "share": "App teilen",
@@ -206,17 +200,6 @@
       "ask": "Immer fragen",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Gesamten Anrufverlauf löschen?",
-      "message": "Alle Anrufe in der Liste werden gelöscht. Sperrliste, Kontakte und Statistik bleiben unverändert.",
-      "confirm": "Alles löschen",
-      "done": "Anrufverlauf gelöscht"
-    },
-    "clearStats": {
-      "title": "Statistikdaten löschen?",
-      "message": "Daten zu Häufigkeit und Dauer der Kontakte werden gelöscht. Die Anrufliste bleibt unverändert.",
-      "done": "Statistikdaten gelöscht"
     },
     "rate": {
       "title": "Safe Dial bewerten",

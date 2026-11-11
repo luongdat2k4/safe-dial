@@ -174,7 +174,6 @@
       "general": "通用",
       "calls": "通话",
       "protection": "保护",
-      "data": "数据",
       "support": "支持"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "当来电号码已被你标记为诈骗、骚扰或有可疑迹象时，显示红色警告。",
       "blockRules": "拦截规则",
       "blockRulesSub": "黑名单、国际号码、隐藏号码",
-      "clearHistory": "清除全部通话记录",
-      "clearHistorySub": "无法撤销。统计数据将保留。",
-      "clearStats": "清除统计数据",
-      "clearStatsSub": "重置统计标签页中的全部数据",
-      "resetDemo": "重新生成演示数据",
       "rate": "为应用评分",
       "feedback": "意见反馈",
       "share": "分享应用",
@@ -206,17 +200,6 @@
       "ask": "每次询问",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "清除全部通话记录？",
-      "message": "通话记录中的所有通话都将被删除。拦截名单、通讯录和统计数据不受影响。",
-      "confirm": "全部清除",
-      "done": "已清除通话记录"
-    },
-    "clearStats": {
-      "title": "清除统计数据？",
-      "message": "联系频率和时长数据将被删除。通话记录不受影响。",
-      "done": "已清除统计数据"
     },
     "rate": {
       "title": "为 Safe Dial 评分",

@@ -174,7 +174,6 @@
       "general": "Generali",
       "calls": "Chiamate",
       "protection": "Protezione",
-      "data": "Dati",
       "support": "Supporto"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Mostra un avviso rosso quando il numero è stato segnato da te come truffa o spam, o sembra sospetto.",
       "blockRules": "Regole di blocco",
       "blockRulesSub": "Lista nera, numeri internazionali, numeri privati",
-      "clearHistory": "Cancella tutta la cronologia chiamate",
-      "clearHistorySub": "Operazione irreversibile. Le statistiche restano.",
-      "clearStats": "Cancella le statistiche",
-      "clearStatsSub": "Azzera tutti i dati nella scheda Statistiche",
-      "resetDemo": "Rigenera i dati demo",
       "rate": "Valuta l'app",
       "feedback": "Feedback",
       "share": "Condividi l'app",
@@ -206,17 +200,6 @@
       "ask": "Chiedi sempre",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Cancellare tutta la cronologia chiamate?",
-      "message": "Tutte le chiamate del registro verranno eliminate. Lista di blocco, contatti e statistiche non verranno toccati.",
-      "confirm": "Cancella tutto",
-      "done": "Cronologia chiamate cancellata"
-    },
-    "clearStats": {
-      "title": "Cancellare le statistiche?",
-      "message": "I dati su frequenza e durata dei contatti verranno eliminati. Il registro chiamate non verrà toccato.",
-      "done": "Statistiche cancellate"
     },
     "rate": {
       "title": "Valuta Safe Dial",

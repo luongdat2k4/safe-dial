@@ -174,7 +174,6 @@
       "general": "Umum",
       "calls": "Panggilan",
       "protection": "Perlindungan",
-      "data": "Data",
       "support": "Bantuan"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Tampilkan peringatan merah jika nomor penelepon sudah Anda tandai penipuan, spam, atau terlihat mencurigakan.",
       "blockRules": "Aturan blokir",
       "blockRulesSub": "Daftar hitam, nomor internasional, nomor pribadi",
-      "clearHistory": "Hapus semua riwayat panggilan",
-      "clearHistorySub": "Tidak dapat dibatalkan. Statistik tetap disimpan.",
-      "clearStats": "Hapus data statistik",
-      "clearStatsSub": "Atur ulang semua data di tab Statistik",
-      "resetDemo": "Buat ulang data demo",
       "rate": "Beri nilai aplikasi",
       "feedback": "Masukan",
       "share": "Bagikan aplikasi",
@@ -206,17 +200,6 @@
       "ask": "Selalu tanya",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "Hapus semua riwayat panggilan?",
-      "message": "Semua panggilan di log akan dihapus. Daftar blokir, kontak, dan statistik tidak terpengaruh.",
-      "confirm": "Hapus semua",
-      "done": "Riwayat panggilan dihapus"
-    },
-    "clearStats": {
-      "title": "Hapus data statistik?",
-      "message": "Data frekuensi dan durasi komunikasi akan dihapus. Log panggilan tidak terpengaruh.",
-      "done": "Data statistik dihapus"
     },
     "rate": {
       "title": "Beri nilai Safe Dial",

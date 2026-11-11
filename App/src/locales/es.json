@@ -174,7 +174,6 @@
       "general": "General",
       "calls": "Llamadas",
       "protection": "Protección",
-      "data": "Datos",
       "support": "Ayuda"
     },
     "rows": {
@@ -188,11 +187,6 @@
       "scamWarningSub": "Muestra una alerta roja si marcaste el número como estafa o spam, o si parece sospechoso.",
       "blockRules": "Reglas de bloqueo",
       "blockRulesSub": "Lista negra, números internacionales y ocultos",
-      "clearHistory": "Borrar todo el historial de llamadas",
-      "clearHistorySub": "No se puede deshacer. Las estadísticas se conservan.",
-      "clearStats": "Borrar estadísticas",
-      "clearStatsSub": "Restablece todos los datos de la pestaña Estadísticas",
-      "resetDemo": "Regenerar datos de demo",
       "rate": "Valorar la app",
       "feedback": "Comentarios",
       "share": "Compartir la app",
@@ -206,17 +200,6 @@
       "ask": "Preguntar siempre",
       "sim1": "SIM 1",
       "sim2": "SIM 2"
-    },
-    "clear": {
-      "title": "¿Borrar todo el historial de llamadas?",
-      "message": "Se eliminarán todas las llamadas del registro. La lista de bloqueo, los contactos y las estadísticas no se verán afectados.",
-      "confirm": "Borrar todo",
-      "done": "Historial de llamadas borrado"
-    },
-    "clearStats": {
-      "title": "¿Borrar estadísticas?",
-      "message": "Se eliminarán los datos de frecuencia y duración de las llamadas. El registro de llamadas no se verá afectado.",
-      "done": "Estadísticas borradas"
     },
     "rate": {
       "title": "Valorar Safe Dial",

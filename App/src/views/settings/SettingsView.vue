@@ -10,9 +10,7 @@ import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import RadioSheet from '@/components/settings/RadioSheet.vue'
 import RateSheet from '@/components/settings/RateSheet.vue'
 import { useSettingsStore } from '@/stores/settings'
-import { useCallsStore } from '@/stores/calls'
-import { useStatsStore } from '@/stores/stats'
-import { SafeDial, isNative, type Status } from '@/services'
+import { SafeDial, type Status } from '@/services'
 import { useUiStore } from '@/stores/ui'
 import type { SimChoice } from '@/types'
 import { t } from '@/composables/useT'
@@ -22,7 +20,6 @@ const APP_VERSION = '0.1.0'
 
 const router = useRouter()
 const settings = useSettingsStore()
-const calls = useCallsStore()
 const ui = useUiStore()
 
 const simSheet = ref(false)
@@ -52,39 +49,6 @@ const defaultSim = computed({
   get: () => settings.state.defaultSim,
   set: (v: SimChoice) => settings.patch({ defaultSim: v }),
 })
-
-async function clearHistory() {
-  const ok = await ui.confirm({
-    title: t('settings.clear.title'),
-    message: t('settings.clear.message'),
-    confirmText: t('settings.clear.confirm'),
-    danger: true,
-    icon: 'trash-2',
-  })
-  if (!ok) return
-  await calls.clear()
-  ui.showToast(t('settings.clear.done'), 'success')
-}
-
-const stats = useStatsStore()
-async function clearStats() {
-  const ok = await ui.confirm({
-    title: t('settings.clearStats.title'),
-    message: t('settings.clearStats.message'),
-    confirmText: t('settings.clear.confirm'),
-    danger: true,
-    icon: 'chart-no-axes-combined',
-  })
-  if (!ok) return
-  await stats.clear()
-  ui.showToast(t('settings.clearStats.done'), 'success')
-}
-
-/** Chỉ bản web: tạo lại dữ liệu giả lập. */
-async function resetDemo() {
-  await SafeDial.resetDemo?.()
-  location.reload()
-}
 
 async function share() {
   try {
@@ -150,36 +114,6 @@ async function share() {
           icon-tone="violet"
           chevron
           @click="router.push('/home/block')"
-        />
-      </div>
-
-      <SectionHeader :title="t('settings.groups.data')" />
-      <div class="mx-4 overflow-hidden rounded-card bg-surface shadow-card">
-        <ListRow
-          :title="t('settings.rows.clearHistory')"
-          :subtitle="t('settings.rows.clearHistorySub')"
-          icon="trash-2"
-          icon-tone="danger"
-          danger
-          clickable
-          @click="clearHistory"
-        />
-        <ListRow
-          :title="t('settings.rows.clearStats')"
-          :subtitle="t('settings.rows.clearStatsSub')"
-          icon="chart-no-axes-combined"
-          icon-tone="danger"
-          danger
-          clickable
-          @click="clearStats"
-        />
-        <ListRow
-          v-if="!isNative"
-          :title="t('settings.rows.resetDemo')"
-          icon="rotate-ccw"
-          icon-tone="gray"
-          clickable
-          @click="resetDemo"
         />
       </div>
 
