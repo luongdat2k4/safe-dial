@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "Kies je taal",
-      "subtitle": "Je kunt dit altijd wijzigen in Instellingen.",
       "confirm": "Bevestigen",
       "saved": "Taal opgeslagen"
     },

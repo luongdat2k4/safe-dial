@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "Escolha o idioma",
-      "subtitle": "Você pode alterá-lo a qualquer momento nas Configurações.",
       "confirm": "Confirmar",
       "saved": "Idioma salvo"
     },

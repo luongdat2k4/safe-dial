@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "言語を選択",
-      "subtitle": "設定からいつでも変更できます。",
       "confirm": "確認",
       "saved": "言語を保存しました"
     },

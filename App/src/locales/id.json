@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "Pilih bahasa",
-      "subtitle": "Anda dapat mengubahnya kapan saja di Pengaturan.",
       "confirm": "Konfirmasi",
       "saved": "Bahasa disimpan"
     },

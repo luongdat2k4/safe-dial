@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "Chọn ngôn ngữ",
-      "subtitle": "Bạn có thể thay đổi lại trong Cài đặt bất cứ lúc nào.",
       "confirm": "Xác nhận",
       "saved": "Đã lưu ngôn ngữ"
     },

@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "Dil seçin",
-      "subtitle": "Dili istediğiniz zaman Ayarlar'dan değiştirebilirsiniz.",
       "confirm": "Onayla",
       "saved": "Dil kaydedildi"
     },

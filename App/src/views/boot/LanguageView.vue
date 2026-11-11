@@ -45,16 +45,16 @@ onBeforeUnmount(() => {
 <template>
   <div class="flex flex-col bg-canvas">
     <AppBar v-if="fromSettings" :title="t('boot.language.title')" back />
-    <div class="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
-      <div v-if="!fromSettings" class="pt-safe px-1 pt-12 pb-6">
-        <span class="grid size-14 place-items-center rounded-2xl bg-primary-soft text-primary-dark">
-          <AppIcon name="languages" :size="28" />
-        </span>
-        <h1 class="mt-5 text-[30px] font-semibold tracking-tight">{{ t('boot.language.title') }}</h1>
-        <p class="mt-1 text-[15px] text-muted">{{ t('boot.language.subtitle') }}</p>
-      </div>
-      <div v-else class="px-1 pt-4 pb-3 text-sm text-muted">{{ t('boot.language.subtitle') }}</div>
+    <!-- Phần đầu cố định; chỉ danh sách ngôn ngữ cuộn. -->
+    <div v-if="!fromSettings" class="pt-safe shrink-0 px-5 pt-12 pb-5">
+      <span class="grid size-14 place-items-center rounded-2xl bg-primary-soft text-primary-dark">
+        <AppIcon name="languages" :size="28" />
+      </span>
+      <h1 class="mt-5 text-[30px] font-semibold tracking-tight">{{ t('boot.language.title') }}</h1>
+    </div>
+    <div v-else class="shrink-0 pt-3" />
 
+    <div class="min-h-0 flex-1 overflow-y-auto px-4 pt-1 pb-4">
       <div role="radiogroup" :aria-label="t('boot.language.title')" class="flex flex-col gap-3">
         <button
           v-for="o in LOCALES"

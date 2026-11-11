@@ -84,7 +84,6 @@
   "boot": {
     "language": {
       "title": "언어 선택",
-      "subtitle": "설정에서 언제든지 다시 변경할 수 있어요.",
       "confirm": "확인",
       "saved": "언어가 저장되었습니다"
     },
