@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { CallerInfo, Contact } from '@/types'
+import type { CallerInfo } from '@/types'
 import { t } from '@/composables/useT'
-import { formatNumber } from '@/utils/numbers'
 import { countryOf } from '@/utils/countries'
 import { useSettingsStore } from '@/stores/settings'
 import RiskBadge from '@/components/RiskBadge.vue'
 import AppIcon from '@/components/AppIcon.vue'
 
-/** Dải nhận diện số ngay khi gõ: gợi ý danh bạ + thẻ cảnh báo theo đánh dấu của người dùng. */
-const props = defineProps<{ number: string; info: CallerInfo | null; loading: boolean; contacts: Contact[] }>()
-defineEmits<{ pick: [c: Contact]; unblock: []; detail: [] }>()
+/** Thẻ nhận diện số ngay khi gõ: cảnh báo theo đánh dấu của người dùng. */
+const props = defineProps<{ number: string; info: CallerInfo | null; loading: boolean }>()
+defineEmits<{ unblock: []; detail: [] }>()
 const settings = useSettingsStore()
 
 const risk = computed(() => props.info?.risk ?? 'unknown')
@@ -29,22 +28,7 @@ const warn = computed(() => (risk.value === 'scam' ? t('dial.recognition.scamWar
 </script>
 
 <template>
-  <div class="min-h-[88px] space-y-2 px-4">
-    <div v-if="contacts.length" class="flex gap-2 overflow-x-auto pb-0.5" role="list" :aria-label="t('dial.suggestions')">
-      <button
-        v-for="c in contacts"
-        :key="c.id"
-        type="button"
-        role="listitem"
-        class="tap flex shrink-0 items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-sm shadow-card"
-        @click="$emit('pick', c)"
-      >
-        <AppIcon name="user-round" :size="16" class="text-primary-dark" />
-        <span class="font-semibold">{{ c.name }}</span>
-        <span class="text-muted">{{ formatNumber(c.numbers[0] ?? '', settings.state.homeCountryDial) }}</span>
-      </button>
-    </div>
-
+  <div class="space-y-2 px-4">
     <div v-if="loading" class="flex items-center gap-2 rounded-2xl border border-line bg-surface px-3 py-3 text-sm text-muted">
       <AppIcon name="loader-circle" :size="18" class="animate-spin" /> {{ t('dial.recognition.checking') }}
     </div>

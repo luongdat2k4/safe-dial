@@ -13,6 +13,7 @@ import { formatNumber, nationalForm, toE164 } from '@/utils/numbers'
 import { numberPath } from '@/utils/routes'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
+import Avatar from '@/components/Avatar.vue'
 import Keypad from '@/components/Keypad.vue'
 import RecognitionStrip from '@/components/number/RecognitionStrip.vue'
 import SimSheet from '@/components/calls/SimSheet.vue'
@@ -46,7 +47,7 @@ const display = computed(() => {
   if (!r || r.startsWith('+') || /[*#]/.test(r)) return r
   return formatNumber(toE164(r, home()), home()).replace(/^\+84 /, '0')
 })
-const suggestions = computed(() => (digitCount.value >= 2 || /[a-z]/i.test(raw.value) ? contacts.search(raw.value).slice(0, 5) : []))
+const suggestions = computed(() => (digitCount.value >= 2 || /[a-z]/i.test(raw.value) ? contacts.search(raw.value).slice(0, 30) : []))
 
 // Nhận diện số (debounce 250ms, bỏ qua kết quả cũ)
 let timer: ReturnType<typeof setTimeout> | undefined
@@ -110,6 +111,21 @@ const call = () => startCall(e164.value)
     <AppBar :title="t('dial.title')" back />
 
     <div class="flex min-h-0 flex-1 flex-col justify-end gap-2 pt-2">
+      <!-- Gợi ý danh bạ: danh sách dọc lấp khoảng trống phía trên số đang gõ. -->
+      <div class="flex min-h-0 flex-1 flex-col justify-end overflow-hidden">
+        <ul v-if="suggestions.length" class="min-h-0 overflow-y-auto px-2" :aria-label="t('dial.suggestions')">
+          <li v-for="c in suggestions" :key="c.id">
+            <button type="button" class="tap flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-left active:bg-primary-soft/50" @click="pick(c)">
+              <Avatar :name="c.name" risk="safe" :size="40" />
+              <span class="min-w-0 flex-1">
+                <span class="block truncate text-[15px] font-semibold">{{ c.name }}</span>
+                <span class="block truncate text-[13px] text-muted">{{ formatNumber(c.numbers[0] ?? '', home()) }}</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
       <div class="flex h-16 items-center justify-center gap-1 px-4">
         <p
           class="min-w-0 flex-1 truncate text-center font-semibold tracking-wide"
@@ -136,8 +152,6 @@ const call = () => startCall(e164.value)
         :number="e164"
         :info="info"
         :loading="loading"
-        :contacts="suggestions"
-        @pick="pick"
         @unblock="unblock"
         @detail="router.push(numberPath(e164))"
       />
