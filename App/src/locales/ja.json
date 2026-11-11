@@ -156,7 +156,11 @@
         "done": "Safe Dial をデフォルトの電話アプリに設定しました",
         "unavailable": "この端末ではデフォルトの電話アプリを変更できません"
       },
-      "granted": "許可済み"
+      "granted": "許可済み",
+      "openSystem": "システム設定を開く",
+      "openSystemHint": "以前に権限を拒否した場合は、Android の設定 → 権限 で再度オンにしてください。",
+      "openSystemFailed": "設定を開けません。",
+      "deniedHint": "権限が許可されていません。ダイアログが出ない場合はシステム設定で有効にしてください。"
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "アプリを評価",
       "feedback": "フィードバック",
       "share": "アプリを共有",
-      "about": "アプリ情報とプライバシー"
+      "about": "アプリ情報とプライバシー",
+      "permissions": "アプリの権限",
+      "permissionsOk": "すべて許可済み",
+      "permissionsMissing": "{n} 件不足"
     },
     "sim": {
       "title": "発信用 SIM",
@@ -465,7 +472,8 @@
       "count": "{n} 件の連絡先",
       "quickCall": "{name} に発信",
       "favOn": "{name} をお気に入りから外す",
-      "favOff": "{name} をお気に入りに追加"
+      "favOff": "{name} をお気に入りに追加",
+      "favFailed": "お気に入りを更新できません。Safe Dial に連絡先の編集を許可してください。"
     }
   },
   "dial": {

@@ -412,6 +412,10 @@ export class SafeDialWeb extends WebPlugin implements Impl {
     return this.decide(opts.number)
   }
 
+  async openAppSettings() {
+    /* bản web: không có Cài đặt hệ thống */
+  }
+
   async openSms() {
     /* bản web: UI tự hiện thông báo giả lập */
   }

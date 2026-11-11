@@ -156,7 +156,11 @@
         "done": "已将 Safe Dial 设为默认电话应用",
         "unavailable": "此设备不支持更改默认电话应用"
       },
-      "granted": "已允许"
+      "granted": "已允许",
+      "openSystem": "打开系统设置",
+      "openSystemHint": "如果之前拒绝过某项权限，请在 Android 设置 → 权限中重新开启。",
+      "openSystemFailed": "无法打开设置。",
+      "deniedHint": "未授予权限。如果没有弹出对话框，请在系统设置中开启。"
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "为应用评分",
       "feedback": "意见反馈",
       "share": "分享应用",
-      "about": "关于与隐私"
+      "about": "关于与隐私",
+      "permissions": "应用权限",
+      "permissionsOk": "已全部授予",
+      "permissionsMissing": "缺少 {n} 项"
     },
     "sim": {
       "title": "拨号 SIM 卡",
@@ -465,7 +472,8 @@
       "count": "{n} 位联系人",
       "quickCall": "拨打给 {name}",
       "favOn": "取消收藏 {name}",
-      "favOff": "将 {name} 加入收藏"
+      "favOff": "将 {name} 加入收藏",
+      "favFailed": "无法更新收藏。请允许 Safe Dial 编辑通讯录。"
     }
   },
   "dial": {

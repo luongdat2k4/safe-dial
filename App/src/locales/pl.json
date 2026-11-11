@@ -156,7 +156,11 @@
         "done": "Safe Dial jest teraz domyślną aplikacją telefonu",
         "unavailable": "To urządzenie nie pozwala zmienić domyślnej aplikacji telefonu"
       },
-      "granted": "Przyznano"
+      "granted": "Przyznano",
+      "openSystem": "Otwórz ustawienia systemu",
+      "openSystemHint": "Jeśli wcześniej odmówiono uprawnienia, włącz je w Ustawieniach Androida → Uprawnienia.",
+      "openSystemFailed": "Nie udało się otworzyć Ustawień.",
+      "deniedHint": "Nie przyznano uprawnienia. Jeśli okno się nie pojawia, włącz je w ustawieniach systemu."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "Oceń aplikację",
       "feedback": "Opinia",
       "share": "Udostępnij aplikację",
-      "about": "O aplikacji i prywatność"
+      "about": "O aplikacji i prywatność",
+      "permissions": "Uprawnienia aplikacji",
+      "permissionsOk": "Wszystkie przyznane",
+      "permissionsMissing": "Brakuje: {n}"
     },
     "sim": {
       "title": "SIM do połączeń",
@@ -465,7 +472,8 @@
       "count": "Kontakty: {n}",
       "quickCall": "Zadzwoń: {name}",
       "favOn": "Usuń {name} z ulubionych",
-      "favOff": "Dodaj {name} do ulubionych"
+      "favOff": "Dodaj {name} do ulubionych",
+      "favFailed": "Nie udało się zmienić ulubionych. Zezwól Safe Dial na edycję kontaktów."
     }
   },
   "dial": {

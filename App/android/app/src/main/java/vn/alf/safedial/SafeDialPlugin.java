@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CallLog;
+import android.provider.Settings;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 
@@ -467,6 +468,19 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
     }
 
     // ================================================================ gọi điện
+
+    /** Mở trang thông tin ứng dụng trong Cài đặt Android (bật lại quyền đã bị từ chối hẳn). */
+    @PluginMethod
+    public void openAppSettings(PluginCall call) {
+        Intent i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getContext().getPackageName(), null))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            getContext().startActivity(i);
+            call.resolve();
+        } catch (Exception e) {
+            call.reject("Không mở được Cài đặt");
+        }
+    }
 
     @PluginMethod
     public void openSms(PluginCall call) {

@@ -156,7 +156,11 @@
         "done": "Safe Dial kini menjadi aplikasi telepon default",
         "unavailable": "Perangkat ini tidak mengizinkan penggantian aplikasi telepon default"
       },
-      "granted": "Diizinkan"
+      "granted": "Diizinkan",
+      "openSystem": "Buka setelan sistem",
+      "openSystemHint": "Jika sebelumnya Anda menolak izin, aktifkan lagi di Setelan Android → Izin.",
+      "openSystemFailed": "Tidak dapat membuka Setelan.",
+      "deniedHint": "Izin belum diberikan. Jika dialog tidak muncul, aktifkan di setelan sistem."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "Beri nilai aplikasi",
       "feedback": "Masukan",
       "share": "Bagikan aplikasi",
-      "about": "Tentang dan privasi"
+      "about": "Tentang dan privasi",
+      "permissions": "Izin aplikasi",
+      "permissionsOk": "Semua diizinkan",
+      "permissionsMissing": "Kurang {n}"
     },
     "sim": {
       "title": "SIM untuk menelepon",
@@ -465,7 +472,8 @@
       "count": "{n} kontak",
       "quickCall": "Telepon {name}",
       "favOn": "Hapus {name} dari favorit",
-      "favOff": "Tambahkan {name} ke favorit"
+      "favOff": "Tambahkan {name} ke favorit",
+      "favFailed": "Tidak dapat memperbarui favorit. Izinkan Safe Dial mengedit kontak."
     }
   },
   "dial": {

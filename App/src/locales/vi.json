@@ -156,7 +156,11 @@
         "done": "Đã đặt Safe Dial làm ứng dụng gọi điện mặc định",
         "unavailable": "Máy này không cho đổi ứng dụng gọi điện mặc định"
       },
-      "granted": "Đã cho phép"
+      "granted": "Đã cho phép",
+      "openSystem": "Mở cài đặt hệ thống",
+      "openSystemHint": "Nếu đã từ chối một quyền trước đó, hãy bật lại trong Cài đặt Android → Quyền.",
+      "openSystemFailed": "Không mở được Cài đặt.",
+      "deniedHint": "Quyền chưa được cấp. Nếu không thấy hộp thoại, hãy bật trong Cài đặt hệ thống."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "Đánh giá ứng dụng",
       "feedback": "Góp ý",
       "share": "Chia sẻ ứng dụng",
-      "about": "Giới thiệu và quyền riêng tư"
+      "about": "Giới thiệu và quyền riêng tư",
+      "permissions": "Quyền ứng dụng",
+      "permissionsOk": "Đã cấp đủ",
+      "permissionsMissing": "Thiếu {n}"
     },
     "sim": {
       "title": "SIM gọi đi",
@@ -465,7 +472,8 @@
       "count": "{n} liên hệ",
       "quickCall": "Gọi {name}",
       "favOn": "Bỏ yêu thích {name}",
-      "favOff": "Thêm {name} vào yêu thích"
+      "favOff": "Thêm {name} vào yêu thích",
+      "favFailed": "Không lưu được yêu thích. Hãy cho phép Safe Dial chỉnh sửa danh bạ."
     }
   },
   "dial": {

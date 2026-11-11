@@ -156,7 +156,11 @@
         "done": "Safe Dial es ahora tu app de teléfono predeterminada",
         "unavailable": "Este dispositivo no permite cambiar la app de teléfono predeterminada"
       },
-      "granted": "Permitido"
+      "granted": "Permitido",
+      "openSystem": "Abrir ajustes del sistema",
+      "openSystemHint": "Si antes rechazaste un permiso, actívalo en Ajustes de Android → Permisos.",
+      "openSystemFailed": "No se pudo abrir Ajustes.",
+      "deniedHint": "Permiso no concedido. Si no aparece el diálogo, actívalo en los ajustes del sistema."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "Valorar la app",
       "feedback": "Comentarios",
       "share": "Compartir la app",
-      "about": "Información y privacidad"
+      "about": "Información y privacidad",
+      "permissions": "Permisos de la app",
+      "permissionsOk": "Todos concedidos",
+      "permissionsMissing": "Faltan {n}"
     },
     "sim": {
       "title": "SIM para llamar",
@@ -465,7 +472,8 @@
       "count": "{n} contactos",
       "quickCall": "Llamar a {name}",
       "favOn": "Quitar a {name} de favoritos",
-      "favOff": "Añadir a {name} a favoritos"
+      "favOff": "Añadir a {name} a favoritos",
+      "favFailed": "No se pudieron actualizar los favoritos. Permite que Safe Dial edite tus contactos."
     }
   },
   "dial": {

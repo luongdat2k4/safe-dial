@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AppBar from '@/components/AppBar.vue'
 import BrandOrb from '@/components/BrandOrb.vue'
@@ -12,7 +12,7 @@ import RateSheet from '@/components/settings/RateSheet.vue'
 import { useSettingsStore } from '@/stores/settings'
 import { useCallsStore } from '@/stores/calls'
 import { useStatsStore } from '@/stores/stats'
-import { SafeDial, isNative } from '@/services'
+import { SafeDial, isNative, type Status } from '@/services'
 import { useUiStore } from '@/stores/ui'
 import type { SimChoice } from '@/types'
 import { t } from '@/composables/useT'
@@ -34,6 +34,18 @@ const simOptions: { value: SimChoice; label: string }[] = [
   { value: 'sim2', label: t('settings.sim.sim2') },
 ]
 const simLabel = computed(() => simOptions.find((o) => o.value === settings.state.defaultSim)?.label ?? '')
+/** Tình trạng quyền: số nhóm quyền / vai trò còn thiếu (hiện cạnh mục "Quyền ứng dụng"). */
+const status = ref<Status | null>(null)
+onMounted(async () => {
+  status.value = await SafeDial.getStatus().catch(() => null)
+})
+const missingPerms = computed(() => {
+  const s = status.value
+  if (!s) return 0
+  const groups = [s.contacts, s.callLog === 'granted' && s.phone === 'granted' ? 'granted' : 'denied', s.notifications]
+  return groups.filter((g) => g !== 'granted').length + (s.dialerRole ? 0 : 1)
+})
+
 const langLabel = computed(() => LOCALES.find((l) => l.code === settings.state.language)?.native ?? settings.state.language)
 
 const defaultSim = computed({
@@ -99,6 +111,13 @@ async function share() {
         <ListRow :title="t('settings.rows.sound')" icon="volume-2" icon-tone="blue" chevron @click="router.push('/settings/sound')" />
         <ListRow :title="t('settings.rows.language')" icon="languages" icon-tone="violet" chevron @click="router.push('/language?from=settings')">
           <template #right><span class="text-sm text-muted">{{ langLabel }}</span></template>
+        </ListRow>
+        <ListRow :title="t('settings.rows.permissions')" icon="shield-check" icon-tone="brand" chevron @click="router.push('/permissions?from=settings')">
+          <template #right>
+            <span v-if="status" class="rounded-full px-2 py-0.5 text-xs font-semibold" :class="missingPerms ? 'bg-spam-soft text-spam' : 'bg-primary-soft text-primary-dark'">
+              {{ missingPerms ? t('settings.rows.permissionsMissing', { n: missingPerms }) : t('settings.rows.permissionsOk') }}
+            </span>
+          </template>
         </ListRow>
       </div>
 

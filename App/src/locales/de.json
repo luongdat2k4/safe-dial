@@ -156,7 +156,11 @@
         "done": "Safe Dial ist jetzt deine Standard-Telefon-App",
         "unavailable": "Auf diesem Gerät kann die Standard-Telefon-App nicht geändert werden"
       },
-      "granted": "Erlaubt"
+      "granted": "Erlaubt",
+      "openSystem": "Systemeinstellungen öffnen",
+      "openSystemHint": "Falls du eine Berechtigung abgelehnt hast, aktiviere sie in den Android-Einstellungen → Berechtigungen.",
+      "openSystemFailed": "Einstellungen konnten nicht geöffnet werden.",
+      "deniedHint": "Berechtigung nicht erteilt. Erscheint kein Dialog, aktiviere sie in den Systemeinstellungen."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "App bewerten",
       "feedback": "Feedback",
       "share": "App teilen",
-      "about": "Info und Datenschutz"
+      "about": "Info und Datenschutz",
+      "permissions": "App-Berechtigungen",
+      "permissionsOk": "Alle erteilt",
+      "permissionsMissing": "{n} fehlen"
     },
     "sim": {
       "title": "SIM für Anrufe",
@@ -465,7 +472,8 @@
       "count": "{n} Kontakte",
       "quickCall": "{name} anrufen",
       "favOn": "{name} aus Favoriten entfernen",
-      "favOff": "{name} zu Favoriten hinzufügen"
+      "favOff": "{name} zu Favoriten hinzufügen",
+      "favFailed": "Favoriten konnten nicht geändert werden. Erlaube Safe Dial, Kontakte zu bearbeiten."
     }
   },
   "dial": {

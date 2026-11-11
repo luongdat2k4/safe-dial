@@ -79,7 +79,7 @@ const actions = computed(() => {
       tone: 'bg-surface text-favorite border border-line',
       fill: c.favorite,
       run: async () => {
-        await contacts.toggleFavorite(c.id)
+        if (!(await contacts.toggleFavorite(c.id))) return
         ui.showToast(t(c.favorite ? 'number.toast.favOn' : 'number.toast.favOff'), 'success')
       },
     })

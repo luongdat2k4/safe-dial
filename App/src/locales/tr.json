@@ -156,7 +156,11 @@
         "done": "Safe Dial varsayılan telefon uygulaması yapıldı",
         "unavailable": "Bu cihaz varsayılan telefon uygulamasının değiştirilmesine izin vermiyor"
       },
-      "granted": "İzin verildi"
+      "granted": "İzin verildi",
+      "openSystem": "Sistem ayarlarını aç",
+      "openSystemHint": "Daha önce bir izni reddettiyseniz Android Ayarlar → İzinler bölümünden tekrar açın.",
+      "openSystemFailed": "Ayarlar açılamadı.",
+      "deniedHint": "İzin verilmedi. İletişim kutusu görünmüyorsa sistem ayarlarından açın."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "Uygulamayı değerlendir",
       "feedback": "Geri bildirim",
       "share": "Uygulamayı paylaş",
-      "about": "Hakkında ve gizlilik"
+      "about": "Hakkında ve gizlilik",
+      "permissions": "Uygulama izinleri",
+      "permissionsOk": "Tümü verildi",
+      "permissionsMissing": "{n} eksik"
     },
     "sim": {
       "title": "Arama SIM'i",
@@ -465,7 +472,8 @@
       "count": "{n} kişi",
       "quickCall": "{name} kişisini ara",
       "favOn": "{name} favorilerden çıkar",
-      "favOff": "{name} favorilere ekle"
+      "favOff": "{name} favorilere ekle",
+      "favFailed": "Favoriler güncellenemedi. Safe Dial'ın kişileri düzenlemesine izin verin."
     }
   },
   "dial": {

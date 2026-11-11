@@ -2,6 +2,8 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { Contact } from '@/types'
 import { SafeDial } from '@/services'
+import { t } from '@/composables/useT'
+import { useUiStore } from './ui'
 
 export const useContactsStore = defineStore('contacts', () => {
   const items = ref<Contact[]>([])
@@ -43,12 +45,29 @@ export const useContactsStore = defineStore('contacts', () => {
     )
   }
 
-  /** Yêu thích = Contacts.STARRED của Android. */
-  async function toggleFavorite(id: string) {
+  /**
+   * Yêu thích = Contacts.STARRED của Android (cần quyền ghi danh bạ).
+   * Lần đầu thất bại (thường do mới có quyền đọc) → xin quyền danh bạ rồi thử lại một lần;
+   * vẫn lỗi thì báo cho người dùng. Trả về true nếu đã đổi được.
+   */
+  async function toggleFavorite(id: string): Promise<boolean> {
     const c = items.value.find((x) => x.id === id)
-    if (!c) return
-    await SafeDial.setStarred({ contactId: Number(id) || (id as unknown as number), starred: !c.favorite })
-    c.favorite = !c.favorite
+    if (!c) return false
+    const opts = { contactId: Number(id) || (id as unknown as number), starred: !c.favorite }
+    try {
+      await SafeDial.setStarred(opts)
+    } catch {
+      try {
+        const p = await SafeDial.requestPermissions({ permissions: ['contacts'] })
+        if (p.contacts !== 'granted') throw new Error('denied')
+        await SafeDial.setStarred(opts)
+      } catch {
+        useUiStore().showToast(t('home.contacts.favFailed'), 'warning', 3200)
+        return false
+      }
+    }
+    c.favorite = opts.starred
+    return true
   }
 
   return { items, loaded, favorites, byNumber, load, findByNumber, search, toggleFavorite }

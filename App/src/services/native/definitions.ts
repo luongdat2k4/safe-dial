@@ -208,6 +208,8 @@ export interface SafeDialPlugin {
 
   evaluate(opts: { number: string }): Promise<NativeDecision>
 
+  /** Mở trang ứng dụng trong Cài đặt Android (để bật quyền đã bị từ chối hẳn). */
+  openAppSettings(): Promise<void>
   openSms(opts: { number: string }): Promise<void>
   addContact(opts: { number: string }): Promise<void>
 

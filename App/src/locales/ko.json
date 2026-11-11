@@ -156,7 +156,11 @@
         "done": "Safe Dial이 기본 전화 앱으로 설정되었습니다",
         "unavailable": "이 기기에서는 기본 전화 앱을 변경할 수 없습니다"
       },
-      "granted": "허용됨"
+      "granted": "허용됨",
+      "openSystem": "시스템 설정 열기",
+      "openSystemHint": "이전에 권한을 거부했다면 Android 설정 → 권한에서 다시 켜세요.",
+      "openSystemFailed": "설정을 열 수 없습니다.",
+      "deniedHint": "권한이 허용되지 않았습니다. 대화상자가 보이지 않으면 시스템 설정에서 켜세요."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "앱 평가하기",
       "feedback": "의견 보내기",
       "share": "앱 공유",
-      "about": "앱 정보 및 개인정보"
+      "about": "앱 정보 및 개인정보",
+      "permissions": "앱 권한",
+      "permissionsOk": "모두 허용됨",
+      "permissionsMissing": "{n}개 누락"
     },
     "sim": {
       "title": "발신 SIM",
@@ -465,7 +472,8 @@
       "count": "연락처 {n}개",
       "quickCall": "{name}에게 전화",
       "favOn": "{name} 즐겨찾기 해제",
-      "favOff": "{name}을(를) 즐겨찾기에 추가"
+      "favOff": "{name}을(를) 즐겨찾기에 추가",
+      "favFailed": "즐겨찾기를 변경할 수 없습니다. Safe Dial이 연락처를 수정하도록 허용하세요."
     }
   },
   "dial": {

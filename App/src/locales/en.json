@@ -156,7 +156,11 @@
         "done": "Safe Dial is now your default phone app",
         "unavailable": "This device doesn't allow changing the default phone app"
       },
-      "granted": "Allowed"
+      "granted": "Allowed",
+      "openSystem": "Open system settings",
+      "openSystemHint": "If you denied a permission before, turn it back on in Android Settings → Permissions.",
+      "openSystemFailed": "Couldn't open Settings.",
+      "deniedHint": "Permission not granted. If no dialog appears, enable it in system settings."
     }
   },
   "settings": {
@@ -188,7 +192,10 @@
       "rate": "Rate the app",
       "feedback": "Feedback",
       "share": "Share the app",
-      "about": "About and privacy"
+      "about": "About and privacy",
+      "permissions": "App permissions",
+      "permissionsOk": "All granted",
+      "permissionsMissing": "{n} missing"
     },
     "sim": {
       "title": "SIM for calls",
@@ -465,7 +472,8 @@
       "count": "{n} contacts",
       "quickCall": "Call {name}",
       "favOn": "Remove {name} from favorites",
-      "favOff": "Add {name} to favorites"
+      "favOff": "Add {name} to favorites",
+      "favFailed": "Couldn't update favorites. Allow Safe Dial to edit your contacts."
     }
   },
   "dial": {

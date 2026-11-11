@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { App as CapApp } from '@capacitor/app'
 import type { PluginListenerHandle } from '@capacitor/core'
+import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import ListRow from '@/components/ListRow.vue'
@@ -15,8 +16,11 @@ import { SafeDial, isNative, type PermAlias, type Status } from '@/services'
 
 type PermKey = 'calls' | 'contacts' | 'notifications'
 
+const route = useRoute()
 const router = useRouter()
 const settings = useSettingsStore()
+/** Mở từ Cài đặt (quản lý quyền) thay vì từ luồng khởi động. */
+const fromSettings = computed(() => route.query.from === 'settings')
 const ui = useUiStore()
 const status = ref<Status | null>(null)
 let resumeHandle: PluginListenerHandle | undefined
@@ -57,6 +61,16 @@ async function request(k: PermKey) {
   if (granted(k)) return
   await SafeDial.requestPermissions({ permissions: ALIASES[k] })
   await refresh()
+  // Android không hiện hộp thoại nữa nếu quyền đã bị từ chối hẳn → chỉ còn cách bật trong Cài đặt.
+  if (isNative && !granted(k)) ui.showToast(t('boot.permissions.deniedHint'), 'warning', 3600)
+}
+
+async function openSystemSettings() {
+  try {
+    await SafeDial.openAppSettings()
+  } catch {
+    ui.showToast(t('boot.permissions.openSystemFailed'), 'warning')
+  }
 }
 
 async function requestRole() {
@@ -88,8 +102,10 @@ function finish(limited = false) {
 
 <template>
   <div class="flex flex-col bg-canvas">
+    <AppBar v-if="fromSettings" :title="t('settings.rows.permissions')" back />
     <div class="min-h-0 flex-1 overflow-y-auto pb-4">
-      <div class="pt-safe px-5 pt-10 pb-3">
+      <p v-if="fromSettings" class="px-5 pt-3 pb-1 text-[15px] text-muted">{{ t('boot.permissions.subtitle') }}</p>
+      <div v-else class="pt-safe px-5 pt-10 pb-3">
         <span class="grid size-14 place-items-center rounded-2xl bg-primary-soft text-primary-dark">
           <AppIcon name="shield-check" :size="28" />
         </span>
@@ -161,7 +177,13 @@ function finish(limited = false) {
       </div>
     </div>
 
-    <div class="pb-safe shrink-0 border-t border-line bg-surface px-4 pt-3 pb-3">
+    <div v-if="fromSettings" class="pb-safe shrink-0 border-t border-line bg-surface px-4 pt-3 pb-3">
+      <BaseButton v-if="isNative" block size="lg" variant="secondary" icon="settings" @click="openSystemSettings">
+        {{ t('boot.permissions.openSystem') }}
+      </BaseButton>
+      <p class="mt-2 text-center text-xs text-muted">{{ t('boot.permissions.openSystemHint') }}</p>
+    </div>
+    <div v-else class="pb-safe shrink-0 border-t border-line bg-surface px-4 pt-3 pb-3">
       <BaseButton block size="lg" :disabled="!canContinue" @click="finish(!allOn)">{{ t('common.actions.next') }}</BaseButton>
       <p v-if="!canContinue" class="mt-2 text-center text-xs text-muted">{{ t('boot.permissions.needBasic') }}</p>
       <button type="button" class="tap mx-auto mt-1 block min-h-10 px-4 text-sm font-medium text-muted" @click="finish(true)">
