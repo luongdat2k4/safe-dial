@@ -167,7 +167,6 @@
       "calls": "Oproepen",
       "protection": "Bescherming",
       "data": "Gegevens",
-      "lab": "Experimenteel",
       "support": "Ondersteuning"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Statistieken wissen",
       "clearStatsSub": "Zet alle gegevens op het tabblad Statistieken terug",
       "resetDemo": "Demogegevens opnieuw maken",
-      "simulate": "Inkomende oproep simuleren",
-      "simulateSub": "Alleen in de demo: test waarschuwingen en blokkeren",
       "rate": "App beoordelen",
       "feedback": "Feedback",
       "share": "App delen",
-      "about": "Over en privacy",
-      "demoTag": "DEMO"
+      "about": "Over en privacy"
     },
     "sim": {
       "title": "SIM voor bellen",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Inkomende oproep simuleren",
-      "intro": "Alleen beschikbaar in de demo (browser). Kies een scenario om te zien hoe Safe Dial de oproep herkent en afhandelt.",
+      "intro": "Kies een scenario om te zien hoe Safe Dial de oproep herkent en afhandelt. Dit is alleen een simulatie, er wordt niet echt gebeld.",
       "displayHeader": "Weergave",
       "displayStyle": "Bellervenster",
       "sizeClassic": "Pop-up",
@@ -961,7 +957,42 @@
       "blocked": "Geblokkeerd:",
       "silenced": "Gedempt:",
       "detail": "Details: {d}",
-      "viewBlocked": "Geblokkeerd bekijken"
+      "viewBlocked": "Geblokkeerd bekijken",
+      "live": {
+        "blocked": {
+          "title": "Geblokkeerd nummer",
+          "desc": "Een nummer op je blokkeerlijst"
+        },
+        "marked": {
+          "title": "Gemarkeerd nummer",
+          "desc": "Een nummer dat je als spam / oplichting markeerde"
+        },
+        "rule": {
+          "title": "Komt overeen met regel",
+          "desc": "Regel: {rule}"
+        },
+        "contact": {
+          "title": "Contact",
+          "desc": "{name} uit je contacten"
+        },
+        "trusted": {
+          "title": "Vertrouwd nummer",
+          "desc": "Een nummer dat je als vertrouwd markeerde"
+        },
+        "unknown": {
+          "title": "Onbekend lokaal nummer",
+          "desc": "Niet in contacten, niet gemarkeerd"
+        },
+        "intl": {
+          "title": "Onbekend internationaal nummer",
+          "desc": "Buitenlands nummer, niet in contacten"
+        },
+        "hidden": {
+          "title": "Verborgen nummer",
+          "desc": "Beller verbergt het nummer"
+        }
+      },
+      "busy": "Er is een gesprek bezig. Probeer het later opnieuw."
     },
     "overlay": {
       "incoming": "Inkomende oproep",

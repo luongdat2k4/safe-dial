@@ -167,7 +167,6 @@
       "calls": "Połączenia",
       "protection": "Ochrona",
       "data": "Dane",
-      "lab": "Eksperymentalne",
       "support": "Pomoc"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Wyczyść statystyki",
       "clearStatsSub": "Resetuje wszystkie dane na karcie Statystyki",
       "resetDemo": "Odtwórz dane demo",
-      "simulate": "Symuluj połączenie przychodzące",
-      "simulateSub": "Tylko w wersji demo: przetestuj ostrzeżenia i blokadę",
       "rate": "Oceń aplikację",
       "feedback": "Opinia",
       "share": "Udostępnij aplikację",
-      "about": "O aplikacji i prywatność",
-      "demoTag": "DEMO"
+      "about": "O aplikacji i prywatność"
     },
     "sim": {
       "title": "SIM do połączeń",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Symuluj połączenie przychodzące",
-      "intro": "Dostępne tylko w wersji demo (przeglądarka). Wybierz scenariusz, aby zobaczyć, jak Safe Dial rozpoznaje i obsługuje połączenie.",
+      "intro": "Wybierz scenariusz, aby zobaczyć, jak Safe Dial rozpoznaje i obsługuje połączenie. To tylko symulacja, żadne prawdziwe połączenie nie jest wykonywane.",
       "displayHeader": "Styl wyświetlania",
       "displayStyle": "Okno dzwoniącego",
       "sizeClassic": "Okienko",
@@ -961,7 +957,42 @@
       "blocked": "Zablokowano:",
       "silenced": "Wyciszono:",
       "detail": "Szczegóły: {d}",
-      "viewBlocked": "Zobacz Zablokowane"
+      "viewBlocked": "Zobacz Zablokowane",
+      "live": {
+        "blocked": {
+          "title": "Zablokowany numer",
+          "desc": "Numer z Twojej listy blokowania"
+        },
+        "marked": {
+          "title": "Oznaczony numer",
+          "desc": "Numer oznaczony przez Ciebie jako spam / oszustwo"
+        },
+        "rule": {
+          "title": "Pasuje do reguły",
+          "desc": "Reguła: {rule}"
+        },
+        "contact": {
+          "title": "Kontakt",
+          "desc": "{name} z Twoich kontaktów"
+        },
+        "trusted": {
+          "title": "Zaufany numer",
+          "desc": "Numer oznaczony jako zaufany"
+        },
+        "unknown": {
+          "title": "Nieznany numer krajowy",
+          "desc": "Brak w kontaktach, nieoznaczony"
+        },
+        "intl": {
+          "title": "Nieznany numer zagraniczny",
+          "desc": "Numer zagraniczny, brak w kontaktach"
+        },
+        "hidden": {
+          "title": "Ukryty numer",
+          "desc": "Dzwoniący ukrywa numer"
+        }
+      },
+      "busy": "Trwa połączenie. Spróbuj później."
     },
     "overlay": {
       "incoming": "Połączenie przychodzące",

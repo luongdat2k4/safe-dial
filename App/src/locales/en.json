@@ -167,7 +167,6 @@
       "calls": "Calls",
       "protection": "Protection",
       "data": "Data",
-      "lab": "Experimental",
       "support": "Support"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Clear stats data",
       "clearStatsSub": "Reset all figures in the Stats tab",
       "resetDemo": "Regenerate demo data",
-      "simulate": "Simulate incoming call",
-      "simulateSub": "Demo only: try warnings and blocking",
       "rate": "Rate the app",
       "feedback": "Feedback",
       "share": "Share the app",
-      "about": "About and privacy",
-      "demoTag": "DEMO"
+      "about": "About and privacy"
     },
     "sim": {
       "title": "SIM for calls",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Simulate incoming call",
-      "intro": "Demo only (browser). Pick a scenario to see how Safe Dial identifies and handles the call.",
+      "intro": "Pick a scenario to see how Safe Dial identifies and handles the call. This is only a simulation — no real call is made.",
       "displayHeader": "Display style",
       "displayStyle": "Caller dialog",
       "sizeClassic": "Popup",
@@ -961,7 +957,42 @@
       "blocked": "Blocked:",
       "silenced": "Silenced:",
       "detail": "Details: {d}",
-      "viewBlocked": "View Blocked"
+      "viewBlocked": "View Blocked",
+      "live": {
+        "blocked": {
+          "title": "Blocked number",
+          "desc": "A number on your block list"
+        },
+        "marked": {
+          "title": "Marked number",
+          "desc": "A number you marked as spam / scam"
+        },
+        "rule": {
+          "title": "Matches a block rule",
+          "desc": "Rule: {rule}"
+        },
+        "contact": {
+          "title": "Contact",
+          "desc": "{name} from your contacts"
+        },
+        "trusted": {
+          "title": "Trusted number",
+          "desc": "A number you marked as trusted"
+        },
+        "unknown": {
+          "title": "Unknown local number",
+          "desc": "Not in contacts, not marked"
+        },
+        "intl": {
+          "title": "Unknown international number",
+          "desc": "Foreign number, not in contacts"
+        },
+        "hidden": {
+          "title": "Hidden number",
+          "desc": "Caller hides their number"
+        }
+      },
+      "busy": "A call is in progress. Try again later."
     },
     "overlay": {
       "incoming": "Incoming call",

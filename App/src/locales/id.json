@@ -167,7 +167,6 @@
       "calls": "Panggilan",
       "protection": "Perlindungan",
       "data": "Data",
-      "lab": "Eksperimen",
       "support": "Bantuan"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Hapus data statistik",
       "clearStatsSub": "Atur ulang semua data di tab Statistik",
       "resetDemo": "Buat ulang data demo",
-      "simulate": "Simulasikan panggilan masuk",
-      "simulateSub": "Hanya untuk demo: coba peringatan dan pemblokiran",
       "rate": "Beri nilai aplikasi",
       "feedback": "Masukan",
       "share": "Bagikan aplikasi",
-      "about": "Tentang dan privasi",
-      "demoTag": "DEMO"
+      "about": "Tentang dan privasi"
     },
     "sim": {
       "title": "SIM untuk menelepon",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Simulasikan panggilan masuk",
-      "intro": "Hanya tersedia di versi demo (browser). Pilih skenario untuk melihat cara Safe Dial mengenali dan menangani panggilan.",
+      "intro": "Pilih skenario untuk melihat cara Safe Dial mengenali dan menangani panggilan. Ini hanya simulasi, tidak ada panggilan sungguhan.",
       "displayHeader": "Gaya tampilan",
       "displayStyle": "Dialog penelepon",
       "sizeClassic": "Popup",
@@ -961,7 +957,42 @@
       "blocked": "Diblokir:",
       "silenced": "Dibisukan:",
       "detail": "Detail: {d}",
-      "viewBlocked": "Lihat bagian Diblokir"
+      "viewBlocked": "Lihat bagian Diblokir",
+      "live": {
+        "blocked": {
+          "title": "Nomor diblokir",
+          "desc": "Nomor di daftar blokir Anda"
+        },
+        "marked": {
+          "title": "Nomor ditandai",
+          "desc": "Nomor yang Anda tandai spam / penipuan"
+        },
+        "rule": {
+          "title": "Cocok aturan blokir",
+          "desc": "Aturan: {rule}"
+        },
+        "contact": {
+          "title": "Kontak",
+          "desc": "{name} dari kontak Anda"
+        },
+        "trusted": {
+          "title": "Nomor tepercaya",
+          "desc": "Nomor yang Anda tandai tepercaya"
+        },
+        "unknown": {
+          "title": "Nomor lokal tak dikenal",
+          "desc": "Tidak ada di kontak, belum ditandai"
+        },
+        "intl": {
+          "title": "Nomor internasional tak dikenal",
+          "desc": "Nomor luar negeri, tidak ada di kontak"
+        },
+        "hidden": {
+          "title": "Nomor tersembunyi",
+          "desc": "Penelepon menyembunyikan nomor"
+        }
+      },
+      "busy": "Sedang ada panggilan. Coba lagi nanti."
     },
     "overlay": {
       "incoming": "Panggilan masuk",

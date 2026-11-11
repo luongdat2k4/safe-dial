@@ -167,7 +167,6 @@
       "calls": "通话",
       "protection": "保护",
       "data": "数据",
-      "lab": "实验功能",
       "support": "支持"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "清除统计数据",
       "clearStatsSub": "重置统计标签页中的全部数据",
       "resetDemo": "重新生成演示数据",
-      "simulate": "模拟来电",
-      "simulateSub": "仅限演示版：测试提醒和拦截",
       "rate": "为应用评分",
       "feedback": "意见反馈",
       "share": "分享应用",
-      "about": "关于与隐私",
-      "demoTag": "DEMO"
+      "about": "关于与隐私"
     },
     "sim": {
       "title": "拨号 SIM 卡",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "模拟来电",
-      "intro": "仅在演示版（浏览器）中可用。选择一个场景，查看 Safe Dial 如何识别和处理来电。",
+      "intro": "选择一个场景，查看 Safe Dial 如何识别和处理来电。这只是模拟，不会拨打真实电话。",
       "displayHeader": "显示样式",
       "displayStyle": "来电者对话框",
       "sizeClassic": "弹窗",
@@ -961,7 +957,42 @@
       "blocked": "已拦截：",
       "silenced": "已静音：",
       "detail": "详情：{d}",
-      "viewBlocked": "查看已拦截"
+      "viewBlocked": "查看已拦截",
+      "live": {
+        "blocked": {
+          "title": "已拦截号码",
+          "desc": "在你拦截名单中的号码"
+        },
+        "marked": {
+          "title": "已标记号码",
+          "desc": "你标记为骚扰 / 诈骗的号码"
+        },
+        "rule": {
+          "title": "匹配拦截规则",
+          "desc": "规则：{rule}"
+        },
+        "contact": {
+          "title": "联系人",
+          "desc": "通讯录中的 {name}"
+        },
+        "trusted": {
+          "title": "可信号码",
+          "desc": "你标记为可信的号码"
+        },
+        "unknown": {
+          "title": "陌生本地号码",
+          "desc": "不在通讯录中，未标记"
+        },
+        "intl": {
+          "title": "陌生国际号码",
+          "desc": "境外号码，不在通讯录中"
+        },
+        "hidden": {
+          "title": "隐藏号码",
+          "desc": "来电者隐藏了号码"
+        }
+      },
+      "busy": "正在通话中，请稍后再试。"
     },
     "overlay": {
       "incoming": "来电",

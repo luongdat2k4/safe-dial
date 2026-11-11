@@ -167,7 +167,6 @@
       "calls": "通話",
       "protection": "保護",
       "data": "データ",
-      "lab": "試験運用",
       "support": "サポート"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "統計データを削除",
       "clearStatsSub": "統計タブのデータをすべてリセット",
       "resetDemo": "デモデータを再作成",
-      "simulate": "着信をシミュレート",
-      "simulateSub": "デモ版のみ：警告とブロックを試す",
       "rate": "アプリを評価",
       "feedback": "フィードバック",
       "share": "アプリを共有",
-      "about": "アプリ情報とプライバシー",
-      "demoTag": "DEMO"
+      "about": "アプリ情報とプライバシー"
     },
     "sim": {
       "title": "発信用 SIM",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "着信をシミュレート",
-      "intro": "デモ版（ブラウザ）のみ。シナリオを選んで、Safe Dial が着信をどう識別・処理するかを確認できます。",
+      "intro": "シナリオを選ぶと、Safe Dial が着信をどう識別・処理するか確認できます。シミュレーションのみで、実際の通話は発生しません。",
       "displayHeader": "表示スタイル",
       "displayStyle": "発信者ダイアログ",
       "sizeClassic": "ポップアップ",
@@ -961,7 +957,42 @@
       "blocked": "ブロック：",
       "silenced": "消音：",
       "detail": "詳細：{d}",
-      "viewBlocked": "ブロック済みを見る"
+      "viewBlocked": "ブロック済みを見る",
+      "live": {
+        "blocked": {
+          "title": "ブロック済みの番号",
+          "desc": "ブロックリストにある番号"
+        },
+        "marked": {
+          "title": "マーク済みの番号",
+          "desc": "迷惑 / 詐欺としてマークした番号"
+        },
+        "rule": {
+          "title": "ブロックルールに一致",
+          "desc": "ルール：{rule}"
+        },
+        "contact": {
+          "title": "連絡先",
+          "desc": "連絡先の {name}"
+        },
+        "trusted": {
+          "title": "信頼できる番号",
+          "desc": "信頼できるとマークした番号"
+        },
+        "unknown": {
+          "title": "不明な国内番号",
+          "desc": "連絡先になく、未マーク"
+        },
+        "intl": {
+          "title": "不明な国際番号",
+          "desc": "海外の番号、連絡先にない"
+        },
+        "hidden": {
+          "title": "非通知",
+          "desc": "発信者が番号を非通知にしています"
+        }
+      },
+      "busy": "通話中です。後でもう一度お試しください。"
     },
     "overlay": {
       "incoming": "着信",

@@ -167,7 +167,6 @@
       "calls": "Llamadas",
       "protection": "Protección",
       "data": "Datos",
-      "lab": "Experimental",
       "support": "Ayuda"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Borrar estadísticas",
       "clearStatsSub": "Restablece todos los datos de la pestaña Estadísticas",
       "resetDemo": "Regenerar datos de demo",
-      "simulate": "Simular llamada entrante",
-      "simulateSub": "Solo demo: prueba alertas y bloqueos",
       "rate": "Valorar la app",
       "feedback": "Comentarios",
       "share": "Compartir la app",
-      "about": "Información y privacidad",
-      "demoTag": "DEMO"
+      "about": "Información y privacidad"
     },
     "sim": {
       "title": "SIM para llamar",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Simular llamada entrante",
-      "intro": "Solo en la demo (navegador). Elige un escenario para ver cómo Safe Dial identifica y gestiona la llamada.",
+      "intro": "Elige un escenario para ver cómo Safe Dial identifica y gestiona la llamada. Es solo una simulación, no se realiza ninguna llamada real.",
       "displayHeader": "Estilo",
       "displayStyle": "Ventana del llamante",
       "sizeClassic": "Ventana",
@@ -961,7 +957,42 @@
       "blocked": "Bloqueada:",
       "silenced": "Silenciada:",
       "detail": "Detalles: {d}",
-      "viewBlocked": "Ver Bloqueadas"
+      "viewBlocked": "Ver Bloqueadas",
+      "live": {
+        "blocked": {
+          "title": "Número bloqueado",
+          "desc": "Un número de tu lista de bloqueo"
+        },
+        "marked": {
+          "title": "Número marcado",
+          "desc": "Un número que marcaste como spam / estafa"
+        },
+        "rule": {
+          "title": "Coincide con una regla",
+          "desc": "Regla: {rule}"
+        },
+        "contact": {
+          "title": "Contacto",
+          "desc": "{name} de tus contactos"
+        },
+        "trusted": {
+          "title": "Número de confianza",
+          "desc": "Un número que marcaste como de confianza"
+        },
+        "unknown": {
+          "title": "Número local desconocido",
+          "desc": "No está en contactos, sin marcar"
+        },
+        "intl": {
+          "title": "Número internacional desconocido",
+          "desc": "Número extranjero, no está en contactos"
+        },
+        "hidden": {
+          "title": "Número oculto",
+          "desc": "La persona oculta su número"
+        }
+      },
+      "busy": "Hay una llamada en curso. Inténtalo más tarde."
     },
     "overlay": {
       "incoming": "Llamada entrante",

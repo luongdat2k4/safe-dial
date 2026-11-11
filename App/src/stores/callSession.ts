@@ -24,6 +24,11 @@ export const useCallSessionStore = defineStore('callSession', () => {
   const controls = reactive({ muted: false, speaker: false, hold: false, keypad: false })
   /** Cuộc gọi vừa kết thúc, dùng cho màn hình sau cuộc gọi. */
   const lastEnded = ref<CallLogEntry | null>(null)
+  /**
+   * Cuộc gọi hiện tại là giả lập cục bộ (màn "Mô phỏng cuộc gọi đến" trên máy thật): không qua Telecom,
+   * không ghi nhật ký / thống kê / ghi chú, không chặn số thật.
+   */
+  const simulated = ref(false)
   let activeAt = 0
   let startAt = 0
   let timer: ReturnType<typeof setInterval> | undefined
@@ -42,6 +47,8 @@ export const useCallSessionStore = defineStore('callSession', () => {
 
   async function apply(s: CallSnapshot) {
     if (s.state === 'disconnected') return
+    // Cuộc gọi thật luôn được ưu tiên hơn cuộc gọi giả lập.
+    simulated.value = false
     const changedNumber = !info.value || info.value.number !== s.number
     direction.value = s.incoming ? 'incoming' : 'outgoing'
     phase.value = s.state === 'ringing' ? 'ringing' : s.state === 'dialing' ? 'dialing' : 'active'
@@ -65,6 +72,7 @@ export const useCallSessionStore = defineStore('callSession', () => {
   }
 
   function onEnded(e: EndedCall) {
+    simulated.value = false
     clearInterval(timer)
     const d = e.decision
     lastEnded.value = {
@@ -102,30 +110,78 @@ export const useCallSessionStore = defineStore('callSession', () => {
     return starting
   }
 
-  /** Chỉ bản web: giả lập cuộc gọi đến. Trả `blocked: true` nếu bị chặn / tắt chuông. */
-  async function simulate(number: string): Promise<{ blocked: boolean; decision: NativeDecision }> {
-    await start()
-    if (!SafeDial.simulateIncoming) throw new Error('Chỉ có trên bản web')
+  /**
+   * Mô phỏng cuộc gọi đến (web và máy thật): chỉ hiển thị giao diện. Chạy bộ quyết định (chỉ đọc)
+   * để biết số sẽ đổ chuông, bị cảnh báo hay bị chặn, rồi hiện màn hình cuộc gọi đến của app.
+   * Không có cuộc gọi thật, không ghi nhật ký / thống kê / ghi chú. Trả `blocked: true` nếu bị chặn.
+   * Một lần mô phỏng mới thay cho lần mô phỏng cũ; chỉ từ chối khi đang có cuộc gọi thật.
+   */
+  async function simulate(
+    number: string,
+    /** Kết quả định sẵn (kịch bản giả); không có thì chạy bộ quyết định thật cho số đó. */
+    preset?: { info: CallerInfo; decision: NativeDecision },
+  ): Promise<{ blocked: boolean; decision: NativeDecision }> {
+    if (isLive.value && !simulated.value) throw new Error('busy')
+    const d = preset ? { ...preset.decision } : await SafeDial.evaluate({ number })
+    if (d.action === 'blocked' || d.action === 'silenced') return { blocked: true, decision: d }
     lastEnded.value = null
-    const r = await SafeDial.simulateIncoming({ number })
-    if (!r.rang) {
-      void calls.load(true)
-      void stats.load()
-      return { blocked: true, decision: r.decision }
+    clearInterval(timer)
+    activeAt = 0
+    seconds.value = 0
+    startAt = Date.now()
+    Object.assign(controls, { muted: false, speaker: false, hold: false, keypad: false })
+    const i = preset ? { ...preset.info } : await lookup.identify(number)
+    if (!i.isContact && d.risk !== 'unknown') i.risk = d.risk
+    if (!i.name && d.name) i.name = d.name
+    info.value = i
+    decision.value = d
+    direction.value = 'incoming'
+    simulated.value = true
+    phase.value = 'ringing'
+    return { blocked: false, decision: d }
+  }
+
+  /** Kết thúc cuộc gọi giả lập: dựng dữ liệu cho màn sau cuộc gọi, không ghi nhật ký. */
+  function endLocal(kind: 'hangup' | 'reject') {
+    clearInterval(timer)
+    const answered = !!activeAt
+    const d = decision.value
+    const type: CallLogEntry['type'] = answered ? 'incoming' : 'missed'
+    lastEnded.value = {
+      id: `sim-${startAt}`,
+      number: info.value?.number ?? '',
+      name: info.value?.name,
+      isContact: info.value?.isContact ?? false,
+      type,
+      startedAt: new Date(startAt).toISOString(),
+      durationSec: answered ? Math.round((Date.now() - activeAt) / 1000) : 0,
+      risk: info.value?.risk ?? d?.risk ?? 'unknown',
+      action: d ? (kind === 'reject' && d.action === 'warned' ? 'silenced' : d.action) : undefined,
+      reasons: d?.reasons,
     }
-    return { blocked: false, decision: r.decision }
+    phase.value = 'ended'
   }
 
   async function accept() {
+    if (simulated.value) {
+      activeAt = Date.now()
+      phase.value = 'active'
+      tick()
+      clearInterval(timer)
+      timer = setInterval(tick, 1000)
+      return
+    }
     await SafeDial.answer()
   }
 
   /** Từ chối khi đang đổ chuông, có thể kèm tin nhắn trả lời nhanh. */
   async function reject(message?: string) {
+    if (simulated.value) return endLocal('reject')
     await SafeDial.reject(message ? { message } : undefined)
   }
 
   async function hangup() {
+    if (simulated.value) return endLocal(phase.value === 'ringing' ? 'reject' : 'hangup')
     await SafeDial.hangup()
   }
 
@@ -136,6 +192,7 @@ export const useCallSessionStore = defineStore('callSession', () => {
   async function dial(e164: string, sim?: 1 | 2): Promise<boolean> {
     await start()
     lastEnded.value = null
+    simulated.value = false
     let simId: string | undefined
     if (sim) {
       const { sims } = await SafeDial.getSims()
@@ -158,17 +215,20 @@ export const useCallSessionStore = defineStore('callSession', () => {
     }
     const next = !controls[key]
     controls[key] = next
+    if (simulated.value) return
     if (key === 'muted') await SafeDial.setMuted({ muted: next })
     else if (key === 'speaker') await SafeDial.setSpeaker({ on: next })
     else await SafeDial.setHold({ hold: next })
   }
 
   function dtmf(digit: string) {
+    if (simulated.value) return
     void SafeDial.dtmf({ digit })
   }
 
   /** Ghi chú cho cuộc gọi hiện tại (bảng call_notes). */
   async function addNote(note: string) {
+    if (simulated.value) return
     const number = info.value?.number ?? ''
     await SafeDial.addNote({ number, at: startAt || Date.now(), note })
   }
@@ -180,16 +240,19 @@ export const useCallSessionStore = defineStore('callSession', () => {
     decision.value = null
     seconds.value = 0
     lastEnded.value = null
+    simulated.value = false
     Object.assign(controls, { muted: false, speaker: false, hold: false, keypad: false })
   }
 
   /** Màn hình nên mở sau khi cuộc gọi kết thúc. */
   function afterRoute() {
+    // Giả lập trên máy thật: quay lại màn mô phỏng (màn sau cuộc gọi có thao tác chặn / lưu số thật).
+    if (simulated.value) return '/call/simulate'
     return settings.state.showAfterCall && lastEnded.value ? '/call/after' : '/home/calls'
   }
 
   return {
-    phase, direction, info, decision, seconds, controls, lastEnded, isLive,
+    phase, direction, info, decision, seconds, controls, lastEnded, isLive, simulated,
     start, simulate, accept, reject, hangup, dial, toggle, dtmf, addNote, reset, afterRoute,
   }
 })

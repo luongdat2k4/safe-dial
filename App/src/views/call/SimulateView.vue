@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useBlockStore } from '@/stores/block'
 import { useCallSessionStore } from '@/stores/callSession'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
-import { SCENARIOS } from '@/data/seed'
+import { fakeScenarios, type FakeScenario } from '@/data/fakeScenarios'
 import { isPlausibleNumber, toE164 } from '@/utils/numbers'
-import type { CallerInfo, PopupPosition, PopupSize } from '@/types'
+import type { PopupPosition, PopupSize } from '@/types'
 import type { NativeDecision } from '@/services'
 import { reasonFromBits } from '@/utils/blockEngine'
-import { useLookupStore } from '@/stores/lookup'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import BaseButton from '@/components/BaseButton.vue'
@@ -21,30 +19,20 @@ import ScenarioCard from '@/components/call/ScenarioCard.vue'
 import ReasonChip from '@/components/block/ReasonChip.vue'
 
 const router = useRouter()
-const block = useBlockStore()
 const session = useCallSessionStore()
 const settings = useSettingsStore()
 const ui = useUiStore()
 
 const custom = ref('')
 const busy = ref(false)
-const lookup = useLookupStore()
+/** Kịch bản giả với kết quả định sẵn (giống nhau trên web và máy thật). */
+const scenarios = computed(() => fakeScenarios())
 const result = ref<{ decision: NativeDecision; title: string } | null>(null)
 const resultReason = computed(() => (result.value ? reasonFromBits(result.value.decision.reasons) : undefined))
-const previews = reactive<Record<string, { info: CallerInfo; decision: NativeDecision }>>({})
-
-async function refreshPreviews() {
-  for (const s of SCENARIOS) {
-    const number = s.isPrivate ? '' : s.number
-    const [info, decision] = await Promise.all([lookup.identify(number), block.evaluate(number)])
-    previews[s.id] = { info, decision }
-  }
-}
-onMounted(async () => {
-  await block.load()
-  await refreshPreviews()
+onMounted(() => {
+  // Rời màn cuộc gọi giả lập bằng nút Quay lại: kết thúc phiên giả lập đó.
+  if (session.simulated) session.reset()
 })
-watch(() => [block.rules, block.settings], refreshPreviews, { deep: true })
 
 const sizeItems = computed(() => [
   { key: 'classic', label: t('call.simulate.sizeClassic') },
@@ -56,14 +44,18 @@ const posItems = computed(() => [
   { key: 'bottom', label: t('call.simulate.posBottom') },
 ])
 
-async function run(number: string, isPrivate: boolean, title: string) {
+async function run(number: string, isPrivate: boolean, title: string, preset?: FakeScenario) {
   if (busy.value) return
   busy.value = true
   result.value = null
   try {
-    const r = await session.simulate(isPrivate ? '' : number)
+    const r = await session.simulate(isPrivate ? '' : number, preset)
     if (r.blocked) result.value = { decision: r.decision, title }
     else router.push('/call/incoming')
+  } catch (e) {
+    // Đang có cuộc gọi thật: không giả lập chồng lên.
+    if (e instanceof Error && e.message === 'busy') ui.showToast(t('call.simulate.busy'), 'warning')
+    else console.error('[simulate]', e)
   } finally {
     busy.value = false
   }
@@ -115,16 +107,16 @@ function runCustom() {
       <SectionHeader :title="t('call.simulate.scenarios')" />
       <div class="space-y-2.5 px-4">
         <ScenarioCard
-          v-for="s in SCENARIOS"
+          v-for="s in scenarios"
           :key="s.id"
           :title="s.title"
           :description="s.description"
           :number="s.number"
-          :is-private="'isPrivate' in s && !!s.isPrivate"
-          :info="previews[s.id]?.info"
-          :decision="previews[s.id]?.decision"
+          :is-private="s.isPrivate"
+          :info="s.info"
+          :decision="s.decision"
           :busy="busy"
-          @run="run(s.number, 'isPrivate' in s && !!s.isPrivate, s.title)"
+          @run="run(s.number, s.isPrivate, s.title, s)"
         />
       </div>
 

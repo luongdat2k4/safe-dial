@@ -1,9 +1,8 @@
 import { Capacitor, registerPlugin } from '@capacitor/core'
-import type { NativeDecision, SafeDialPlugin } from './definitions'
+import type { SafeDialPlugin } from './definitions'
 
-/** Phương thức chỉ có ở bản web (giả lập cuộc gọi đến). */
+/** Phương thức chỉ có ở bản web. */
 export interface SafeDialWebExtras {
-  simulateIncoming(opts: { number: string }): Promise<{ decision: NativeDecision; rang: boolean }>
   resetDemo(): Promise<void>
 }
 

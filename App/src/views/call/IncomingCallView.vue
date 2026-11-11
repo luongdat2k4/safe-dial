@@ -71,7 +71,8 @@ async function blockNumber() {
     icon: 'ban',
   })
   if (!ok) return
-  const ok2 = await block.blockNumber(info.number)
+  // Cuộc gọi giả lập: không chặn số thật trong danh sách chặn của Android.
+  const ok2 = session.simulated ? true : await block.blockNumber(info.number)
   await reject(ok2 ? t('call.incoming.blocked', { number: shown }) : t('number.block.failed'))
 }
 </script>

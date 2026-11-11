@@ -167,7 +167,6 @@
       "calls": "Appels",
       "protection": "Protection",
       "data": "Données",
-      "lab": "Expérimental",
       "support": "Assistance"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Effacer les statistiques",
       "clearStatsSub": "Réinitialiser toutes les données de l'onglet Stats",
       "resetDemo": "Régénérer les données démo",
-      "simulate": "Simuler un appel entrant",
-      "simulateSub": "Démo uniquement : tester alertes et blocage",
       "rate": "Noter l'application",
       "feedback": "Votre avis",
       "share": "Partager l'application",
-      "about": "À propos et confidentialité",
-      "demoTag": "DÉMO"
+      "about": "À propos et confidentialité"
     },
     "sim": {
       "title": "SIM pour appeler",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Simuler un appel entrant",
-      "intro": "Démo uniquement (navigateur). Choisissez un scénario pour voir comment Safe Dial identifie et traite l'appel.",
+      "intro": "Choisissez un scénario pour voir comment Safe Dial identifie et gère l'appel. Ce n'est qu'une simulation, aucun appel réel n'est passé.",
       "displayHeader": "Style d'affichage",
       "displayStyle": "Fenêtre de l'appelant",
       "sizeClassic": "Popup",
@@ -961,7 +957,42 @@
       "blocked": "Bloqué :",
       "silenced": "Rendu silencieux :",
       "detail": "Détails : {d}",
-      "viewBlocked": "Voir les bloqués"
+      "viewBlocked": "Voir les bloqués",
+      "live": {
+        "blocked": {
+          "title": "Numéro bloqué",
+          "desc": "Un numéro de votre liste de blocage"
+        },
+        "marked": {
+          "title": "Numéro signalé",
+          "desc": "Un numéro signalé comme spam / arnaque"
+        },
+        "rule": {
+          "title": "Correspond à une règle",
+          "desc": "Règle : {rule}"
+        },
+        "contact": {
+          "title": "Contact",
+          "desc": "{name} de vos contacts"
+        },
+        "trusted": {
+          "title": "Numéro de confiance",
+          "desc": "Un numéro marqué comme fiable"
+        },
+        "unknown": {
+          "title": "Numéro local inconnu",
+          "desc": "Pas dans les contacts, non signalé"
+        },
+        "intl": {
+          "title": "Numéro international inconnu",
+          "desc": "Numéro étranger, pas dans les contacts"
+        },
+        "hidden": {
+          "title": "Numéro masqué",
+          "desc": "L'appelant masque son numéro"
+        }
+      },
+      "busy": "Un appel est en cours. Réessayez plus tard."
     },
     "overlay": {
       "incoming": "Appel entrant",

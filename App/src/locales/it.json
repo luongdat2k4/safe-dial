@@ -167,7 +167,6 @@
       "calls": "Chiamate",
       "protection": "Protezione",
       "data": "Dati",
-      "lab": "Sperimentale",
       "support": "Supporto"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Cancella le statistiche",
       "clearStatsSub": "Azzera tutti i dati nella scheda Statistiche",
       "resetDemo": "Rigenera i dati demo",
-      "simulate": "Simula una chiamata in arrivo",
-      "simulateSub": "Solo versione demo: prova avvisi e blocco",
       "rate": "Valuta l'app",
       "feedback": "Feedback",
       "share": "Condividi l'app",
-      "about": "Info e privacy",
-      "demoTag": "DEMO"
+      "about": "Info e privacy"
     },
     "sim": {
       "title": "SIM per chiamare",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Simula una chiamata in arrivo",
-      "intro": "Disponibile solo nella demo (browser). Scegli uno scenario per vedere come Safe Dial identifica e gestisce la chiamata.",
+      "intro": "Scegli uno scenario per vedere come Safe Dial riconosce e gestisce la chiamata. È solo una simulazione, nessuna chiamata reale viene effettuata.",
       "displayHeader": "Stile di visualizzazione",
       "displayStyle": "Finestra del chiamante",
       "sizeClassic": "Popup",
@@ -961,7 +957,42 @@
       "blocked": "Bloccata:",
       "silenced": "Silenziata:",
       "detail": "Dettagli: {d}",
-      "viewBlocked": "Vedi Bloccate"
+      "viewBlocked": "Vedi Bloccate",
+      "live": {
+        "blocked": {
+          "title": "Numero bloccato",
+          "desc": "Un numero della tua lista di blocco"
+        },
+        "marked": {
+          "title": "Numero segnalato",
+          "desc": "Un numero segnalato come spam / truffa"
+        },
+        "rule": {
+          "title": "Corrisponde a una regola",
+          "desc": "Regola: {rule}"
+        },
+        "contact": {
+          "title": "Contatto",
+          "desc": "{name} dai tuoi contatti"
+        },
+        "trusted": {
+          "title": "Numero attendibile",
+          "desc": "Un numero segnato come attendibile"
+        },
+        "unknown": {
+          "title": "Numero locale sconosciuto",
+          "desc": "Non in rubrica, non segnalato"
+        },
+        "intl": {
+          "title": "Numero internazionale sconosciuto",
+          "desc": "Numero estero, non in rubrica"
+        },
+        "hidden": {
+          "title": "Numero nascosto",
+          "desc": "Il chiamante nasconde il numero"
+        }
+      },
+      "busy": "C'è una chiamata in corso. Riprova più tardi."
     },
     "overlay": {
       "incoming": "Chiamata in arrivo",

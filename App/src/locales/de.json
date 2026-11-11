@@ -167,7 +167,6 @@
       "calls": "Anrufe",
       "protection": "Schutz",
       "data": "Daten",
-      "lab": "Experimentell",
       "support": "Support"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "Statistikdaten löschen",
       "clearStatsSub": "Alle Werte im Tab Statistik zurücksetzen",
       "resetDemo": "Demodaten neu erzeugen",
-      "simulate": "Eingehenden Anruf simulieren",
-      "simulateSub": "Nur Demo: Warnungen und Sperren testen",
       "rate": "App bewerten",
       "feedback": "Feedback",
       "share": "App teilen",
-      "about": "Info und Datenschutz",
-      "demoTag": "DEMO"
+      "about": "Info und Datenschutz"
     },
     "sim": {
       "title": "SIM für Anrufe",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Eingehenden Anruf simulieren",
-      "intro": "Nur in der Demo (Browser). Wähle ein Szenario, um zu sehen, wie Safe Dial den Anruf erkennt und behandelt.",
+      "intro": "Wähle ein Szenario, um zu sehen, wie Safe Dial den Anruf erkennt und behandelt. Das ist nur eine Simulation, es wird kein echter Anruf getätigt.",
       "displayHeader": "Anzeigestil",
       "displayStyle": "Anrufer-Dialog",
       "sizeClassic": "Popup",
@@ -961,7 +957,42 @@
       "blocked": "Blockiert:",
       "silenced": "Stummgeschaltet:",
       "detail": "Details: {d}",
-      "viewBlocked": "Blockierte ansehen"
+      "viewBlocked": "Blockierte ansehen",
+      "live": {
+        "blocked": {
+          "title": "Blockierte Nummer",
+          "desc": "Eine Nummer aus deiner Sperrliste"
+        },
+        "marked": {
+          "title": "Markierte Nummer",
+          "desc": "Von dir als Spam / Betrug markiert"
+        },
+        "rule": {
+          "title": "Passt zu einer Regel",
+          "desc": "Regel: {rule}"
+        },
+        "contact": {
+          "title": "Kontakt",
+          "desc": "{name} aus deinen Kontakten"
+        },
+        "trusted": {
+          "title": "Vertrauenswürdige Nummer",
+          "desc": "Von dir als vertrauenswürdig markiert"
+        },
+        "unknown": {
+          "title": "Unbekannte Inlandsnummer",
+          "desc": "Nicht in Kontakten, nicht markiert"
+        },
+        "intl": {
+          "title": "Unbekannte Auslandsnummer",
+          "desc": "Ausländische Nummer, nicht in Kontakten"
+        },
+        "hidden": {
+          "title": "Unterdrückte Nummer",
+          "desc": "Anrufer unterdrückt die Nummer"
+        }
+      },
+      "busy": "Ein Anruf läuft. Versuche es später erneut."
     },
     "overlay": {
       "incoming": "Eingehender Anruf",

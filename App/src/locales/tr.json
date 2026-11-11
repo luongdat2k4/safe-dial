@@ -167,7 +167,6 @@
       "calls": "Aramalar",
       "protection": "Koruma",
       "data": "Veriler",
-      "lab": "Deneysel",
       "support": "Destek"
     },
     "rows": {
@@ -186,13 +185,10 @@
       "clearStats": "İstatistik verilerini sil",
       "clearStatsSub": "İstatistik sekmesindeki tüm verileri sıfırla",
       "resetDemo": "Demo verilerini yeniden oluştur",
-      "simulate": "Gelen arama simülasyonu",
-      "simulateSub": "Yalnızca demo: uyarı ve engellemeyi deneyin",
       "rate": "Uygulamayı değerlendir",
       "feedback": "Geri bildirim",
       "share": "Uygulamayı paylaş",
-      "about": "Hakkında ve gizlilik",
-      "demoTag": "DEMO"
+      "about": "Hakkında ve gizlilik"
     },
     "sim": {
       "title": "Arama SIM'i",
@@ -942,7 +938,7 @@
   "call": {
     "simulate": {
       "title": "Gelen arama simülasyonu",
-      "intro": "Yalnızca demo sürümde (tarayıcı). Safe Dial'ın aramayı nasıl tanıyıp işlediğini görmek için bir senaryo seçin.",
+      "intro": "Safe Dial'ın aramayı nasıl tanıdığını ve ele aldığını görmek için bir senaryo seçin. Bu yalnızca bir simülasyondur, gerçek arama yapılmaz.",
       "displayHeader": "Görünüm",
       "displayStyle": "Arayan penceresi",
       "sizeClassic": "Açılır pencere",
@@ -961,7 +957,42 @@
       "blocked": "Engellendi:",
       "silenced": "Sessize alındı:",
       "detail": "Ayrıntı: {d}",
-      "viewBlocked": "Engellenenleri gör"
+      "viewBlocked": "Engellenenleri gör",
+      "live": {
+        "blocked": {
+          "title": "Engellenen numara",
+          "desc": "Engelleme listenizdeki bir numara"
+        },
+        "marked": {
+          "title": "İşaretli numara",
+          "desc": "Spam / dolandırıcılık olarak işaretlediğiniz numara"
+        },
+        "rule": {
+          "title": "Engelleme kuralıyla eşleşir",
+          "desc": "Kural: {rule}"
+        },
+        "contact": {
+          "title": "Kişi",
+          "desc": "Kişilerinizden {name}"
+        },
+        "trusted": {
+          "title": "Güvenilir numara",
+          "desc": "Güvenilir olarak işaretlediğiniz numara"
+        },
+        "unknown": {
+          "title": "Bilinmeyen yerel numara",
+          "desc": "Kişilerde yok, işaretlenmemiş"
+        },
+        "intl": {
+          "title": "Bilinmeyen uluslararası numara",
+          "desc": "Yabancı numara, kişilerde yok"
+        },
+        "hidden": {
+          "title": "Gizli numara",
+          "desc": "Arayan numarasını gizliyor"
+        }
+      },
+      "busy": "Devam eden bir arama var. Daha sonra tekrar deneyin."
     },
     "overlay": {
       "incoming": "Gelen arama",

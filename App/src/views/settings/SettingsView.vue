@@ -164,22 +164,6 @@ async function share() {
         />
       </div>
 
-      <SectionHeader v-if="!isNative" :title="t('settings.groups.lab')" />
-      <div v-if="!isNative" class="mx-4 overflow-hidden rounded-card bg-surface shadow-card">
-        <ListRow
-          :title="t('settings.rows.simulate')"
-          :subtitle="t('settings.rows.simulateSub')"
-          icon="flask-conical"
-          icon-tone="warn"
-          chevron
-          @click="router.push('/call/simulate')"
-        >
-          <template #right>
-            <span class="rounded-full bg-spam-soft px-2 py-0.5 text-[11px] font-bold text-spam">{{ t('settings.rows.demoTag') }}</span>
-          </template>
-        </ListRow>
-      </div>
-
       <SectionHeader :title="t('settings.groups.support')" />
       <div class="mx-4 divide-y divide-line overflow-hidden rounded-card bg-surface shadow-card">
         <ListRow :title="t('settings.rows.rate')" icon="star" icon-tone="warn" clickable @click="rateSheet = true" />

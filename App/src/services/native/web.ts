@@ -1,7 +1,7 @@
 /**
  * Bản giả lập của plugin SafeDial cho trình duyệt (dev / test UI). Hành vi bám theo bản
  * native: cùng bảng dữ liệu (call_meta, call_stats_daily, number_marks, block_rules,
- * call_notes) nhưng lưu trong localStorage. Có thêm `simulateIncoming` để thử cuộc gọi đến.
+ * call_notes) nhưng lưu trong localStorage. Có thêm `resetDemo` để tạo lại dữ liệu mẫu.
  */
 import { WebPlugin } from '@capacitor/core'
 import type { Contact } from '@/types'
@@ -443,27 +443,6 @@ export class SafeDialWeb extends WebPlugin implements Impl {
         this.emit()
       }
     }, 1500)
-  }
-
-  /** Chỉ bản web: giả lập một cuộc gọi đến. Bị chặn thì ghi nhật ký và không đổ chuông. */
-  async simulateIncoming(opts: { number: string }): Promise<{ decision: NativeDecision; rang: boolean }> {
-    const d = this.decide(opts.number)
-    if (d.action === 'blocked') {
-      this.record({ number: opts.number, type: 'blocked', startedAt: Date.now(), durationSec: 0, decision: d })
-      this.save()
-      return { decision: d, rang: false }
-    }
-    if (d.action === 'silenced') {
-      this.record({ number: opts.number, type: 'blocked', startedAt: Date.now(), durationSec: 0, decision: d })
-      this.save()
-      return { decision: d, rang: false }
-    }
-    this.current = {
-      state: 'ringing', incoming: true, number: opts.number, name: d.name ?? null,
-      muted: false, speaker: false, holding: false, startAt: Date.now(), decision: d,
-    }
-    this.emit()
-    return { decision: d, rang: true }
   }
 
   async getCallState() {
