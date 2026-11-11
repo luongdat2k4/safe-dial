@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Powiadomienia",
           "why": "Aby pokazywać połączenia przychodzące i informować o zablokowanych połączeniach."
+        },
+        "contactsWrite": {
+          "title": "Edycja kontaktów",
+          "why": "Aby dodawać i usuwać ulubione w aplikacji."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "Zadzwoń: {name}",
       "favOn": "Usuń {name} z ulubionych",
       "favOff": "Dodaj {name} do ulubionych",
-      "favFailed": "Nie udało się zmienić ulubionych. Zezwól Safe Dial na edycję kontaktów."
+      "favFailed": "Nie udało się zmienić ulubionych. Zezwól Safe Dial na edycję kontaktów.",
+      "editPrompt": "Zezwól Safe Dial na edycję kontaktów, aby dodawać i usuwać ulubione.",
+      "editGrant": "Zezwól"
     }
   },
   "dial": {

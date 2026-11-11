@@ -51,7 +51,9 @@ import vn.alf.safedial.telecom.Recorder;
 @CapacitorPlugin(
     name = "SafeDial",
     permissions = {
-        @Permission(alias = "contacts", strings = { Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS }),
+        @Permission(alias = "contacts", strings = { Manifest.permission.READ_CONTACTS }),
+        // Ghi danh bạ tách riêng: chỉ cần cho yêu thích (STARRED).
+        @Permission(alias = "contactsWrite", strings = { Manifest.permission.WRITE_CONTACTS }),
         @Permission(alias = "callLog", strings = { Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG }),
         @Permission(alias = "phone", strings = { Manifest.permission.CALL_PHONE, Manifest.permission.READ_PHONE_STATE }),
         @Permission(alias = "notifications", strings = { "android.permission.POST_NOTIFICATIONS" }),
@@ -106,6 +108,7 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
     public void getStatus(PluginCall call) {
         JSObject r = new JSObject();
         r.put("contacts", state("contacts"));
+        r.put("contactsWrite", state("contactsWrite"));
         r.put("callLog", state("callLog"));
         r.put("phone", state("phone"));
         r.put("notifications", Build.VERSION.SDK_INT >= 33 ? state("notifications") : "granted");

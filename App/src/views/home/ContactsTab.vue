@@ -23,7 +23,11 @@ const { startCall, chooseSim, simSheetOpen, pendingNumber } = useDialFlow()
 const tab = ref('all')
 const query = ref('')
 
-onMounted(() => contacts.load())
+onMounted(() => {
+  void contacts.load()
+  // Yêu thích cần quyền chỉnh sửa danh bạ: kiểm tra để nhắc người dùng cấp.
+  void contacts.checkEdit()
+})
 
 const tabs = computed(() => [
   { key: 'all', label: t('home.contacts.tabs.all') },
@@ -111,6 +115,13 @@ const call = (c: Contact) => startCall(c.numbers[0] ?? '')
     </template>
 
     <template v-else>
+      <div v-if="contacts.canEdit === false" class="mx-4 mt-2 mb-1 flex items-center gap-3 rounded-card border border-line bg-primary-soft p-4" role="status">
+        <AppIcon name="user-pen" :size="22" class="shrink-0 text-primary-dark" />
+        <p class="min-w-0 flex-1 text-[13px] leading-snug text-ink/80">{{ t('home.contacts.editPrompt') }}</p>
+        <button type="button" class="tap shrink-0 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white" @click="contacts.grantEdit()">
+          {{ t('home.contacts.editGrant') }}
+        </button>
+      </div>
       <div v-if="contacts.favorites.length" class="grid grid-cols-2 gap-3 px-4 pt-2">
         <article
           v-for="c in contacts.favorites"

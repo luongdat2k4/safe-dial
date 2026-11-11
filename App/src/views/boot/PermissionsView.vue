@@ -14,7 +14,7 @@ import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
 import { SafeDial, isNative, type PermAlias, type Status } from '@/services'
 
-type PermKey = 'calls' | 'contacts' | 'notifications'
+type PermKey = 'calls' | 'contacts' | 'contactsWrite' | 'notifications'
 
 const route = useRoute()
 const router = useRouter()
@@ -29,11 +29,13 @@ let resumeHandle: PluginListenerHandle | undefined
 const ALIASES: Record<PermKey, PermAlias[]> = {
   calls: ['callLog', 'phone'],
   contacts: ['contacts'],
+  contactsWrite: ['contactsWrite'],
   notifications: ['notifications'],
 }
 
 const permItems: { key: PermKey; icon: string; tone: 'brand' | 'blue' | 'violet' | 'warn' }[] = [
   { key: 'contacts', icon: 'contact-round', tone: 'blue' },
+  { key: 'contactsWrite', icon: 'user-pen', tone: 'violet' },
   { key: 'calls', icon: 'phone', tone: 'brand' },
   { key: 'notifications', icon: 'bell', tone: 'warn' },
 ]

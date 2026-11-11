@@ -42,7 +42,7 @@ onMounted(async () => {
 const missingPerms = computed(() => {
   const s = status.value
   if (!s) return 0
-  const groups = [s.contacts, s.callLog === 'granted' && s.phone === 'granted' ? 'granted' : 'denied', s.notifications]
+  const groups = [s.contacts, s.contactsWrite, s.callLog === 'granted' && s.phone === 'granted' ? 'granted' : 'denied', s.notifications]
   return groups.filter((g) => g !== 'granted').length + (s.dialerRole ? 0 : 1)
 })
 

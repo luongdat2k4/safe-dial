@@ -135,6 +135,10 @@
         "notifications": {
           "title": "通知",
           "why": "着信の表示や、ブロックした着信のお知らせに使用します。"
+        },
+        "contactsWrite": {
+          "title": "連絡先の編集",
+          "why": "アプリ内でお気に入りを追加・削除するため。"
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "{name} に発信",
       "favOn": "{name} をお気に入りから外す",
       "favOff": "{name} をお気に入りに追加",
-      "favFailed": "お気に入りを更新できません。Safe Dial に連絡先の編集を許可してください。"
+      "favFailed": "お気に入りを更新できません。Safe Dial に連絡先の編集を許可してください。",
+      "editPrompt": "お気に入りを追加・削除できるよう、Safe Dial に連絡先の編集を許可してください。",
+      "editGrant": "許可"
     }
   },
   "dial": {

@@ -78,6 +78,8 @@ onMounted(async () => {
     await CapApp.addListener('resume', () => {
       if (calls.loaded) void calls.load(true)
       if (contacts.loaded) void contacts.load(true)
+      // Có thể vừa bật quyền chỉnh sửa danh bạ trong Cài đặt hệ thống.
+      if (contacts.canEdit === false) void contacts.checkEdit()
       if (block.loaded) void block.load(true)
     }),
   )

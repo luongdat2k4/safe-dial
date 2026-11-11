@@ -220,7 +220,7 @@ export class SafeDialWeb extends WebPlugin implements Impl {
   }
 
   async getStatus(): Promise<Status> {
-    return { contacts: 'granted', callLog: 'granted', phone: 'granted', notifications: 'granted', dialerRole: true, canBlock: true }
+    return { contacts: 'granted', contactsWrite: 'granted', callLog: 'granted', phone: 'granted', notifications: 'granted', dialerRole: true, canBlock: true }
   }
 
   async requestPermissions(opts: { permissions: PermAlias[] }) {

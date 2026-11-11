@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Notifikasi",
           "why": "Untuk menampilkan panggilan masuk dan memberi tahu panggilan yang baru diblokir."
+        },
+        "contactsWrite": {
+          "title": "Edit kontak",
+          "why": "Untuk menambah atau menghapus favorit langsung di aplikasi."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "Telepon {name}",
       "favOn": "Hapus {name} dari favorit",
       "favOff": "Tambahkan {name} ke favorit",
-      "favFailed": "Tidak dapat memperbarui favorit. Izinkan Safe Dial mengedit kontak."
+      "favFailed": "Tidak dapat memperbarui favorit. Izinkan Safe Dial mengedit kontak.",
+      "editPrompt": "Izinkan Safe Dial mengedit kontak agar Anda bisa menambah atau menghapus favorit.",
+      "editGrant": "Izinkan"
     }
   },
   "dial": {

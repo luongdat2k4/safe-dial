@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Bildirimler",
           "why": "Gelen aramaları göstermek ve engellenen aramaları bildirmek için."
+        },
+        "contactsWrite": {
+          "title": "Kişileri düzenleme",
+          "why": "Favorileri doğrudan uygulamada eklemek veya kaldırmak için."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "{name} kişisini ara",
       "favOn": "{name} favorilerden çıkar",
       "favOff": "{name} favorilere ekle",
-      "favFailed": "Favoriler güncellenemedi. Safe Dial'ın kişileri düzenlemesine izin verin."
+      "favFailed": "Favoriler güncellenemedi. Safe Dial'ın kişileri düzenlemesine izin verin.",
+      "editPrompt": "Favori eklemek veya kaldırmak için Safe Dial'ın kişileri düzenlemesine izin verin.",
+      "editGrant": "İzin ver"
     }
   },
   "dial": {

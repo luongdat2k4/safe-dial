@@ -135,6 +135,10 @@
         "notifications": {
           "title": "알림",
           "why": "수신 전화를 표시하고 방금 차단된 전화를 알려 주기 위해 필요합니다."
+        },
+        "contactsWrite": {
+          "title": "연락처 수정",
+          "why": "앱에서 즐겨찾기를 추가하거나 삭제하기 위해 필요합니다."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "{name}에게 전화",
       "favOn": "{name} 즐겨찾기 해제",
       "favOff": "{name}을(를) 즐겨찾기에 추가",
-      "favFailed": "즐겨찾기를 변경할 수 없습니다. Safe Dial이 연락처를 수정하도록 허용하세요."
+      "favFailed": "즐겨찾기를 변경할 수 없습니다. Safe Dial이 연락처를 수정하도록 허용하세요.",
+      "editPrompt": "즐겨찾기를 추가하거나 삭제하려면 Safe Dial이 연락처를 수정하도록 허용하세요.",
+      "editGrant": "허용"
     }
   },
   "dial": {

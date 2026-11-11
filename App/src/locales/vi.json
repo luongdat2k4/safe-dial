@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Thông báo",
           "why": "Để hiện cuộc gọi đến và báo cuộc gọi vừa bị chặn."
+        },
+        "contactsWrite": {
+          "title": "Chỉnh sửa danh bạ",
+          "why": "Để thêm hoặc bỏ người yêu thích ngay trong app."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "Gọi {name}",
       "favOn": "Bỏ yêu thích {name}",
       "favOff": "Thêm {name} vào yêu thích",
-      "favFailed": "Không lưu được yêu thích. Hãy cho phép Safe Dial chỉnh sửa danh bạ."
+      "favFailed": "Không lưu được yêu thích. Hãy cho phép Safe Dial chỉnh sửa danh bạ.",
+      "editPrompt": "Cho phép Safe Dial chỉnh sửa danh bạ để thêm hoặc bỏ người yêu thích.",
+      "editGrant": "Cho phép"
     }
   },
   "dial": {

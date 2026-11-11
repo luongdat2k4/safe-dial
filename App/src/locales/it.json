@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Notifiche",
           "why": "Per mostrare le chiamate in arrivo e avvisarti delle chiamate bloccate."
+        },
+        "contactsWrite": {
+          "title": "Modifica contatti",
+          "why": "Per aggiungere o rimuovere preferiti direttamente nell'app."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "Chiama {name}",
       "favOn": "Rimuovi {name} dai preferiti",
       "favOff": "Aggiungi {name} ai preferiti",
-      "favFailed": "Impossibile aggiornare i preferiti. Consenti a Safe Dial di modificare i contatti."
+      "favFailed": "Impossibile aggiornare i preferiti. Consenti a Safe Dial di modificare i contatti.",
+      "editPrompt": "Consenti a Safe Dial di modificare i contatti per aggiungere o rimuovere preferiti.",
+      "editGrant": "Consenti"
     }
   },
   "dial": {

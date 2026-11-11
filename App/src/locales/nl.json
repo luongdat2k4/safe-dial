@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Meldingen",
           "why": "Om inkomende oproepen te tonen en je te laten weten wanneer een oproep is geblokkeerd."
+        },
+        "contactsWrite": {
+          "title": "Contacten bewerken",
+          "why": "Om favorieten direct in de app toe te voegen of te verwijderen."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "{name} bellen",
       "favOn": "{name} uit favorieten verwijderen",
       "favOff": "{name} aan favorieten toevoegen",
-      "favFailed": "Favorieten bijwerken mislukt. Sta Safe Dial toe je contacten te bewerken."
+      "favFailed": "Favorieten bijwerken mislukt. Sta Safe Dial toe je contacten te bewerken.",
+      "editPrompt": "Sta Safe Dial toe contacten te bewerken om favorieten toe te voegen of te verwijderen.",
+      "editGrant": "Toestaan"
     }
   },
   "dial": {

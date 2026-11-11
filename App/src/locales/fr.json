@@ -135,6 +135,10 @@
         "notifications": {
           "title": "Notifications",
           "why": "Pour afficher les appels entrants et signaler les appels bloqués."
+        },
+        "contactsWrite": {
+          "title": "Modifier les contacts",
+          "why": "Pour ajouter ou retirer des favoris dans l'app."
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "Appeler {name}",
       "favOn": "Retirer {name} des favoris",
       "favOff": "Ajouter {name} aux favoris",
-      "favFailed": "Impossible de modifier les favoris. Autorisez Safe Dial à modifier vos contacts."
+      "favFailed": "Impossible de modifier les favoris. Autorisez Safe Dial à modifier vos contacts.",
+      "editPrompt": "Autorisez Safe Dial à modifier vos contacts pour ajouter ou retirer des favoris.",
+      "editGrant": "Autoriser"
     }
   },
   "dial": {

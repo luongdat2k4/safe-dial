@@ -135,6 +135,10 @@
         "notifications": {
           "title": "通知",
           "why": "用于显示来电并提醒刚被拦截的来电。"
+        },
+        "contactsWrite": {
+          "title": "编辑通讯录",
+          "why": "用于在应用内添加或移除收藏。"
         }
       },
       "roles": {
@@ -473,7 +477,9 @@
       "quickCall": "拨打给 {name}",
       "favOn": "取消收藏 {name}",
       "favOff": "将 {name} 加入收藏",
-      "favFailed": "无法更新收藏。请允许 Safe Dial 编辑通讯录。"
+      "favFailed": "无法更新收藏。请允许 Safe Dial 编辑通讯录。",
+      "editPrompt": "允许 Safe Dial 编辑通讯录，以便添加或移除收藏。",
+      "editGrant": "允许"
     }
   },
   "dial": {

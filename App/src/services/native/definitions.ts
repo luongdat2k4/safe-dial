@@ -6,7 +6,7 @@ import type { PluginListenerHandle } from '@capacitor/core'
 import type { SpamCategory } from '@/types'
 
 export type PermState = 'granted' | 'denied' | 'prompt' | 'prompt-with-rationale'
-export type PermAlias = 'contacts' | 'callLog' | 'phone' | 'notifications'
+export type PermAlias = 'contacts' | 'contactsWrite' | 'callLog' | 'phone' | 'notifications'
 export type RiskName = 'safe' | 'unknown' | 'spam' | 'scam'
 export type ActionName = 'allowed' | 'warned' | 'silenced' | 'blocked'
 export type RuleKindName = 'startsWith' | 'contains' | 'endsWith' | 'country'
@@ -26,6 +26,8 @@ export const REASON = {
 
 export interface Status {
   contacts: PermState
+  /** Ghi danh bạ (thêm / bỏ yêu thích). */
+  contactsWrite: PermState
   callLog: PermState
   phone: PermState
   notifications: PermState
