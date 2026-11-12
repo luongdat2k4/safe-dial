@@ -263,18 +263,15 @@
       "preview": "Anteprima",
       "previewCaller": "Numero sconosciuto",
       "tryIt": "Prova una chiamata",
-      "wallpaper": {
-        "title": "Sfondo chiamata",
+      "theme": {
+        "title": "Tema chiamata",
+        "classic": "Predefinito",
+        "dark": "Scuro",
+        "glass": "Vetro",
+        "gradient": "Sfumato",
         "photo": "La tua foto",
         "remove": "Rimuovi foto",
-        "failed": "Impossibile leggere questa immagine.",
-        "fullHint": "Vale solo per lo stile Popup.",
-        "lavender": "Lavanda",
-        "midnight": "Mezzanotte",
-        "ocean": "Oceano",
-        "sunset": "Tramonto",
-        "forest": "Foresta",
-        "graphite": "Grafite"
+        "failed": "Impossibile leggere questa immagine."
       }
     },
     "feedback": {

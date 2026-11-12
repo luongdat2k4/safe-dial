@@ -46,7 +46,7 @@ const routes: RouteRecordRaw[] = [
 
   // Cuộc gọi (mô phỏng)
   { path: '/call/simulate', name: 'call-simulate', component: () => import('@/views/call/SimulateView.vue') },
-  { path: '/call/blocked-preview', name: 'call-blocked-preview', component: () => import('@/views/call/BlockedCallPreviewView.vue') },
+  { path: '/call/blocked-preview', name: 'call-blocked-preview', component: () => import('@/views/call/BlockedCallPreviewView.vue'), meta: { statusBar: { style: 'dark', color: '#bbb1eb' } } },
   { path: '/call/incoming', name: 'call-incoming', component: () => import('@/views/call/IncomingCallView.vue'), meta: { noBack: true, statusBar: { style: 'dark', color: '#bbb1eb' } } },
   { path: '/call/active', name: 'call-active', component: () => import('@/views/call/ActiveCallView.vue'), meta: { noBack: true } },
   { path: '/call/after', name: 'call-after', component: () => import('@/views/call/AfterCallView.vue') },

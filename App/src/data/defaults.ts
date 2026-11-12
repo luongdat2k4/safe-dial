@@ -20,7 +20,7 @@ export const DEFAULT_APP_SETTINGS: AppSettings = {
   scamWarning: true,
   popupSize: 'classic',
   popupPosition: 'top',
-  callWallpaper: 'lavender',
+  callTheme: 'classic',
   callAlertNotification: true,
   missedCallNotification: true,
   remindMissedCalls: false,

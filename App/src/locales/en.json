@@ -263,18 +263,15 @@
       "preview": "Preview",
       "previewCaller": "Unknown number",
       "tryIt": "Try a test call",
-      "wallpaper": {
-        "title": "Call wallpaper",
+      "theme": {
+        "title": "Call theme",
+        "classic": "Default",
+        "dark": "Dark",
+        "glass": "Glass",
+        "gradient": "Gradient",
         "photo": "Your photo",
         "remove": "Remove photo",
-        "failed": "Couldn’t read this image.",
-        "fullHint": "Only applies to the Popup style.",
-        "lavender": "Lavender",
-        "midnight": "Midnight",
-        "ocean": "Ocean",
-        "sunset": "Sunset",
-        "forest": "Forest",
-        "graphite": "Graphite"
+        "failed": "Couldn’t read this image."
       }
     },
     "feedback": {

@@ -263,18 +263,15 @@
       "preview": "Aperçu",
       "previewCaller": "Numéro inconnu",
       "tryIt": "Tester un appel",
-      "wallpaper": {
-        "title": "Fond d’appel",
+      "theme": {
+        "title": "Thème d’appel",
+        "classic": "Par défaut",
+        "dark": "Sombre",
+        "glass": "Verre",
+        "gradient": "Dégradé",
         "photo": "Votre photo",
         "remove": "Retirer la photo",
-        "failed": "Impossible de lire cette image.",
-        "fullHint": "S’applique uniquement au style Popup.",
-        "lavender": "Lavande",
-        "midnight": "Minuit",
-        "ocean": "Océan",
-        "sunset": "Coucher de soleil",
-        "forest": "Forêt",
-        "graphite": "Graphite"
+        "failed": "Impossible de lire cette image."
       }
     },
     "feedback": {

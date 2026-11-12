@@ -183,6 +183,8 @@
 .call-control { background: #fff; border: 1px solid #f4f0fa; box-shadow: var(--shadow-card); }
 .call-control-on { background: var(--color-primary-soft); border-color: #d7c6fa; color: var(--color-primary); }
 .hangup-button { background: linear-gradient(145deg, #fc5499, #ed1e5c); color: white; box-shadow: 0 0 0 10px #ffe9f4, 0 0 0 20px #fff4fa, 0 8px 25px #d62c5c33; border: 2px solid #ffffff9c; }
+/* Trên nền tối / màu (giao diện cuộc gọi): vòng sáng nhạt đi để không thành mảng hồng che chữ. */
+.hangup-button.on-dark { box-shadow: 0 0 0 8px #ffffff1f, 0 8px 22px #0000004d; }
 button:focus-visible, [role='button']:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid #8a4deb; outline-offset: 3px; }
 input:not([type='checkbox']):focus, textarea:focus, select:focus { border-color: #bd9cef; }
 @media (min-width: 600px) {

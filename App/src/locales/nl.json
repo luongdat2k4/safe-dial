@@ -263,18 +263,15 @@
       "preview": "Voorbeeld",
       "previewCaller": "Onbekend nummer",
       "tryIt": "Testoproep bekijken",
-      "wallpaper": {
-        "title": "Belachtergrond",
+      "theme": {
+        "title": "Belthema",
+        "classic": "Standaard",
+        "dark": "Donker",
+        "glass": "Glas",
+        "gradient": "Verloop",
         "photo": "Jouw foto",
         "remove": "Foto verwijderen",
-        "failed": "Deze afbeelding kan niet worden gelezen.",
-        "fullHint": "Geldt alleen voor de pop-upstijl.",
-        "lavender": "Lavendel",
-        "midnight": "Middernacht",
-        "ocean": "Oceaan",
-        "sunset": "Zonsondergang",
-        "forest": "Bos",
-        "graphite": "Grafiet"
+        "failed": "Deze afbeelding kan niet worden gelezen."
       }
     },
     "feedback": {

@@ -11,11 +11,17 @@ import Avatar from '@/components/Avatar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import FakeHomeScreen from './FakeHomeScreen.vue'
+import { useCallTheme } from '@/composables/useCallTheme'
 
 // preview: đang xem thử, có nút quay lại ở góc trên nên popup đặt ở trên được đẩy xuống để không che nút.
 const props = defineProps<{ info: CallerInfo; decision?: NativeDecision | null; size: PopupSize; position: PopupPosition; preview?: boolean }>()
 const emit = defineEmits<{ answer: []; reject: []; more: []; message: []; remind: []; block: [] }>()
 const settings = useSettingsStore()
+/** Giao diện người dùng chọn cho thẻ popup / màn toàn màn hình (dải màu rủi ro giữ nguyên). */
+const theme = useCallTheme()
+const muted = computed(() => (theme.light.value ? 'text-white/75' : 'text-muted'))
+// Nền tím / kính / ảnh: nút Trả lời màu trắng để không lẫn vào nền.
+const answerAlt = computed(() => ['gradient', 'glass', 'photo'].includes(theme.current.value))
 
 const risk = computed<RiskLevel>(() => props.info.risk)
 const danger = computed(() => risk.value === 'scam' || risk.value === 'spam')
@@ -67,7 +73,13 @@ const warnText = computed(() =>
 
 <template>
   <!-- Toàn màn hình -->
-  <div v-if="size === 'full'" class="pt-safe pb-safe absolute inset-0 flex flex-col bg-gradient-to-b text-ink" :class="bgFull">
+  <div v-if="size === 'full'" class="absolute inset-0 overflow-hidden">
+  <FakeHomeScreen v-if="theme.glass.value" />
+  <div
+    class="pt-safe pb-safe absolute inset-0 flex flex-col"
+    :class="[theme.fullStyle.value ? '' : `bg-gradient-to-b ${bgFull}`, theme.light.value ? 'text-white' : 'text-ink', theme.glass.value ? 'backdrop-blur-xl' : '']"
+    :style="theme.fullStyle.value"
+  >
     <div class="flex items-center justify-center gap-2 pt-6 text-sm font-semibold opacity-90">
       <AppIcon :name="head.icon" :size="18" :class="head.pulse ? 'warn-blink' : ''" />{{ t(`common.risk.${risk}`) }} · {{ t('call.overlay.incoming') }}
     </div>
@@ -84,7 +96,7 @@ const warnText = computed(() =>
     </div>
     <div class="mx-6 mb-4 flex justify-around">
       <button v-for="q in ['message', 'remind', 'block'] as const" :key="q" type="button" class="tap flex w-20 flex-col items-center gap-1.5 text-xs" @click="q === 'message' ? emit('message') : q === 'remind' ? emit('remind') : emit('block')">
-        <span class="grid size-12 place-items-center rounded-full bg-white shadow-card">
+        <span class="grid size-12 place-items-center rounded-full bg-white text-ink shadow-card">
           <AppIcon :name="q === 'message' ? 'message-square-text' : q === 'remind' ? 'alarm-clock' : 'ban'" :size="22" />
         </span>
         {{ t(`call.overlay.quick.${q}`) }}
@@ -92,14 +104,15 @@ const warnText = computed(() =>
     </div>
     <div class="mb-8 flex items-center justify-around px-10">
       <button type="button" class="tap flex flex-col items-center gap-2 text-sm" @click="emit('reject')">
-        <span class="grid size-[72px] place-items-center rounded-full hangup-button"><AppIcon name="phone-off" :size="32" /></span>
+        <span class="grid size-[72px] place-items-center rounded-full hangup-button" :class="{ 'on-dark': theme.light.value }"><AppIcon name="phone-off" :size="32" /></span>
         {{ t('call.overlay.reject') }}
       </button>
       <button type="button" class="tap flex flex-col items-center gap-2 text-sm" @click="emit('answer')">
-        <span class="ring-pulse grid size-[72px] place-items-center rounded-full accent-gradient"><AppIcon name="phone" :size="32" /></span>
+        <span class="ring-pulse grid size-[72px] place-items-center rounded-full" :class="answerAlt ? 'bg-white text-primary' : 'accent-gradient'"><AppIcon name="phone" :size="32" /></span>
         {{ t('call.overlay.answer') }}
       </button>
     </div>
+  </div>
   </div>
 
   <!-- Popup kiểu cổ điển trên nền màn hình chính giả -->
@@ -107,7 +120,13 @@ const warnText = computed(() =>
     <FakeHomeScreen />
     <div class="absolute inset-0 bg-black/25" />
     <div class="absolute inset-x-0 px-3" :class="edge">
-      <div class="overflow-hidden rounded-3xl bg-surface shadow-sheet" role="dialog" :aria-label="t('call.overlay.incoming')">
+      <div
+        class="overflow-hidden rounded-3xl shadow-sheet"
+        :class="[theme.light.value ? 'text-white' : 'text-ink', theme.glass.value ? 'border border-white/35 backdrop-blur-xl' : '']"
+        :style="theme.cardStyle.value"
+        role="dialog"
+        :aria-label="t('call.overlay.incoming')"
+      >
         <div class="flex items-center gap-2 px-4 py-2 text-sm font-semibold" :class="head.cls">
           <AppIcon :name="head.icon" :size="18" :class="head.pulse ? 'warn-blink' : ''" />
           <span class="flex-1">{{ t(`call.overlay.head.${risk}`) }}</span>
@@ -119,13 +138,13 @@ const warnText = computed(() =>
           <Avatar :name="info.name" :risk="risk" :is-private="!info.number" :size="52" />
           <div class="min-w-0 flex-1">
             <p class="truncate text-lg font-bold">{{ title }}</p>
-            <p v-if="info.name && info.number" class="truncate text-sm text-muted">{{ formatNumber(info.number, settings.state.homeCountryDial) }}</p>
-            <p class="truncate text-[13px] text-muted">{{ place }}</p>
+            <p v-if="info.name && info.number" class="truncate text-sm" :class="muted">{{ formatNumber(info.number, settings.state.homeCountryDial) }}</p>
+            <p class="truncate text-[13px]" :class="muted">{{ place }}</p>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-2 px-4 pt-2.5">
           <RiskBadge :risk="risk" :category="info.mark?.category" size="md" />
-          <span v-if="subline" class="text-[13px] text-muted">{{ subline }}</span>
+          <span v-if="subline" class="text-[13px]" :class="muted">{{ subline }}</span>
         </div>
         <div v-if="showWarning" class="mx-4 mt-3 flex items-start gap-2 rounded-xl px-3 py-2 text-[13px] leading-snug" :class="risk === 'scam' ? 'bg-scam-soft text-scam' : 'bg-spam-soft text-spam'" role="alert">
           <AppIcon name="triangle-alert" :size="16" class="mt-0.5 shrink-0" />{{ warnText }}
@@ -134,7 +153,7 @@ const warnText = computed(() =>
           <button type="button" class="tap flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-scam font-semibold text-white" @click="emit('reject')">
             <AppIcon name="phone-off" :size="20" />{{ t('call.overlay.reject') }}
           </button>
-          <button type="button" class="tap ring-pulse flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-primary font-semibold text-white" @click="emit('answer')">
+          <button type="button" class="tap ring-pulse flex h-12 flex-1 items-center justify-center gap-2 rounded-full font-semibold" :class="answerAlt ? 'bg-white text-primary' : 'bg-primary text-white'" @click="emit('answer')">
             <AppIcon name="phone" :size="20" />{{ t('call.overlay.answer') }}
           </button>
         </div>

@@ -263,18 +263,15 @@
       "preview": "预览",
       "previewCaller": "陌生号码",
       "tryIt": "试看来电",
-      "wallpaper": {
-        "title": "来电壁纸",
+      "theme": {
+        "title": "来电主题",
+        "classic": "默认",
+        "dark": "深色",
+        "glass": "毛玻璃",
+        "gradient": "渐变",
         "photo": "你的照片",
         "remove": "移除照片",
-        "failed": "无法读取此图片。",
-        "fullHint": "仅适用于弹窗样式。",
-        "lavender": "薰衣草",
-        "midnight": "午夜",
-        "ocean": "海洋",
-        "sunset": "日落",
-        "forest": "森林",
-        "graphite": "石墨"
+        "failed": "无法读取此图片。"
       }
     },
     "feedback": {

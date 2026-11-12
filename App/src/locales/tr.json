@@ -263,18 +263,15 @@
       "preview": "Önizleme",
       "previewCaller": "Bilinmeyen numara",
       "tryIt": "Aramayı dene",
-      "wallpaper": {
-        "title": "Arama duvar kâğıdı",
+      "theme": {
+        "title": "Arama teması",
+        "classic": "Varsayılan",
+        "dark": "Koyu",
+        "glass": "Cam",
+        "gradient": "Gradyan",
         "photo": "Fotoğrafınız",
         "remove": "Fotoğrafı kaldır",
-        "failed": "Bu görsel okunamadı.",
-        "fullHint": "Yalnızca Açılır pencere stili için.",
-        "lavender": "Lavanta",
-        "midnight": "Gece yarısı",
-        "ocean": "Okyanus",
-        "sunset": "Gün batımı",
-        "forest": "Orman",
-        "graphite": "Grafit"
+        "failed": "Bu görsel okunamadı."
       }
     },
     "feedback": {

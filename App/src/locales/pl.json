@@ -263,18 +263,15 @@
       "preview": "Podgląd",
       "previewCaller": "Nieznany numer",
       "tryIt": "Wypróbuj połączenie",
-      "wallpaper": {
-        "title": "Tapeta połączeń",
+      "theme": {
+        "title": "Motyw połączeń",
+        "classic": "Domyślny",
+        "dark": "Ciemny",
+        "glass": "Szkło",
+        "gradient": "Gradient",
         "photo": "Twoje zdjęcie",
         "remove": "Usuń zdjęcie",
-        "failed": "Nie można odczytać tego obrazu.",
-        "fullHint": "Dotyczy tylko stylu wyskakującego okna.",
-        "lavender": "Lawenda",
-        "midnight": "Północ",
-        "ocean": "Ocean",
-        "sunset": "Zachód słońca",
-        "forest": "Las",
-        "graphite": "Grafit"
+        "failed": "Nie można odczytać tego obrazu."
       }
     },
     "feedback": {
