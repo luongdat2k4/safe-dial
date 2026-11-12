@@ -6,9 +6,9 @@ import AppIcon from '@/components/AppIcon.vue'
 import BottomNav from '@/components/BottomNav.vue'
 import FabButton from '@/components/FabButton.vue'
 import appIcon from '@/assets/app-icon.webp'
-import BannerAd from '@/features/ads/components/BannerAd.vue'
-import { adsPossible, bannerHeight } from '@/features/ads/banner'
-import { showInterstitial } from '@/features/ads/adRuntime'
+// [ADS TẮT] import BannerAd from '@/features/ads/components/BannerAd.vue'
+// [ADS TẮT] import { adsPossible, bannerHeight } from '@/features/ads/banner'
+// [ADS TẮT] import { showInterstitial } from '@/features/ads/adRuntime'
 
 const route = useRoute()
 const router = useRouter()
@@ -24,11 +24,12 @@ const pageTitle = computed(() => {
 const showFab = computed(() => route.path === '/home/calls' || route.path === '/home/contacts')
 // Mở Cài đặt là một điểm dừng tự nhiên: interstitial nếu đã tải sẵn (cách quảng cáo toàn màn hình trước ≥ 30 giây).
 function openSettings() {
-  void showInterstitial('open_settings')
+  // [ADS TẮT] void showInterstitial('open_settings')
   router.push('/settings')
 }
 // Banner nằm ở đáy màn hình (view native); thanh điều hướng nổi và nút bàn phím được đẩy lên phía trên nó.
-const adGap = computed(() => (adsPossible ? bannerHeight.value : 0))
+// [ADS TẮT] const adGap = computed(() => (adsPossible ? bannerHeight.value : 0))
+const adGap = 0
 </script>
 
 <template>
@@ -55,6 +56,6 @@ const adGap = computed(() => (adsPossible ? bannerHeight.value : 0))
     </main>
     <FabButton v-if="showFab" icon="grid-3x3" :label="t('dial.title')" :style="{ bottom: `${104 + adGap}px` }" @click="router.push('/dialpad')" />
     <BottomNav data-ad-bottom-edge :style="{ bottom: `${12 + adGap}px` }" />
-    <BannerAd />
+    <!-- [ADS TẮT] <BannerAd /> -->
   </div>
 </template>

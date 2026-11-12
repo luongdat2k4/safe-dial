@@ -8,7 +8,7 @@ import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
 import { LOCALES, flagUrl, setLocale, type Locale } from '@/i18n'
-import NativeAd from '@/features/ads/components/NativeAd.vue'
+// [ADS TẮT] import NativeAd from '@/features/ads/components/NativeAd.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -85,7 +85,7 @@ onBeforeUnmount(() => {
           </span>
         </button>
       </div>
-      <NativeAd class="mt-4" />
+      <!-- [ADS TẮT] <NativeAd class="mt-4" /> -->
     </div>
     <div class="pb-safe shrink-0 px-4 pt-2 pb-4">
       <BaseButton block size="lg" :disabled="unchanged" @click="confirm">{{ t('boot.language.confirm') }}</BaseButton>

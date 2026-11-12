@@ -16,7 +16,7 @@ import {
   type RankedNumber,
 } from '@/utils/stats'
 import { formatDuration } from '@/utils/format'
-import InFeedAd from '@/features/ads/components/InFeedAd.vue'
+// [ADS TẮT] import InFeedAd from '@/features/ads/components/InFeedAd.vue'
 import type { RiskLevel } from '@/types'
 import SegmentedTabs from '@/components/SegmentedTabs.vue'
 import EmptyState from '@/components/EmptyState.vue'
@@ -105,7 +105,7 @@ const h2 = 'mb-3 text-[15px] font-bold'
         <KpiCard icon="shield-alert" tone="violet" :label="t('stats.kpi.suspicious')" :value="`${sum.suspicious} / ${sum.blocked}`" :sub="t('stats.kpi.suspiciousSub')" />
       </div>
 
-      <InFeedAd class="px-4 pt-4" />
+      <!-- [ADS TẮT] <InFeedAd class="px-4 pt-4" /> -->
 
       <section :class="card">
         <h2 :class="h2">{{ t('stats.perDay.title', { n: period === '7d' ? 7 : 14 }) }}</h2>
