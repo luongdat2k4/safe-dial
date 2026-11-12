@@ -554,6 +554,12 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
             call.reject("Thiếu số");
             return;
         }
+        // Chốt chặn cuối: số "+…" không hợp lệ (vd. "+981294721" = số trong nước bị gắn '+') được chuẩn hoá lại
+        // trước khi gọi, để không gọi nhầm ra nước ngoài. Mã dịch vụ (113, *101#…) giữ nguyên.
+        if (number.startsWith("+")) {
+            long key = Numbers.toKey(getContext(), number);
+            if (key != 0) number = Numbers.toE164(key);
+        }
         if (!phone.has(Manifest.permission.CALL_PHONE)) {
             call.reject("Thiếu quyền gọi điện");
             return;

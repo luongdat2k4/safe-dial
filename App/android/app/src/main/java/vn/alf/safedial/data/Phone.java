@@ -230,8 +230,10 @@ public final class Phone {
         call.id = c.getLong(0);
         call.raw = c.getString(1);
         String norm = c.getString(2);
-        call.key = !TextUtils.isEmpty(norm) ? Numbers.fromE164(norm) : 0;
-        if (call.key == 0) call.key = Numbers.toKey(ctx, call.raw);
+        // Số thô trước (cùng cách chuẩn hoá với cả app); số chuẩn hoá của hệ thống chỉ là dự phòng,
+        // vì nó có thể sai khi nhà mạng gửi số trong nước thiếu số 0 hoặc gắn '+' nhầm.
+        call.key = Numbers.toKey(ctx, call.raw);
+        if (call.key == 0 && !TextUtils.isEmpty(norm)) call.key = Numbers.fromE164(norm);
         call.cachedName = c.getString(3);
         call.type = c.getInt(4);
         call.date = c.getLong(5);

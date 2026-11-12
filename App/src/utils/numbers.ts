@@ -5,13 +5,26 @@ export function normalizeNumber(raw: string): string {
   return raw.replace(/[^+0-9]/g, '')
 }
 
-/** Chuyển số người dùng nhập về dạng E.164 (mặc định theo quốc gia của máy). */
+/** Số thuê bao trong nước (không kể số 0 đầu) dài 9–10 chữ số; ngắn hơn là đầu số dịch vụ (1800…, 113…). */
+const NATIONAL_LEN = [9, 10]
+
+/**
+ * Chuyển số về dạng E.164 (mặc định theo quốc gia của máy). Luôn có '+' ở đầu, trừ đầu số dịch vụ ngắn.
+ * Số trong nước bị bỏ số 0 ("981294721") hoặc gắn '+' nhầm ("+0981…") vẫn được hiểu là số trong nước,
+ * tránh hiển thị / gọi nhầm thành số nước ngoài ("+981294721").
+ */
 export function toE164(raw: string, homeDial = '+84'): string {
   const n = normalizeNumber(raw)
   if (!n) return ''
+  const cc = homeDial.replace('+', '')
+  if (n.startsWith('+0')) return homeDial + n.slice(2)
   if (n.startsWith('+')) return n
   if (n.startsWith('00')) return '+' + n.slice(2)
   if (n.startsWith('0')) return homeDial + n.slice(1)
+  // Đã có mã nước nhưng thiếu '+' (84981294721).
+  if (n.startsWith(cc) && n.length - cc.length >= NATIONAL_LEN[0]) return '+' + n
+  // Số trong nước thiếu số 0 đầu (981294721).
+  if (n.length >= NATIONAL_LEN[0] && n.length <= NATIONAL_LEN[1]) return homeDial + n
   return n
 }
 
