@@ -550,16 +550,6 @@
     "copied": "Skopiowano numer",
     "copyFail": "Nie udało się skopiować",
     "shareToast": "Otwarto menu udostępniania",
-    "warning": {
-      "scamTitle": "Ostrzeżenie o oszustwie",
-      "spamTitle": "Uciążliwy numer",
-      "marked": "Twoje oznaczenie: {category}",
-      "signals": "Ostatnie połączenie miało oznaki: {list}",
-      "tipsTitle": "Jak się chronić",
-      "tip1": "Nie podawaj nikomu kodów OTP, numerów kart ani haseł.",
-      "tip2": "Nie przelewaj pieniędzy na prośbę przez telefon.",
-      "tip3": "Rozłącz się i zadzwoń na oficjalny numer urzędu lub banku."
-    },
     "actions": {
       "call": "Zadzwoń",
       "message": "Wiadomość",

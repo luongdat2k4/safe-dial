@@ -550,16 +550,6 @@
     "copied": "Nomor disalin",
     "copyFail": "Gagal menyalin",
     "shareToast": "Menu berbagi dibuka",
-    "warning": {
-      "scamTitle": "Peringatan penipuan",
-      "spamTitle": "Nomor pengganggu",
-      "marked": "Tanda Anda: {category}",
-      "signals": "Tanda pada panggilan terakhir: {list}",
-      "tipsTitle": "Cara melindungi diri",
-      "tip1": "Jangan sebutkan kode OTP, nomor kartu, atau kata sandi kepada siapa pun.",
-      "tip2": "Jangan transfer uang atas permintaan lewat telepon.",
-      "tip3": "Tutup telepon dan hubungi nomor resmi instansi atau bank."
-    },
     "actions": {
       "call": "Telepon",
       "message": "Pesan",

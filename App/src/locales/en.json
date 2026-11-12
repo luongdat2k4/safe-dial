@@ -550,16 +550,6 @@
     "copied": "Number copied",
     "copyFail": "Couldn't copy",
     "shareToast": "Share sheet opened",
-    "warning": {
-      "scamTitle": "Scam warning",
-      "spamTitle": "Frequent nuisance caller",
-      "marked": "You marked: {category}",
-      "signals": "Last call showed signs of: {list}",
-      "tipsTitle": "How to protect yourself",
-      "tip1": "Never read out OTP codes, card numbers or passwords to anyone.",
-      "tip2": "Don't transfer money because of a phone request.",
-      "tip3": "Hang up and call the official number of the agency or bank."
-    },
     "actions": {
       "call": "Call",
       "message": "Message",

@@ -550,16 +550,6 @@
     "copied": "号码已复制",
     "copyFail": "复制失败",
     "shareToast": "已打开分享面板",
-    "warning": {
-      "scamTitle": "诈骗警告",
-      "spamTitle": "常见骚扰号码",
-      "marked": "你已标记为：{category}",
-      "signals": "最近一次来电的迹象：{list}",
-      "tipsTitle": "如何保护自己",
-      "tip1": "不要向任何人透露 OTP 验证码、卡号或密码。",
-      "tip2": "不要按电话要求转账。",
-      "tip3": "挂断电话，回拨机关或银行的官方号码。"
-    },
     "actions": {
       "call": "拨打",
       "message": "发短信",

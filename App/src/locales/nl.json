@@ -550,16 +550,6 @@
     "copied": "Nummer gekopieerd",
     "copyFail": "Kopiëren mislukt",
     "shareToast": "Deelmenu geopend",
-    "warning": {
-      "scamTitle": "Waarschuwing: oplichting",
-      "spamTitle": "Hinderlijk nummer",
-      "marked": "Door jou gemarkeerd: {category}",
-      "signals": "De laatste oproep vertoonde signalen van: {list}",
-      "tipsTitle": "Zo bescherm je jezelf",
-      "tip1": "Geef nooit OTP-codes, kaartnummers of wachtwoorden aan iemand.",
-      "tip2": "Maak geen geld over op verzoek via de telefoon.",
-      "tip3": "Hang op en bel zelf het officiële nummer van de instantie of bank."
-    },
     "actions": {
       "call": "Bellen",
       "message": "Bericht",

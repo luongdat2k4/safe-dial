@@ -20,7 +20,6 @@ import BottomSheet from '@/components/BottomSheet.vue'
 import ListRow from '@/components/ListRow.vue'
 import CallRow from '@/components/calls/CallRow.vue'
 import SimSheet from '@/components/calls/SimSheet.vue'
-import ScamWarning from '@/components/number/ScamWarning.vue'
 import NumberInfoCard from '@/components/number/NumberInfoCard.vue'
 import ReportSheet from '@/components/number/ReportSheet.vue'
 import SuggestNameSheet from '@/components/number/SuggestNameSheet.vue'
@@ -57,10 +56,8 @@ watch(e164, refresh, { immediate: true })
 const mark = computed(() => info.value?.mark)
 const contact = computed(() => contacts.findByNumber(e164.value))
 const risk = computed(() => info.value?.risk ?? 'unknown')
-const dangerous = computed(() => risk.value === 'scam' || risk.value === 'spam')
 const history = computed(() => calls.forNumber(e164.value))
 /** Dấu hiệu của lần gọi gần nhất có call_meta. */
-const lastReasons = computed(() => history.value.find((e) => e.reasons)?.reasons)
 const isBlocked = computed(() => !!e164.value && block.isBlocked(e164.value))
 const title = computed(() => contact.value?.name ?? info.value?.name ?? (hidden.value ? t('number.hidden') : pretty(e164.value)))
 const displayName = computed(() => contact.value?.name ?? info.value?.name)
@@ -170,7 +167,6 @@ const iso = (ms: number) => new Date(ms).toISOString()
         <p v-if="hidden" class="mt-3 max-w-72 text-sm text-muted">{{ t('number.hiddenDesc') }}</p>
       </section>
 
-      <ScamWarning v-if="info && dangerous" :risk="risk" :category="mark?.category" :reasons="lastReasons" />
 
       <p v-if="isBlocked" class="mx-4 flex items-center gap-2 rounded-2xl bg-[#efe8fd] px-4 py-3 text-sm font-semibold text-blocked">
         <AppIcon name="ban" :size="18" /> {{ t('number.blockedBanner') }}

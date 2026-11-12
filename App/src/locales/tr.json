@@ -550,16 +550,6 @@
     "copied": "Numara kopyalandı",
     "copyFail": "Kopyalanamadı",
     "shareToast": "Paylaşım menüsü açıldı",
-    "warning": {
-      "scamTitle": "Dolandırıcılık uyarısı",
-      "spamTitle": "Rahatsız edici numara",
-      "marked": "İşaretiniz: {category}",
-      "signals": "Son aramadaki işaretler: {list}",
-      "tipsTitle": "Kendinizi nasıl korursunuz",
-      "tip1": "OTP kodunu, kart numarasını veya şifreyi kimseye söylemeyin.",
-      "tip2": "Telefonda istenen para transferlerini yapmayın.",
-      "tip3": "Kapatın ve kurumun veya bankanın resmi numarasını kendiniz arayın."
-    },
     "actions": {
       "call": "Ara",
       "message": "Mesaj",

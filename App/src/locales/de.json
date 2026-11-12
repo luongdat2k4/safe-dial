@@ -550,16 +550,6 @@
     "copied": "Nummer kopiert",
     "copyFail": "Kopieren fehlgeschlagen",
     "shareToast": "Teilen-Menü geöffnet",
-    "warning": {
-      "scamTitle": "Betrugswarnung",
-      "spamTitle": "Häufiger Störanrufer",
-      "marked": "Von dir markiert: {category}",
-      "signals": "Auffälligkeiten beim letzten Anruf: {list}",
-      "tipsTitle": "So schützt du dich",
-      "tip1": "Gib niemandem OTP-Codes, Kartennummern oder Passwörter durch.",
-      "tip2": "Überweise kein Geld auf telefonische Aufforderung.",
-      "tip3": "Leg auf und ruf die offizielle Nummer der Behörde oder Bank zurück."
-    },
     "actions": {
       "call": "Anrufen",
       "message": "Nachricht",

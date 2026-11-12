@@ -550,16 +550,6 @@
     "copied": "Numéro copié",
     "copyFail": "Copie impossible",
     "shareToast": "Menu de partage ouvert",
-    "warning": {
-      "scamTitle": "Alerte arnaque",
-      "spamTitle": "Numéro importun",
-      "marked": "Vous avez marqué : {category}",
-      "signals": "Signes lors du dernier appel : {list}",
-      "tipsTitle": "Comment vous protéger",
-      "tip1": "Ne communiquez jamais un code OTP, un numéro de carte ou un mot de passe.",
-      "tip2": "Ne virez pas d'argent sur simple demande téléphonique.",
-      "tip3": "Raccrochez et rappelez le numéro officiel de l'organisme ou de la banque."
-    },
     "actions": {
       "call": "Appeler",
       "message": "Message",

@@ -550,16 +550,6 @@
     "copied": "Đã sao chép số",
     "copyFail": "Không sao chép được",
     "shareToast": "Đã mở bảng chia sẻ",
-    "warning": {
-      "scamTitle": "Cảnh báo lừa đảo",
-      "spamTitle": "Số hay làm phiền",
-      "marked": "Bạn đã đánh dấu: {category}",
-      "signals": "Lần gọi gần nhất có dấu hiệu: {list}",
-      "tipsTitle": "Cách tự bảo vệ",
-      "tip1": "Không đọc mã OTP, số thẻ hoặc mật khẩu cho bất kỳ ai.",
-      "tip2": "Không chuyển tiền theo yêu cầu qua điện thoại.",
-      "tip3": "Cúp máy và gọi lại số chính thức của cơ quan hoặc ngân hàng."
-    },
     "actions": {
       "call": "Gọi",
       "message": "Nhắn tin",

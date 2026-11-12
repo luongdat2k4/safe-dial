@@ -550,16 +550,6 @@
     "copied": "Número copiado",
     "copyFail": "Não foi possível copiar",
     "shareToast": "Menu de compartilhamento aberto",
-    "warning": {
-      "scamTitle": "Alerta de golpe",
-      "spamTitle": "Número incômodo",
-      "marked": "Você marcou: {category}",
-      "signals": "A última chamada teve sinais de: {list}",
-      "tipsTitle": "Como se proteger",
-      "tip1": "Não informe códigos OTP, número do cartão ou senhas a ninguém.",
-      "tip2": "Não transfira dinheiro a pedido por telefone.",
-      "tip3": "Desligue e ligue para o número oficial do órgão ou banco."
-    },
     "actions": {
       "call": "Ligar",
       "message": "Mensagem",
