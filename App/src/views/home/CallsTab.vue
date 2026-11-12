@@ -60,7 +60,7 @@ const tabs = computed(() =>
   (['all', 'missed', 'incoming', 'outgoing', 'unknown', 'spam', 'blocked'] as Filter[]).map((k) => ({
     key: k,
     label: t(`home.calls.filters.${k}`),
-    badge: k === 'unknown' || k === 'spam' || k === 'blocked' || k === 'missed' ? count(k) : undefined,
+    badge: k === 'all' ? undefined : count(k),
   })),
 )
 
