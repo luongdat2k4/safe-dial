@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Herken onbekende nummers",
-        "protect": "Bel met een gerust hart",
-        "calls": "Weet wie er belt",
         "insights": "Contactstatistieken"
       },
       "pages": [
         {
-          "title": "Herken onbekende nummers",
-          "text": "Zie meteen wie er belt, ook als het nummer niet in je contacten staat. Naam en risiconiveau verschijnen terwijl de telefoon overgaat."
+          "title": "Herken onbekende nummers"
         },
         {
-          "title": "Realtime waarschuwingen voor oplichting",
-          "text": "Safe Dial waarschuwt als een nummer op je zwarte lijst staat, een onbekend buitenlands nummer is of opvallend vaak achter elkaar belt."
+          "title": "Realtime waarschuwingen voor oplichting"
         },
         {
-          "title": "Blokkeer spam en bekijk statistieken",
-          "text": "Blokkeer buitenlandse, afgeschermde en ongewenste nummers met je eigen regels, en zie wie het meest contact met je heeft."
+          "title": "Blokkeer spam en bekijk statistieken"
         }
       ],
       "dots": "Pagina {n} van {total}",

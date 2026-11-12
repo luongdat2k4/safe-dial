@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Identifique desconhecidos",
-        "protect": "Ligue com tranquilidade",
-        "calls": "Saiba quem está ligando",
         "insights": "Estatísticas de contatos"
       },
       "pages": [
         {
-          "title": "Identifique números desconhecidos",
-          "text": "Saiba na hora quem está ligando, mesmo que o número não esteja nos contatos. Nome e nível de risco aparecem enquanto toca."
+          "title": "Identifique números desconhecidos"
         },
         {
-          "title": "Alertas de golpe em tempo real",
-          "text": "O Safe Dial avisa quando o número está na sua lista negra, é um número internacional desconhecido ou liga de forma insistente e incomum."
+          "title": "Alertas de golpe em tempo real"
         },
         {
-          "title": "Bloqueie spam e veja estatísticas",
-          "text": "Bloqueie números internacionais, privados e indesejados com suas próprias regras, e veja quem mais fala com você."
+          "title": "Bloqueie spam e veja estatísticas"
         }
       ],
       "dots": "Página {n} de {total}",

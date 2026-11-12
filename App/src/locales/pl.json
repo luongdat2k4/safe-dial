@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Rozpoznawaj nieznane numery",
-        "protect": "Dzwoń bez obaw",
-        "calls": "Wiedz, kto dzwoni",
         "insights": "Statystyki kontaktów"
       },
       "pages": [
         {
-          "title": "Rozpoznawaj nieznane numery",
-          "text": "Od razu wiesz, kto dzwoni, nawet gdy numeru nie ma w kontaktach. Nazwa i poziom ryzyka pojawiają się już podczas dzwonienia."
+          "title": "Rozpoznawaj nieznane numery"
         },
         {
-          "title": "Ostrzeżenia przed oszustwami na bieżąco",
-          "text": "Safe Dial ostrzega, gdy numer jest na twojej czarnej liście, jest nieznanym numerem zagranicznym lub dzwoni nietypowo uporczywie."
+          "title": "Ostrzeżenia przed oszustwami na bieżąco"
         },
         {
-          "title": "Blokuj spam i sprawdzaj statystyki",
-          "text": "Blokuj numery zagraniczne, zastrzeżone i niechciane według własnych reguł i sprawdzaj, kto kontaktuje się z tobą najczęściej."
+          "title": "Blokuj spam i sprawdzaj statystyki"
         }
       ],
       "dots": "Strona {n} z {total}",

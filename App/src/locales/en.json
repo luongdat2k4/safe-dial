@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Identify unknown numbers",
-        "protect": "Connect with confidence",
-        "calls": "Know who's calling",
         "insights": "Call insights"
       },
       "pages": [
         {
-          "title": "Identify unknown numbers",
-          "text": "Know who's calling right away, even if the number isn't in your contacts. The name and risk level show up as soon as it rings."
+          "title": "Identify unknown numbers"
         },
         {
-          "title": "Real-time scam alerts",
-          "text": "Safe Dial warns you when a caller is on your blacklist, is an unfamiliar international number, or calls repeatedly in an unusual way."
+          "title": "Real-time scam alerts"
         },
         {
-          "title": "Block spam and see call stats",
-          "text": "Block international, private and junk numbers with your own rules, and see who contacts you the most."
+          "title": "Block spam and see call stats"
         }
       ],
       "dots": "Page {n} of {total}",

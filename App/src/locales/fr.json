@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Identifier les inconnus",
-        "protect": "Appelez en toute sérénité",
-        "calls": "Sachez qui appelle",
         "insights": "Statistiques d'appels"
       },
       "pages": [
         {
-          "title": "Identifiez les numéros inconnus",
-          "text": "Sachez tout de suite qui vous appelle, même si le numéro n'est pas dans vos contacts. Le nom et le niveau de risque s'affichent dès la sonnerie."
+          "title": "Identifiez les numéros inconnus"
         },
         {
-          "title": "Alertes anti-arnaque en temps réel",
-          "text": "Safe Dial vous avertit quand l'appelant figure sur votre liste noire, est un numéro international inconnu ou appelle de façon répétée et inhabituelle."
+          "title": "Alertes anti-arnaque en temps réel"
         },
         {
-          "title": "Bloquez le spam, suivez vos appels",
-          "text": "Bloquez les numéros internationaux, masqués ou indésirables selon vos règles, et voyez qui vous contacte le plus."
+          "title": "Bloquez le spam, suivez vos appels"
         }
       ],
       "dots": "Page {n} sur {total}",

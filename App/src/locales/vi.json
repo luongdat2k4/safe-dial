@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Nhận diện số lạ",
-        "protect": "An tâm kết nối",
-        "calls": "Biết ai đang gọi",
         "insights": "Thống kê liên lạc"
       },
       "pages": [
         {
-          "title": "Nhận diện số lạ",
-          "text": "Biết ngay ai đang gọi, kể cả khi số chưa có trong danh bạ. Tên và nhóm rủi ro hiện ngay lúc đổ chuông."
+          "title": "Nhận diện số lạ"
         },
         {
-          "title": "Cảnh báo lừa đảo theo thời gian thực",
-          "text": "Safe Dial cảnh báo khi số gọi nằm trong danh sách đen của bạn, là số quốc tế lạ hoặc gọi dồn dập bất thường."
+          "title": "Cảnh báo lừa đảo theo thời gian thực"
         },
         {
-          "title": "Chặn spam và thống kê liên lạc",
-          "text": "Chặn số quốc tế, số ẩn, số rác theo quy tắc của bạn, và xem ai liên lạc với bạn nhiều nhất."
+          "title": "Chặn spam và thống kê liên lạc"
         }
       ],
       "dots": "Trang {n} trên {total}",

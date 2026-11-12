@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Unbekannte erkennen",
-        "protect": "Sicher verbunden",
-        "calls": "Wissen, wer anruft",
         "insights": "Anrufstatistik"
       },
       "pages": [
         {
-          "title": "Unbekannte Nummern erkennen",
-          "text": "Sieh sofort, wer anruft, auch wenn die Nummer nicht in deinen Kontakten ist. Name und Risikostufe erscheinen schon beim Klingeln."
+          "title": "Unbekannte Nummern erkennen"
         },
         {
-          "title": "Betrugswarnungen in Echtzeit",
-          "text": "Safe Dial warnt dich, wenn der Anrufer auf deiner schwarzen Liste steht, eine unbekannte Auslandsnummer ist oder ungewöhnlich oft anruft."
+          "title": "Betrugswarnungen in Echtzeit"
         },
         {
-          "title": "Spam blockieren, Anrufe auswerten",
-          "text": "Blockiere Auslands-, unterdrückte und Spam-Nummern nach deinen Regeln und sieh, wer dich am häufigsten kontaktiert."
+          "title": "Spam blockieren, Anrufe auswerten"
         }
       ],
       "dots": "Seite {n} von {total}",

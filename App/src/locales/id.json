@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Kenali nomor asing",
-        "protect": "Terhubung dengan tenang",
-        "calls": "Tahu siapa yang menelepon",
         "insights": "Statistik komunikasi"
       },
       "pages": [
         {
-          "title": "Kenali nomor asing",
-          "text": "Langsung tahu siapa yang menelepon, meski nomornya belum ada di kontak. Nama dan kelompok risiko tampil saat ponsel berdering."
+          "title": "Kenali nomor asing"
         },
         {
-          "title": "Peringatan penipuan real-time",
-          "text": "Safe Dial memperingatkan Anda jika nomor penelepon ada di daftar hitam, nomor internasional asing, atau menelepon bertubi-tubi secara tidak wajar."
+          "title": "Peringatan penipuan real-time"
         },
         {
-          "title": "Blokir spam dan statistik komunikasi",
-          "text": "Blokir nomor internasional, nomor pribadi, dan nomor spam dengan aturan Anda sendiri, serta lihat siapa yang paling sering menghubungi Anda."
+          "title": "Blokir spam dan statistik komunikasi"
         }
       ],
       "dots": "Halaman {n} dari {total}",

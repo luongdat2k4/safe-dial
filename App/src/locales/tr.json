@@ -89,23 +89,17 @@
     },
     "onboarding": {
       "art": {
-        "identify": "Numara tanıma",
-        "protect": "Gönül rahatlığıyla konuşun",
-        "calls": "Kimin aradığını bilin",
         "insights": "İletişim istatistikleri"
       },
       "pages": [
         {
-          "title": "Bilinmeyen numaraları tanıyın",
-          "text": "Numara kişilerinizde olmasa bile kimin aradığını hemen öğrenin. İsim ve risk grubu telefon çalarken görünür."
+          "title": "Bilinmeyen numaraları tanıyın"
         },
         {
-          "title": "Anlık dolandırıcılık uyarıları",
-          "text": "Safe Dial, arayan numara kara listenizdeyse, tanımadık bir uluslararası numaraysa ya da olağandışı sıklıkta arıyorsa sizi uyarır."
+          "title": "Anlık dolandırıcılık uyarıları"
         },
         {
-          "title": "Spam engelleme ve istatistikler",
-          "text": "Uluslararası, gizli ve spam numaraları kendi kurallarınızla engelleyin; sizi en çok kimin aradığını görün."
+          "title": "Spam engelleme ve istatistikler"
         }
       ],
       "dots": "Sayfa {n} / {total}",

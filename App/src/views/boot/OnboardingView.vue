@@ -66,10 +66,16 @@ function next() {
         class="onboarding-page flex w-full shrink-0 snap-center flex-col overflow-y-auto px-7 pt-4"
         :aria-label="t('boot.onboarding.dots', { n: i + 1, total })"
       >
-        <span class="mb-4 w-fit rounded-full bg-primary-soft px-3 py-1.5 text-[11px] font-medium text-primary">{{ t('common.tagline') }}</span>
-        <h2 class="text-[34px] leading-[1.15] font-semibold tracking-[-1.2px]"><span class="accent-text">{{ t(`boot.onboarding.pages.${i}.title`) }}</span></h2>
-        <p class="mt-4 text-[15px] leading-relaxed text-muted">{{ t(`boot.onboarding.pages.${i}.text`) }}</p>
-        <div class="flex min-h-64 flex-1 items-center justify-center py-5"><OnboardingArt :kind="i as 0 | 1 | 2" /></div>
+        <!-- Mỗi trang một bố cục: trang 2 đảo hình lên trên, tiêu đề căn giữa ở dưới. -->
+        <h2
+          class="text-[34px] leading-[1.15] font-semibold tracking-[-1.2px]"
+          :class="i === 1 ? 'order-2 mt-2 mb-4 text-center text-[30px]' : ''"
+        >
+          <span class="accent-text">{{ t(`boot.onboarding.pages.${i}.title`) }}</span>
+        </h2>
+        <div class="flex min-h-64 flex-1 items-center justify-center" :class="i === 1 ? 'order-1 pt-2 pb-4' : 'py-5'">
+          <OnboardingArt :kind="i as 0 | 1 | 2" />
+        </div>
       </section>
     </div>
 
