@@ -32,7 +32,7 @@ const busy = ref(false)
 
 const home = computed(() => settings.state.homeCountryDial)
 const e164 = computed(() => (isPrivate.value ? '' : toE164(raw.value, home.value)))
-const canRun = computed(() => isPrivate.value || isPlausibleNumber(raw.value))
+const canRun = computed(() => isPrivate.value || isPlausibleNumber(raw.value, home.value))
 const country = computed(() => countryOf(info.value?.number ?? ''))
 
 const ORDER: DecisionStep['id'][] = ['system', 'trusted', 'contact', 'rule', 'private', 'international', 'nonContact', 'signals']

@@ -50,7 +50,7 @@ const error = computed(() => {
   if (kind.value === 'country') return country.value ? '' : t('block.form.errCountry')
   const digits = normalizeNumber(raw.value).replace(/\+/g, '')
   if (!digits) return t('block.form.errEmpty')
-  if (kind.value === 'number') return isPlausibleNumber(raw.value) ? '' : t('block.form.errNumber')
+  if (kind.value === 'number') return isPlausibleNumber(raw.value, home.value) ? '' : t('block.form.errNumber')
   return digits.length >= 3 ? '' : t('block.form.errShort')
 })
 

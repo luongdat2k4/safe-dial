@@ -420,6 +420,11 @@ export class SafeDialWeb extends WebPlugin implements Impl {
     /* Web: không có màn hình điện thoại thật phía sau. */
   }
 
+  async getHomeCountry() {
+    // Bản web: dữ liệu demo là số Việt Nam.
+    return { iso: 'VN', dial: '84' }
+  }
+
   async openSms() {
     /* bản web: UI tự hiện thông báo giả lập */
   }

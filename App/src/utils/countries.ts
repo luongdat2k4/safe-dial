@@ -1,43 +1,81 @@
+import { getCountryCallingCode, parsePhoneNumberFromString, type CountryCode } from 'libphonenumber-js/max'
+import { i18n } from '@/i18n'
+
 export interface Country {
   iso: string
-  name: string
+  /** Tên nước theo ngôn ngữ đang dùng của app. */
+  readonly name: string
   dial: string
   flag: string
 }
 
+/** Cờ emoji từ mã ISO (VN → 🇻🇳). */
+function flagOf(iso: string): string {
+  return [...iso.toUpperCase()].map((ch) => String.fromCodePoint(0x1f1e6 + ch.charCodeAt(0) - 65)).join('')
+}
+
+let namesLocale = ''
+let names: Intl.DisplayNames | null = null
+/** Tên nước theo ngôn ngữ của app (Intl.DisplayNames); không hỗ trợ thì trả mã ISO. */
+export function countryName(iso: string): string {
+  const locale = String(i18n.global.locale.value)
+  if (locale !== namesLocale) {
+    namesLocale = locale
+    try {
+      names = new Intl.DisplayNames([locale, 'en'], { type: 'region' })
+    } catch {
+      names = null
+    }
+  }
+  return names?.of(iso) ?? iso
+}
+
+/** Thông tin một nước theo mã ISO (mã quốc gia lấy từ libphonenumber). */
+export function country(iso: string): Country {
+  return {
+    iso,
+    get name() {
+      return countryName(iso)
+    },
+    dial: '+' + getCountryCallingCode(iso as CountryCode),
+    flag: flagOf(iso),
+  }
+}
+
+/** Các nước hay gặp, dùng cho bộ chọn chặn theo mã quốc gia. */
 export const COUNTRIES: Country[] = [
-  { iso: 'VN', name: 'Việt Nam', dial: '+84', flag: '🇻🇳' },
-  { iso: 'US', name: 'Hoa Kỳ / Canada', dial: '+1', flag: '🇺🇸' },
-  { iso: 'CN', name: 'Trung Quốc', dial: '+86', flag: '🇨🇳' },
-  { iso: 'KR', name: 'Hàn Quốc', dial: '+82', flag: '🇰🇷' },
-  { iso: 'JP', name: 'Nhật Bản', dial: '+81', flag: '🇯🇵' },
-  { iso: 'TH', name: 'Thái Lan', dial: '+66', flag: '🇹🇭' },
-  { iso: 'SG', name: 'Singapore', dial: '+65', flag: '🇸🇬' },
-  { iso: 'MY', name: 'Malaysia', dial: '+60', flag: '🇲🇾' },
-  { iso: 'ID', name: 'Indonesia', dial: '+62', flag: '🇮🇩' },
-  { iso: 'PH', name: 'Philippines', dial: '+63', flag: '🇵🇭' },
-  { iso: 'KH', name: 'Campuchia', dial: '+855', flag: '🇰🇭' },
-  { iso: 'LA', name: 'Lào', dial: '+856', flag: '🇱🇦' },
-  { iso: 'MM', name: 'Myanmar', dial: '+95', flag: '🇲🇲' },
-  { iso: 'IN', name: 'Ấn Độ', dial: '+91', flag: '🇮🇳' },
-  { iso: 'GB', name: 'Vương quốc Anh', dial: '+44', flag: '🇬🇧' },
-  { iso: 'FR', name: 'Pháp', dial: '+33', flag: '🇫🇷' },
-  { iso: 'DE', name: 'Đức', dial: '+49', flag: '🇩🇪' },
-  { iso: 'RU', name: 'Nga', dial: '+7', flag: '🇷🇺' },
-  { iso: 'AU', name: 'Úc', dial: '+61', flag: '🇦🇺' },
-  { iso: 'NG', name: 'Nigeria', dial: '+234', flag: '🇳🇬' },
-  { iso: 'GH', name: 'Ghana', dial: '+233', flag: '🇬🇭' },
-  { iso: 'PK', name: 'Pakistan', dial: '+92', flag: '🇵🇰' },
-  { iso: 'BD', name: 'Bangladesh', dial: '+880', flag: '🇧🇩' },
-  { iso: 'AE', name: 'UAE', dial: '+971', flag: '🇦🇪' },
-  { iso: 'BR', name: 'Brazil', dial: '+55', flag: '🇧🇷' },
-  { iso: 'MX', name: 'Mexico', dial: '+52', flag: '🇲🇽' },
+  country('VN'),
+  country('US'),
+  country('CN'),
+  country('KR'),
+  country('JP'),
+  country('TH'),
+  country('SG'),
+  country('MY'),
+  country('ID'),
+  country('PH'),
+  country('KH'),
+  country('LA'),
+  country('MM'),
+  country('IN'),
+  country('GB'),
+  country('FR'),
+  country('DE'),
+  country('RU'),
+  country('AU'),
+  country('NG'),
+  country('GH'),
+  country('PK'),
+  country('BD'),
+  country('AE'),
+  country('BR'),
+  country('MX'),
 ]
 
-const byDialDesc = [...COUNTRIES].sort((a, b) => b.dial.length - a.dial.length)
-
-/** Tìm quốc gia theo tiền tố quốc tế dài nhất khớp với số E.164. */
+/** Nước của một số E.164 (mọi nước, theo libphonenumber); số không hợp lệ thì đoán theo mã quốc gia. */
 export function countryOf(e164: string): Country | undefined {
   if (!e164.startsWith('+')) return undefined
-  return byDialDesc.find((c) => e164.startsWith(c.dial))
+  const p = parsePhoneNumberFromString(e164)
+  if (p?.country) return country(p.country)
+  return [...COUNTRIES].sort((a, b) => b.dial.length - a.dial.length).find((c) => e164.startsWith(c.dial))
 }

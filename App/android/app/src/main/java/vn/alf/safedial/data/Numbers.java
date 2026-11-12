@@ -25,17 +25,21 @@ public final class Numbers {
         if (e164 != null) {
             digits = e164.substring(1);
         } else {
-            // Không phải số hợp lệ theo libphonenumber: đoán theo dạng. Số trong nước bị bỏ số 0 ("981294721")
-            // hoặc gắn '+' nhầm ("+981294721", "+0981…") vẫn là số trong nước, không phải số nước ngoài.
+            // Không hợp lệ theo nước nhà: thử các cách hiểu khác, vẫn theo libphonenumber (đúng cho mọi nước).
+            // Số trong nước gắn '+' nhầm ("+981294721" ở VN), số có mã nước nhưng thiếu '+' ("84981294721").
             String d = PhoneNumberUtils.stripSeparators(s);
             if (d == null) return 0;
+            String iso = p.homeCountryIso();
             String home = p.homeDial();
-            if (d.startsWith("+0")) digits = home + d.substring(2);
-            else if (d.startsWith("+")) digits = looksNational(d.substring(1), home) ? home + d.substring(1) : d.substring(1);
+            String alt = null;
+            if (d.startsWith("+")) alt = e164(d.substring(1), iso);
+            else if (!d.startsWith("00")) alt = e164("+" + d, iso);
+            if (alt != null) digits = alt.substring(1);
+            else if (d.startsWith("+")) digits = d.substring(1);
             else if (d.startsWith("00")) digits = d.substring(2);
-            else if (d.startsWith("0")) digits = home + d.substring(1);
-            else if (d.startsWith(home) && d.length() - home.length() >= NATIONAL_MIN) digits = d;
-            else digits = looksNational(d, home) ? home + d : d;
+            // Đầu số mới chưa có trong dữ liệu libphonenumber: số 0 đầu vẫn là tiền tố trong nước.
+            else if (d.startsWith("0") && d.length() >= 8) digits = home + d.substring(1);
+            else digits = d; // đầu số dịch vụ ngắn (113, 1800…)
         }
         if (!TextUtils.isDigitsOnly(digits) || digits.length() < 3 || digits.length() > 15) return 0;
         try {
@@ -45,13 +49,13 @@ public final class Numbers {
         }
     }
 
-    /** Số thuê bao trong nước (không kể số 0 đầu) dài 9–10 chữ số; ngắn hơn là đầu số dịch vụ (1800…, 113…). */
-    private static final int NATIONAL_MIN = 9, NATIONAL_MAX = 10;
-
-    /** Chuỗi chữ số trông như số trong nước thiếu số 0 đầu (không phải số đã có mã nước). */
-    private static boolean looksNational(String d, String home) {
-        if (!TextUtils.isDigitsOnly(d) || d.length() < NATIONAL_MIN || d.length() > NATIONAL_MAX) return false;
-        return !(d.startsWith(home) && d.length() - home.length() >= NATIONAL_MIN);
+    /** E.164 nếu số hợp lệ (libphonenumber của Android, theo nước `iso` cho số trong nước); không thì null. */
+    private static String e164(String number, String iso) {
+        try {
+            return PhoneNumberUtils.formatNumberToE164(number, iso);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /** Khoá → "+84901234567"; 0 → "". */
@@ -75,9 +79,20 @@ public final class Numbers {
         return key != 0 && !String.valueOf(key).startsWith(homeDial);
     }
 
-    /** Dạng trong nước: 84901234567 → 0901234567. Số quốc tế giữ nguyên chữ số. */
-    public static String nationalForm(long key, String homeDial) {
+    /**
+     * Dạng gọi trong nước (chỉ chữ số), theo quy tắc của nước nhà: VN 84901234567 → 0901234567,
+     * US 12025550123 → 2025550123, RU 7912… → 8912…. Số nước ngoài giữ nguyên chữ số.
+     */
+    public static String nationalForm(long key, String homeDial, String homeIso) {
         String s = String.valueOf(key);
-        return s.startsWith(homeDial) ? "0" + s.substring(homeDial.length()) : s;
+        if (!s.startsWith(homeDial)) return s;
+        String f = null;
+        try {
+            f = PhoneNumberUtils.formatNumber("+" + s, homeIso);
+        } catch (Exception ignored) {
+        }
+        String d = f != null ? f.replaceAll("[^0-9]", "") : "";
+        if (!d.isEmpty() && !f.trim().startsWith("+")) return d;
+        return "0" + s.substring(homeDial.length());
     }
 }

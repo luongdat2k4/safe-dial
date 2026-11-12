@@ -49,7 +49,7 @@ onMounted(() => {
 
 const q = computed(() => query.value.trim())
 const home = () => settings.state.homeCountryDial
-const looksLikeNumber = computed(() => /^[+\d\s().-]+$/.test(q.value) && isPlausibleNumber(q.value))
+const looksLikeNumber = computed(() => /^[+\d\s().-]+$/.test(q.value) && isPlausibleNumber(q.value, home()))
 const e164 = computed(() => (looksLikeNumber.value ? toE164(q.value, home()) : ''))
 
 const contactHits = computed(() => (q.value ? contacts.search(q.value).slice(0, 8) : []))

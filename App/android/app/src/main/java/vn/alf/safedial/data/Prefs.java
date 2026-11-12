@@ -82,20 +82,28 @@ public final class Prefs {
 
     // --- Key có kiểu ---
 
-    /** Mã quay số không '+', ví dụ "84". */
+    /** Mã quay số của nước nhà, không '+' ("84", "81", "1"…), theo nước của SIM. */
     public String homeDial() {
-        return str("home_country_dial", "84").replace("+", "");
+        String dial = CountryCodes.dialOf(homeCountryIso());
+        return dial != null ? dial : str("home_country_dial", "84").replace("+", "");
     }
 
+    /** Nước nhà (mã ISO): SIM → mạng di động → ngôn ngữ của máy → VN. */
     public String homeCountryIso() {
         String iso = str("home_country_iso", null);
-        if (iso != null) return iso;
+        if (iso != null && CountryCodes.dialOf(iso) != null) return iso.toUpperCase(Locale.ROOT);
         try {
             TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
-            String sim = tm != null ? tm.getSimCountryIso() : null;
-            if (sim != null && !sim.isEmpty()) return sim.toUpperCase(Locale.ROOT);
+            if (tm != null) {
+                String sim = tm.getSimCountryIso();
+                if (sim != null && CountryCodes.dialOf(sim) != null) return sim.toUpperCase(Locale.ROOT);
+                String net = tm.getNetworkCountryIso();
+                if (net != null && CountryCodes.dialOf(net) != null) return net.toUpperCase(Locale.ROOT);
+            }
         } catch (Exception ignored) {
         }
+        String loc = Locale.getDefault().getCountry();
+        if (CountryCodes.dialOf(loc) != null) return loc.toUpperCase(Locale.ROOT);
         return "VN";
     }
 

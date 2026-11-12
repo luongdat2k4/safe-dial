@@ -68,7 +68,7 @@ async function run(number: string, isPrivate: boolean, preset?: FakeScenario) {
 }
 
 function runCustom() {
-  if (!isPlausibleNumber(custom.value)) {
+  if (!isPlausibleNumber(custom.value, settings.state.homeCountryDial)) {
     ui.showToast(t('call.simulate.invalid'), 'warning')
     return
   }

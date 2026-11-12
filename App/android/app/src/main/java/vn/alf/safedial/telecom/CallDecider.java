@@ -60,6 +60,7 @@ public final class CallDecider {
         Decision d = new Decision();
         d.number = key;
         String home = prefs.homeDial();
+        String homeIso = prefs.homeCountryIso();
         int onBlock = prefs.blockSilent() ? Codes.ACT_SILENCED : Codes.ACT_BLOCKED;
 
         Repo.Mark mark = key != 0 ? repo.mark(key) : null;
@@ -97,7 +98,7 @@ public final class CallDecider {
         // (3) Quy tắc mẫu
         if (key != 0) {
             for (Repo.Rule r : repo.enabledRulesCached()) {
-                if (matches(r, key, home)) {
+                if (matches(r, key, home, homeIso)) {
                     d.ruleId = r.id;
                     d.ruleLabel = r.label != null ? r.label : r.value;
                     d.steps.add(new Step("rule", "match", d.ruleLabel));
@@ -153,10 +154,10 @@ public final class CallDecider {
     }
 
     /** So khớp trên dạng trong nước (0899…) và dạng quốc tế không '+' (84899…). */
-    public static boolean matches(Repo.Rule r, long key, String homeDial) {
+    public static boolean matches(Repo.Rule r, long key, String homeDial, String homeIso) {
         if (key == 0 || r.value == null || r.value.isEmpty()) return false;
         String digits = String.valueOf(key);
-        String national = Numbers.nationalForm(key, homeDial);
+        String national = Numbers.nationalForm(key, homeDial, homeIso);
         String v = r.value.replace("+", "");
         switch (r.kind) {
             case Codes.K_STARTS:

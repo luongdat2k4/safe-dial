@@ -9,7 +9,7 @@ import { useContactsStore } from '@/stores/contacts'
 import { useLookupStore } from '@/stores/lookup'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
-import { formatNumber, nationalForm, toE164 } from '@/utils/numbers'
+import { formatNumber, formatTyping, nationalForm, toE164 } from '@/utils/numbers'
 import { numberPath } from '@/utils/routes'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
@@ -42,11 +42,7 @@ onMounted(() => {
 
 const digitCount = computed(() => raw.value.replace(/\D/g, '').length)
 const e164 = computed(() => toE164(raw.value, home()))
-const display = computed(() => {
-  const r = raw.value
-  if (!r || r.startsWith('+') || /[*#]/.test(r)) return r
-  return formatNumber(toE164(r, home()), home()).replace(/^\+84 /, '0')
-})
+const display = computed(() => formatTyping(raw.value, home()))
 const suggestions = computed(() => (digitCount.value >= 2 || /[a-z]/i.test(raw.value) ? contacts.search(raw.value).slice(0, 30) : []))
 
 // Nhận diện số (debounce 250ms, bỏ qua kết quả cũ)

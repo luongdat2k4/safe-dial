@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import type { CallerInfo, CallLogEntry } from '@/types'
 import { SafeDial, isNative, type CallSnapshot, type EndedCall, type NativeDecision } from '@/services'
 import { reasonFromBits } from '@/utils/blockEngine'
+import { nationalForm } from '@/utils/numbers'
 import { useCallsStore } from './calls'
 import { useLookupStore } from './lookup'
 import { useSettingsStore } from './settings'
@@ -198,7 +199,9 @@ export const useCallSessionStore = defineStore('callSession', () => {
       const { sims } = await SafeDial.getSims()
       simId = sims.find((s) => s.slot === sim)?.id
     }
-    await SafeDial.placeCall({ number: e164, simId })
+    // Số trong nước quay theo dạng trong nước (0981294721, 18001090) như khi tự bấm: đầu số dịch vụ / miễn cước
+    // không phải lúc nào cũng gọi được ở dạng quốc tế. Số nước ngoài giữ dạng E.164.
+    await SafeDial.placeCall({ number: nationalForm(e164, settings.state.homeCountryDial), simId })
     if (!isNative) return true
     if (!(await SafeDial.getStatus()).dialerRole) return false
     // Trên máy thật, trạng thái sẽ tới qua sự kiện callState; điền trước để màn hình có dữ liệu.

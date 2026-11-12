@@ -498,6 +498,13 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
         }
     }
 
+    /** Nước nhà theo SIM / mạng / ngôn ngữ máy: { iso: "VN", dial: "84" }. */
+    @PluginMethod
+    public void getHomeCountry(PluginCall call) {
+        Prefs p = Prefs.get(getContext());
+        call.resolve(new JSObject().put("iso", p.homeCountryIso()).put("dial", p.homeDial()));
+    }
+
     /** Popup cuộc gọi đến: cửa sổ trong suốt để hiện đè lên màn hình thật của điện thoại. */
     @PluginMethod
     public void setSeeThrough(PluginCall call) {

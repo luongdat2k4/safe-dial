@@ -214,6 +214,8 @@ export interface SafeDialPlugin {
   openAppSettings(): Promise<void>
   /** Popup cuộc gọi đến: cửa sổ trong suốt, lộ màn hình thật của điện thoại phía sau (chỉ Android). */
   setSeeThrough(opts: { on: boolean }): Promise<void>
+  /** Nước nhà theo SIM / mạng / ngôn ngữ máy, ví dụ { iso: 'VN', dial: '84' }. */
+  getHomeCountry(): Promise<{ iso: string; dial: string }>
   openSms(opts: { number: string }): Promise<void>
   addContact(opts: { number: string }): Promise<void>
 

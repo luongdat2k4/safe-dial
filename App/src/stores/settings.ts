@@ -5,6 +5,7 @@ import { DEFAULT_APP_SETTINGS } from '@/data/defaults'
 import { loadJSON } from '@/utils/storage'
 import { syncWithNative, type KeyMap } from '@/utils/nativeSettings'
 import { setLocale } from '@/i18n'
+import { SafeDial, isNative } from '@/services'
 
 const KEY = 'safedial.settings.v1'
 
@@ -31,6 +32,13 @@ const MAP: KeyMap<AppSettings> = {
 export const useSettingsStore = defineStore('settings', () => {
   const state = reactive<AppSettings>(loadJSON<AppSettings>(KEY, { ...DEFAULT_APP_SETTINGS }))
   syncWithNative(state, MAP, KEY)
+  // Nước nhà theo SIM của máy (không mặc định Việt Nam): mọi định dạng / chuẩn hoá số dựa vào mã này.
+  if (isNative)
+    void SafeDial.getHomeCountry()
+      .then(({ dial }) => {
+        if (dial && state.homeCountryDial !== '+' + dial) state.homeCountryDial = '+' + dial
+      })
+      .catch(() => undefined)
   // Ngôn ngữ giao diện theo cài đặt (kể cả khi giá trị được nạp từ native).
   watch(() => state.language, (code) => void setLocale(code), { immediate: true })
 
