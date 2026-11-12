@@ -180,9 +180,22 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
         call.resolve(new JSObject().put("contacts", arr));
     }
 
+    /**
+     * PluginCall.getLong() chỉ nhận Long: số nhỏ từ JS (vd. id danh bạ 42) được JSON đọc thành Integer
+     * nên getLong() lặng lẽ trả về mặc định. Đọc mọi kiểu số (và chuỗi số) về long.
+     */
+    private static long longArg(PluginCall call, String name, long def) {
+        Object v = call.getData().opt(name);
+        if (v instanceof Number) return ((Number) v).longValue();
+        if (v instanceof String) {
+            try { return Long.parseLong(((String) v).trim()); } catch (NumberFormatException ignored) { }
+        }
+        return def;
+    }
+
     @PluginMethod
     public void setStarred(PluginCall call) {
-        long id = call.getLong("contactId", 0L);
+        long id = longArg(call, "contactId", 0L);
         boolean ok = phone.setStarred(id, Boolean.TRUE.equals(call.getBoolean("starred", false)));
         if (ok) call.resolve(); else call.reject("Không cập nhật được (thiếu quyền ghi danh bạ?)");
     }
@@ -221,7 +234,7 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
         int limit = call.getInt("limit", 300);
         int offset = call.getInt("offset", 0);
         long key = Numbers.fromE164(call.getString("number", ""));
-        long since = call.getLong("since", 0L);
+        long since = longArg(call, "since", 0L);
         Recorder rec = new Recorder(getContext());
         if (offset == 0) {
             rec.reconcile();
@@ -395,7 +408,7 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
 
     @PluginMethod
     public void getStats(PluginCall call) {
-        long fromDay = call.getLong("fromDay", 0L);
+        long fromDay = longArg(call, "fromDay", 0L);
         String num = call.getString("number");
         Long key = num != null ? Numbers.fromE164(num) : null;
         JSArray arr = new JSArray();
@@ -452,7 +465,7 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
             call.reject("Ghi chú trống");
             return;
         }
-        long id = repo.addNote(Numbers.fromE164(call.getString("number", "")), call.getLong("at", System.currentTimeMillis()), text);
+        long id = repo.addNote(Numbers.fromE164(call.getString("number", "")), longArg(call, "at", System.currentTimeMillis()), text);
         call.resolve(new JSObject().put("id", String.valueOf(id)));
     }
 

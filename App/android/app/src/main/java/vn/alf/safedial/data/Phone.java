@@ -2,6 +2,7 @@ package vn.alf.safedial.data;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -105,8 +106,9 @@ public final class Phone {
         if (!has(Manifest.permission.WRITE_CONTACTS)) return false;
         ContentValues v = new ContentValues();
         v.put(ContactsContract.Contacts.STARRED, starred ? 1 : 0);
-        return cr.update(ContactsContract.Contacts.CONTENT_URI, v, ContactsContract.Contacts._ID + " = ?",
-            new String[] { String.valueOf(contactId) }) > 0;
+        if (contactId <= 0) return false;
+        Uri uri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId);
+        return cr.update(uri, v, null, null) > 0;
     }
 
     /** Tra tên theo số (PhoneLookup, Android tự đánh index). Null nếu không có trong danh bạ. */

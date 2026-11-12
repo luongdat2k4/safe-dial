@@ -80,6 +80,7 @@ export const useContactsStore = defineStore('contacts', () => {
     try {
       await SafeDial.setStarred(opts)
     } catch {
+      void checkEdit()
       useUiStore().showToast(t('home.contacts.favFailed'), 'warning', 3200)
       return false
     }
