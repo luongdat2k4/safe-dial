@@ -110,9 +110,11 @@ function finish(limited = false) {
 <template>
   <div class="flex flex-col bg-canvas">
     <AppBar v-if="fromSettings" :title="t('settings.rows.permissions')" back />
+    <!-- Chừa chỗ cho thanh trạng thái ngoài vùng cuộn: nội dung cuộn không chui xuống dưới status bar. -->
+    <div v-else class="pt-safe shrink-0" />
     <div class="min-h-0 flex-1 overflow-y-auto pb-4">
       <p v-if="fromSettings" class="px-5 pt-3 pb-1 text-[15px] text-muted">{{ t('boot.permissions.subtitle') }}</p>
-      <div v-else class="pt-safe px-5 pt-10 pb-3">
+      <div v-else class="px-5 pt-2 pb-3">
         <span class="grid size-14 place-items-center rounded-2xl bg-primary-soft text-primary-dark">
           <AppIcon name="shield-check" :size="28" />
         </span>
