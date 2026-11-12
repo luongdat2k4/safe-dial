@@ -944,7 +944,6 @@
       "invalid": "Hãy nhập số điện thoại hợp lệ.",
       "blocked": "Đã chặn:",
       "silenced": "Đã tắt chuông:",
-      "detail": "Chi tiết: {d}",
       "viewBlocked": "Xem mục Đã chặn",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Người gọi giấu số"
         }
       },
-      "busy": "Đang có cuộc gọi, hãy thử lại sau."
+      "busy": "Đang có cuộc gọi, hãy thử lại sau.",
+      "notif": {
+        "now": "bây giờ",
+        "blockedHint": "Điện thoại không đổ chuông. Safe Dial chỉ gửi thông báo này.",
+        "silencedHint": "Cuộc gọi vẫn đến nhưng không đổ chuông. Safe Dial gửi thông báo này.",
+        "simulatedAction": "Mô phỏng: không thay đổi dữ liệu thật."
+      }
     },
     "overlay": {
       "incoming": "Cuộc gọi đến",

@@ -246,8 +246,8 @@ export const useCallSessionStore = defineStore('callSession', () => {
 
   /** Màn hình nên mở sau khi cuộc gọi kết thúc. */
   function afterRoute() {
-    // Giả lập trên máy thật: quay lại màn mô phỏng (màn sau cuộc gọi có thao tác chặn / lưu số thật).
-    if (simulated.value) return '/call/simulate'
+    // Giả lập: vẫn có màn sau cuộc gọi (các thao tác ở đó không đụng dữ liệu thật), không thì về màn mô phỏng.
+    if (simulated.value) return settings.state.showAfterCall && lastEnded.value ? '/call/after' : '/call/simulate'
     return settings.state.showAfterCall && lastEnded.value ? '/call/after' : '/home/calls'
   }
 

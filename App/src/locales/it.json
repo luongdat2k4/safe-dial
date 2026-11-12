@@ -944,7 +944,6 @@
       "invalid": "Inserisci un numero valido.",
       "blocked": "Bloccata:",
       "silenced": "Silenziata:",
-      "detail": "Dettagli: {d}",
       "viewBlocked": "Vedi Bloccate",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Il chiamante nasconde il numero"
         }
       },
-      "busy": "C'è una chiamata in corso. Riprova più tardi."
+      "busy": "C'è una chiamata in corso. Riprova più tardi.",
+      "notif": {
+        "now": "ora",
+        "blockedHint": "Il telefono non squilla. Safe Dial invia solo questa notifica.",
+        "silencedHint": "La chiamata arriva ma non squilla. Safe Dial invia questa notifica.",
+        "simulatedAction": "Simulazione: nessun dato reale modificato."
+      }
     },
     "overlay": {
       "incoming": "Chiamata in arrivo",

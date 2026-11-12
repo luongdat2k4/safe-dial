@@ -944,7 +944,6 @@
       "invalid": "Enter a valid phone number.",
       "blocked": "Blocked:",
       "silenced": "Silenced:",
-      "detail": "Details: {d}",
       "viewBlocked": "View Blocked",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Caller hides their number"
         }
       },
-      "busy": "A call is in progress. Try again later."
+      "busy": "A call is in progress. Try again later.",
+      "notif": {
+        "now": "now",
+        "blockedHint": "Your phone doesn’t ring. Safe Dial only sends this notification.",
+        "silencedHint": "The call still comes in but doesn’t ring. Safe Dial sends this notification.",
+        "simulatedAction": "Simulation: no real data was changed."
+      }
     },
     "overlay": {
       "incoming": "Incoming call",

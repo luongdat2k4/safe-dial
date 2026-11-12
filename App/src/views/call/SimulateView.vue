@@ -5,18 +5,15 @@ import { useCallSessionStore } from '@/stores/callSession'
 import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
-import { fakeScenarios, type FakeScenario } from '@/data/fakeScenarios'
+import { fakeScenarios, type BlockedPreviewState, type FakeScenario } from '@/data/fakeScenarios'
 import { isPlausibleNumber, toE164 } from '@/utils/numbers'
 import type { PopupPosition, PopupSize } from '@/types'
-import type { NativeDecision } from '@/services'
-import { reasonFromBits } from '@/utils/blockEngine'
 import AppBar from '@/components/AppBar.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import SegmentedTabs from '@/components/SegmentedTabs.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 import ScenarioCard from '@/components/call/ScenarioCard.vue'
-import ReasonChip from '@/components/block/ReasonChip.vue'
 
 const router = useRouter()
 const session = useCallSessionStore()
@@ -27,8 +24,6 @@ const custom = ref('')
 const busy = ref(false)
 /** Kịch bản giả với kết quả định sẵn (giống nhau trên web và máy thật). */
 const scenarios = computed(() => fakeScenarios())
-const result = ref<{ decision: NativeDecision; title: string } | null>(null)
-const resultReason = computed(() => (result.value ? reasonFromBits(result.value.decision.reasons) : undefined))
 onMounted(() => {
   // Rời màn cuộc gọi giả lập bằng nút Quay lại: kết thúc phiên giả lập đó.
   if (session.simulated) session.reset()
@@ -44,14 +39,25 @@ const posItems = computed(() => [
   { key: 'bottom', label: t('call.simulate.posBottom') },
 ])
 
-async function run(number: string, isPrivate: boolean, title: string, preset?: FakeScenario) {
+async function run(number: string, isPrivate: boolean, preset?: FakeScenario) {
   if (busy.value) return
   busy.value = true
-  result.value = null
   try {
     const r = await session.simulate(isPrivate ? '' : number, preset)
-    if (r.blocked) result.value = { decision: r.decision, title }
-    else router.push('/call/incoming')
+    if (r.blocked) {
+      // Bị chặn / tắt chuông: không có màn cuộc gọi đến, chỉ có thông báo trên màn hình chính.
+      const d = r.decision
+      const blockedPreview: BlockedPreviewState = {
+        number: isPrivate ? '' : number,
+        name: preset?.info.name ?? d.name ?? null,
+        silenced: d.action === 'silenced',
+        reasons: d.reasons,
+        ruleLabel: d.ruleLabel ?? null,
+        risk: d.risk,
+        category: d.category ?? null,
+      }
+      router.push({ path: '/call/blocked-preview', state: { blockedPreview } })
+    } else router.push('/call/incoming')
   } catch (e) {
     // Đang có cuộc gọi thật: không giả lập chồng lên.
     if (e instanceof Error && e.message === 'busy') ui.showToast(t('call.simulate.busy'), 'warning')
@@ -67,7 +73,7 @@ function runCustom() {
     return
   }
   const n = toE164(custom.value, settings.state.homeCountryDial)
-  run(n, false, n)
+  run(n, false)
 }
 </script>
 
@@ -78,21 +84,6 @@ function runCustom() {
       <p class="mx-4 mt-3 flex items-start gap-2 rounded-xl bg-primary-soft px-3 py-2 text-[13px] leading-snug text-primary-dark">
         <AppIcon name="info" :size="16" class="mt-0.5 shrink-0" />{{ t('call.simulate.intro') }}
       </p>
-
-      <section v-if="result" class="mx-4 mt-3 rounded-card bg-[#efe8fd] p-4" role="status">
-        <div class="flex items-center gap-2 text-blocked">
-          <AppIcon name="shield-ban" :size="22" />
-          <p class="text-[15px] font-bold">
-            {{ result.decision.action === 'silenced' ? t('call.simulate.silenced') : t('call.simulate.blocked') }}
-            {{ resultReason ? t(`common.blockReason.${resultReason}`) : '' }}
-          </p>
-        </div>
-        <p v-if="result.decision.ruleLabel" class="mt-1 text-sm text-ink">{{ t('call.simulate.detail', { d: result.decision.ruleLabel }) }}</p>
-        <div class="mt-2 flex items-center justify-between gap-2">
-          <ReasonChip v-if="resultReason" :reason="resultReason" />
-          <BaseButton size="sm" variant="secondary" @click="router.push('/home/block')">{{ t('call.simulate.viewBlocked') }}</BaseButton>
-        </div>
-      </section>
 
       <SectionHeader :title="t('call.simulate.displayHeader')" />
       <div class="mx-4 rounded-card bg-surface py-2 shadow-card">
@@ -116,7 +107,7 @@ function runCustom() {
           :info="s.info"
           :decision="s.decision"
           :busy="busy"
-          @run="run(s.number, s.isPrivate, s.title, s)"
+          @run="run(s.number, s.isPrivate, s)"
         />
       </div>
 

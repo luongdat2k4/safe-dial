@@ -45,9 +45,17 @@ const risk = computed(() => session.info?.risk ?? entry.value?.risk ?? 'unknown'
 const category = computed(() => session.info?.mark?.category ?? entry.value?.category)
 const type = computed(() => entry.value?.type ?? 'incoming')
 const alreadyBlocked = computed(() => block.isBlocked(number.value))
+/** Cuộc gọi giả lập: thao tác chỉ báo là mô phỏng, không báo cáo / chặn / lưu số thật. */
+const simulated = computed(() => session.simulated)
+function simulatedOnly(): boolean {
+  if (!simulated.value) return false
+  ui.showToast(t('call.simulate.notif.simulatedAction'), 'info')
+  return true
+}
 
 async function report(category: SpamCategory) {
   reportOpen.value = false
+  if (simulatedOnly()) return void (reported.value = true)
   await lookup.report(number.value, category)
   if (session.info) session.info = await lookup.identify(number.value)
   reported.value = true
@@ -57,12 +65,14 @@ async function report(category: SpamCategory) {
 
 async function suggest(name: string) {
   suggestOpen.value = false
+  if (simulatedOnly()) return
   await lookup.rename(number.value, name)
   if (session.info) session.info = await lookup.identify(number.value)
   ui.showToast(t('call.after.suggested'), 'success')
 }
 
 async function blockNumber() {
+  if (simulatedOnly()) return
   const ok = await ui.confirm({
     title: t('call.incoming.blockTitle'),
     message: t('call.incoming.blockMsg', { number: display.value }),
@@ -76,20 +86,25 @@ async function blockNumber() {
 }
 
 async function notSpam() {
+  if (simulatedOnly()) return
   await lookup.trust(number.value, true)
   if (session.info) session.info = await lookup.identify(number.value)
   ui.showToast(t('call.after.notSpamToast'), 'success')
 }
 
 async function callBack() {
+  if (simulatedOnly()) return
   if (await session.dial(number.value)) router.replace('/call/active')
   else router.replace('/home/calls')
 }
 
 function close() {
+  const wasSimulated = simulated.value
   session.reset()
-  router.replace('/home/calls')
+  router.replace(wasSimulated ? '/call/simulate' : '/home/calls')
 }
+const save = () => simulatedOnly() || saveMock(number.value)
+const message = () => simulatedOnly() || messageMock(number.value, entry.value?.name)
 </script>
 
 <template>
@@ -128,14 +143,14 @@ function close() {
             <BaseButton variant="ghost" icon="pencil" @click="suggestOpen = true">{{ t('call.after.suggest') }}</BaseButton>
             <BaseButton variant="ghost" icon="ban" :disabled="alreadyBlocked" @click="blockNumber">{{ alreadyBlocked ? t('call.after.alreadyBlocked') : t('common.actions.block') }}</BaseButton>
           </div>
-          <ListRow class="-mx-4 mt-2" clickable icon="user-plus" :title="t('common.actions.addToContacts')" @click="saveMock(number)" />
+          <ListRow class="-mx-4 mt-2" clickable icon="user-plus" :title="t('common.actions.addToContacts')" @click="save" />
         </template>
         <p v-else class="mt-1 text-[13px] text-muted">{{ t('call.after.hidden') }}</p>
       </section>
 
       <section v-else class="mt-4 flex gap-2">
         <BaseButton class="flex-1" icon="phone" @click="callBack">{{ t('call.after.callBack') }}</BaseButton>
-        <BaseButton class="flex-1" variant="secondary" icon="message-square" @click="messageMock(number, entry.name)">{{ t('common.actions.message') }}</BaseButton>
+        <BaseButton class="flex-1" variant="secondary" icon="message-square" @click="message">{{ t('common.actions.message') }}</BaseButton>
       </section>
 
       <BaseButton class="mt-6" block variant="ghost" @click="close">{{ t('common.actions.close') }}</BaseButton>

@@ -944,7 +944,6 @@
       "invalid": "Voer een geldig telefoonnummer in.",
       "blocked": "Geblokkeerd:",
       "silenced": "Gedempt:",
-      "detail": "Details: {d}",
       "viewBlocked": "Geblokkeerd bekijken",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Beller verbergt het nummer"
         }
       },
-      "busy": "Er is een gesprek bezig. Probeer het later opnieuw."
+      "busy": "Er is een gesprek bezig. Probeer het later opnieuw.",
+      "notif": {
+        "now": "nu",
+        "blockedHint": "Je telefoon gaat niet over. Safe Dial stuurt alleen deze melding.",
+        "silencedHint": "De oproep komt binnen maar gaat niet over. Safe Dial stuurt deze melding.",
+        "simulatedAction": "Simulatie: er zijn geen echte gegevens gewijzigd."
+      }
     },
     "overlay": {
       "incoming": "Inkomende oproep",

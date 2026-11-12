@@ -944,7 +944,6 @@
       "invalid": "Masukkan nomor telepon yang valid.",
       "blocked": "Diblokir:",
       "silenced": "Dibisukan:",
-      "detail": "Detail: {d}",
       "viewBlocked": "Lihat bagian Diblokir",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Penelepon menyembunyikan nomor"
         }
       },
-      "busy": "Sedang ada panggilan. Coba lagi nanti."
+      "busy": "Sedang ada panggilan. Coba lagi nanti.",
+      "notif": {
+        "now": "sekarang",
+        "blockedHint": "Ponsel tidak berdering. Safe Dial hanya mengirim notifikasi ini.",
+        "silencedHint": "Panggilan tetap masuk tapi tidak berdering. Safe Dial mengirim notifikasi ini.",
+        "simulatedAction": "Simulasi: data asli tidak diubah."
+      }
     },
     "overlay": {
       "incoming": "Panggilan masuk",

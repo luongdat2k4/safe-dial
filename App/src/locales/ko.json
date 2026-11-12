@@ -944,7 +944,6 @@
       "invalid": "올바른 전화번호를 입력하세요.",
       "blocked": "차단됨:",
       "silenced": "무음 처리됨:",
-      "detail": "자세히: {d}",
       "viewBlocked": "차단됨 보기",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "발신자가 번호를 숨김"
         }
       },
-      "busy": "통화 중입니다. 나중에 다시 시도하세요."
+      "busy": "통화 중입니다. 나중에 다시 시도하세요.",
+      "notif": {
+        "now": "지금",
+        "blockedHint": "전화가 울리지 않고 Safe Dial이 이 알림만 보냅니다.",
+        "silencedHint": "전화는 오지만 울리지 않습니다. Safe Dial이 이 알림을 보냅니다.",
+        "simulatedAction": "시뮬레이션: 실제 데이터는 바뀌지 않습니다."
+      }
     },
     "overlay": {
       "incoming": "수신 전화",

@@ -944,7 +944,6 @@
       "invalid": "Gib eine gültige Telefonnummer ein.",
       "blocked": "Blockiert:",
       "silenced": "Stummgeschaltet:",
-      "detail": "Details: {d}",
       "viewBlocked": "Blockierte ansehen",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Anrufer unterdrückt die Nummer"
         }
       },
-      "busy": "Ein Anruf läuft. Versuche es später erneut."
+      "busy": "Ein Anruf läuft. Versuche es später erneut.",
+      "notif": {
+        "now": "jetzt",
+        "blockedHint": "Das Telefon klingelt nicht. Safe Dial sendet nur diese Benachrichtigung.",
+        "silencedHint": "Der Anruf kommt an, klingelt aber nicht. Safe Dial sendet diese Benachrichtigung.",
+        "simulatedAction": "Simulation: Es wurden keine echten Daten geändert."
+      }
     },
     "overlay": {
       "incoming": "Eingehender Anruf",

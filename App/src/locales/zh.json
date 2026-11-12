@@ -944,7 +944,6 @@
       "invalid": "请输入有效的电话号码。",
       "blocked": "已拦截：",
       "silenced": "已静音：",
-      "detail": "详情：{d}",
       "viewBlocked": "查看已拦截",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "来电者隐藏了号码"
         }
       },
-      "busy": "正在通话中，请稍后再试。"
+      "busy": "正在通话中，请稍后再试。",
+      "notif": {
+        "now": "刚刚",
+        "blockedHint": "手机不会响铃，Safe Dial 只发送这条通知。",
+        "silencedHint": "来电仍会接入但不响铃，Safe Dial 会发送这条通知。",
+        "simulatedAction": "模拟：未更改真实数据。"
+      }
     },
     "overlay": {
       "incoming": "来电",

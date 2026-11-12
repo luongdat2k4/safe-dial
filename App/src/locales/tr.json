@@ -944,7 +944,6 @@
       "invalid": "Geçerli bir telefon numarası girin.",
       "blocked": "Engellendi:",
       "silenced": "Sessize alındı:",
-      "detail": "Ayrıntı: {d}",
       "viewBlocked": "Engellenenleri gör",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Arayan numarasını gizliyor"
         }
       },
-      "busy": "Devam eden bir arama var. Daha sonra tekrar deneyin."
+      "busy": "Devam eden bir arama var. Daha sonra tekrar deneyin.",
+      "notif": {
+        "now": "şimdi",
+        "blockedHint": "Telefon çalmaz. Safe Dial yalnızca bu bildirimi gönderir.",
+        "silencedHint": "Arama gelir ama çalmaz. Safe Dial bu bildirimi gönderir.",
+        "simulatedAction": "Simülasyon: gerçek veriler değişmedi."
+      }
     },
     "overlay": {
       "incoming": "Gelen arama",

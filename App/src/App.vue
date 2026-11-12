@@ -50,8 +50,8 @@ async function onBack() {
       icon: 'log-out',
     })
     if (ok) await CapApp.exitApp()
-  } else if (path === '/call/incoming' && session.simulated) {
-    // Xem thử cuộc gọi đến: Back thoát về màn chọn kịch bản.
+  } else if (path.startsWith('/call/') && path !== '/call/simulate' && session.simulated) {
+    // Đang mô phỏng (cuộc gọi đến, đang gọi, sau cuộc gọi): Back thoát về màn chọn kịch bản.
     session.reset()
     router.replace('/call/simulate')
   } else if (path === '/permissions' && route.query.from !== 'settings') {

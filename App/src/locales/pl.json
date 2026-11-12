@@ -944,7 +944,6 @@
       "invalid": "Wpisz prawidłowy numer telefonu.",
       "blocked": "Zablokowano:",
       "silenced": "Wyciszono:",
-      "detail": "Szczegóły: {d}",
       "viewBlocked": "Zobacz Zablokowane",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "Dzwoniący ukrywa numer"
         }
       },
-      "busy": "Trwa połączenie. Spróbuj później."
+      "busy": "Trwa połączenie. Spróbuj później.",
+      "notif": {
+        "now": "teraz",
+        "blockedHint": "Telefon nie dzwoni. Safe Dial wysyła tylko to powiadomienie.",
+        "silencedHint": "Połączenie przychodzi, ale bez dzwonka. Safe Dial wysyła to powiadomienie.",
+        "simulatedAction": "Symulacja: prawdziwe dane nie zostały zmienione."
+      }
     },
     "overlay": {
       "incoming": "Połączenie przychodzące",

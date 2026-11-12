@@ -944,7 +944,6 @@
       "invalid": "有効な電話番号を入力してください。",
       "blocked": "ブロック：",
       "silenced": "消音：",
-      "detail": "詳細：{d}",
       "viewBlocked": "ブロック済みを見る",
       "live": {
         "blocked": {
@@ -980,7 +979,13 @@
           "desc": "発信者が番号を非通知にしています"
         }
       },
-      "busy": "通話中です。後でもう一度お試しください。"
+      "busy": "通話中です。後でもう一度お試しください。",
+      "notif": {
+        "now": "今",
+        "blockedHint": "電話は鳴りません。Safe Dial がこの通知だけを表示します。",
+        "silencedHint": "着信はありますが鳴りません。Safe Dial がこの通知を表示します。",
+        "simulatedAction": "シミュレーション：実際のデータは変更されません。"
+      }
     },
     "overlay": {
       "incoming": "着信",

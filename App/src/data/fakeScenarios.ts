@@ -16,6 +16,18 @@ export interface FakeScenario {
   decision: NativeDecision
 }
 
+/** Dữ liệu cho màn mô phỏng cuộc gọi bị chặn (truyền qua history.state, nên chỉ gồm giá trị thuần). */
+// type (không phải interface) để gán được vào HistoryState của vue-router.
+export type BlockedPreviewState = {
+  number: string
+  name: string | null
+  silenced: boolean
+  reasons: number
+  ruleLabel: string | null
+  risk: RiskLevel
+  category: SpamCategory | null
+}
+
 interface Spec {
   id: 'blocked' | 'marked' | 'rule' | 'contact' | 'trusted' | 'unknown' | 'intl' | 'hidden'
   number: string
