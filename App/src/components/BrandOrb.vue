@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import AppIcon from './AppIcon.vue'
+import appIcon from '@/assets/app-icon.webp'
 
-withDefaults(defineProps<{ icon?: string; compact?: boolean; active?: boolean }>(), {
+/** `logo`: hiện icon của app (thương hiệu) thay cho quả cầu tím. */
+withDefaults(defineProps<{ icon?: string; compact?: boolean; active?: boolean; logo?: boolean }>(), {
   icon: 'shield-check',
 })
 </script>
@@ -10,7 +12,8 @@ withDefaults(defineProps<{ icon?: string; compact?: boolean; active?: boolean }>
   <div class="brand-orbit" :class="{ 'orb-compact': compact, 'orb-active': active }" aria-hidden="true">
     <span class="orb-ring orb-ring-one" />
     <span class="orb-ring orb-ring-two" />
-    <span class="orb-core">
+    <img v-if="logo" :src="appIcon" alt="" class="orb-logo" />
+    <span v-else class="orb-core">
       <span v-if="active" class="orb-wave"><i /><i /><i /><i /><i /></span>
       <AppIcon v-else :name="icon" :size="compact ? 24 : 48" />
     </span>
@@ -27,6 +30,8 @@ withDefaults(defineProps<{ icon?: string; compact?: boolean; active?: boolean }>
 .orb-compact { width: 54px; height: 54px; }
 .orb-compact .orb-core { width: 100%; height: 100%; box-shadow: inset 0 1px 4px #ffffff9c, 0 4px 12px #a34aef26; }
 .orb-compact .orb-ring { display: none; }
+.orb-logo { position: relative; width: 64%; height: 64%; border-radius: 22%; box-shadow: 0 12px 36px #1a9be038, 0 0 0 8px #e6f6ff80; }
+.orb-compact .orb-logo { width: 100%; height: 100%; box-shadow: 0 4px 12px #1a9be026; }
 .orb-wave { display: flex; gap: 5px; align-items: center; height: 40px; }
 .orb-wave i { width: 5px; height: 16px; background: #fff; border-radius: 5px; animation: wave 1.3s ease-in-out infinite; }
 .orb-wave i:nth-child(2), .orb-wave i:nth-child(4) { height: 28px; animation-delay: -.35s; }

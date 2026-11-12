@@ -5,6 +5,7 @@ import { t } from '@/composables/useT'
 import AppIcon from '@/components/AppIcon.vue'
 import BottomNav from '@/components/BottomNav.vue'
 import FabButton from '@/components/FabButton.vue'
+import appIcon from '@/assets/app-icon.webp'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,7 +26,7 @@ const showFab = computed(() => route.path === '/home/calls' || route.path === '/
     <header class="home-header pt-safe shrink-0 px-5 pt-6 pb-2">
       <div class="brand-row mb-5 flex items-center justify-between">
         <span class="flex items-center gap-2 text-lg font-semibold tracking-tight text-ink">
-          <span class="accent-gradient grid size-8 place-items-center rounded-xl"><AppIcon name="shield-check" :size="19" /></span>
+          <img :src="appIcon" alt="" width="32" height="32" class="size-8 rounded-[10px]" />
           Safe Dial
         </span>
         <button class="tap icon-control grid size-10 place-items-center rounded-full text-muted" :aria-label="t('settings.title')" @click="router.push('/settings')">

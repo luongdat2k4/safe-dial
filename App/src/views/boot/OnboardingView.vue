@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import BaseButton from '@/components/BaseButton.vue'
 import AppIcon from '@/components/AppIcon.vue'
+import appIcon from '@/assets/app-icon.webp'
 import OnboardingArt from '@/components/boot/OnboardingArt.vue'
 import { useSettingsStore } from '@/stores/settings'
 import { t } from '@/composables/useT'
@@ -42,7 +43,7 @@ function next() {
 <template>
   <div class="pt-safe flex flex-col bg-canvas">
     <div class="flex h-20 shrink-0 items-center justify-between px-6">
-      <span class="flex items-center gap-2 text-xl font-semibold tracking-tight"><span class="accent-gradient grid size-9 place-items-center rounded-xl"><AppIcon name="shield-check" :size="21" /></span>Safe Dial</span>
+      <span class="flex items-center gap-2 text-xl font-semibold tracking-tight"><img :src="appIcon" alt="" width="36" height="36" class="size-9 rounded-[11px]" />Safe Dial</span>
       <button
         v-if="!isLast"
         type="button"

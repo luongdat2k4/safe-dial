@@ -30,7 +30,7 @@ async function hasRequired(): Promise<boolean> {
 
 <template>
   <div class="flex flex-col items-center justify-center px-8 text-ink">
-    <BrandOrb />
+    <BrandOrb logo />
     <h1 class="mt-6 text-3xl font-bold tracking-tight">{{ t('common.appName') }}</h1>
     <p class="mt-2 text-center text-[15px] text-muted">{{ t('common.tagline') }}</p>
     <div class="mt-10 size-7 animate-spin rounded-full border-[3px] border-primary/10 border-t-primary" role="status" aria-label="Đang tải" />

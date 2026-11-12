@@ -65,7 +65,7 @@ async function share() {
     <AppBar :title="t('settings.title')" back />
     <div class="min-h-0 flex-1 overflow-y-auto pb-8">
       <section class="soft-panel mx-4 mt-1 flex items-center gap-4 rounded-card p-5">
-        <BrandOrb compact />
+        <BrandOrb compact logo />
         <div class="min-w-0 flex-1"><h2 class="text-lg font-semibold tracking-tight">Safe Dial</h2><p class="mt-1 text-xs leading-relaxed text-muted">{{ t('common.tagline') }}</p></div>
         <AppIcon name="sparkles" :size="20" class="shrink-0 text-primary/60" />
       </section>
