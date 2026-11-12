@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Permissões do Safe Dial",
-      "subtitle": "Cada permissão tem uma finalidade clara. Você pode alterá-las depois.",
       "allowAll": "Permitir tudo",
       "laterWarn": "A proteção ficará limitada até você conceder todas as permissões",
       "sectionPermissions": "Permissões de acesso",
       "sectionRoles": "Funções no telefone",
-      "privacyTitle": "Sua privacidade",
-      "privacyText": "Os contatos são usados só para identificação, sem venda nem compartilhamento com terceiros.",
+      "privacyText": "Dados usados só para identificar chamadas, nunca compartilhados.",
       "items": {
         "calls": {
           "title": "Chamadas e registro de chamadas",
-          "why": "Para ligar, ver o histórico e as estatísticas de chamadas."
+          "why": "Ligar e ver o histórico"
         },
         "contacts": {
           "title": "Contatos",
-          "why": "Para mostrar o nome dos seus contatos e não bloqueá-los por engano."
+          "why": "Mostrar nomes conhecidos"
         },
         "notifications": {
           "title": "Notificações",
-          "why": "Para mostrar chamadas recebidas e avisar sobre chamadas bloqueadas."
+          "why": "Chamadas recebidas e bloqueadas"
         },
         "contactsWrite": {
           "title": "Editar contatos",
-          "why": "Para adicionar ou remover favoritos no app."
+          "why": "Adicionar ou remover favoritos"
         }
       },
       "roles": {
         "dialer": {
           "title": "App de telefone padrão",
-          "why": "Para o Safe Dial receber, fazer, filtrar e bloquear chamadas antes de tocarem."
+          "why": "Filtrar e bloquear antes de tocar"
         },
         "screening": {
           "title": "App de identificação e filtro de chamadas",
@@ -153,10 +151,10 @@
       },
       "granted": "Permitido",
       "openSystem": "Abrir configurações do sistema",
-      "openSystemHint": "Se você negou uma permissão antes, ative-a em Configurações do Android → Permissões.",
+      "openSystemHint": "Negou antes? Ative nas Configurações do Android.",
       "openSystemFailed": "Não foi possível abrir as Configurações.",
       "deniedHint": "Permissão não concedida. Se a caixa de diálogo não aparecer, ative-a nas configurações do sistema.",
-      "needRequired": "Permita Contatos e defina o Safe Dial como app de telefone padrão para continuar.",
+      "needRequired": "Permita Contatos e defina como app de telefone padrão.",
       "required": "Obrigatório"
     }
   },

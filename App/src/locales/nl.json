@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Machtigingen voor Safe Dial",
-      "subtitle": "Elke machtiging heeft een duidelijk doel. Je kunt ze later wijzigen.",
       "allowAll": "Alles toestaan",
       "laterWarn": "Bescherming is beperkt totdat je alle machtigingen geeft",
       "sectionPermissions": "Toegangsrechten",
       "sectionRoles": "Rollen op de telefoon",
-      "privacyTitle": "Jouw privacy",
-      "privacyText": "Contactgegevens worden alleen gebruikt voor herkenning, niet verkocht en niet gedeeld met derden.",
+      "privacyText": "Gegevens alleen voor nummerherkenning, nooit gedeeld.",
       "items": {
         "calls": {
           "title": "Oproepen en oproeplogboek",
-          "why": "Om te bellen en je oproepgeschiedenis en statistieken te bekijken."
+          "why": "Bellen, geschiedenis bekijken"
         },
         "contacts": {
           "title": "Contacten",
-          "why": "Om namen van bekenden te tonen en hen niet per ongeluk te blokkeren."
+          "why": "Namen van bekenden tonen"
         },
         "notifications": {
           "title": "Meldingen",
-          "why": "Om inkomende oproepen te tonen en je te laten weten wanneer een oproep is geblokkeerd."
+          "why": "Inkomende en geblokkeerde oproepen"
         },
         "contactsWrite": {
           "title": "Contacten bewerken",
-          "why": "Om favorieten direct in de app toe te voegen of te verwijderen."
+          "why": "Favorieten toevoegen of verwijderen"
         }
       },
       "roles": {
         "dialer": {
           "title": "Standaard telefoon-app",
-          "why": "Zodat Safe Dial oproepen kan ontvangen, plaatsen, filteren en blokkeren voordat ze overgaan."
+          "why": "Filteren en blokkeren vóór het overgaan"
         },
         "screening": {
           "title": "App voor nummerherkenning en filtering",
@@ -153,10 +151,10 @@
       },
       "granted": "Toegestaan",
       "openSystem": "Systeeminstellingen openen",
-      "openSystemHint": "Heb je eerder een recht geweigerd? Zet het weer aan via Android-instellingen → Rechten.",
+      "openSystemHint": "Eerder geweigerd? Zet het aan in Android-instellingen.",
       "openSystemFailed": "Instellingen openen mislukt.",
       "deniedHint": "Recht niet verleend. Verschijnt er geen venster, zet het dan aan in de systeeminstellingen.",
-      "needRequired": "Sta Contacten toe en stel Safe Dial in als standaard telefoon-app om door te gaan.",
+      "needRequired": "Sta Contacten toe en stel in als standaard telefoon-app.",
       "required": "Verplicht"
     }
   },

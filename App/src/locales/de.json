@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Berechtigungen für Safe Dial",
-      "subtitle": "Jede Berechtigung dient einem klaren Zweck. Du kannst sie später ändern.",
       "allowAll": "Alle erlauben",
       "laterWarn": "Der Schutz bleibt eingeschränkt, bis du alle Berechtigungen erteilst",
       "sectionPermissions": "Zugriffe",
       "sectionRoles": "Rollen auf dem Telefon",
-      "privacyTitle": "Deine Privatsphäre",
-      "privacyText": "Kontaktdaten dienen nur der Anrufererkennung. Sie werden weder verkauft noch an Dritte weitergegeben.",
+      "privacyText": "Daten nur zur Anrufer-ID, nie weitergegeben.",
       "items": {
         "calls": {
           "title": "Anrufe und Anrufliste",
-          "why": "Um zu telefonieren sowie Verlauf und Statistik anzuzeigen."
+          "why": "Anrufen, Verlauf ansehen"
         },
         "contacts": {
           "title": "Kontakte",
-          "why": "Um Namen von Bekannten anzuzeigen und sie nicht versehentlich zu blockieren."
+          "why": "Namen von Bekannten zeigen"
         },
         "notifications": {
           "title": "Benachrichtigungen",
-          "why": "Um eingehende Anrufe anzuzeigen und über blockierte Anrufe zu informieren."
+          "why": "Eingehende und blockierte Anrufe"
         },
         "contactsWrite": {
           "title": "Kontakte bearbeiten",
-          "why": "Um Favoriten direkt in der App hinzuzufügen oder zu entfernen."
+          "why": "Favoriten hinzufügen oder entfernen"
         }
       },
       "roles": {
         "dialer": {
           "title": "Standard-Telefon-App",
-          "why": "Damit Safe Dial Anrufe annehmen, tätigen, filtern und vor dem Klingeln blockieren kann."
+          "why": "Vor dem Klingeln prüfen und blockieren"
         },
         "screening": {
           "title": "App für Anruferkennung und -filter",
@@ -153,10 +151,10 @@
       },
       "granted": "Erlaubt",
       "openSystem": "Systemeinstellungen öffnen",
-      "openSystemHint": "Falls du eine Berechtigung abgelehnt hast, aktiviere sie in den Android-Einstellungen → Berechtigungen.",
+      "openSystemHint": "Abgelehnt? In den Android-Einstellungen aktivieren.",
       "openSystemFailed": "Einstellungen konnten nicht geöffnet werden.",
       "deniedHint": "Berechtigung nicht erteilt. Erscheint kein Dialog, aktiviere sie in den Systemeinstellungen.",
-      "needRequired": "Erlaube Kontakte und lege Safe Dial als Standard-Telefon-App fest, um fortzufahren.",
+      "needRequired": "Kontakte erlauben und als Standard-Telefon-App festlegen.",
       "required": "Erforderlich"
     }
   },

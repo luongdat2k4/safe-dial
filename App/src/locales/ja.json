@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Safe Dial に権限を許可",
-      "subtitle": "各権限は明確な目的にのみ使用します。あとで変更できます。",
       "allowAll": "すべて許可",
       "laterWarn": "すべての権限を許可するまで、保護機能は制限されます",
       "sectionPermissions": "アクセス権限",
       "sectionRoles": "スマートフォン上の役割",
-      "privacyTitle": "あなたのプライバシー",
-      "privacyText": "連絡先データは識別にのみ使用し、販売や第三者への共有は行いません。",
+      "privacyText": "データは発信者識別にのみ使用し、共有しません。",
       "items": {
         "calls": {
           "title": "電話と通話履歴",
-          "why": "電話の発信、履歴と統計の確認に使用します。"
+          "why": "発信と履歴の確認"
         },
         "contacts": {
           "title": "連絡先",
-          "why": "知り合いの名前を表示し、誤ってブロックしないために使用します。"
+          "why": "知り合いの名前を表示"
         },
         "notifications": {
           "title": "通知",
-          "why": "着信の表示や、ブロックした着信のお知らせに使用します。"
+          "why": "着信とブロックの通知"
         },
         "contactsWrite": {
           "title": "連絡先の編集",
-          "why": "アプリ内でお気に入りを追加・削除するため。"
+          "why": "お気に入りの追加・削除"
         }
       },
       "roles": {
         "dialer": {
           "title": "デフォルトの電話アプリ",
-          "why": "着信音が鳴る前に Safe Dial が通話の受信、発信、フィルタ、ブロックを行えるようにします。"
+          "why": "着信前に判定・ブロック"
         },
         "screening": {
           "title": "発信者識別・通話フィルタアプリ",
@@ -153,10 +151,10 @@
       },
       "granted": "許可済み",
       "openSystem": "システム設定を開く",
-      "openSystemHint": "以前に権限を拒否した場合は、Android の設定 → 権限 で再度オンにしてください。",
+      "openSystemHint": "拒否した場合は Android の設定で許可してください。",
       "openSystemFailed": "設定を開けません。",
       "deniedHint": "権限が許可されていません。ダイアログが出ない場合はシステム設定で有効にしてください。",
-      "needRequired": "続けるには、連絡先を許可し、Safe Dial を既定の電話アプリに設定してください。",
+      "needRequired": "連絡先を許可し、既定の電話アプリに設定してください。",
       "required": "必須"
     }
   },

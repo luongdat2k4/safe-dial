@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Permisos para Safe Dial",
-      "subtitle": "Cada permiso tiene un único fin claro. Puedes cambiarlos más tarde.",
       "allowAll": "Permitir todo",
       "laterWarn": "La protección será limitada hasta que concedas todos los permisos",
       "sectionPermissions": "Accesos",
       "sectionRoles": "Funciones en el teléfono",
-      "privacyTitle": "Tu privacidad",
-      "privacyText": "Los contactos solo se usan para identificar llamadas. No se venden ni se comparten con terceros.",
+      "privacyText": "Datos solo para identificar llamadas, nunca compartidos.",
       "items": {
         "calls": {
           "title": "Llamadas y registro de llamadas",
-          "why": "Para hacer llamadas y ver el historial y las estadísticas."
+          "why": "Llamar y ver el historial"
         },
         "contacts": {
           "title": "Contactos",
-          "why": "Para mostrar el nombre de tus conocidos y no bloquearlos por error."
+          "why": "Mostrar nombres conocidos"
         },
         "notifications": {
           "title": "Notificaciones",
-          "why": "Para mostrar llamadas entrantes y avisar de llamadas bloqueadas."
+          "why": "Llamadas entrantes y bloqueadas"
         },
         "contactsWrite": {
           "title": "Editar contactos",
-          "why": "Para añadir o quitar favoritos desde la app."
+          "why": "Añadir o quitar favoritos"
         }
       },
       "roles": {
         "dialer": {
           "title": "App de teléfono predeterminada",
-          "why": "Permite a Safe Dial recibir, hacer, filtrar y bloquear llamadas antes de que suenen."
+          "why": "Filtrar y bloquear antes de sonar"
         },
         "screening": {
           "title": "App de identificación y filtro de llamadas",
@@ -153,10 +151,10 @@
       },
       "granted": "Permitido",
       "openSystem": "Abrir ajustes del sistema",
-      "openSystemHint": "Si antes rechazaste un permiso, actívalo en Ajustes de Android → Permisos.",
+      "openSystemHint": "¿Lo denegaste? Actívalo en Ajustes de Android.",
       "openSystemFailed": "No se pudo abrir Ajustes.",
       "deniedHint": "Permiso no concedido. Si no aparece el diálogo, actívalo en los ajustes del sistema.",
-      "needRequired": "Permite Contactos y establece Safe Dial como app de teléfono predeterminada para continuar.",
+      "needRequired": "Permite Contactos y elige como app de teléfono predeterminada.",
       "required": "Obligatorio"
     }
   },

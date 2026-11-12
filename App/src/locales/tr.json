@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Safe Dial'a izin verin",
-      "subtitle": "Her izin tek ve net bir amaç için kullanılır. Daha sonra değiştirebilirsiniz.",
       "allowAll": "Tümüne izin ver",
       "laterWarn": "Tüm izinleri verene kadar koruma sınırlı olacak",
       "sectionPermissions": "Erişim izinleri",
       "sectionRoles": "Telefondaki roller",
-      "privacyTitle": "Gizliliğiniz",
-      "privacyText": "Kişi verileri yalnızca tanıma için kullanılır; satılmaz ve üçüncü taraflarla paylaşılmaz.",
+      "privacyText": "Veriler yalnızca arayan kimliği için, paylaşılmaz.",
       "items": {
         "calls": {
           "title": "Aramalar ve arama kaydı",
-          "why": "Arama yapmak, geçmişi ve arama istatistiklerini görmek için."
+          "why": "Arama yap, geçmişi gör"
         },
         "contacts": {
           "title": "Kişiler",
-          "why": "Tanıdıklarınızın adını göstermek ve onları yanlışlıkla engellememek için."
+          "why": "Tanıdık adlarını göster"
         },
         "notifications": {
           "title": "Bildirimler",
-          "why": "Gelen aramaları göstermek ve engellenen aramaları bildirmek için."
+          "why": "Gelen ve engellenen aramalar"
         },
         "contactsWrite": {
           "title": "Kişileri düzenleme",
-          "why": "Favorileri doğrudan uygulamada eklemek veya kaldırmak için."
+          "why": "Favori ekle veya kaldır"
         }
       },
       "roles": {
         "dialer": {
           "title": "Varsayılan telefon uygulaması",
-          "why": "Safe Dial'ın aramaları telefon çalmadan önce alması, yapması, filtrelemesi ve engellemesi için."
+          "why": "Çalmadan önce süz ve engelle"
         },
         "screening": {
           "title": "Arayan kimliği ve arama filtreleme uygulaması",
@@ -153,10 +151,10 @@
       },
       "granted": "İzin verildi",
       "openSystem": "Sistem ayarlarını aç",
-      "openSystemHint": "Daha önce bir izni reddettiyseniz Android Ayarlar → İzinler bölümünden tekrar açın.",
+      "openSystemHint": "Reddettiniz mi? Android Ayarlarından açın.",
       "openSystemFailed": "Ayarlar açılamadı.",
       "deniedHint": "İzin verilmedi. İletişim kutusu görünmüyorsa sistem ayarlarından açın.",
-      "needRequired": "Devam etmek için Kişiler'e izin verin ve Safe Dial'ı varsayılan telefon uygulaması yapın.",
+      "needRequired": "Kişilere izin verin ve varsayılan telefon uygulaması yapın.",
       "required": "Zorunlu"
     }
   },

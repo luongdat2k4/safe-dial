@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Cấp quyền cho Safe Dial",
-      "subtitle": "Mỗi quyền chỉ dùng cho một mục đích rõ ràng. Bạn có thể đổi lại sau.",
       "allowAll": "Cho phép tất cả",
       "laterWarn": "Bảo vệ sẽ bị hạn chế cho đến khi bạn cấp đủ quyền",
       "sectionPermissions": "Quyền truy cập",
       "sectionRoles": "Vai trò trên điện thoại",
-      "privacyTitle": "Quyền riêng tư của bạn",
-      "privacyText": "Dữ liệu danh bạ chỉ dùng để nhận diện, không bán và không chia sẻ cho bên thứ ba.",
+      "privacyText": "Dữ liệu chỉ dùng để nhận diện, không chia sẻ.",
       "items": {
         "calls": {
-          "title": "Cuộc gọi và nhật ký cuộc gọi",
-          "why": "Để gọi điện, xem lịch sử và thống kê cuộc gọi."
+          "title": "Cuộc gọi và nhật ký",
+          "why": "Gọi điện, xem lịch sử"
         },
         "contacts": {
           "title": "Danh bạ",
-          "why": "Để hiện tên người quen và không chặn nhầm họ."
+          "why": "Hiện tên người quen"
         },
         "notifications": {
           "title": "Thông báo",
-          "why": "Để hiện cuộc gọi đến và báo cuộc gọi vừa bị chặn."
+          "why": "Báo cuộc gọi đến, bị chặn"
         },
         "contactsWrite": {
           "title": "Chỉnh sửa danh bạ",
-          "why": "Để thêm hoặc bỏ người yêu thích ngay trong app."
+          "why": "Thêm, bỏ yêu thích"
         }
       },
       "roles": {
         "dialer": {
-          "title": "Ứng dụng gọi điện mặc định",
-          "why": "Để Safe Dial nhận, gọi, lọc và chặn cuộc gọi trước khi đổ chuông."
+          "title": "Ứng dụng gọi mặc định",
+          "why": "Chặn trước khi đổ chuông"
         },
         "screening": {
           "title": "Ứng dụng nhận diện và lọc cuộc gọi",
@@ -153,10 +151,10 @@
       },
       "granted": "Đã cho phép",
       "openSystem": "Mở cài đặt hệ thống",
-      "openSystemHint": "Nếu đã từ chối một quyền trước đó, hãy bật lại trong Cài đặt Android → Quyền.",
+      "openSystemHint": "Đã từ chối? Bật lại trong Cài đặt Android.",
       "openSystemFailed": "Không mở được Cài đặt.",
       "deniedHint": "Quyền chưa được cấp. Nếu không thấy hộp thoại, hãy bật trong Cài đặt hệ thống.",
-      "needRequired": "Cần cho phép Danh bạ và đặt Safe Dial làm ứng dụng gọi điện mặc định để tiếp tục.",
+      "needRequired": "Cần quyền Danh bạ và đặt làm ứng dụng gọi mặc định.",
       "required": "Bắt buộc"
     }
   },

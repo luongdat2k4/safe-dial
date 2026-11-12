@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Grant permissions to Safe Dial",
-      "subtitle": "Each permission is used for one clear purpose. You can change them later.",
       "allowAll": "Allow all",
       "laterWarn": "Protection will be limited until you grant all permissions",
       "sectionPermissions": "Access",
       "sectionRoles": "Phone roles",
-      "privacyTitle": "Your privacy",
-      "privacyText": "Contact data is only used for caller identification. It is never sold or shared with third parties.",
+      "privacyText": "Data is only used for caller ID, never shared.",
       "items": {
         "calls": {
           "title": "Calls and call log",
-          "why": "To make calls and view call history and stats."
+          "why": "Make calls, see history"
         },
         "contacts": {
           "title": "Contacts",
-          "why": "To show names of people you know and avoid blocking them by mistake."
+          "why": "Show names you know"
         },
         "notifications": {
           "title": "Notifications",
-          "why": "To show incoming calls and tell you when a call was blocked."
+          "why": "Incoming and blocked calls"
         },
         "contactsWrite": {
           "title": "Edit contacts",
-          "why": "To add or remove favorites right in the app."
+          "why": "Add or remove favorites"
         }
       },
       "roles": {
         "dialer": {
           "title": "Default phone app",
-          "why": "Lets Safe Dial receive, make, screen and block calls before they ring."
+          "why": "Screen and block before it rings"
         },
         "screening": {
           "title": "Caller ID and spam app",
@@ -153,10 +151,10 @@
       },
       "granted": "Allowed",
       "openSystem": "Open system settings",
-      "openSystemHint": "If you denied a permission before, turn it back on in Android Settings → Permissions.",
+      "openSystemHint": "Denied before? Turn it on in Android Settings.",
       "openSystemFailed": "Couldn't open Settings.",
       "deniedHint": "Permission not granted. If no dialog appears, enable it in system settings.",
-      "needRequired": "Allow Contacts and set Safe Dial as the default phone app to continue.",
+      "needRequired": "Allow Contacts and set as default phone app.",
       "required": "Required"
     }
   },

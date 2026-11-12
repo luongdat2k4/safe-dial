@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "为 Safe Dial 授权",
-      "subtitle": "每项权限只用于一个明确的目的。你之后可以更改。",
       "allowAll": "全部允许",
       "laterWarn": "在授予全部权限之前，保护功能将受到限制",
       "sectionPermissions": "访问权限",
       "sectionRoles": "手机上的角色",
-      "privacyTitle": "你的隐私",
-      "privacyText": "通讯录数据仅用于识别，不会出售，也不会分享给第三方。",
+      "privacyText": "数据仅用于来电识别，绝不共享。",
       "items": {
         "calls": {
           "title": "电话和通话记录",
-          "why": "用于拨打电话、查看通话历史和统计。"
+          "why": "拨打电话、查看记录"
         },
         "contacts": {
           "title": "通讯录",
-          "why": "用于显示熟人姓名，避免误拦他们。"
+          "why": "显示熟人姓名"
         },
         "notifications": {
           "title": "通知",
-          "why": "用于显示来电并提醒刚被拦截的来电。"
+          "why": "来电与拦截提醒"
         },
         "contactsWrite": {
           "title": "编辑通讯录",
-          "why": "用于在应用内添加或移除收藏。"
+          "why": "添加或移除收藏"
         }
       },
       "roles": {
         "dialer": {
           "title": "默认电话应用",
-          "why": "让 Safe Dial 在响铃前接听、拨打、过滤和拦截来电。"
+          "why": "响铃前筛选和拦截"
         },
         "screening": {
           "title": "来电识别和过滤应用",
@@ -153,10 +151,10 @@
       },
       "granted": "已允许",
       "openSystem": "打开系统设置",
-      "openSystemHint": "如果之前拒绝过某项权限，请在 Android 设置 → 权限中重新开启。",
+      "openSystemHint": "之前拒绝过？请在 Android 设置中开启。",
       "openSystemFailed": "无法打开设置。",
       "deniedHint": "未授予权限。如果没有弹出对话框，请在系统设置中开启。",
-      "needRequired": "需要允许通讯录并将 Safe Dial 设为默认电话应用才能继续。",
+      "needRequired": "请允许通讯录并设为默认电话应用。",
       "required": "必需"
     }
   },

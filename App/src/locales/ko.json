@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Safe Dial 권한 허용",
-      "subtitle": "각 권한은 명확한 목적으로만 사용됩니다. 나중에 변경할 수 있어요.",
       "allowAll": "모두 허용",
       "laterWarn": "모든 권한을 허용할 때까지 보호 기능이 제한됩니다",
       "sectionPermissions": "접근 권한",
       "sectionRoles": "휴대폰에서의 역할",
-      "privacyTitle": "개인정보 보호",
-      "privacyText": "연락처 데이터는 식별에만 사용되며, 판매하거나 제3자와 공유하지 않습니다.",
+      "privacyText": "데이터는 발신자 확인에만 쓰이며 공유되지 않습니다.",
       "items": {
         "calls": {
           "title": "전화 및 통화 기록",
-          "why": "전화를 걸고 통화 기록과 통계를 보기 위해 필요합니다."
+          "why": "전화 걸기, 기록 보기"
         },
         "contacts": {
           "title": "연락처",
-          "why": "아는 사람의 이름을 표시하고 실수로 차단하지 않기 위해 필요합니다."
+          "why": "아는 사람 이름 표시"
         },
         "notifications": {
           "title": "알림",
-          "why": "수신 전화를 표시하고 방금 차단된 전화를 알려 주기 위해 필요합니다."
+          "why": "수신 및 차단 알림"
         },
         "contactsWrite": {
           "title": "연락처 수정",
-          "why": "앱에서 즐겨찾기를 추가하거나 삭제하기 위해 필요합니다."
+          "why": "즐겨찾기 추가·삭제"
         }
       },
       "roles": {
         "dialer": {
           "title": "기본 전화 앱",
-          "why": "벨이 울리기 전에 Safe Dial이 전화를 받고, 걸고, 필터링하고, 차단할 수 있게 합니다."
+          "why": "울리기 전에 걸러서 차단"
         },
         "screening": {
           "title": "발신자 식별 및 스팸 필터 앱",
@@ -153,10 +151,10 @@
       },
       "granted": "허용됨",
       "openSystem": "시스템 설정 열기",
-      "openSystemHint": "이전에 권한을 거부했다면 Android 설정 → 권한에서 다시 켜세요.",
+      "openSystemHint": "거부했나요? Android 설정에서 다시 켜세요.",
       "openSystemFailed": "설정을 열 수 없습니다.",
       "deniedHint": "권한이 허용되지 않았습니다. 대화상자가 보이지 않으면 시스템 설정에서 켜세요.",
-      "needRequired": "계속하려면 연락처를 허용하고 Safe Dial을 기본 전화 앱으로 설정하세요.",
+      "needRequired": "연락처를 허용하고 기본 전화 앱으로 설정하세요.",
       "required": "필수"
     }
   },

@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Autorisations pour Safe Dial",
-      "subtitle": "Chaque autorisation a un seul objectif précis. Vous pourrez les modifier plus tard.",
       "allowAll": "Tout autoriser",
       "laterWarn": "La protection sera limitée tant que toutes les autorisations ne sont pas accordées",
       "sectionPermissions": "Accès",
       "sectionRoles": "Rôles sur le téléphone",
-      "privacyTitle": "Votre vie privée",
-      "privacyText": "Les contacts servent uniquement à l'identification. Ils ne sont ni vendus ni partagés avec des tiers.",
+      "privacyText": "Données utilisées pour l’identification seulement, jamais partagées.",
       "items": {
         "calls": {
           "title": "Appels et journal d'appels",
-          "why": "Pour passer des appels et consulter l'historique et les statistiques."
+          "why": "Appeler, voir l’historique"
         },
         "contacts": {
           "title": "Contacts",
-          "why": "Pour afficher le nom de vos proches et éviter de les bloquer par erreur."
+          "why": "Afficher les noms connus"
         },
         "notifications": {
           "title": "Notifications",
-          "why": "Pour afficher les appels entrants et signaler les appels bloqués."
+          "why": "Appels entrants et bloqués"
         },
         "contactsWrite": {
           "title": "Modifier les contacts",
-          "why": "Pour ajouter ou retirer des favoris dans l'app."
+          "why": "Ajouter ou retirer des favoris"
         }
       },
       "roles": {
         "dialer": {
           "title": "Application Téléphone par défaut",
-          "why": "Permet à Safe Dial de recevoir, passer, filtrer et bloquer les appels avant la sonnerie."
+          "why": "Filtrer et bloquer avant la sonnerie"
         },
         "screening": {
           "title": "Application d'identification et de filtrage",
@@ -153,10 +151,10 @@
       },
       "granted": "Autorisé",
       "openSystem": "Ouvrir les paramètres système",
-      "openSystemHint": "Si vous avez refusé une autorisation, réactivez-la dans Paramètres Android → Autorisations.",
+      "openSystemHint": "Refusé avant ? Activez-le dans les Paramètres Android.",
       "openSystemFailed": "Impossible d'ouvrir les Paramètres.",
       "deniedHint": "Autorisation non accordée. Si aucune fenêtre n'apparaît, activez-la dans les paramètres système.",
-      "needRequired": "Autorisez les contacts et définissez Safe Dial comme application Téléphone par défaut pour continuer.",
+      "needRequired": "Autorisez les Contacts et définissez comme app Téléphone par défaut.",
       "required": "Obligatoire"
     }
   },

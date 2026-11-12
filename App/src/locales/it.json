@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Autorizza Safe Dial",
-      "subtitle": "Ogni permesso ha uno scopo preciso. Puoi modificarli in seguito.",
       "allowAll": "Consenti tutto",
       "laterWarn": "La protezione sarà limitata finché non concedi tutti i permessi",
       "sectionPermissions": "Permessi di accesso",
       "sectionRoles": "Ruoli sul telefono",
-      "privacyTitle": "La tua privacy",
-      "privacyText": "I contatti servono solo per l'identificazione: non vengono venduti né condivisi con terze parti.",
+      "privacyText": "Dati usati solo per l’ID chiamante, mai condivisi.",
       "items": {
         "calls": {
           "title": "Chiamate e registro chiamate",
-          "why": "Per chiamare, vedere la cronologia e le statistiche delle chiamate."
+          "why": "Chiama e vedi la cronologia"
         },
         "contacts": {
           "title": "Contatti",
-          "why": "Per mostrare i nomi dei tuoi contatti e non bloccarli per errore."
+          "why": "Mostra i nomi che conosci"
         },
         "notifications": {
           "title": "Notifiche",
-          "why": "Per mostrare le chiamate in arrivo e avvisarti delle chiamate bloccate."
+          "why": "Chiamate in arrivo e bloccate"
         },
         "contactsWrite": {
           "title": "Modifica contatti",
-          "why": "Per aggiungere o rimuovere preferiti direttamente nell'app."
+          "why": "Aggiungi o rimuovi preferiti"
         }
       },
       "roles": {
         "dialer": {
           "title": "App telefono predefinita",
-          "why": "Per permettere a Safe Dial di ricevere, effettuare, filtrare e bloccare le chiamate prima che squillino."
+          "why": "Filtra e blocca prima dello squillo"
         },
         "screening": {
           "title": "App di identificazione e filtro chiamate",
@@ -153,10 +151,10 @@
       },
       "granted": "Consentito",
       "openSystem": "Apri impostazioni di sistema",
-      "openSystemHint": "Se in passato hai negato un'autorizzazione, riattivala in Impostazioni Android → Autorizzazioni.",
+      "openSystemHint": "Negato prima? Attivalo nelle Impostazioni Android.",
       "openSystemFailed": "Impossibile aprire le Impostazioni.",
       "deniedHint": "Autorizzazione non concessa. Se non compare la finestra, attivala nelle impostazioni di sistema.",
-      "needRequired": "Consenti i contatti e imposta Safe Dial come app Telefono predefinita per continuare.",
+      "needRequired": "Consenti Contatti e imposta come app Telefono predefinita.",
       "required": "Obbligatorio"
     }
   },

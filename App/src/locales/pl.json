@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Uprawnienia dla Safe Dial",
-      "subtitle": "Każde uprawnienie ma jasno określony cel. Możesz je później zmienić.",
       "allowAll": "Zezwól na wszystko",
       "laterWarn": "Ochrona będzie ograniczona, dopóki nie udzielisz wszystkich uprawnień",
       "sectionPermissions": "Uprawnienia dostępu",
       "sectionRoles": "Role w telefonie",
-      "privacyTitle": "Twoja prywatność",
-      "privacyText": "Kontakty służą wyłącznie do rozpoznawania, nie są sprzedawane ani udostępniane podmiotom trzecim.",
+      "privacyText": "Dane tylko do identyfikacji, nigdy nie udostępniane.",
       "items": {
         "calls": {
           "title": "Połączenia i rejestr połączeń",
-          "why": "Aby dzwonić oraz przeglądać historię i statystyki połączeń."
+          "why": "Dzwoń i przeglądaj historię"
         },
         "contacts": {
           "title": "Kontakty",
-          "why": "Aby pokazywać nazwy znajomych i nie blokować ich przez pomyłkę."
+          "why": "Pokazuj imiona znajomych"
         },
         "notifications": {
           "title": "Powiadomienia",
-          "why": "Aby pokazywać połączenia przychodzące i informować o zablokowanych połączeniach."
+          "why": "Połączenia przychodzące i zablokowane"
         },
         "contactsWrite": {
           "title": "Edycja kontaktów",
-          "why": "Aby dodawać i usuwać ulubione w aplikacji."
+          "why": "Dodawaj i usuwaj ulubione"
         }
       },
       "roles": {
         "dialer": {
           "title": "Domyślna aplikacja telefonu",
-          "why": "Aby Safe Dial mógł odbierać, wykonywać, filtrować i blokować połączenia, zanim telefon zadzwoni."
+          "why": "Sprawdzaj i blokuj przed dzwonkiem"
         },
         "screening": {
           "title": "Aplikacja do identyfikacji i filtrowania połączeń",
@@ -153,10 +151,10 @@
       },
       "granted": "Przyznano",
       "openSystem": "Otwórz ustawienia systemu",
-      "openSystemHint": "Jeśli wcześniej odmówiono uprawnienia, włącz je w Ustawieniach Androida → Uprawnienia.",
+      "openSystemHint": "Odmówiono? Włącz w Ustawieniach Androida.",
       "openSystemFailed": "Nie udało się otworzyć Ustawień.",
       "deniedHint": "Nie przyznano uprawnienia. Jeśli okno się nie pojawia, włącz je w ustawieniach systemu.",
-      "needRequired": "Aby kontynuować, zezwól na Kontakty i ustaw Safe Dial jako domyślną aplikację telefonu.",
+      "needRequired": "Zezwól na Kontakty i ustaw jako domyślną aplikację telefonu.",
       "required": "Wymagane"
     }
   },

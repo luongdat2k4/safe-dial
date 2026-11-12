@@ -113,13 +113,11 @@ function finish(limited = false) {
     <!-- Chừa chỗ cho thanh trạng thái ngoài vùng cuộn: nội dung cuộn không chui xuống dưới status bar. -->
     <div v-else class="pt-safe shrink-0" />
     <div class="min-h-0 flex-1 overflow-y-auto pb-4">
-      <p v-if="fromSettings" class="px-5 pt-3 pb-1 text-[15px] text-muted">{{ t('boot.permissions.subtitle') }}</p>
-      <div v-else class="px-5 pt-2 pb-3">
+      <div v-if="!fromSettings" class="px-5 pt-2 pb-1">
         <span class="grid size-14 place-items-center rounded-2xl bg-primary-soft text-primary-dark">
           <AppIcon name="shield-check" :size="28" />
         </span>
         <h1 class="mt-4 text-2xl font-bold">{{ t('boot.permissions.title') }}</h1>
-        <p class="mt-1 text-[15px] text-muted">{{ t('boot.permissions.subtitle') }}</p>
         <p v-if="!isNative" class="mt-2 inline-flex items-center gap-1.5 rounded-full bg-spam-soft px-3 py-1 text-xs font-medium text-spam">
           <AppIcon name="flask-conical" :size="14" /> {{ t('common.mockNotice') }}
         </p>
@@ -179,13 +177,9 @@ function finish(limited = false) {
         </ListRow>
       </div>
 
-      <div class="mx-4 mt-4 flex gap-3 rounded-card border border-line bg-primary-soft p-4">
-        <AppIcon name="lock" :size="20" class="mt-0.5 shrink-0 text-primary-dark" />
-        <div>
-          <p class="text-sm font-semibold text-primary-dark">{{ t('boot.permissions.privacyTitle') }}</p>
-          <p class="mt-0.5 text-[13px] leading-snug text-ink/80">{{ t('boot.permissions.privacyText') }}</p>
-        </div>
-      </div>
+      <p class="mx-5 mt-4 flex items-center gap-2 text-[13px] text-muted">
+        <AppIcon name="lock" :size="16" class="shrink-0 text-primary-dark" />{{ t('boot.permissions.privacyText') }}
+      </p>
     </div>
 
     <div v-if="fromSettings" class="pb-safe shrink-0 border-t border-line bg-surface px-4 pt-3 pb-3">

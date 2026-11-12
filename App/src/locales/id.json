@@ -107,35 +107,33 @@
     },
     "permissions": {
       "title": "Beri izin untuk Safe Dial",
-      "subtitle": "Setiap izin hanya dipakai untuk satu tujuan yang jelas. Anda bisa mengubahnya nanti.",
       "allowAll": "Izinkan semua",
       "laterWarn": "Perlindungan akan terbatas sampai Anda memberi semua izin",
       "sectionPermissions": "Izin akses",
       "sectionRoles": "Peran di ponsel",
-      "privacyTitle": "Privasi Anda",
-      "privacyText": "Data kontak hanya dipakai untuk mengenali penelepon, tidak dijual dan tidak dibagikan ke pihak ketiga.",
+      "privacyText": "Data hanya untuk identitas penelepon, tidak dibagikan.",
       "items": {
         "calls": {
           "title": "Panggilan dan log panggilan",
-          "why": "Untuk menelepon, melihat riwayat, dan statistik panggilan."
+          "why": "Menelepon, lihat riwayat"
         },
         "contacts": {
           "title": "Kontak",
-          "why": "Untuk menampilkan nama kenalan dan tidak salah memblokir mereka."
+          "why": "Tampilkan nama yang dikenal"
         },
         "notifications": {
           "title": "Notifikasi",
-          "why": "Untuk menampilkan panggilan masuk dan memberi tahu panggilan yang baru diblokir."
+          "why": "Panggilan masuk dan diblokir"
         },
         "contactsWrite": {
           "title": "Edit kontak",
-          "why": "Untuk menambah atau menghapus favorit langsung di aplikasi."
+          "why": "Tambah atau hapus favorit"
         }
       },
       "roles": {
         "dialer": {
           "title": "Aplikasi telepon default",
-          "why": "Agar Safe Dial dapat menerima, melakukan, menyaring, dan memblokir panggilan sebelum berdering."
+          "why": "Saring dan blokir sebelum berdering"
         },
         "screening": {
           "title": "Aplikasi ID penelepon dan penyaring panggilan",
@@ -153,10 +151,10 @@
       },
       "granted": "Diizinkan",
       "openSystem": "Buka setelan sistem",
-      "openSystemHint": "Jika sebelumnya Anda menolak izin, aktifkan lagi di Setelan Android → Izin.",
+      "openSystemHint": "Pernah ditolak? Aktifkan di Setelan Android.",
       "openSystemFailed": "Tidak dapat membuka Setelan.",
       "deniedHint": "Izin belum diberikan. Jika dialog tidak muncul, aktifkan di setelan sistem.",
-      "needRequired": "Izinkan Kontak dan jadikan Safe Dial aplikasi telepon default untuk melanjutkan.",
+      "needRequired": "Izinkan Kontak dan jadikan aplikasi telepon default.",
       "required": "Wajib"
     }
   },
