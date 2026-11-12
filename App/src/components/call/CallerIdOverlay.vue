@@ -46,10 +46,11 @@ const place = computed(() => {
 const head = computed(
   () =>
     ({
-      safe: { cls: 'bg-primary text-white', icon: 'shield-check', pulse: false },
-      unknown: { cls: 'bg-unknown text-white', icon: 'circle-help', pulse: false },
-      spam: { cls: 'bg-spam text-white', icon: 'shield-x', pulse: false },
-      scam: { cls: 'bg-scam text-white', icon: 'shield-alert', pulse: true },
+      // Dải tiêu đề hoà theo nền của giao diện: chỉ phủ nhẹ màu rủi ro (tint); chấm biểu tượng giữ màu rủi ro đậm.
+      safe: { tint: 'bg-primary/10', dot: 'bg-primary', icon: 'shield-check', pulse: false },
+      unknown: { tint: 'bg-unknown/10', dot: 'bg-unknown', icon: 'circle-help', pulse: false },
+      spam: { tint: 'bg-spam/15', dot: 'bg-spam', icon: 'shield-x', pulse: false },
+      scam: { tint: 'bg-scam/20', dot: 'bg-scam', icon: 'shield-alert', pulse: true },
     })[risk.value],
 )
 
@@ -129,13 +130,22 @@ const warnText = computed(() =>
         role="dialog"
         :aria-label="t('call.overlay.incoming')"
       >
-        <div class="flex items-center gap-2 px-4 py-2 text-sm font-semibold" :class="head.cls">
-          <AppIcon :name="head.icon" :size="18" :class="head.pulse ? 'warn-blink' : ''" />
+        <div class="head-strip flex items-center gap-2.5 px-4 py-2 text-sm font-semibold" :class="head.tint">
+          <span class="grid size-7 shrink-0 place-items-center rounded-full text-white" :class="head.dot">
+            <AppIcon :name="head.icon" :size="16" :class="head.pulse ? 'warn-blink' : ''" />
+          </span>
           <span class="flex-1">{{ t(`call.overlay.head.${risk}`) }}</span>
-          <button type="button" class="tap grid size-8 place-items-center rounded-full bg-white/20" :aria-label="t('call.overlay.moreAria')" @click="emit('more')">
+          <button
+            type="button"
+            class="tap grid size-8 place-items-center rounded-full"
+            :class="theme.light.value ? 'bg-white/15' : 'bg-ink/5'"
+            :aria-label="t('call.overlay.moreAria')"
+            @click="emit('more')"
+          >
             <AppIcon name="ellipsis" :size="18" />
           </button>
         </div>
+        <div>
         <div class="flex items-center gap-3 px-4 pt-3">
           <Avatar :name="info.name" :risk="risk" :is-private="!info.number" :size="52" />
           <div class="min-w-0 flex-1">
@@ -159,7 +169,13 @@ const warnText = computed(() =>
             <AppIcon name="phone" :size="20" />{{ t('call.overlay.answer') }}
           </button>
         </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+/* Đường kẻ mảnh tách dải tiêu đề khỏi thân thẻ, hợp cả nền sáng lẫn nền tối. */
+.head-strip { border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
+</style>
