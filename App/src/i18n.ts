@@ -1,16 +1,16 @@
 import { createI18n } from 'vue-i18n'
-import vi from '@/locales/vi.json'
+import en from '@/locales/en.json'
 
-/** Cấu trúc khoá lấy theo vi.json; mọi file ngôn ngữ khác phải có cùng cấu trúc. */
-export type MessageSchema = typeof vi
+/** Cấu trúc khoá lấy theo en.json; mọi file ngôn ngữ khác phải có cùng cấu trúc. */
+export type MessageSchema = typeof en
 
 /**
  * Ngôn ngữ hỗ trợ. `code` trùng tên file `src/locales/<code>.json` và cờ `public/assets/flag/<code>.svg`.
  * `native` là tên ngôn ngữ viết bằng chính ngôn ngữ đó (không dịch).
  */
 export const LOCALES = [
-  { code: 'vi', native: 'Tiếng Việt' },
   { code: 'en', native: 'English' },
+  { code: 'vi', native: 'Tiếng Việt' },
   { code: 'zh', native: '中文' },
   { code: 'ja', native: '日本語' },
   { code: 'ko', native: '한국어' },
@@ -33,7 +33,8 @@ export const LOCALES = [
 
 export type Locale = (typeof LOCALES)[number]['code']
 
-export const DEFAULT_LOCALE: Locale = 'vi'
+/** Ngôn ngữ chọn sẵn khi cài app lần đầu (người dùng đổi ở màn chọn ngôn ngữ). */
+export const DEFAULT_LOCALE: Locale = 'en'
 
 export function isLocale(v: unknown): v is Locale {
   return LOCALES.some((l) => l.code === v)
@@ -45,20 +46,20 @@ export function flagUrl(code: Locale): string {
 
 /**
  * Bản dịch nằm trong `src/locales/<locale>.json`, được @intlify/unplugin-vue-i18n biên dịch sẵn lúc build.
- * Tiếng Việt nạp sẵn (cũng là ngôn ngữ dự phòng); ngôn ngữ khác chỉ tải khi được chọn.
+ * Tiếng Anh nạp sẵn (cũng là ngôn ngữ dự phòng); ngôn ngữ khác chỉ tải khi được chọn.
  * Cú pháp: tham số `{ten}`; các ký tự `@ | { } $` là cú pháp của vue-i18n, cần viết `{'@'}` nếu muốn hiện nguyên.
  */
 export const i18n = createI18n<[MessageSchema], Locale, false>({
   legacy: false,
   locale: DEFAULT_LOCALE,
   fallbackLocale: DEFAULT_LOCALE,
-  messages: { vi } as Record<Locale, MessageSchema>,
+  messages: { en } as Record<Locale, MessageSchema>,
   // Thiếu khoá → hiện chính khoá (dễ phát hiện khi test); chỉ cảnh báo ở bản dev.
   missingWarn: import.meta.env.DEV,
   fallbackWarn: import.meta.env.DEV,
 })
 
-const loaders = import.meta.glob<{ default: MessageSchema }>(['./locales/*.json', '!./locales/vi.json'])
+const loaders = import.meta.glob<{ default: MessageSchema }>(['./locales/*.json', '!./locales/en.json'])
 
 /** Đổi ngôn ngữ giao diện; tải file dịch nếu chưa có. */
 export async function setLocale(code: Locale): Promise<void> {

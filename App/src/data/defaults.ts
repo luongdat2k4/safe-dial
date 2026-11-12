@@ -12,7 +12,7 @@ export const DEFAULT_BLOCK_SETTINGS: BlockSettings = {
 export const DEFAULT_APP_SETTINGS: AppSettings = {
   onboardingDone: false,
   permissionsDone: false,
-  language: 'vi',
+  language: 'en',
   homeCountryDial: '+84',
   callerIdEnabled: true,
   showForContacts: false,
