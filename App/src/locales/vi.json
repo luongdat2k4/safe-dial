@@ -262,7 +262,20 @@
       "bottom": "Dưới",
       "preview": "Xem trước",
       "previewCaller": "Số lạ",
-      "tryIt": "Xem thử cuộc gọi"
+      "tryIt": "Xem thử cuộc gọi",
+      "wallpaper": {
+        "title": "Hình nền cuộc gọi",
+        "photo": "Ảnh của bạn",
+        "remove": "Xoá ảnh",
+        "failed": "Không đọc được ảnh này.",
+        "fullHint": "Chỉ áp dụng cho kiểu Popup.",
+        "lavender": "Oải hương",
+        "midnight": "Đêm",
+        "ocean": "Đại dương",
+        "sunset": "Hoàng hôn",
+        "forest": "Rừng",
+        "graphite": "Than chì"
+      }
     },
     "feedback": {
       "title": "Góp ý",

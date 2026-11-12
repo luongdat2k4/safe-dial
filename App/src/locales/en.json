@@ -262,7 +262,20 @@
       "bottom": "Bottom",
       "preview": "Preview",
       "previewCaller": "Unknown number",
-      "tryIt": "Try a test call"
+      "tryIt": "Try a test call",
+      "wallpaper": {
+        "title": "Call wallpaper",
+        "photo": "Your photo",
+        "remove": "Remove photo",
+        "failed": "Couldn’t read this image.",
+        "fullHint": "Only applies to the Popup style.",
+        "lavender": "Lavender",
+        "midnight": "Midnight",
+        "ocean": "Ocean",
+        "sunset": "Sunset",
+        "forest": "Forest",
+        "graphite": "Graphite"
+      }
     },
     "feedback": {
       "title": "Feedback",

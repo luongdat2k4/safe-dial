@@ -3,11 +3,15 @@ import { computed } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import type { PopupPosition, PopupSize } from '@/types'
 import { t } from '@/composables/useT'
+import { useCallWallpaper } from '@/composables/useCallWallpaper'
 
 /** Mô hình điện thoại thu nhỏ: popup caller-ID đổi vị trí và hình dạng theo cài đặt. */
 const props = withDefaults(defineProps<{ size: PopupSize; position: PopupPosition; mini?: boolean }>(), { mini: false })
 
 const full = computed(() => props.size === 'full')
+// Khung lớn ở kiểu Popup hiện đúng hình nền cuộc gọi đang chọn.
+const wallpaper = useCallWallpaper()
+const bg = computed(() => (!props.mini && !full.value ? wallpaper.style.value : undefined))
 const place = computed(() => {
   if (full.value) return 'inset-1.5'
   return { top: 'top-6 inset-x-2', center: 'top-1/2 -translate-y-1/2 inset-x-2', bottom: 'bottom-6 inset-x-2' }[props.position]
@@ -18,6 +22,7 @@ const place = computed(() => {
   <div
     class="relative overflow-hidden border-ink/80 bg-canvas"
     :class="mini ? 'h-16 w-10 rounded-lg border-2' : 'h-[300px] w-[160px] rounded-[26px] border-[5px] shadow-card'"
+    :style="bg"
     aria-hidden="true"
   >
     <div v-if="!mini" class="mx-auto mt-1.5 h-1.5 w-10 rounded-full bg-ink/20" />

@@ -262,7 +262,20 @@
       "bottom": "Bas",
       "preview": "Aperçu",
       "previewCaller": "Numéro inconnu",
-      "tryIt": "Tester un appel"
+      "tryIt": "Tester un appel",
+      "wallpaper": {
+        "title": "Fond d’appel",
+        "photo": "Votre photo",
+        "remove": "Retirer la photo",
+        "failed": "Impossible de lire cette image.",
+        "fullHint": "S’applique uniquement au style Popup.",
+        "lavender": "Lavande",
+        "midnight": "Minuit",
+        "ocean": "Océan",
+        "sunset": "Coucher de soleil",
+        "forest": "Forêt",
+        "graphite": "Graphite"
+      }
     },
     "feedback": {
       "title": "Votre avis",

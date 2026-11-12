@@ -6,6 +6,7 @@ import ListRow from '@/components/ListRow.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 import ToggleSwitch from '@/components/ToggleSwitch.vue'
 import PopupPreview from '@/components/settings/PopupPreview.vue'
+import WallpaperPicker from '@/components/settings/WallpaperPicker.vue'
 import { useSettingsStore } from '@/stores/settings'
 import type { PopupPosition, PopupSize } from '@/types'
 import { t } from '@/composables/useT'
@@ -67,6 +68,9 @@ const positions: PopupPosition[] = ['top', 'center', 'bottom']
           {{ t(`settings.callerId.${p}`) }}
         </button>
       </div>
+
+      <SectionHeader :title="t('settings.callerId.wallpaper.title')" />
+      <WallpaperPicker :disabled="settings.state.popupSize === 'full'" />
 
       <SectionHeader :title="t('settings.callerId.preview')" />
       <div class="flex justify-center py-2">

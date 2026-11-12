@@ -10,6 +10,7 @@ import { t } from '@/composables/useT'
 import { formatNumber } from '@/utils/numbers'
 import CallerIdOverlay from '@/components/call/CallerIdOverlay.vue'
 import AppIcon from '@/components/AppIcon.vue'
+import { useCallWallpaper } from '@/composables/useCallWallpaper'
 import QuickActionSheets, { type SheetMode } from '@/components/call/QuickActionSheets.vue'
 
 const router = useRouter()
@@ -18,15 +19,16 @@ const settings = useSettingsStore()
 const block = useBlockStore()
 const ui = useUiStore()
 const sheet = ref<SheetMode>(null)
+const wallpaper = useCallWallpaper()
 
 onMounted(() => {
   if (session.phase === 'idle') router.replace('/home/calls')
 })
 
-// Popup toàn màn hình có nền sáng; các cỡ khác nằm trên màn hình chính giả (nền tím đậm).
+// Popup toàn màn hình có nền sáng; kiểu Popup nằm trên màn hình chính giả (màu theo hình nền đang chọn).
 watchEffect(() => {
   void applyStatusBar(
-    settings.state.popupSize === 'full' ? { style: 'light', color: '#f4edff' } : { style: 'dark', color: '#bbb1eb' },
+    settings.state.popupSize === 'full' ? { style: 'light', color: '#f4edff' } : { style: 'dark', color: wallpaper.barColor.value },
   )
 })
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/stores/settings'
 import { t } from '@/composables/useT'
@@ -12,6 +12,8 @@ import RiskBadge from '@/components/RiskBadge.vue'
 import FakeHomeScreen from '@/components/call/FakeHomeScreen.vue'
 import appIcon from '@/assets/app-icon.webp'
 import type { BlockedPreviewState } from '@/data/fakeScenarios'
+import { useCallWallpaper } from '@/composables/useCallWallpaper'
+import { applyStatusBar } from '@/utils/statusBar'
 
 /**
  * Mô phỏng cuộc gọi bị chặn: điện thoại không đổ chuông, chỉ có thông báo của Safe Dial trượt xuống
@@ -22,6 +24,8 @@ const router = useRouter()
 const settings = useSettingsStore()
 const data = (window.history.state?.blockedPreview ?? null) as BlockedPreviewState | null
 const shown = ref(false)
+const wallpaper = useCallWallpaper()
+watchEffect(() => void applyStatusBar({ style: 'dark', color: wallpaper.barColor.value }))
 
 onMounted(() => {
   if (!data) {

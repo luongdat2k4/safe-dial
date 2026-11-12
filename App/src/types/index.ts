@@ -106,6 +106,8 @@ export interface AppSettings {
   scamWarning: boolean
   popupSize: PopupSize
   popupPosition: PopupPosition
+  /** Hình nền sau popup cuộc gọi: id hình có sẵn hoặc 'photo' (xem useCallWallpaper). */
+  callWallpaper: string
   callAlertNotification: boolean
   missedCallNotification: boolean
   remindMissedCalls: boolean

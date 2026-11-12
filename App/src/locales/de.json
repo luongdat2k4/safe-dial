@@ -262,7 +262,20 @@
       "bottom": "Unten",
       "preview": "Vorschau",
       "previewCaller": "Unbekannte Nummer",
-      "tryIt": "Testanruf ansehen"
+      "tryIt": "Testanruf ansehen",
+      "wallpaper": {
+        "title": "Anruf-Hintergrund",
+        "photo": "Dein Foto",
+        "remove": "Foto entfernen",
+        "failed": "Dieses Bild konnte nicht gelesen werden.",
+        "fullHint": "Gilt nur für den Popup-Stil.",
+        "lavender": "Lavendel",
+        "midnight": "Mitternacht",
+        "ocean": "Ozean",
+        "sunset": "Sonnenuntergang",
+        "forest": "Wald",
+        "graphite": "Graphit"
+      }
     },
     "feedback": {
       "title": "Feedback",

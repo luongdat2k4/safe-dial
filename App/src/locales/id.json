@@ -262,7 +262,20 @@
       "bottom": "Bawah",
       "preview": "Pratinjau",
       "previewCaller": "Nomor asing",
-      "tryIt": "Coba panggilan"
+      "tryIt": "Coba panggilan",
+      "wallpaper": {
+        "title": "Wallpaper panggilan",
+        "photo": "Foto Anda",
+        "remove": "Hapus foto",
+        "failed": "Gambar ini tidak bisa dibaca.",
+        "fullHint": "Hanya untuk gaya Popup.",
+        "lavender": "Lavender",
+        "midnight": "Tengah malam",
+        "ocean": "Samudra",
+        "sunset": "Senja",
+        "forest": "Hutan",
+        "graphite": "Grafit"
+      }
     },
     "feedback": {
       "title": "Masukan",

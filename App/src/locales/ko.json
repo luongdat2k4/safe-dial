@@ -262,7 +262,20 @@
       "bottom": "아래",
       "preview": "미리 보기",
       "previewCaller": "모르는 번호",
-      "tryIt": "수신 화면 미리 보기"
+      "tryIt": "수신 화면 미리 보기",
+      "wallpaper": {
+        "title": "통화 배경화면",
+        "photo": "내 사진",
+        "remove": "사진 삭제",
+        "failed": "이 이미지를 읽을 수 없습니다.",
+        "fullHint": "팝업 스타일에만 적용됩니다.",
+        "lavender": "라벤더",
+        "midnight": "미드나잇",
+        "ocean": "오션",
+        "sunset": "선셋",
+        "forest": "포레스트",
+        "graphite": "그래파이트"
+      }
     },
     "feedback": {
       "title": "의견 보내기",

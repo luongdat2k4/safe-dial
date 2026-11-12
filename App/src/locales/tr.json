@@ -262,7 +262,20 @@
       "bottom": "Alt",
       "preview": "Önizleme",
       "previewCaller": "Bilinmeyen numara",
-      "tryIt": "Aramayı dene"
+      "tryIt": "Aramayı dene",
+      "wallpaper": {
+        "title": "Arama duvar kâğıdı",
+        "photo": "Fotoğrafınız",
+        "remove": "Fotoğrafı kaldır",
+        "failed": "Bu görsel okunamadı.",
+        "fullHint": "Yalnızca Açılır pencere stili için.",
+        "lavender": "Lavanta",
+        "midnight": "Gece yarısı",
+        "ocean": "Okyanus",
+        "sunset": "Gün batımı",
+        "forest": "Orman",
+        "graphite": "Grafit"
+      }
     },
     "feedback": {
       "title": "Geri bildirim",

@@ -262,7 +262,20 @@
       "bottom": "نیچے",
       "preview": "پیش منظر",
       "previewCaller": "نامعلوم نمبر",
-      "tryIt": "کال آزمائیں"
+      "tryIt": "کال آزمائیں",
+      "wallpaper": {
+        "title": "کال وال پیپر",
+        "photo": "آپ کی تصویر",
+        "remove": "تصویر ہٹائیں",
+        "failed": "یہ تصویر نہیں پڑھی جا سکی۔",
+        "fullHint": "صرف پاپ اپ انداز پر لاگو۔",
+        "lavender": "لیونڈر",
+        "midnight": "آدھی رات",
+        "ocean": "سمندر",
+        "sunset": "غروبِ آفتاب",
+        "forest": "جنگل",
+        "graphite": "گریفائٹ"
+      }
     },
     "feedback": {
       "title": "رائے",

@@ -262,7 +262,20 @@
       "bottom": "下",
       "preview": "プレビュー",
       "previewCaller": "不明な番号",
-      "tryIt": "着信を試す"
+      "tryIt": "着信を試す",
+      "wallpaper": {
+        "title": "着信の壁紙",
+        "photo": "あなたの写真",
+        "remove": "写真を削除",
+        "failed": "この画像を読み込めません。",
+        "fullHint": "ポップアップ表示のみに適用されます。",
+        "lavender": "ラベンダー",
+        "midnight": "ミッドナイト",
+        "ocean": "オーシャン",
+        "sunset": "サンセット",
+        "forest": "フォレスト",
+        "graphite": "グラファイト"
+      }
     },
     "feedback": {
       "title": "フィードバック",

@@ -262,7 +262,20 @@
       "bottom": "Onder",
       "preview": "Voorbeeld",
       "previewCaller": "Onbekend nummer",
-      "tryIt": "Testoproep bekijken"
+      "tryIt": "Testoproep bekijken",
+      "wallpaper": {
+        "title": "Belachtergrond",
+        "photo": "Jouw foto",
+        "remove": "Foto verwijderen",
+        "failed": "Deze afbeelding kan niet worden gelezen.",
+        "fullHint": "Geldt alleen voor de pop-upstijl.",
+        "lavender": "Lavendel",
+        "midnight": "Middernacht",
+        "ocean": "Oceaan",
+        "sunset": "Zonsondergang",
+        "forest": "Bos",
+        "graphite": "Grafiet"
+      }
     },
     "feedback": {
       "title": "Feedback",

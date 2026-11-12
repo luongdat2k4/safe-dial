@@ -262,7 +262,20 @@
       "bottom": "Abajo",
       "preview": "Vista previa",
       "previewCaller": "Número desconocido",
-      "tryIt": "Probar una llamada"
+      "tryIt": "Probar una llamada",
+      "wallpaper": {
+        "title": "Fondo de llamada",
+        "photo": "Tu foto",
+        "remove": "Quitar foto",
+        "failed": "No se pudo leer esta imagen.",
+        "fullHint": "Solo se aplica al estilo Emergente.",
+        "lavender": "Lavanda",
+        "midnight": "Medianoche",
+        "ocean": "Océano",
+        "sunset": "Atardecer",
+        "forest": "Bosque",
+        "graphite": "Grafito"
+      }
     },
     "feedback": {
       "title": "Comentarios",
