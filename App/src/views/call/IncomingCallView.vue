@@ -9,6 +9,7 @@ import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
 import { formatNumber } from '@/utils/numbers'
 import CallerIdOverlay from '@/components/call/CallerIdOverlay.vue'
+import AppIcon from '@/components/AppIcon.vue'
 import QuickActionSheets, { type SheetMode } from '@/components/call/QuickActionSheets.vue'
 
 const router = useRouter()
@@ -28,6 +29,13 @@ watchEffect(() => {
     settings.state.popupSize === 'full' ? { style: 'light', color: '#f4edff' } : { style: 'dark', color: '#bbb1eb' },
   )
 })
+
+/** Xem thử (cuộc gọi giả lập): thoát về màn chọn kịch bản, không qua màn sau cuộc gọi. */
+function exitPreview() {
+  session.reset()
+  if (window.history.state?.back === '/call/simulate') router.back()
+  else router.replace('/call/simulate')
+}
 
 /** Điều hướng sau khi kết thúc do App.vue xử lý (theo sự kiện callEnded). */
 function afterEnd() {}
@@ -85,6 +93,7 @@ async function blockNumber() {
       :decision="session.decision"
       :size="settings.state.popupSize"
       :position="settings.state.popupPosition"
+      :preview="session.simulated"
       @answer="answer"
       @reject="reject()"
       @more="sheet = 'more'"
@@ -92,6 +101,18 @@ async function blockNumber() {
       @remind="sheet = 'remind'"
       @block="blockNumber"
     />
+    <!-- Chỉ khi xem thử: cuộc gọi thật không có nút thoát. -->
+    <div v-if="session.simulated" class="pt-safe pointer-events-none absolute inset-x-0 top-0 z-10 px-3">
+      <button
+        type="button"
+        class="tap pointer-events-auto mt-3 grid size-10 place-items-center rounded-full backdrop-blur"
+        :class="settings.state.popupSize === 'full' ? 'bg-white/80 text-ink shadow-card' : 'bg-white/25 text-white'"
+        :aria-label="t('common.actions.back')"
+        @click="exitPreview"
+      >
+        <AppIcon name="arrow-left" :size="22" />
+      </button>
+    </div>
     <QuickActionSheets
       v-model="sheet"
       @reply="(txt) => ((sheet = null), reject(t('call.incoming.replySent', { text: txt }), txt))"

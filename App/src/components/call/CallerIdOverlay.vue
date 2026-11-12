@@ -12,7 +12,8 @@ import AppIcon from '@/components/AppIcon.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import FakeHomeScreen from './FakeHomeScreen.vue'
 
-const props = defineProps<{ info: CallerInfo; decision?: NativeDecision | null; size: PopupSize; position: PopupPosition }>()
+// preview: đang xem thử, có nút quay lại ở góc trên nên popup đặt ở trên được đẩy xuống để không che nút.
+const props = defineProps<{ info: CallerInfo; decision?: NativeDecision | null; size: PopupSize; position: PopupPosition; preview?: boolean }>()
 const emit = defineEmits<{ answer: []; reject: []; more: []; message: []; remind: []; block: [] }>()
 const settings = useSettingsStore()
 
@@ -56,7 +57,7 @@ const bgFull = computed(
 )
 
 const edge = computed(
-  () => ({ top: 'top-10', center: 'top-1/2 -translate-y-1/2', bottom: 'bottom-6' })[props.position],
+  () => ({ top: props.preview ? 'top-24' : 'top-10', center: 'top-1/2 -translate-y-1/2', bottom: 'bottom-6' })[props.position],
 )
 
 const warnText = computed(() =>
