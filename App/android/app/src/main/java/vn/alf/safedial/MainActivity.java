@@ -1,6 +1,7 @@
 package vn.alf.safedial;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,10 @@ public class MainActivity extends BridgeActivity implements CallManager.Listener
         registerPlugin(SafeDialPlugin.class);
         registerPlugin(AdFollowPlugin.class);
         super.onCreate(savedInstanceState);
+        // Khoá dọc (không đặt trong manifest: activity trong suốt + khoá hướng làm Android 8.0 crash).
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // Dùng app bình thường thì cửa sổ đục (Android 11+), chỉ trong suốt khi popup cuộc gọi cần.
+        setSeeThrough(false);
         CallManager.get().addListener(this);
         handle(getIntent());
     }
@@ -64,6 +69,17 @@ public class MainActivity extends BridgeActivity implements CallManager.Listener
         if (route.startsWith("/call") && cur != null) setLockScreenMode(true);
         if ("answer".equals(action)) CallManager.get().answer();
         SafeDialPlugin.deliverLaunch(route, number);
+    }
+
+    /**
+     * Trong suốt: lộ màn hình thật của điện thoại (màn hình chính / app đang mở / màn hình khoá) phía sau WebView,
+     * cho popup cuộc gọi đến. Tắt: cửa sổ đục như bình thường.
+     */
+    public void setSeeThrough(boolean on) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) setTranslucent(on);
+        getWindow().setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(on ? android.graphics.Color.TRANSPARENT : android.graphics.Color.WHITE));
+        if (getBridge() != null && getBridge().getWebView() != null)
+            getBridge().getWebView().setBackgroundColor(on ? android.graphics.Color.TRANSPARENT : android.graphics.Color.WHITE);
     }
 
     private void setLockScreenMode(boolean on) {

@@ -416,6 +416,10 @@ export class SafeDialWeb extends WebPlugin implements Impl {
     /* bản web: không có Cài đặt hệ thống */
   }
 
+  async setSeeThrough(_opts: { on: boolean }) {
+    /* Web: không có màn hình điện thoại thật phía sau. */
+  }
+
   async openSms() {
     /* bản web: UI tự hiện thông báo giả lập */
   }

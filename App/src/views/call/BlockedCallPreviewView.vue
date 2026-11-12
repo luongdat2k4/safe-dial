@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/stores/settings'
 import { t } from '@/composables/useT'
@@ -10,6 +10,8 @@ import Avatar from '@/components/Avatar.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import FakeHomeScreen from '@/components/call/FakeHomeScreen.vue'
+import { seeThrough, useSeeThrough } from '@/composables/useSeeThrough'
+import { applyStatusBar } from '@/utils/statusBar'
 import appIcon from '@/assets/app-icon.webp'
 import type { BlockedPreviewState } from '@/data/fakeScenarios'
 
@@ -22,6 +24,12 @@ const router = useRouter()
 const settings = useSettingsStore()
 const data = (window.history.state?.blockedPreview ?? null) as BlockedPreviewState | null
 const shown = ref(false)
+// Máy thật: thông báo hiện trên màn hình thật của điện thoại (cửa sổ trong suốt).
+useSeeThrough(ref(true))
+// Máy thật: thanh trạng thái trong suốt, lộ màn hình thật phía sau.
+watchEffect(() => {
+  if (seeThrough.value) void applyStatusBar({ style: 'dark', color: '#00000000' })
+})
 
 onMounted(() => {
   if (!data) {
@@ -52,8 +60,8 @@ const openBlocked = () => router.replace('/home/block')
 </script>
 
 <template>
-  <div v-if="data" class="relative h-full overflow-hidden bg-ink">
-    <FakeHomeScreen />
+  <div v-if="data" class="relative h-full overflow-hidden" :class="{ 'bg-ink': !seeThrough }">
+    <FakeHomeScreen v-if="!seeThrough" />
 
     <div class="pt-safe pointer-events-none absolute inset-x-0 top-0 z-10 px-3">
       <button

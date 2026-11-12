@@ -498,6 +498,21 @@ public class SafeDialPlugin extends Plugin implements CallManager.Listener {
         }
     }
 
+    /** Popup cuộc gọi đến: cửa sổ trong suốt để hiện đè lên màn hình thật của điện thoại. */
+    @PluginMethod
+    public void setSeeThrough(PluginCall call) {
+        boolean on = Boolean.TRUE.equals(call.getBoolean("on", false));
+        Activity a = getActivity();
+        if (!(a instanceof MainActivity)) {
+            call.resolve();
+            return;
+        }
+        a.runOnUiThread(() -> {
+            ((MainActivity) a).setSeeThrough(on);
+            call.resolve();
+        });
+    }
+
     @PluginMethod
     public void openSms(PluginCall call) {
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("smsto", call.getString("number", ""), null))

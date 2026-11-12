@@ -1,5 +1,6 @@
 import { computed, ref, type CSSProperties } from 'vue'
 import { useSettingsStore } from '@/stores/settings'
+import { seeThrough } from './useSeeThrough'
 
 /**
  * Giao diện của khung hiển thị cuộc gọi đến (thẻ popup và màn toàn màn hình), không phải nền điện thoại.
@@ -24,6 +25,9 @@ export const CALL_THEMES: readonly ThemeDef[] = [
   { id: 'glass', card: 'rgba(255, 255, 255, 0.2)', full: 'rgba(40, 26, 80, 0.35)', light: true, bar: '#bbb1eb' },
   { id: 'gradient', card: 'linear-gradient(135deg, #5926e9 0%, #934cf4 56%, #e66bb7 100%)', full: 'linear-gradient(160deg, #5926e9 0%, #934cf4 56%, #e66bb7 100%)', light: true, bar: '#5926e9' },
 ]
+
+/** Kính trên màn hình thật của điện thoại: WebView không làm mờ được nội dung ngoài app → kính tối hơn để chữ vẫn rõ. */
+const GLASS_OVER_REAL: ThemeDef = { id: 'glass', card: 'rgba(28, 20, 58, 0.62)', full: 'rgba(20, 14, 42, 0.72)', light: true, bar: '#00000000' }
 
 export type CallThemeId = ThemeDef['id'] | 'photo'
 
@@ -63,7 +67,9 @@ export function useCallTheme() {
     if (id === 'photo') return photo.value ? 'photo' : 'classic'
     return CALL_THEMES.find((x) => x.id === id)?.id ?? 'classic'
   })
-  const def = computed(() => CALL_THEMES.find((x) => x.id === current.value))
+  const def = computed(() =>
+    current.value === 'glass' && seeThrough.value ? GLASS_OVER_REAL : CALL_THEMES.find((x) => x.id === current.value),
+  )
 
   /** Chữ sáng (nền tối / ảnh / kính mờ trên nền tím). */
   const light = computed(() => current.value === 'photo' || !!def.value?.light)

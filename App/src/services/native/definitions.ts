@@ -212,6 +212,8 @@ export interface SafeDialPlugin {
 
   /** Mở trang ứng dụng trong Cài đặt Android (để bật quyền đã bị từ chối hẳn). */
   openAppSettings(): Promise<void>
+  /** Popup cuộc gọi đến: cửa sổ trong suốt, lộ màn hình thật của điện thoại phía sau (chỉ Android). */
+  setSeeThrough(opts: { on: boolean }): Promise<void>
   openSms(opts: { number: string }): Promise<void>
   addContact(opts: { number: string }): Promise<void>
 

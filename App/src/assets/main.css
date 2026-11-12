@@ -219,3 +219,11 @@ input:not([type='checkbox']):focus, textarea:focus, select:focus { border-color:
 @media (prefers-reduced-motion: reduce) {
   .skeleton { animation: none; }
 }
+
+/* Popup cuộc gọi đến trên máy thật: trang trong suốt để thấy màn hình thật của điện thoại (useSeeThrough). */
+html.see-through,
+html.see-through body,
+html.see-through #app,
+html.see-through .app-shell {
+  background: transparent !important;
+}

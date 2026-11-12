@@ -12,6 +12,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import RiskBadge from '@/components/RiskBadge.vue'
 import FakeHomeScreen from './FakeHomeScreen.vue'
 import { useCallTheme } from '@/composables/useCallTheme'
+import { seeThrough } from '@/composables/useSeeThrough'
 
 // preview: đang xem thử, có nút quay lại ở góc trên nên popup đặt ở trên được đẩy xuống để không che nút.
 const props = defineProps<{ info: CallerInfo; decision?: NativeDecision | null; size: PopupSize; position: PopupPosition; preview?: boolean }>()
@@ -74,7 +75,8 @@ const warnText = computed(() =>
 <template>
   <!-- Toàn màn hình -->
   <div v-if="size === 'full'" class="absolute inset-0 overflow-hidden">
-  <FakeHomeScreen v-if="theme.glass.value" />
+  <!-- Máy thật: phía sau là màn hình thật của điện thoại (cửa sổ trong suốt); web: màn hình chính giả. -->
+  <FakeHomeScreen v-if="theme.glass.value && !seeThrough" />
   <div
     class="pt-safe pb-safe absolute inset-0 flex flex-col"
     :class="[theme.fullStyle.value ? '' : `bg-gradient-to-b ${bgFull}`, theme.light.value ? 'text-white' : 'text-ink', theme.glass.value ? 'backdrop-blur-xl' : '']"
@@ -117,7 +119,7 @@ const warnText = computed(() =>
 
   <!-- Popup kiểu cổ điển trên nền màn hình chính giả -->
   <div v-else class="absolute inset-0 overflow-hidden">
-    <FakeHomeScreen />
+    <FakeHomeScreen v-if="!seeThrough" />
     <div class="absolute inset-0 bg-black/25" />
     <div class="absolute inset-x-0 px-3" :class="edge">
       <div

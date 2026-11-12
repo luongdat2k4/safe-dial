@@ -13,10 +13,16 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:background">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
 
+    <!-- Trong suốt được (windowIsTranslucent): popup cuộc gọi đến hiện đè lên màn hình thật của điện thoại.
+         Nền cửa sổ vẫn đục khi dùng app bình thường; SafeDialPlugin.setSeeThrough mới làm trong suốt.
+         Chú ý: activity trong suốt không được khoá hướng trong manifest (Android 8.0 bị crash) →
+         MainActivity tự khoá dọc trong onCreate. -->
     <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
         <item name="android:background">@drawable/splash</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>

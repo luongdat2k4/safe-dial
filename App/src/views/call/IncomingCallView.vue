@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { applyStatusBar } from '@/utils/statusBar'
 import { useRouter } from 'vue-router'
 import { useBlockStore } from '@/stores/block'
@@ -11,6 +11,7 @@ import { formatNumber } from '@/utils/numbers'
 import CallerIdOverlay from '@/components/call/CallerIdOverlay.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import { useCallTheme } from '@/composables/useCallTheme'
+import { seeThrough, useSeeThrough } from '@/composables/useSeeThrough'
 import QuickActionSheets, { type SheetMode } from '@/components/call/QuickActionSheets.vue'
 
 const router = useRouter()
@@ -20,6 +21,9 @@ const block = useBlockStore()
 const ui = useUiStore()
 const sheet = ref<SheetMode>(null)
 const theme = useCallTheme()
+// Popup (và toàn màn hình kiểu kính) hiện đè lên màn hình thật của điện thoại.
+const overReal = computed(() => settings.state.popupSize !== 'full' || theme.glass.value)
+useSeeThrough(overReal)
 
 onMounted(() => {
   if (session.phase === 'idle') router.replace('/home/calls')
@@ -29,7 +33,7 @@ onMounted(() => {
 watchEffect(() => {
   void applyStatusBar(
     settings.state.popupSize !== 'full'
-      ? { style: 'dark', color: '#bbb1eb' }
+      ? { style: 'dark', color: seeThrough.value ? '#00000000' : '#bbb1eb' }
       : theme.light.value
         ? { style: 'dark', color: theme.fullBar.value }
         : { style: 'light', color: '#f4edff' },
@@ -92,7 +96,7 @@ async function blockNumber() {
 </script>
 
 <template>
-  <div class="relative h-full overflow-hidden bg-ink">
+  <div class="relative h-full overflow-hidden" :class="{ 'bg-ink': !(seeThrough && overReal) }">
     <CallerIdOverlay
       v-if="session.info"
       :info="session.info"
