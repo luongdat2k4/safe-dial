@@ -17,6 +17,11 @@ const ui = useUiStore()
 
 const fromSettings = computed(() => route.query.from === 'settings')
 const selected = ref<Locale>(settings.state.language)
+/**
+ * Từ Cài đặt: chỉ bấm Xác nhận được khi đã chọn ngôn ngữ khác. Lần đầu mở app thì luôn bấm được,
+ * vì người dùng có thể giữ ngôn ngữ chọn sẵn (English) để đi tiếp.
+ */
+const unchanged = computed(() => fromSettings.value && selected.value === settings.state.language)
 let confirmed = false
 
 
@@ -83,7 +88,7 @@ onBeforeUnmount(() => {
       <NativeAd class="mt-4" />
     </div>
     <div class="pb-safe shrink-0 px-4 pt-2 pb-4">
-      <BaseButton block size="lg" @click="confirm">{{ t('boot.language.confirm') }}</BaseButton>
+      <BaseButton block size="lg" :disabled="unchanged" @click="confirm">{{ t('boot.language.confirm') }}</BaseButton>
     </div>
   </div>
 </template>
