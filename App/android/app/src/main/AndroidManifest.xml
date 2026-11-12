@@ -11,6 +11,18 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
 
+        <!-- Google Mobile Ads đọc App ID ở đây khi khởi tạo. Đang dùng ID test của Google;
+             phải trùng keys.admob.android.appId trong src/features/ads/adsConfig.ts. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <!-- Trình kiểm tra quảng cáo native của AdMob mở popup cho mỗi quảng cáo test và vẽ lại mỗi khung hình khi
+             cuộn trang (giật, sai số đo). Chỉ ảnh hưởng quảng cáo test. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.flag.NATIVE_AD_DEBUGGER_ENABLED"
+            android:value="false" />
+
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
             android:name=".MainActivity"

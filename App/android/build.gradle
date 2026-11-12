@@ -21,6 +21,18 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        // Các mạng quảng cáo mà adapter mediation AppLovin MAX của @alf/app-sdk kéo về (bản thân AppLovin ở Maven Central).
+        maven { url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea' }
+        maven { url 'https://artifact.bytedance.com/repository/pangle' }
+        maven { url 'https://artifactory.bidmachine.io/bidmachine' }
+    }
+}
+
+// @alf/app-sdk tự khai báo repo maven.applovin.com, nhưng tên miền này không còn phân giải được (NXDOMAIN) và một repo
+// lỗi mạng làm Gradle dừng cả lượt tải thay vì thử repo khác. AppLovin đã chuyển lên Maven Central nên bỏ repo đó đi.
+subprojects {
+    afterEvaluate { p ->
+        p.repositories.removeAll { it instanceof MavenArtifactRepository && it.url?.host == 'maven.applovin.com' }
     }
 }
 

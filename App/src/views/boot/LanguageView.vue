@@ -8,6 +8,7 @@ import { useSettingsStore } from '@/stores/settings'
 import { useUiStore } from '@/stores/ui'
 import { t } from '@/composables/useT'
 import { LOCALES, flagUrl, setLocale, type Locale } from '@/i18n'
+import NativeAd from '@/features/ads/components/NativeAd.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -54,7 +55,7 @@ onBeforeUnmount(() => {
     </div>
     <div v-else class="shrink-0 pt-3" />
 
-    <div class="min-h-0 flex-1 overflow-y-auto px-4 pt-1 pb-4">
+    <div data-ad-scroll-region class="min-h-0 flex-1 overflow-y-auto px-4 pt-1 pb-4">
       <div role="radiogroup" :aria-label="t('boot.language.title')" class="flex flex-col gap-3">
         <button
           v-for="o in LOCALES"
@@ -79,6 +80,7 @@ onBeforeUnmount(() => {
           </span>
         </button>
       </div>
+      <NativeAd class="mt-4" />
     </div>
     <div class="pb-safe shrink-0 px-4 pt-2 pb-4">
       <BaseButton block size="lg" @click="confirm">{{ t('boot.language.confirm') }}</BaseButton>

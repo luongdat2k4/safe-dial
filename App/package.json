@@ -13,6 +13,7 @@
     "check:icons": "node scripts/check-icons.mjs"
   },
   "dependencies": {
+    "@alf/app-sdk": "file:../alf-app-sdk-3.0.0.tgz",
     "@capacitor/app": "^8.1.2",
     "@capacitor/core": "^8.6.0",
     "@capacitor/splash-screen": "^8.0.2",

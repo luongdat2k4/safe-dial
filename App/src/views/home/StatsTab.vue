@@ -16,6 +16,7 @@ import {
   type RankedNumber,
 } from '@/utils/stats'
 import { formatDuration } from '@/utils/format'
+import InFeedAd from '@/features/ads/components/InFeedAd.vue'
 import type { RiskLevel } from '@/types'
 import SegmentedTabs from '@/components/SegmentedTabs.vue'
 import EmptyState from '@/components/EmptyState.vue'
@@ -92,7 +93,7 @@ const h2 = 'mb-3 text-[15px] font-bold'
 
 <template>
   <div class="min-h-full bg-canvas pb-28">
-    <div class="sticky top-0 z-10 bg-canvas"><SegmentedTabs v-model="period" :items="tabs" /></div>
+    <div data-ad-top-edge class="sticky top-0 z-10 bg-canvas"><SegmentedTabs v-model="period" :items="tabs" /></div>
 
     <EmptyState v-if="!sum.count" icon="chart-no-axes-combined" :title="t('stats.empty.title')" :description="t('stats.empty.desc')" />
 
@@ -103,6 +104,8 @@ const h2 = 'mb-3 text-[15px] font-bold'
         <KpiCard icon="phone-missed" tone="danger" :label="t('stats.kpi.missed')" :value="sum.missed" />
         <KpiCard icon="shield-alert" tone="violet" :label="t('stats.kpi.suspicious')" :value="`${sum.suspicious} / ${sum.blocked}`" :sub="t('stats.kpi.suspiciousSub')" />
       </div>
+
+      <InFeedAd class="px-4 pt-4" />
 
       <section :class="card">
         <h2 :class="h2">{{ t('stats.perDay.title', { n: period === '7d' ? 7 : 14 }) }}</h2>

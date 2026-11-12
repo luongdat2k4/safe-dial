@@ -6,6 +6,9 @@ import AppIcon from '@/components/AppIcon.vue'
 import BottomNav from '@/components/BottomNav.vue'
 import FabButton from '@/components/FabButton.vue'
 import appIcon from '@/assets/app-icon.webp'
+import BannerAd from '@/features/ads/components/BannerAd.vue'
+import { adsPossible, bannerHeight } from '@/features/ads/banner'
+import { showInterstitial } from '@/features/ads/adRuntime'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,6 +22,13 @@ const pageTitle = computed(() => {
   return t(labels[route.path] ?? 'common.appName')
 })
 const showFab = computed(() => route.path === '/home/calls' || route.path === '/home/contacts')
+// Mở Cài đặt là một điểm dừng tự nhiên: interstitial nếu đã tải sẵn (cách quảng cáo toàn màn hình trước ≥ 30 giây).
+function openSettings() {
+  void showInterstitial('open_settings')
+  router.push('/settings')
+}
+// Banner nằm ở đáy màn hình (view native); thanh điều hướng nổi và nút bàn phím được đẩy lên phía trên nó.
+const adGap = computed(() => (adsPossible ? bannerHeight.value : 0))
 </script>
 
 <template>
@@ -29,7 +39,7 @@ const showFab = computed(() => route.path === '/home/calls' || route.path === '/
           <img :src="appIcon" alt="" width="32" height="32" class="size-8 rounded-[10px]" />
           Safe Dial
         </span>
-        <button class="tap icon-control grid size-10 place-items-center rounded-full text-muted" :aria-label="t('settings.title')" @click="router.push('/settings')">
+        <button class="tap icon-control grid size-10 place-items-center rounded-full text-muted" :aria-label="t('settings.title')" @click="openSettings">
           <AppIcon name="settings" :size="19" />
         </button>
       </div>
@@ -40,10 +50,11 @@ const showFab = computed(() => route.path === '/home/calls' || route.path === '/
         </button>
       </div>
     </header>
-    <main class="relative min-h-0 flex-1 overflow-y-auto">
+    <main data-ad-scroll-region class="relative min-h-0 flex-1 overflow-y-auto">
       <RouterView v-slot="{ Component }"><component :is="Component" /></RouterView>
     </main>
-    <FabButton v-if="showFab" icon="grid-3x3" :label="t('dial.title')" class="!bottom-[104px]" @click="router.push('/dialpad')" />
-    <BottomNav />
+    <FabButton v-if="showFab" icon="grid-3x3" :label="t('dial.title')" :style="{ bottom: `${104 + adGap}px` }" @click="router.push('/dialpad')" />
+    <BottomNav data-ad-bottom-edge :style="{ bottom: `${12 + adGap}px` }" />
+    <BannerAd />
   </div>
 </template>

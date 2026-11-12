@@ -11,11 +11,21 @@ import com.getcapacitor.BridgeActivity;
 import vn.alf.safedial.telecom.CallManager;
 import vn.alf.safedial.telecom.Notifs;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainActivity extends BridgeActivity implements CallManager.Listener {
+    // AppLovin giữ mọi creative đã tải trong files/al và không tự dọn, mỗi quảng cáo thêm vài MB.
+    private static final long AD_CACHE_LIMIT_BYTES = 30L * 1024 * 1024;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // Trước khi bridge chạy: SDK quảng cáo chưa khởi động nên không creative nào đang được dùng khi dọn.
+        trimAdCache(new File(getFilesDir(), "al"), AD_CACHE_LIMIT_BYTES);
         registerPlugin(SafeDialPlugin.class);
+        registerPlugin(AdFollowPlugin.class);
         super.onCreate(savedInstanceState);
         CallManager.get().addListener(this);
         handle(getIntent());
@@ -63,6 +73,31 @@ public class MainActivity extends BridgeActivity implements CallManager.Listener
         } else {
             int flags = WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON;
             if (on) getWindow().addFlags(flags); else getWindow().clearFlags(flags);
+        }
+    }
+
+    // Xoá file cũ nhất tới khi thư mục nằm trong giới hạn, giữ lại các creative mới nhất.
+    private static void trimAdCache(File dir, long limit) {
+        if (!dir.isDirectory()) return;
+        List<File> files = new ArrayList<>();
+        collect(dir, files);
+        long total = 0;
+        for (File file : files) total += file.length();
+        if (total <= limit) return;
+        Collections.sort(files, (a, b) -> Long.compare(a.lastModified(), b.lastModified()));
+        for (File file : files) {
+            if (total <= limit) break;
+            long size = file.length();
+            if (file.delete()) total -= size;
+        }
+    }
+
+    private static void collect(File dir, List<File> out) {
+        File[] children = dir.listFiles();
+        if (children == null) return;
+        for (File child : children) {
+            if (child.isDirectory()) collect(child, out);
+            else out.add(child);
         }
     }
 

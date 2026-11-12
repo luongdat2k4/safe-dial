@@ -13,6 +13,7 @@ import { useCallsStore } from '@/stores/calls'
 import { useContactsStore } from '@/stores/contacts'
 import { useBlockStore } from '@/stores/block'
 import { SafeDial, type LaunchInfo } from '@/services'
+import { adsBlocked } from '@/features/ads/adRuntime'
 
 const route = useRoute()
 const router = useRouter()
@@ -68,6 +69,14 @@ function openLaunch(l: LaunchInfo) {
   const query = l.number ? { number: l.number } : undefined
   if (route.path !== l.route) router.push({ path: l.route, query })
 }
+
+// Quảng cáo là view native vẽ đè lên WebView: đang ở màn cuộc gọi hoặc có cuộc gọi thì ẩn / chặn hết,
+// đồng bộ (flush 'sync') để không khung hình nào còn quảng cáo đè lên nút Nghe / Từ chối.
+watch(
+  () => route.path.startsWith('/call') || session.isLive,
+  (calling) => { adsBlocked.value = calling },
+  { immediate: true, flush: 'sync' },
+)
 
 // Màn hình theo trạng thái cuộc gọi (sự kiện callState / callEnded của InCallService).
 watch(
